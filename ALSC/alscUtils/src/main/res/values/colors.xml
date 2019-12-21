@@ -16,6 +16,8 @@
     <color name="red">#FF1945</color>
     <color name="red_light">#E16B6B</color>
     <color name="blue">#0076FF</color>
+    <color name="blue_middle">#248cf5</color>
+    <color name="yahei_middle">#2c3750</color>
     <color name="violet">#8541a5</color>
     <color name="blue_deep">#4F7EE4</color>
     <color name="yahei">#505050</color>

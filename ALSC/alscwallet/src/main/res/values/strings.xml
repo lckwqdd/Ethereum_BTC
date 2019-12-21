@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">DemoUtil</string>
+
+    <!--    wallte type-->
+    <string name="wt_type_make">创建钱包类型</string>
+    <string name="wt_type_change">去中心化的DAPP,冷热钱包自由切换</string>
+    <string name="wt_type_chain">跨链钱包</string>
+    <string name="wt_type_online">在线钱包</string>
+    <string name="wt_type_chain_describe">构建各种公有价值钱包系统,实现多种数字资产业务创新</string>
+    <string name="wt_type_online_describe">打造ALSC数字经济生态应用</string>
+    <string name="wt_type_next">下一步</string>
+    <string name="wt_type_has_alsc">已有ALSC账号?</string>
+    <string name="wt_type_login">登录</string>
+
+
+    <!--    wallte code-->
+    <string name="wc_code">创建跨链钱包</string>
+    <string name="wc_code_important">用于保护私钥与交易权限,这点非常重要.</string>
+    <string name="wc_code_warn">去中心化需要警惕且丢失无法找回,请提高警惕!</string>
+    <string name="wc_code_account">账户名称</string>
+    <string name="wc_code_input_account">请输入账户名称</string>
+    <string name="wc_code_wallet_pwd">钱包密码</string>
+    <string name="wc_code_input_wallet_pwd">请输入钱包密码</string>
+    <string name="wc_code_input_wallet_pwd_again">请再次输入钱包密码</string>
+    <string name="wc_code_pwd_pattern">密码输入规则:大写字母、小写字母、数字自由组合</string>
+
+    <!--    wallet backup-->
+    <string name="wc_backup">备份</string>
+    <string name="wc_backup_single">用于恢复钱包,请抄写单个单词</string>
+    <string name="wc_backup_double">请妥善保管好单词备份</string>
+    <string name="wc_backup_good">this is my good shen</string>
+
+    <!--    wallet validate-->
+    <string name="wv_validate">验证</string>
+    <string name="wv_done">完成</string>
+    <string name="wv_reset">重新生成秘钥</string>
+
+</resources>

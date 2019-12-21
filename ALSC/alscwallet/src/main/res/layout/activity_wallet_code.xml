@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a2135"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/icon_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WalletCodeTitleTextStyle"
+            android:text="@string/wc_code" />
+
+        <TextView
+            style="@style/WalletCodeTextStyle"
+            android:text="@string/wc_code_important" />
+
+        <TextView
+            style="@style/WalletCodeTextStyle"
+            android:text="@string/wc_code_warn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="24dp"
+            android:background="@color/yellow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/wc_code_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+
+    </LinearLayout>
+
+    <EditText
+        style="@style/WalletCodeEditStyle"
+        android:layout_marginTop="10dp"
+        android:hint="@string/wc_code_input_account" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="24dp"
+            android:background="@color/yellow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/wc_code_wallet_pwd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18" />
+
+    </LinearLayout>
+
+    <EditText
+        style="@style/WalletCodeEditStyle"
+        android:layout_marginTop="10dp"
+        android:hint="@string/wc_code_input_wallet_pwd" />
+
+    <EditText
+        style="@style/WalletCodeEditStyle"
+        android:layout_marginTop="16dp"
+        android:hint="@string/wc_code_input_wallet_pwd_again" />
+
+    <TextView
+        style="@style/WalletCodeTextStyle"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/wc_code_pwd_pattern"
+        android:textSize="@dimen/text_size_16" />
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/WalletCodeBtnStyle"
+        android:text="@string/wt_type_next"
+        android:layout_marginTop="220dp" />
+</LinearLayout>

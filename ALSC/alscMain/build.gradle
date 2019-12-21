@@ -164,6 +164,7 @@ dependencies {
     implementation project(path: ':androidUtils')
     implementation project(path: ':alscMy')
     implementation project(path: ':alscUtils')
+    implementation project(path: ':alscWallet')
 
     //implementation(name:'blesdk-1.0.2', ext:'aar')
     //导航条

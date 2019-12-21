@@ -1,0 +1,201 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    // 加载 local.properties 资源
+    Properties properties = new Properties()
+    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
+    properties.load(inputStream)
+
+    signingConfigs {
+        config {
+            keyAlias 'pureprac.keystore'
+            keyPassword properties.getProperty( 'keyPassword' )
+            storeFile file('../assets/pureprac.keystore')
+            storePassword properties.getProperty( 'keyPassword' )
+        }
+    }
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId "com.alsc.pro"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a' ,  'x86_64','x86', 'arm64-v8a'
+        }
+        flavorDimensions "versionCode"
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+    }
+
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            shrinkResources false
+            multiDexEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    WEARME_API  : "https://tst.dabainiu.com/",
+                    PACKAGE_NAME: "com.alsc.tst",
+            ]
+            debuggable true
+        }
+        release {
+            minifyEnabled true //开启代码混淆
+            proguardFiles 'proguard.cfg'
+            zipAlignEnabled true
+            shrinkResources false
+            multiDexEnabled true
+            manifestPlaceholders = [
+                    WEARME_API  : "https://pre.dabainiu.com/",
+                    PACKAGE_NAME: "com.alsc.pro",
+            ]
+            debuggable true
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    dexOptions {
+//        incremental false
+        preDexLibraries = false
+        jumboMode = false
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    productFlavors {
+        develop {
+            applicationId = "com.wearme.android"
+        }
+        anzhi {
+        }
+        tencent {
+        }
+        mobilesite{
+        }
+        baidu{
+        }
+        alibaba{
+        }
+        samsung {
+        }
+        xiaomi{
+        }
+        meizu{
+        }
+        qihu360{
+        }
+        huawei{
+        }
+        oppo{
+        }
+        vivo{
+        }
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+
+    applicationVariants.all { variant ->    //批量修改Apk名字
+        variant.outputs.all { output ->
+            if (!variant.buildType.isDebuggable()) {
+                //获取签名的名字 variant.signingConfig.name
+                def sourceFile = "-${variant.flavorName}-${variant.buildType.name}"
+                def replaceFile = "_${variant.flavorName}_${variant.buildType.name}_v${variant.versionName}"
+                outputFileName = output.outputFile.name.replace(sourceFile, replaceFile);
+            }
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }
+    }
+    useLibrary 'org.apache.http.legacy'
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+//    daoPackage 'com.wearme.pureprac.db'  //生成的dao路径
+//    targetGenDir 'src/main/java'    //数据库文件的目录
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.arr'], dir: 'libs')
+    implementation project(path: ':androidUtils')
+    implementation project(path: ':alscMy')
+    implementation project(path: ':alscUtils')
+
+    //implementation(name:'blesdk-1.0.2', ext:'aar')
+    //导航条
+    implementation(rootProject.ext.dependencies["flycoTabLayout"])
+    //WeakHandler
+    implementation(rootProject.ext.dependencies["weakHandler"])
+    //图表绘制
+    implementation(rootProject.ext.dependencies["mapAndroidChart"])
+    //指示器
+    implementation(rootProject.ext.dependencies["circleindicator"])
+    //下拉刷新
+    implementation(rootProject.ext.dependencies["ultraPtr"])
+    implementation(rootProject.ext.dependencies["cubeSdk"])
+    //腾讯bugly日志管理
+    implementation(rootProject.ext.dependencies["buglyCrashreport"])
+    implementation(rootProject.ext.dependencies["buglyNative"])
+
+    implementation(rootProject.ext.dependencies["multidex"])
+    implementation(rootProject.ext.dependencies["photoView"])
+    //微信
+    implementation(rootProject.ext.dependencies["wechatSdk"])
+    implementation(rootProject.ext.dependencies["calendarView"])
+    //implementation(rootProject.ext.dependencies["recyclerviewSwipe"])
+    implementation(rootProject.ext.dependencies["loadding"])
+    implementation(rootProject.ext.dependencies["compressHelper"])
+    implementation(rootProject.ext.dependencies["swipeToLoadLayout"])
+    implementation(rootProject.ext.dependencies["supportV13"])
+    implementation(rootProject.ext.dependencies["rxjava2"])
+    implementation(rootProject.ext.dependencies["arouter"])
+    annotationProcessor(rootProject.ext.dependencies["arouterCompiler"])
+
+    implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
+    implementation(rootProject.ext.dependencies["autosize"])
+}
+

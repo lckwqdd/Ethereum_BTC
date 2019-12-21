@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_home_bg">
+
+    <com.mirko.alsc.views.NoScrollViewPager
+        android:id="@+id/view_pager_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tl_title">
+
+    </com.mirko.alsc.views.NoScrollViewPager>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/tl_title"
+        android:background="@color/divider_light" />
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/tl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_56PX"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:visibility="visible"
+        tl:tl_iconHeight="@dimen/DIMEN_24PX"
+        tl:tl_iconWidth="@dimen/DIMEN_24PX"
+        tl:tl_indicator_color="#2C97DE"
+        tl:tl_indicator_gravity="TOP"
+        tl:tl_indicator_height="0dp"
+        tl:tl_textSelectColor="#222222"
+        tl:tl_textUnselectColor="#222222"
+        tl:tl_textsize="@dimen/text_size_11" />
+
+    <FrameLayout
+        android:id="@+id/fl_floating"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/viewfinder_mask">
+
+    </FrameLayout>
+
+</RelativeLayout>

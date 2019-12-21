@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="no_color">#00000000</color>
+    <color name="main_bg">#EFEFEF</color>
+    <color name="item_pressed_bg">#F1F1F1</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_network_bar_bg_ee4b62">#ee4b62</color>
+    <color name="color_grey_888888">#888888</color>
+    <color name="white_deep">#80FFFFFF</color>
+    <color name="bg">#FCFCFC</color>
+    <color name="red">#FF1945</color>
+    <color name="red_light">#E16B6B</color>
+    <color name="blue">#0076FF</color>
+    <color name="violet">#8541a5</color>
+    <color name="blue_deep">#4F7EE4</color>
+    <color name="yahei">#505050</color>
+    <color name="grey_white_has_alpha">#66FAFAFA</color>
+    <color name="action_bar_tittle_color_555555">#555555</color>
+    <color name="color_gray_d9d9d9">#d9d9d9</color>
+    <color name="gray">#989898</color>
+    <color name="edit_hint">#CCCCCC</color>
+    <color name="textColor">#333333</color>
+    <color name="gray_light">#EFEFEF</color>
+    <color name="black">#000000</color>
+    <color name="divider">#4D4D4D</color>
+    <color name="c_131313">#ff131313</color>
+    <color name="divider_light">#cecfce</color>
+    <color name="divider_light_f5">#fff5f5f5</color>
+    <color name="divider_gray">#969696</color>
+    <color name="yellow">#dead03</color>
+    <color name="yellow_deep">#e3b200</color>
+    <color name="yellow_light">#44e3b200</color>
+    <color name="yellow_bg">#FFF2C149</color>
+
+    <!--qr code capture  -->
+    <color name="gray_trans_light">#22000000</color>
+    <color name="gray_trans_deep">#36000000</color>
+    <color name="half_transparent">#aa000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffe3b200</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+
+    <color name="input_icon_device_line">#88ffffff</color>
+
+
+    <!--背景色-->
+    <color name="color_home_bg">#3a2e40</color>
+    <color name="color_home_bg_connect">#ff3c3142</color>
+    <color name="color_flash_bg">#3c3144</color>
+    <color name="color_scan_code_title_bg">#9000</color>
+
+    <!--字体颜色-->
+    <color name="color_text_white">#ffffff</color>
+    <color name="color_text_hint">#99ffffff</color>
+    <color name="color_text_hint_name">#ff9b9b9b</color>
+    <color name="color_text_white_deep">#fffefe</color>
+    <color name="color_text_pop_light_black">#333333</color>
+    <color name="color_text_pop_gray">#7a7b7a</color>
+    <color name="color_text_history_gray">#969696</color>
+    <color name="color_text_like_names">#FF523F5B</color>
+    <color name="color_text_team_course_list_gray">#ff7a7b7a</color>
+
+    <color name="color_btn_yellow">#dead03</color>
+    <color name="color_btn_yellow_deep">#dddead03</color>
+    <color name="color_btn_yellow_invild">#ddfed794</color>
+    <color name="color_btn_add_course">#DE9E03</color>
+    <color name="color_tv_addgroupcolor">#EDA01B</color>
+
+    <color name="color_devider_line">#d2d2d2</color>
+    <color name="color_devider_line_my">#dedede</color>
+
+    <color name="color_edit_stroke">#999999</color>
+
+    <color name="color_msg_content">#7A7B7B</color>
+    <color name="color_msg_time">#9B9B9B</color>
+
+
+    <color name="color_btn_connect_bg">#523e5a</color>
+    <color name="color_btn_connect_bg_sel">#99523e5a</color>
+    <color name="color_device_btn_bg">#483a4f</color>
+    <color name="pop_text_sure_color">#dead03</color>
+    <!--弹出窗颜色-->
+    <color name="pop_title_bg">#dead03</color>
+    <color name="pop_text_cancle_color">#000000</color>
+
+    <color name="pop_text_sure_slect_color">#99dead03</color>
+    <color name="pop_white">#ffffff</color>
+
+    <color name="color_divider_line">#e2ad02</color>
+    <color name="color_divider_title_line">#483a4f</color>
+    <color name="color_divider_setting_line">#483a4f</color>
+
+    <color name="color_my_bg">#f5f5f5</color>
+
+    <color name="color_text_item_group">#ff222222</color>
+    <color name="color_text_public_black">#ff222222</color>
+    <color name="color_text_public_gray">#999999</color>
+    <color name="color_text_about_item">#7b6586</color>
+    <color name="color_text_item_group_gray">#ff969696</color>
+    <color name="color_text_subtitle">#ff717171</color>
+
+    <color name="color_dialog_title_bg">#ffd02f</color>
+
+    <color name="color_msg_unselect">#B2B2B2</color>
+
+
+    <!--章节标题夜间颜色-->
+    <color name="chapter_title_night">#292929</color>
+    <!--章节内容夜间颜色-->
+    <color name="chapter_content_night">#444444</color>
+    <!--章节标题日间颜色-->
+    <color name="chapter_title_day">#222222</color>
+    <!--章节内容夜间颜色-->
+    <color name="chapter_content_day">#222222</color>
+    <!--阅读页顶部字体颜色-->
+    <color name="book_read_top_text">#D1D1D1</color>
+    <!--阅读页底部字体颜色-->
+    <color name="book_read_bottom_text">#ffe6e6e6</color>
+
+    <color name="partTranslucent">#39000000</color>
+
+    <color name="msg_text_color">#b4b4b4</color>
+
+    <color name="im_font_color_text_hint">#abb1b6</color>
+
+    <color name="product_red">#dd0209</color>
+
+    <!-- session -->
+    <color name="color_message_default_bg">#e9ecf0</color>
+    <color name="input_panel_text_color_757572">#757572</color>
+    <color name="color_gray_cbd0d8">#cbd0d8</color>
+    <color name="help_color">#ff999999</color>
+
+    <color name="color_red_f04c62">#f04c62</color>
+
+    <!--搜索结果 条目按钮的边框-->
+    <color name="color_search_result_item_rim">#DEAD03</color>
+
+    <!--定位bg-->
+    <color name="g_child_page_bg_color">#FFFFFF</color>
+    <!--设置发愿数量bg-->
+    <color name="setting_wish_count_bg">#ffb3b3b3</color>
+    <!--发愿开始结束日期bg-->
+    <color name="wish_start_end_date_bg">#ffcecfce</color>
+    <!--发愿开始结束时间dialog 标题颜色-->
+    <color name="wish_start_end_date_dialog_title_bg">#fff6f6f6</color>
+    <color name="dialog_yellow">#ffD6A602</color>
+    <color name="border">#ff808080</color>
+    <color name="ed_hint_color">#ff878686</color>
+        <!--历史统计页面选中-->
+    <color name="history_btn_sel">#ff533c5f</color>
+        <!--按钮默认颜色-->
+    <color name="btn_bg_default">#ffe9d17c</color>
+    <color name="course_bottom_bg">#523f5b</color>
+    <color name="course_color_black">#ff342939</color>
+    <color name="text_color_gray">#ffaeabaf</color>
+
+    <color name="green">#ff30A070</color>
+    <color name="light_blue">#ff146FE1</color>
+    <color name="tint_blue">#ff456FEE</color>
+    <color name="backward_color">#ff3B2F41</color>
+    <color name="total">#FF7A7A7A</color>
+    <color name="c_c0c1c0">#ffc0c1c0</color>
+    <color name="c_3B3B3B">#ff3B3B3B</color>
+    <color name="c_F8F8F8">#ffF8F8F8</color>
+    <color name="c_8F8F8F">#ff8F8F8F</color>
+    <color name="c_CDCDCD">#ffCDCDCD</color>
+    <color name="dedication_highlight_color">#ff86599d</color>
+    <color name="home_tab_unselect">#ff7A7B7B</color>
+
+    <color name="login_color_blue">#3478f6</color>
+    <color name="login_color_yellow">#fff2ae02</color>
+    <color name="login_color_text_hint">#ffb2b2b2</color>
+    <color name="login_dialog_divider">#ff09141f</color>
+    <color name="login_color_error">#FF3B30</color>
+    <color name="course_boder">#ff808080</color>
+
+    <color name="color_dialog_sure">#ff3478f6</color>
+    <color name="device_setting_course_hint_bg">#FAF1D9</color>
+    <color name="device_setting_course_hint_text_color">#F2AE02</color>
+    <color name="c_cc000000">#cc000000</color>
+
+</resources>

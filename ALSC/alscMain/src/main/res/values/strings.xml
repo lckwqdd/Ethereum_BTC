@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DemoUtil</string>
+    <string name="home_bar_study">实修</string>
+    <string name="home_bar_think">正见</string>
+    <string name="home_bar_find">闻法</string>
+    <string name="home_bar_my">我的</string>
+    <string name="home_bar_study_sel">修</string>
+    <string name="home_bar_find_sel">闻</string>
+    <string name="home_bar_think_sel">思</string>
+    <string name="home_bar_my_sel">我</string>
+</resources>

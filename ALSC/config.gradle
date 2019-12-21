@@ -1,0 +1,80 @@
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: '28.0.3',
+            minSdkVersion    : 18,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : '1.0.0'
+    ]
+
+
+    dependencies = [
+            // ------------- Android -------------
+            supportV4          : 'com.android.support:support-v4:27.0.2',
+            supportV7          : 'com.android.support:appcompat-v7:27.0.2',
+            supportV13         : 'com.android.support:support-v13:27.0.2',
+            recyclerviewV7     : 'com.android.support:recyclerview-v7:27.0.2',
+            design             : 'com.android.support:design:27.0.2',
+            percent            : 'com.android.support:percent:27.0.2',
+            supportAnnotations : 'com.android.support:support-annotations:+',
+            // ------------- 第三方库 -------------
+            universalimageloader : 'com.nostra13.universalimageloader:universal-image-loader:1.9.5',
+//            indexbar             : 'com.github.mcxtzhang:SuspensionIndexBar:V1.0.0',
+            bgaBanner            : 'cn.bingoogolapple:bga-banner:2.1.7@aar',
+            rxjava               : 'io.reactivex:rxjava:+',
+            rxjava2              : 'io.reactivex.rxjava2:rxjava:2.+',
+            retrofitAdapter      : 'com.squareup.retrofit:adapter-rxjava:+',
+            rxlifecycle          : 'com.trello:rxlifecycle:+',
+            rxlifecycleComponents: 'com.trello:rxlifecycle-components:+',
+            retrofit2            : 'com.squareup.retrofit2:retrofit:+',
+            retrofit2Gson        : 'com.squareup.retrofit2:converter-gson:+',
+            retrofitAdapter2     : 'com.squareup.retrofit2:adapter-rxjava:+',
+
+            greendao             : 'org.greenrobot:greendao:3.2.2',
+            zetetic              : 'net.zetetic:android-database-sqlcipher:3.5.7',
+            glide                : 'com.github.bumptech.glide:glide:3.7.0',
+            glideCompiler        : 'com.github.bumptech.glide:compiler:4.5.0',
+
+            getuiSdk        : 'com.getui:sdk:2.11.1.0',
+            getuihwp        : 'com.getui:hwp:1.0.2',
+            getuimzp        : 'com.getui:mzp:1.0.4',
+            getuixmp        : 'com.getui:xmp:1.0.2',
+            multidex        : 'com.android.support:multidex:1.0.1',
+
+            photoView        : 'com.github.chrisbanes:PhotoView:1.3.0',
+            wechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:0.0.4',//支付
+            buglyCrashreport : 'com.tencent.bugly:crashreport:latest.release',
+            buglyNative      : 'com.tencent.bugly:nativecrashreport:latest.release',
+            umengAnalytics   : 'com.umeng.analytics:analytics:latest.integration',
+
+            eventbus        : 'org.greenrobot:eventbus:3.0.0',
+            walle           : 'com.meituan.android.walle:library:1.1.5',
+            flycoTabLayout  : 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar',
+            weakHandler     : 'com.badoo.mobile:android-weak-handler:1.1',
+            mapAndroidChart : 'com.github.PhilJay:MPAndroidChart:v3.0.1',
+            circleindicator : 'me.relex:circleindicator:1.2.2@aar',
+            ultraPtr        : 'in.srain.cube:ultra-ptr:1.0.11',
+            cubeSdk         : 'in.srain.cube:cube-sdk:1.0.44@aar',
+
+            calendarView      : 'com.prolificinteractive:material-calendarview:1.4.3',
+            qrcodeCore        : 'cn.bingoogolapple:bga-qrcodecore:1.1.9@aar',
+            zxing              : 'cn.bingoogolapple:bga-zxing:1.1.9@aar',
+            loadding           :'com.yanzhenjie:loading:1.0.2',
+            //recyclerviewSwipe : 'com.yanzhenjie:recyclerview-swipe:1.1.2',
+            compressHelper    : 'com.github.nanchen2251:CompressHelper:1.0.5',
+            swipeToLoadLayout : 'com.github.Aspsine:SwipeToLoadLayout:1.0.4',
+
+            butterknife         : 'com.jakewharton:butterknife:8.4.0',
+            butterknifeCompiler : 'com.jakewharton:butterknife-compiler:8.4.0',
+            arouter             : 'com.alibaba:arouter-api:1.3.1',
+            arouterCompiler     : 'com.alibaba:arouter-compiler:1.1.4',
+            gson                : 'com.google.code.gson:gson:+',
+            utilcode            : 'com.blankj:utilcode:1.9.8',
+
+            ///选择器
+            pickView            : 'com.contrarywind:Android-PickerView:4.1.6',
+            autosize            : 'me.jessyan:autosize:1.1.2'
+
+    ]
+}

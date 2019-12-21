@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+
+    implementation project(path: ':androidUtils')
+
+    implementation(rootProject.ext.dependencies["rxjava"])
+    implementation(rootProject.ext.dependencies["retrofitAdapter"])
+    implementation(rootProject.ext.dependencies["rxlifecycle"])
+    implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
+    implementation(rootProject.ext.dependencies["retrofit2"])
+    implementation(rootProject.ext.dependencies["retrofit2Gson"])
+    implementation(rootProject.ext.dependencies["retrofitAdapter2"])
+    implementation(rootProject.ext.dependencies["eventbus"])
+//    implementation(rootProject.ext.dependencies["indexbar"])
+
+    api(rootProject.ext.dependencies["greendao"])
+    api(rootProject.ext.dependencies["zetetic"])
+}

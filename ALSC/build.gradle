@@ -1,0 +1,39 @@
+apply from : "config.gradle"
+buildscript {
+    repositories {
+//        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath "com.android.databinding:library:1.3.3"
+    }
+}
+
+allprojects {
+    repositories {
+//        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+            url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+}
+
+repositories {
+    mavenCentral()
+}

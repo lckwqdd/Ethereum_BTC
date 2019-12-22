@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--    ALSC转账-->
+    <include layout="@layout/activity_hot_wallet_header" />
+
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/WalletCodeBtnStyle"
+        android:layout_width="200dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/wh_save_to_album" />
+
+</LinearLayout>

@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;

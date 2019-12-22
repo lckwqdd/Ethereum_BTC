@@ -1,25 +1,30 @@
 package com.mirko.alsc;
 
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
 
-import com.alsc.find.base.AlscBaseActivity;
+import com.alsc.utils.base.AlscBaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.adapter.HomePagerAdapter;
 import com.mirko.alsc.ui.entity.TabEntity;
 import com.mirko.alsc.ui.fragment.HomeFragment;
+import com.mirko.alsc.ui.slide.AboutActivity;
+import com.mirko.alsc.ui.slide.InviteFriendsActivity;
+import com.mirko.alsc.ui.slide.LanguageSwithcingActivity;
+import com.mirko.alsc.ui.slide.SecuritySettingActivity;
+import com.mirko.alsc.ui.slide.SwitchingAccountActivity;
+import com.mirko.alsc.ui.slide.SystemNoticeActivity;
 import com.mirko.alsc.views.NoScrollViewPager;
 import com.mirko.alsc.views.ViewPagerScroller;
-import com.mirko.alsc.R;
-import com.mirko.androidutil.utils.android.ScreenUtils;
+import com.alsc.utils.view.ItemGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,36 +37,37 @@ public class MainActivity extends AlscBaseActivity {
     private NoScrollViewPager viewPagerHome;
     private CommonTabLayout tlTitle;
     private FrameLayout flFloating;
+    private DrawerLayout drawerLayout;
+    private ItemGroup itemChat;
+    private ItemGroup itemSecurity;
+    private ItemGroup itemLanguage;
+    private ItemGroup itemAbout;
+    private ItemGroup itemInviteFriends;
+    private ItemGroup itemSystemNotice;
+    private ItemGroup itemSwitchingAccount;
 
     /**相关对象*/
     private Context mContext;
     private HomePagerAdapter adapter;
 
-    private LocationManager locationManager;//位置服务
-    private Location location;
-    private String provider;//位置提供器
-    private int loginGo;//1表示从登录跳转
-
     private List<Fragment> mFragments = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private Handler mHandler = new Handler();
-    private Handler handler;
 
     /**首页底部标题和图标*/
     private String mTitles[] = new String[4];
     private String mTitleSel[] = new String[4];
 
     private int[] mTitleIds = {
-            R.string.home_bar_study_sel,
-            R.string.home_bar_think_sel,
-            R.string.home_bar_find_sel,
-            R.string.home_bar_my_sel
+            R.string.home_bar_chat,
+            R.string.home_bar_friends,
+            R.string.home_bar_find,
+            R.string.home_bar_money
     };
     private int[] mTitleSlectIds = {
-            R.string.home_bar_study_sel,
-            R.string.home_bar_think_sel,
-            R.string.home_bar_find_sel,
-            R.string.home_bar_my_sel
+            R.string.home_bar_chat,
+            R.string.home_bar_friends,
+            R.string.home_bar_find,
+            R.string.home_bar_money
     };
     private int[] mIconUnselectIds = {
             R.mipmap.home_study,
@@ -78,7 +84,7 @@ public class MainActivity extends AlscBaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.act_home);
+        setContentView(R.layout.activity_home);
         super.onCreate(savedInstanceState);
     }
 
@@ -88,11 +94,75 @@ public class MainActivity extends AlscBaseActivity {
         tlTitle = (CommonTabLayout) findViewById(R.id.tl_title);
         viewPagerHome = (NoScrollViewPager)findViewById(R.id.view_pager_home);
         flFloating = (FrameLayout) findViewById(R.id.fl_floating);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        itemChat = (ItemGroup) findViewById(R.id.menu_item_chat);
+        itemSecurity = (ItemGroup) findViewById(R.id.menu_item_security);
+        itemLanguage = (ItemGroup) findViewById(R.id.menu_item_language_switching);
+        itemAbout = (ItemGroup) findViewById(R.id.menu_item_about);
+        itemInviteFriends = (ItemGroup) findViewById(R.id.menu_item_invite_friends);
+        itemSystemNotice = (ItemGroup) findViewById(R.id.menu_item_system);
+        itemSwitchingAccount = (ItemGroup) findViewById(R.id.menu_item_switching_accounts);
+
+        drawerLayout.openDrawer(Gravity.LEFT);
     }
 
     @Override
     public void initAttrs() {
 
+        //聊天设置
+        itemChat.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        //安全设置
+        itemSecurity.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SecuritySettingActivity.class));
+            }
+        });
+        //语言切换
+        itemLanguage.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LanguageSwithcingActivity.class));
+
+            }
+        });
+        //关于ALSC
+        itemAbout.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+
+            }
+        });
+        //邀请好友
+        itemInviteFriends.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, InviteFriendsActivity.class));
+
+            }
+        });
+        //系统公告
+        itemSystemNotice.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SystemNoticeActivity.class));
+
+            }
+        });
+        //切换账户
+        itemSwitchingAccount.setItemOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SwitchingAccountActivity.class));
+
+            }
+        });
     }
 
     @Override
@@ -112,7 +182,7 @@ public class MainActivity extends AlscBaseActivity {
             mTabEntities.add(new TabEntity(mTitleSel[i], mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
         tlTitle.setTabData(mTabEntities);
-        tlTitle.setTextSelectColor(getResources().getColor(R.color.dedication_highlight_color));
+        tlTitle.setTextSelectColor(getResources().getColor(R.color.home_tab_select));
         tlTitle.setTextUnselectColor(getResources().getColor(R.color.home_tab_unselect));
         tlTitle.setOnTabSelectListener(new OnTabSelectListener() {  //底部导航条点击切换监听
             @Override

@@ -7,15 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.alsc.net.db.CookieDbUtil;
-import com.mirko.androidutil.view.CustomeDialog;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.alsc.net.NetApplication;
 import com.alsc.net.R;
+import com.alsc.net.db.CookieDbUtil;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.http.cookie.CookieResulte;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.net.util.AppUtil;
+import com.alsc.net.util.CommUtils;
+import com.alsc.net.util.Constant;
+import com.mirko.androidutil.view.CustomeDialog;
+import com.mirko.androidutil.view.ToastHelper;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.lang.ref.SoftReference;
 import java.net.ConnectException;
@@ -34,11 +37,11 @@ import rx.Subscriber;
 public class ProgressSubscriber<T> extends Subscriber<T> {
 
 
-    private  final  static int NONE_FRIEND = 3143;
+    private final static int NONE_FRIEND = 3143;
     //重复添加
-    private  final  static int REDO_APPLY = 3128;
+    private final static int REDO_APPLY = 3128;
     /*是否弹框*/
-    private boolean showPorgress=true;
+    private boolean showPorgress = true;
     //    回调接口
     private HttpOnNextListener mSubscriberOnNextListener;
     //    弱引用反正内存泄露
@@ -51,14 +54,15 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
 
     /**
      * 构造
+     *
      * @param api
      */
-    public ProgressSubscriber(BaseApi api){
-        this.api=api;
+    public ProgressSubscriber(BaseApi api) {
+        this.api = api;
         this.mSubscriberOnNextListener = api.getListener();
         this.mActivity = new SoftReference<>(api.getRxAppCompatActivity());
         setShowPorgress(api.isShowProgress());
-        if(api.isShowProgress()){
+        if (api.isShowProgress()) {
             initProgressDialog(api.isCancel());
         }
     }
@@ -69,21 +73,21 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     private void initProgressDialog(boolean cancel) {
         Context context = mActivity.get();
         if (pd == null && context != null) {
-//            View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
-//            ProgressBar mProgressBar=(ProgressBar)view.findViewById(R.id.progress);
-//            CommUtils.setProgress(context,mProgressBar);
-//            pd = new CustomeDialog(context, view,R.style.LoadingDialog);
-//            pd.setCanceledOnTouchOutside(false);
-//            pd.setGravity(Gravity.CENTER);
-//            pd.setCancelable(cancel);
-//            if (cancel) {
-//                pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//                    @Override
-//                    public void onDismiss(DialogInterface dialogInterface) {
-//                        onCancelProgress();
-//                    }
-//                });
-//            }
+            View view = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
+            ProgressBar mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+            CommUtils.setProgress(context, mProgressBar);
+            pd = new CustomeDialog(context, view, R.style.LoadingDialog);
+            pd.setCanceledOnTouchOutside(false);
+            pd.setGravity(Gravity.CENTER);
+            pd.setCancelable(cancel);
+            if (cancel) {
+                pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        onCancelProgress();
+                    }
+                });
+            }
         }
     }
 
@@ -91,14 +95,14 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
      * 显示加载框
      */
     private void showProgressDialog() {
-        if(!isShowPorgress())return;
+        if (!isShowPorgress()) return;
         try {
             Context context = mActivity.get();
             if (pd == null || context == null) return;
             if (!pd.isShowing()) {
                 pd.show();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
@@ -106,7 +110,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
      * 隐藏
      */
     private void dismissProgressDialog() {
-        if(!isShowPorgress())return;
+        if (!isShowPorgress()) return;
         if (pd != null && pd.isShowing()) {
             pd.dismiss();
         }
@@ -120,20 +124,20 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     public void onStart() {
         showProgressDialog();
         /*缓存并且有网*/
-        if(api.isCache()&& AppUtil.isNetworkAvailable(NetApplication.getInstance().getContext())){
-             /*获取缓存数据*/
-            CookieResulte cookieResulte= CookieDbUtil.getInstance().queryCookieBy(api.getUrl());
-            if(cookieResulte!=null){
-                long time= (System.currentTimeMillis()-cookieResulte.getTime())/1000;
-                if(time< api.getCookieNetWorkTime()){
-                    if( mSubscriberOnNextListener!=null){
+        if (api.isCache() && AppUtil.isNetworkAvailable(NetApplication.getInstance().getContext())) {
+            /*获取缓存数据*/
+            CookieResulte cookieResulte = CookieDbUtil.getInstance().queryCookieBy(api.getUrl());
+            if (cookieResulte != null) {
+                long time = (System.currentTimeMillis() - cookieResulte.getTime()) / 1000;
+                if (time < api.getCookieNetWorkTime()) {
+                    if (mSubscriberOnNextListener != null) {
                         mSubscriberOnNextListener.onCacheNext(cookieResulte.getResulte());
                     }
                     onCompleted();
                     unsubscribe();
                 }
             }
-        }else{
+        } else {
         }
     }
 
@@ -155,12 +159,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     public void onError(Throwable e) {
         dismissProgressDialog();
         /*需要緩存并且本地有缓存才返回*/
-        if(api.isCache()){
+        if (api.isCache()) {
             Observable.just(api.getUrl()).subscribe(new Subscriber<String>() {
                 @Override
                 public void onCompleted() {
 
                 }
+
                 @Override
                 public void onError(Throwable e) {
                     errorDo(e);
@@ -169,49 +174,43 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
                 @Override
                 public void onNext(String s) {
                     /*获取缓存数据*/
-                    CookieResulte cookieResulte= CookieDbUtil.getInstance().queryCookieBy(s);
-                    if(cookieResulte==null){
+                    CookieResulte cookieResulte = CookieDbUtil.getInstance().queryCookieBy(s);
+                    if (cookieResulte == null) {
                         return;
 //                        throw new HttpTimeException("请求出错,请稍后再试");
                     }
-                    long time= (System.currentTimeMillis()-cookieResulte.getTime())/1000;
-                    if(time<api.getCookieNoNetWorkTime()){
-                        if( mSubscriberOnNextListener!=null){
+                    long time = (System.currentTimeMillis() - cookieResulte.getTime()) / 1000;
+                    if (time < api.getCookieNoNetWorkTime()) {
+                        if (mSubscriberOnNextListener != null) {
                             mSubscriberOnNextListener.onCacheNext(cookieResulte.getResulte());
                         }
-                    }else{
+                    } else {
                         CookieDbUtil.getInstance().deleteCookie(cookieResulte);
                         return;
 //                        throw new HttpTimeException("请求出错,请稍后再试");
                     }
                 }
             });
-        }else{
+        } else {
             errorDo(e);
         }
     }
 
     /*错误统一处理*/
-    private void errorDo(Throwable e){
+    private void errorDo(Throwable e) {
         Context context = mActivity.get();
         if (context == null) return;
-//        if (e instanceof SocketTimeoutException) {
-//            ToastHelper.alert(context, "网络中断，请检查您的网络状态");
-//        } else if (e instanceof ConnectException) {
-//            ToastHelper.alert(context, "网络中断，请检查您的网络状态");
-//        } else if (e instanceof UnknownHostException) {
-////            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
-//        } else {
-//            if(!(api.getStatus() == Constant.RETURN_CODE_NO_BINDING || api.getStatus() == Constant.RETURN_CODE_USER_NOT_EXIST ||
-//                    api.getStatus() == Constant.NOT_TEAM || api.getStatus() == REDO_APPLY || api.getStatus() == NONE_FRIEND)){ //3144账户没绑定第三方账户，3101 用户不存在
-//                if(!StringUtil.isEmptyOrNull(e.getMessage())){
-//                    if(api.getStatus() != Constant.RETURN_CODE_DEVICE_HAS_BEAN_BINDING && api.getStatus() != Constant.RETURN_CODE_SEND_TO_DEVICE_FAIL ) {
-//                        ToastHelper.alert(context, e.getMessage());
-//                    }
-//                }
-//            }
-//        }
-        if(mSubscriberOnNextListener!=null){
+        if (e instanceof SocketTimeoutException) {
+            ToastHelper.alert(context, "网络中断，请检查您的网络状态");
+        } else if (e instanceof ConnectException) {
+            ToastHelper.alert(context, "网络中断，请检查您的网络状态");
+        } else if (e instanceof UnknownHostException) {
+        } else {
+            if (!(api.getStatus() == Constant.RETURN_CODE_ERROE)) {
+                ToastHelper.alert(context, e.getMessage());
+            }
+        }
+        if (mSubscriberOnNextListener != null) {
             mSubscriberOnNextListener.onError(e);
         }
     }
@@ -244,6 +243,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
 
     /**
      * 是否需要弹框设置
+     *
      * @param showPorgress
      */
     public void setShowPorgress(boolean showPorgress) {

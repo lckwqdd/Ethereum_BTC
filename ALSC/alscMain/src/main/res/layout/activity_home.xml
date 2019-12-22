@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_theme_bg"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.mirko.alsc.views.NoScrollViewPager
+            android:id="@+id/view_pager_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tl_title">
+
+        </com.mirko.alsc.views.NoScrollViewPager>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@+id/tl_title"
+            android:background="@color/divider_light" />
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/tl_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px168"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:visibility="visible"
+            tl:tl_iconHeight="@dimen/px72"
+            tl:tl_iconWidth="@dimen/px72"
+            tl:tl_indicator_color="@color/color_indicator_color"
+            tl:tl_indicator_gravity="TOP"
+            tl:tl_indicator_height="0dp"
+            tl:tl_textSelectColor="@color/color_text_black"
+            tl:tl_textUnselectColor="@color/color_text_black"
+            tl:tl_textsize="@dimen/text_size_11" />
+
+        <FrameLayout
+            android:id="@+id/fl_floating"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/viewfinder_mask"
+            android:visibility="gone">
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/px750"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/color_slide_bg"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/px90">
+
+        <LinearLayout
+            android:id="@+id/menu_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px540"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/px24"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:background="@drawable/ic_launcher" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="NickName"
+                android:textColor="@color/color_text_white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID.3589699"
+                android:textColor="@color/color_text_white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/menu_header">
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_chat"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_chat"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_security"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_security"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_language_switching"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_language_switching"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_about"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_about"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_invite_friends"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_invite_friends"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_system"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_system"
+                tl:line_height="1" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_switching_accounts"
+                style="@style/ItemGroupStyle"
+                tl:drawable_right="@mipmap/icon_arrow"
+                tl:group_title="@string/menu_item_switching_accounts"
+                tl:line_height="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/px150">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="NickName"
+                android:textColor="@color/color_text_white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

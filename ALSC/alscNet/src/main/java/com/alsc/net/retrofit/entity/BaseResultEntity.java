@@ -9,25 +9,12 @@ package com.alsc.net.retrofit.entity;
  */
 
 public class BaseResultEntity<T> {
-
-    //  判断标示
-    private boolean success;
     //    提示信息
     private String msg;
     //显示数据（用户需要关心的数据）
     private T data;
 
-    private String statusMsg;
-
-    private int statusCode;
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
+    private int code;
 
     public String getMsg() {
         return msg;
@@ -45,19 +32,11 @@ public class BaseResultEntity<T> {
         this.data = data;
     }
 
-    public String getStatusMsg() {
-        return statusMsg;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatusMsg(String statusMsg) {
-        this.statusMsg = statusMsg;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public void setCode(int code) {
+        this.code = code;
     }
 }

@@ -1,7 +1,5 @@
 package com.mirko.androidutil.utils.android;
 
-import com.mirko.androidutil.BaseApplication;
-
 /**
  * @author
  * @version 1.0

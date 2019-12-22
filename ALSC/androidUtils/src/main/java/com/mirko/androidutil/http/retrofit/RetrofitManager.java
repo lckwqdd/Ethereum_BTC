@@ -1,6 +1,7 @@
 package com.mirko.androidutil.http.retrofit;
 
 import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mirko.androidutil.http.HttpConfig;

@@ -1,15 +1,11 @@
 package com.alsc.net.retrofit.api;
 
-import com.mirko.androidutil.utils.android.LogUtils;
-import com.mirko.androidutil.utils.android.SharedPreferencesUtils;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.alsc.net.NetApplication;
 import com.alsc.net.retrofit.entity.BaseResultEntity;
 import com.alsc.net.retrofit.exception.HttpTimeException;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.net.util.HttpService;
-
-import org.greenrobot.eventbus.EventBus;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.lang.ref.SoftReference;
 
@@ -18,14 +14,12 @@ import rx.exceptions.CompositeException;
 import rx.functions.Func1;
 
 /**
- * Created by Mirko on 2016/11/30.
+ * Created by Mirko on 2019/12/21.
  *
  */
 
 public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
 
-    public static final String TYPE_PUTUAN = "putuan/"; ////访问蒲团
-    public static final String TYPE_DEVICES = "devices/";////访问设备
 
     //rx生命周期管理
     private SoftReference<RxAppCompatActivity> rxAppCompatActivity;
@@ -57,7 +51,6 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
         setCache(true);
         if (NetApplication.getInstance().getUrl() != null) {
             setBaseUrl(NetApplication.getInstance().getUrl());
-            baseUrl += TYPE_PUTUAN;
         } else {
             setBaseUrl("https://futon.pureprac.com/");
         }
@@ -185,14 +178,7 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
     @Override
     public T call(BaseResultEntity<T> httpResult) {
 
-//        LogUtils.d("SyncData", "API返回数据：" + httpResult.getStatusCode());
-//        LogUtils.d("SyncData", "isLoginToLogout：" + SharedPreferencesUtils.getInstance().getBoolean("isLoginToLogout", true));
-//        if (httpResult.getStatusCode() == 3007 && SharedPreferencesUtils.getInstance().getBoolean("isLoginToLogout", true)
-//                || httpResult.getStatusCode() == 3005) { //跳转到登录页面
-//            SharedPreferencesUtils.getInstance().putBoolean("isLoginToLogout", false);
-//            EventBus.getDefault().post(new LoginOutEvent());
-//        }
-        status = httpResult.getStatusCode();
+        status = httpResult.getCode();
         Object object = null;
         try {
             object = httpResult.getData();
@@ -200,7 +186,7 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
             object = null;
         }
 
-        if (httpResult.getStatusCode() != 3000) {
+        if (httpResult.getCode() != 1) {
             if(object != null) {
                 throw new HttpTimeException(httpResult.getMsg(), httpResult.getData());
             } else {

@@ -10,4 +10,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="buttonStyleRound" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px98</item>
+        <item name="android:background">@drawable/btn_yellow_bg_cicle</item>
+        <item name="android:textColor">@drawable/text_gray_color</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
 </resources>

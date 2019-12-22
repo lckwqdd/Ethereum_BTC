@@ -3,29 +3,20 @@ package com.alsc.net.retrofit.download;
 
 import com.alsc.net.db.DbUtil;
 import com.alsc.net.retrofit.download.DownLoadListener.DownloadInterceptor;
-import com.alsc.net.retrofit.exception.HttpTimeException;
-import com.alsc.net.retrofit.exception.RetryWhenNetworkException;
 import com.alsc.net.retrofit.subscribers.ProgressDownSubscriber;
 import com.alsc.net.util.HttpService;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 import static com.alsc.net.util.AppUtil.getBasUrl;
-import static com.alsc.net.util.AppUtil.writeCache;
 
 
 /**

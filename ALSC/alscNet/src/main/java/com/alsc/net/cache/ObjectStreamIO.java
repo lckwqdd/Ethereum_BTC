@@ -1,8 +1,5 @@
 package com.alsc.net.cache;
 
-import android.os.Environment;
-
-
 import com.mirko.androidutil.utils.FileUtils;
 
 import java.io.File;

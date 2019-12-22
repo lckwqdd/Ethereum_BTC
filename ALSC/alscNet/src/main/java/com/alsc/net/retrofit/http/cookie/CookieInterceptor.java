@@ -1,6 +1,5 @@
 package com.alsc.net.retrofit.http.cookie;
 
-import com.alsc.net.cache.CacheManager;
 import com.alsc.net.db.CookieDbUtil;
 
 import java.io.IOException;

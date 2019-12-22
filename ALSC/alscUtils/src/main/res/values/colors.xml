@@ -52,11 +52,14 @@
     <color name="input_icon_device_line">#88ffffff</color>
 
 
+
+
     <!--背景色-->
-    <color name="color_home_bg">#3a2e40</color>
-    <color name="color_home_bg_connect">#ff3c3142</color>
-    <color name="color_flash_bg">#3c3144</color>
-    <color name="color_scan_code_title_bg">#9000</color>
+    <color name="color_theme_bg">#182137</color>
+    <color name="color_slide_bg">#293752</color>
+
+    <color name="color_indicator_color">#2C97DE</color>
+
 
     <!--字体颜色-->
     <color name="color_text_white">#ffffff</color>
@@ -113,18 +116,6 @@
     <color name="color_msg_unselect">#B2B2B2</color>
 
 
-    <!--章节标题夜间颜色-->
-    <color name="chapter_title_night">#292929</color>
-    <!--章节内容夜间颜色-->
-    <color name="chapter_content_night">#444444</color>
-    <!--章节标题日间颜色-->
-    <color name="chapter_title_day">#222222</color>
-    <!--章节内容夜间颜色-->
-    <color name="chapter_content_day">#222222</color>
-    <!--阅读页顶部字体颜色-->
-    <color name="book_read_top_text">#D1D1D1</color>
-    <!--阅读页底部字体颜色-->
-    <color name="book_read_bottom_text">#ffe6e6e6</color>
 
     <color name="partTranslucent">#39000000</color>
 
@@ -145,19 +136,6 @@
     <!--搜索结果 条目按钮的边框-->
     <color name="color_search_result_item_rim">#DEAD03</color>
 
-    <!--定位bg-->
-    <color name="g_child_page_bg_color">#FFFFFF</color>
-    <!--设置发愿数量bg-->
-    <color name="setting_wish_count_bg">#ffb3b3b3</color>
-    <!--发愿开始结束日期bg-->
-    <color name="wish_start_end_date_bg">#ffcecfce</color>
-    <!--发愿开始结束时间dialog 标题颜色-->
-    <color name="wish_start_end_date_dialog_title_bg">#fff6f6f6</color>
-    <color name="dialog_yellow">#ffD6A602</color>
-    <color name="border">#ff808080</color>
-    <color name="ed_hint_color">#ff878686</color>
-        <!--历史统计页面选中-->
-    <color name="history_btn_sel">#ff533c5f</color>
         <!--按钮默认颜色-->
     <color name="btn_bg_default">#ffe9d17c</color>
     <color name="course_bottom_bg">#523f5b</color>
@@ -188,5 +166,16 @@
     <color name="device_setting_course_hint_bg">#FAF1D9</color>
     <color name="device_setting_course_hint_text_color">#F2AE02</color>
     <color name="c_cc000000">#cc000000</color>
+
+    <color name="home_tab_select">#cc000000</color>
+<!--    <color name="home_tab_unselect">#cc000000</color>-->
+
+    <!--    字体颜色-->
+    <color name="color_text_white">#ffffff</color>
+    <color name="color_text_black">#222222</color>
+
+    <color name="color_btn_yellow">#dead03</color>
+    <color name="color_btn_yellow_deep">#dddead03</color>
+    <color name="color_btn_yellow_invild">#ddfed794</color>
 
 </resources>

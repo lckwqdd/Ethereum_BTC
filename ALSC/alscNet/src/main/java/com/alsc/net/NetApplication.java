@@ -2,7 +2,6 @@ package com.alsc.net;
 
 import android.content.Context;
 
-
 import com.mirko.androidutil.BaseApplication;
 
 import java.io.File;

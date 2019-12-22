@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mirko.androidutil.R;
-import com.mirko.androidutil.view.FadeInTextView;
 
 
 /**

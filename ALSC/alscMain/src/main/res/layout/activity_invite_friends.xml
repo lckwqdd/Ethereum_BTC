@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_slide_bg"
+            android:orientation="vertical">
+
+            <com.alsc.utils.view.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px180"
+                app:showLeftDrawable="true"
+                app:showTextLeft="true"
+                app:tbTitleLeft="@string/menu_item_invite_friends" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/menu_item_system"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:group_title="@string/menu_item_system"
+                app:line_height="1" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</layout>

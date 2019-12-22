@@ -7,7 +7,7 @@ import com.mirko.alsc.R;
 public class WalletTypeActivity extends AlscBaseActivity {
     @Override
     public void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_wallet_type);
+        setContentView(R.layout.activity_code_wallet_type);
     }
 
     @Override

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_slide_bg"
+            android:orientation="vertical">
+
+            <com.alsc.utils.view.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px180"
+                app:showLeftDrawable="true"
+                app:showTextLeft="true"
+                app:tbTitleLeft="@string/user_info_setting" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_head_img"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:drawable_right_des="@mipmap/icon_warning"
+                app:group_title="@string/user_info_head_img"
+                app:line_height="0" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_nick"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:group_title="@string/user_info_nick"
+                app:line_height="0" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_id"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+
+                app:group_title="@string/user_info_id"
+                app:line_height="0"
+                app:show_right_text="true" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_sex"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:group_title="@string/user_info_sex"
+                app:line_height="0"
+                app:show_right_text="true" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_qrcode"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:drawable_right_des="@mipmap/icon_warning"
+                app:group_title="@string/user_info_qrcode"
+                app:line_height="0"
+                app:show_right_text="true" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/user_info_area"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:drawable_right_des="@mipmap/icon_warning"
+                app:group_title="@string/user_info_area"
+                app:line_height="0"
+                app:show_right_text="true" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

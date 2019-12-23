@@ -60,7 +60,7 @@ android {
             multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
-                    WEARME_API  : "https://tst.dabainiu.com/",
+                    ALSC_API  : "http://www.alsc.space/",
                     PACKAGE_NAME: "com.alsc.tst",
             ]
             debuggable true
@@ -72,7 +72,7 @@ android {
             shrinkResources false
             multiDexEnabled true
             manifestPlaceholders = [
-                    WEARME_API  : "https://pre.dabainiu.com/",
+                    ALSC_API  : "http://www.alsc.space/",
                     PACKAGE_NAME: "com.alsc.pro",
             ]
             debuggable true
@@ -198,5 +198,6 @@ dependencies {
 
     implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
     implementation(rootProject.ext.dependencies["autosize"])
+    compile project(path: ':alscNet')
 }
 

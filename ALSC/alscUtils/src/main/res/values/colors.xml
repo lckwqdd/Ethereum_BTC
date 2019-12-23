@@ -62,7 +62,6 @@
 
 
     <!--字体颜色-->
-    <color name="color_text_white">#ffffff</color>
     <color name="color_text_hint">#99ffffff</color>
     <color name="color_text_hint_name">#ff9b9b9b</color>
     <color name="color_text_white_deep">#fffefe</color>
@@ -72,9 +71,6 @@
     <color name="color_text_like_names">#FF523F5B</color>
     <color name="color_text_team_course_list_gray">#ff7a7b7a</color>
 
-    <color name="color_btn_yellow">#dead03</color>
-    <color name="color_btn_yellow_deep">#dddead03</color>
-    <color name="color_btn_yellow_invild">#ddfed794</color>
     <color name="color_btn_add_course">#DE9E03</color>
     <color name="color_tv_addgroupcolor">#EDA01B</color>
 

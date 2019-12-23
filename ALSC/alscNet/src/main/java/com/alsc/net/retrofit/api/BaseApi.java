@@ -52,7 +52,7 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
         if (NetApplication.getInstance().getUrl() != null) {
             setBaseUrl(NetApplication.getInstance().getUrl());
         } else {
-            setBaseUrl("https://futon.pureprac.com/");
+            setBaseUrl("http://www.alsc.space/");
         }
     }
 
@@ -71,7 +71,7 @@ public abstract class BaseApi<T> implements Func1<BaseResultEntity<T>, T> {
             setBaseUrl(NetApplication.getInstance().getUrl());
             baseUrl += serviceType;
         } else {
-            setBaseUrl("https://futon.pureprac.com/");
+            setBaseUrl("http://www.alsc.space/");
         }
     }
 

@@ -87,21 +87,51 @@
                     android:background="@drawable/ic_launcher" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="NickName"
-                android:textColor="@color/color_text_white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID.3589699"
-                android:textColor="@color/color_text_white"
-                android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:text="NickName"
+                    android:textColor="@color/color_text_white"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_user_info_setting"
+                    android:layout_width="@dimen/px64"
+                    android:layout_height="@dimen/px64"
+                    android:background="@drawable/ic_launcher" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID.3589699"
+                    android:textColor="@color/color_text_white"
+                    android:textSize="@dimen/text_size_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="级别：普通"
+                    android:textColor="@color/color_text_white"
+                    android:layout_marginLeft="@dimen/px32"
+                    android:textSize="@dimen/text_size_10" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

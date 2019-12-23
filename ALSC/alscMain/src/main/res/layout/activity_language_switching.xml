@@ -26,16 +26,196 @@
                 app:showTextLeft="true"
                 app:tbTitleLeft="@string/menu_item_language_switching" />
 
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/menu_item_system"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/menu_item_system"
-                app:line_height="1" />
+            <com.alsc.utils.view.MultiLineRadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/DIMEN_16PX">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10PX"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_method_alipay"
+                        android:layout_width="@dimen/DIMEN_21PX"
+                        android:layout_height="@dimen/DIMEN_21PX"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_10PX"
+                        android:layout_toRightOf="@+id/iv_method_alipay"
+                        android:text="@string/language_chinese_simple"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <RadioButton
+                        android:id="@+id/rb_pay_ali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@drawable/chekbox_group_report"
+                        android:paddingLeft="@dimen/DIMEN_16PX"
+                        android:paddingTop="@dimen/DIMEN_6PX"
+                        android:paddingBottom="@dimen/DIMEN_6PX" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_16PX"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_method_wechat"
+                        android:layout_width="@dimen/DIMEN_21PX"
+                        android:layout_height="@dimen/DIMEN_21PX"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_10PX"
+                        android:layout_toRightOf="@+id/iv_method_wechat"
+                        android:text="@string/language_chinese_traditional"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <RadioButton
+                        android:id="@+id/rb_pay_wechat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@drawable/chekbox_group_report"
+                        android:paddingLeft="@dimen/DIMEN_16PX"
+                        android:paddingTop="@dimen/DIMEN_6PX"
+                        android:paddingBottom="@dimen/DIMEN_6PX" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_16PX"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_rb3"
+                        android:layout_width="@dimen/DIMEN_21PX"
+                        android:layout_height="@dimen/DIMEN_21PX"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_10PX"
+                        android:layout_toRightOf="@+id/iv_rb3"
+                        android:text="@string/language_english"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <RadioButton
+                        android:id="@+id/rb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@drawable/chekbox_group_report"
+                        android:paddingLeft="@dimen/DIMEN_16PX"
+                        android:paddingTop="@dimen/DIMEN_6PX"
+                        android:paddingBottom="@dimen/DIMEN_6PX" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_16PX"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_rb4"
+                        android:layout_width="@dimen/DIMEN_21PX"
+                        android:layout_height="@dimen/DIMEN_21PX"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_10PX"
+                        android:layout_toRightOf="@+id/iv_rb4"
+                        android:text="@string/language_japan"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <RadioButton
+                        android:id="@+id/rb_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@drawable/chekbox_group_report"
+                        android:paddingLeft="@dimen/DIMEN_16PX"
+                        android:paddingTop="@dimen/DIMEN_6PX"
+                        android:paddingBottom="@dimen/DIMEN_6PX" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_16PX"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_rb5"
+                        android:layout_width="@dimen/DIMEN_21PX"
+                        android:layout_height="@dimen/DIMEN_21PX"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_10PX"
+                        android:layout_toRightOf="@+id/iv_rb5"
+                        android:text="@string/language_korean"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <RadioButton
+                        android:id="@+id/rb_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@drawable/chekbox_group_report"
+                        android:paddingLeft="@dimen/DIMEN_16PX"
+                        android:paddingTop="@dimen/DIMEN_6PX"
+                        android:paddingBottom="@dimen/DIMEN_6PX" />
+
+                </RelativeLayout>
+
+            </com.alsc.utils.view.MultiLineRadioGroup>
+
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>

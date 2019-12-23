@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.alsc.utils.base.AlscBaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
@@ -15,6 +16,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.adapter.HomePagerAdapter;
 import com.mirko.alsc.ui.entity.TabEntity;
+import com.mirko.alsc.ui.capital.CapitalFragment;
 import com.mirko.alsc.ui.fragment.HomeFragment;
 import com.mirko.alsc.ui.slide.AboutActivity;
 import com.mirko.alsc.ui.slide.InviteFriendsActivity;
@@ -22,6 +24,7 @@ import com.mirko.alsc.ui.slide.LanguageSwithcingActivity;
 import com.mirko.alsc.ui.slide.SecuritySettingActivity;
 import com.mirko.alsc.ui.slide.SwitchingAccountActivity;
 import com.mirko.alsc.ui.slide.SystemNoticeActivity;
+import com.mirko.alsc.ui.slide.UserInfoSettingActivity;
 import com.mirko.alsc.views.NoScrollViewPager;
 import com.mirko.alsc.views.ViewPagerScroller;
 import com.alsc.utils.view.ItemGroup;
@@ -45,6 +48,7 @@ public class MainActivity extends AlscBaseActivity {
     private ItemGroup itemInviteFriends;
     private ItemGroup itemSystemNotice;
     private ItemGroup itemSwitchingAccount;
+    private ImageView ivUserInfoSetting;
 
     /**相关对象*/
     private Context mContext;
@@ -95,6 +99,7 @@ public class MainActivity extends AlscBaseActivity {
         viewPagerHome = (NoScrollViewPager)findViewById(R.id.view_pager_home);
         flFloating = (FrameLayout) findViewById(R.id.fl_floating);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ivUserInfoSetting = (ImageView) findViewById(R.id.iv_user_info_setting);
         itemChat = (ItemGroup) findViewById(R.id.menu_item_chat);
         itemSecurity = (ItemGroup) findViewById(R.id.menu_item_security);
         itemLanguage = (ItemGroup) findViewById(R.id.menu_item_language_switching);
@@ -109,6 +114,13 @@ public class MainActivity extends AlscBaseActivity {
     @Override
     public void initAttrs() {
 
+        //个人信息设置
+        ivUserInfoSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UserInfoSettingActivity.class));
+            }
+        });
         //聊天设置
         itemChat.setItemOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +184,7 @@ public class MainActivity extends AlscBaseActivity {
         mFragments.add(HomeFragment.getInstance());
         mFragments.add(HomeFragment.getInstance());
         mFragments.add(HomeFragment.getInstance());
-        mFragments.add(HomeFragment.getInstance());
+        mFragments.add(CapitalFragment.getInstance());
 
         /**设置底部状态栏的相关数据*/
         mTabEntities = new ArrayList<>();

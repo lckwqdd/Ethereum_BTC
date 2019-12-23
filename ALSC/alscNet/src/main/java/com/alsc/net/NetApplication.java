@@ -17,7 +17,6 @@ public class NetApplication extends BaseApplication {
 
     public static NetApplication application;
     private String  url;
-    private static Context mContext;
 
     public static NetApplication getInstance(){
 

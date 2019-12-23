@@ -9,7 +9,7 @@ import android.support.multidex.MultiDexApplication;
  */
 public class BaseApplication extends MultiDexApplication {
     private static BaseApplication application = null;
-    private static Context mContext;
+    public static Context mContext;
 
     @Override
     public void onCreate() {

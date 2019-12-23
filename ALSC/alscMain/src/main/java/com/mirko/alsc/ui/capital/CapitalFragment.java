@@ -1,7 +1,6 @@
-package com.mirko.alsc.ui.fragment;
+package com.mirko.alsc.ui.capital;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +15,10 @@ import com.mirko.androidutil.utils.android.LogUtils;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
- * Created by Mirko on 2019/12/21.
+ * Created by Mirko on 2019/12/23.
  */
 
-public class HomeFragment extends BaseFragment {
+public class CapitalFragment extends BaseFragment {
 
     private final static String TAG = "HomeFragment";
 
@@ -29,11 +28,6 @@ public class HomeFragment extends BaseFragment {
     private View footView;
     private TextView tvFooterMsg;//底部显示的信息
 
-    private Handler handler = new Handler();
-
-    private int requestPagerNumber = 10; //每次请求 每页请求的条数
-    private int requestPager = 1; //每次请求的页数，下来加载的时候页数增加
-    private boolean loadItemVisibled = false;//确保上拉加载只执行一次
 
     private PtrFrameLayout ptrFrame;
 
@@ -41,15 +35,15 @@ public class HomeFragment extends BaseFragment {
 
     private boolean mIsRefreshing = false;
 
-    public static HomeFragment getInstance() {
-        HomeFragment sf = new HomeFragment();
+    public static CapitalFragment getInstance() {
+        CapitalFragment sf = new CapitalFragment();
         return sf;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_home, null);
+        mView = inflater.inflate(R.layout.fragment_capital, null);
         binding = FragmentHomeBinding.bind(mView);
         return mView;
     }

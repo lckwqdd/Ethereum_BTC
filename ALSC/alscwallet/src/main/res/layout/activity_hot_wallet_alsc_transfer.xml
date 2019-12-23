@@ -7,12 +7,128 @@
     <!--    ALSC转账-->
     <include layout="@layout/activity_hot_wallet_header" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:text="@string/wh_alsc_transfer_menoy" />
+
+        <TextView
+            android:id="@+id/hw_alsc_amount"
+            style="@style/AlscTranferRightTextStyle"
+            android:text="62908.00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/hw_alsc_amount"
+            android:text="@string/wh_alsc_balance" />
+    </RelativeLayout>
+
+    <EditText
+        style="@style/AlscTranferEditTextStyle"
+        android:text="1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:text="@string/wh_conversion_cny"
+            android:textColor="@color/divider_gray" />
+
+        <TextView
+            android:id="@+id/hw_alsc_tranfer_out"
+            style="@style/AlscTranferRightTextStyle"
+            android:text="@string/wh_conversion_cny"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_12" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        style="@style/AlscTranferLeftTextStyle"
+        android:layout_marginTop="40dp"
+        android:text="@string/wh_alsc_transfer_menoy" />
+
+
+    <EditText
+        style="@style/AlscTranferEditTextStyle"
+        android:hint="@string/wh_input_alsc_address" />
+
+    <TextView
+        style="@style/AlscTranferLeftTextStyle"
+        android:layout_marginTop="40dp"
+        android:text="@string/wh_send_address" />
+
+
+    <EditText
+        style="@style/AlscTranferEditTextStyle"
+        android:hint="211fdfdfd2f1d2f1df1f2d1fd21f2df1" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:text="@string/wh_miners_fee" />
+
+        <TextView
+            style="@style/AlscTranferRightTextStyle"
+            android:text="@string/wh_conversion_alsc"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/blue" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:text="@string/wh_slow"
+            android:textColor="@color/divider"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            style="@style/AlscTranferRightTextStyle"
+            android:text="@string/wh_fast"
+            android:textColor="@color/divider"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/AlscTranferLeftTextStyle"
+        android:layout_marginTop="10dp"
+        android:text="@string/wh_advice_conversion_alsc"
+        android:textSize="@dimen/text_size_14" />
 
     <Button
         android:id="@+id/btn_next"
         style="@style/WalletCodeBtnStyle"
-        android:layout_width="200dp"
+        android:layout_width="360dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:text="@string/wh_save_to_album" />
+        android:background="@drawable/bg_blue_radius"
+        android:text="@string/wh_ok" />
 
 </LinearLayout>

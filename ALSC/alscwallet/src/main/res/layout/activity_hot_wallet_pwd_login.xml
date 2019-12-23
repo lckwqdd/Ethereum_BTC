@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--    安全密码登录-->
+    <include layout="@layout/activity_hot_wallet_header" />
+
+    <Button
+        style="@style/WalletHotePwdLoginBtnStyle"
+        android:text="@string/wh_pwd_correct" />
+
+    <TextView
+        style="@style/AlscTranferLeftTextStyle"
+        android:text="@string/wh_input_safe" />
+
+    <EditText
+        style="@style/AlscTranferEditTextStyle"
+        android:inputType="textPassword"
+        android:text="123456" />
+
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/WalletHotePwdSureStyle"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/wh_ok" />
+
+</LinearLayout>

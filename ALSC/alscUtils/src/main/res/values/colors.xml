@@ -18,6 +18,8 @@
     <color name="blue">#0076FF</color>
     <color name="blue_middle">#248cf5</color>
     <color name="yahei_middle">#2c3750</color>
+    <color name="yahei_slow">#2a3144</color>
+    <color name="yahei_fast">#1c1a49</color>
     <color name="violet">#8541a5</color>
     <color name="blue_deep">#4F7EE4</color>
     <color name="yahei">#505050</color>

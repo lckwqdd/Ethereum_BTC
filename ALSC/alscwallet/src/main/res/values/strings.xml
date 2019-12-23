@@ -106,16 +106,19 @@
 
     <!--    ALSC转账-->
     <string name="wh_alsc_transfer">ALSC转账</string>
+    <string name="wh_alsc_transfer_menoy">转账金额</string>
     <string name="wh_alsc_balance">ALSC余额</string>
     <string name="wh_save_address">接收地址</string>
     <string name="wh_input_alsc_address">输入ALSC地址</string>
     <string name="wh_send_address">发送地址</string>
     <string name="wh_miners_fee">矿工费</string>
     <string name="wh_conversion_alsc">0.0000192 ALSC ≈ ¥ 0.9708</string>
+    <string name="wh_conversion_cny">≈ 7.625 CNY</string>
     <string name="wh_advice_conversion_alsc">建议0.0000192 ALSC ≈ ¥ 0.9708</string>
     <string name="wh_slow">慢</string>
     <string name="wh_fast">快</string>
     <string name="wh_ok">确定</string>
+    <string name="wh_make_sure">确认</string>
 
     <!--    安全密码登录-->
     <string name="wh_safe_login">安全密码登录</string>

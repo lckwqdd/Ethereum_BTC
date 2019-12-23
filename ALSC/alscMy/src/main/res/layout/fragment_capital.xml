@@ -27,15 +27,6 @@
                 android:textColor="@color/color_text_white"
                 android:textSize="@dimen/text_size_18" />
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center|right"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
         </FrameLayout>
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!--    导入钱包-->
+    <include layout="@layout/activity_hot_wallet_header" />
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/hot_wallet_import_tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_width="10dp"
+        app:tl_tab_space_equal="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/hot_wallet_import_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_next"-->
+<!--        style="@style/WalletHotePwdSureStyle"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:text="@string/wh_make_sure" />-->
+
+</LinearLayout>

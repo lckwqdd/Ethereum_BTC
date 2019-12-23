@@ -28,7 +28,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/bg_blue_radius">
+        android:background="@drawable/bg_blue_middle_radius">
 
         <ImageView
             android:layout_width="40dp"

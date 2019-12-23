@@ -163,6 +163,7 @@ dependencies {
     implementation fileTree(include: ['*.jar', '*.arr'], dir: 'libs')
     implementation project(path: ':androidUtils')
     implementation project(path: ':alscMy')
+    implementation project(path: ':alscNet')
     implementation project(path: ':alscUtils')
     implementation project(path: ':alscWallet')
 
@@ -198,6 +199,5 @@ dependencies {
 
     implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
     implementation(rootProject.ext.dependencies["autosize"])
-    compile project(path: ':alscNet')
 }
 

@@ -8,11 +8,14 @@
 7        android:targetSdkVersion="28" />
 7-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml
 8
-9    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+9    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 9-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:4:5-79
 9-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:4:22-76
-10    <uses-permission android:name="android.permission.INTERNET" />
-10-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:5:5-67
-10-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:5:22-64
-11
-12</manifest>
+10    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+10-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:5:5-79
+10-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:5:22-76
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:6:5-67
+11-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml:6:22-64
+12
+13</manifest>

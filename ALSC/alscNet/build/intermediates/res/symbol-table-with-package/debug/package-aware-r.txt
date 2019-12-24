@@ -3487,6 +3487,7 @@ drawable fragmentation_ic_expandable
 drawable fragmentation_ic_right
 drawable fragmentation_ic_stack
 drawable ic_arrow_drop_down_black_24dp
+drawable ic_launcher
 drawable ic_loading_white_01
 drawable ic_loading_white_02
 drawable ic_loading_white_03
@@ -3502,6 +3503,18 @@ drawable ic_loading_white_12
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable icon_loading1
+drawable icon_loading10
+drawable icon_loading11
+drawable icon_loading12
+drawable icon_loading2
+drawable icon_loading3
+drawable icon_loading4
+drawable icon_loading5
+drawable icon_loading6
+drawable icon_loading7
+drawable icon_loading8
+drawable icon_loading9
 drawable img_load_error
 drawable img_loading
 drawable leak_canary_icon_foreground
@@ -3538,6 +3551,7 @@ drawable permission_ic_phone
 drawable permission_ic_sensors
 drawable permission_ic_sms
 drawable permission_ic_storage
+drawable progress_bar_1
 drawable progress_drawable_white
 drawable search
 drawable selector
@@ -3719,7 +3733,7 @@ id parent_matrix
 id percent
 id pin
 id progressBar
-id progressBar1
+id progress_bar
 id progress_circular
 id progress_horizontal
 id promptTV
@@ -4265,6 +4279,7 @@ style CardView_Light
 style CustomTheme_Dialog
 style EasyPermissions
 style EasyPermissions_Transparent
+style LoadingDialog
 style MyDialogStyle
 style PermissionAnimFade
 style PermissionAnimModal
@@ -4680,3 +4695,4 @@ styleable ViewBackgroundHelper android_background backgroundTint backgroundTintM
 styleable ViewStubCompat android_id android_inflatedId android_layout
 styleable leak_canary_MoreDetailsView leak_canary_plus_color
 xml leak_canary_file_paths
+xml network_security_config

@@ -15,6 +15,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 
@@ -27,4 +30,6 @@ dependencies {
     implementation project(path: ':androidUtils')
     implementation project(path: ':alscUtils')
     implementation project(path: ':alscNet')
+
+    implementation(rootProject.ext.dependencies["flycoTabLayout"])
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LoadingDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <!--<item name="android:windowBackground">@color/transparent</item>&lt;!&ndash;背景透明&ndash;&gt;-->
+        <!--<item name="android:windowContentOverlay">@color/transparent</item>-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

@@ -1,18 +1,25 @@
 package com.mirko.alsc.ui.capital;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.alsc.utils.base.BaseFragment;
 import com.mirko.alsc.R;
-import com.mirko.alsc.databinding.FragmentHomeBinding;
+import com.mirko.alsc.adapter.CurrencyAdapter;
+import com.mirko.alsc.adapter.listener.RecycleViewItemClickListener;
+import com.mirko.alsc.bean.CurrencyData;
+import com.mirko.alsc.databinding.FragmentCapitalBinding;
 import com.mirko.androidutil.utils.android.LogUtils;
 
-import in.srain.cube.views.ptr.PtrFrameLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Mirko on 2019/12/23.
@@ -20,20 +27,14 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 public class CapitalFragment extends BaseFragment {
 
-    private final static String TAG = "HomeFragment";
+    private final static String TAG = "CapitalFragment";
 
-    FragmentHomeBinding binding;
+    FragmentCapitalBinding binding;
     private View mView;
-    private View headView;
-    private View footView;
-    private TextView tvFooterMsg;//底部显示的信息
+    private Context mContext;
+    private CurrencyAdapter currencyAdapter;
+    private List<CurrencyData> currencyDatas;
 
-
-    private PtrFrameLayout ptrFrame;
-
-    private int reLoad = 0;
-
-    private boolean mIsRefreshing = false;
 
     public static CapitalFragment getInstance() {
         CapitalFragment sf = new CapitalFragment();
@@ -44,7 +45,8 @@ public class CapitalFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_capital, null);
-        binding = FragmentHomeBinding.bind(mView);
+        binding = FragmentCapitalBinding.bind(mView);
+        mContext = getActivity();
         return mView;
     }
 
@@ -66,13 +68,13 @@ public class CapitalFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mIsRefreshing = false;
     }
 
     @Override
     public void onPause() {
         super.onPause();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -81,6 +83,23 @@ public class CapitalFragment extends BaseFragment {
     @Override
     public void initViews(Bundle savedInstanceState) {
 
+        currencyDatas = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            CurrencyData currencyData = new CurrencyData();
+            currencyData.setName("BTC");
+            currencyDatas.add(currencyData);
+        }
+        currencyAdapter = new CurrencyAdapter(mContext, currencyDatas);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        binding.rvCurrency.setLayoutManager(layoutManager);
+        binding.rvCurrency.setAdapter(currencyAdapter);
+        currencyAdapter.notifyDataSetChanged();
+        currencyAdapter.setRecycleViewItemClickListener(new RecycleViewItemClickListener() {
+            @Override
+            public void OnItemOnclick(View view, int position) {
+                startActivity(new Intent(mContext,CurrencyDetailActivity.class));
+            }
+        });
 
     }
 
@@ -90,14 +109,6 @@ public class CapitalFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
-    }
-
-
-    /**
-     * 跳转到文章发布页面
-     */
-    private void goToPublishArticle(){
 
     }
 

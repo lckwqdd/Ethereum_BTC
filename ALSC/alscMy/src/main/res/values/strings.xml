@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">dbnShell</string>
+    <!--    资产板块-->
+    <string name="capital_title_all">总资产(U)</string>
+    <string name="capital_exchange_count">已兑换总额(U)</string>
+    <string name="capital_exchange_fast">闪兑</string>
+    <string name="capital_income_count">已收益总额(U)</string>
+    <string name="capital_search">搜索币种</string>
+    <string name="capital_available">可用</string>
+    <string name="capital_frozen">冻结</string>
+    <string name="capital_total">总资产折合</string>
+
+
+
 </resources>

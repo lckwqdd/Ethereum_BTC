@@ -1,7 +1,6 @@
 package com.alsc.net.api;
 
-import com.alsc.net.bean.entity.NoticeResultEntity;
-import com.alsc.net.bean.request.LoginRequest;
+import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.net.util.HttpService;
@@ -23,7 +22,7 @@ public class EmailCodeApi extends BaseApi {
 
     private String email;
 
-    public EmailCodeApi(HttpOnNextListener<NoticeResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String email) {
+    public EmailCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String email) {
         super(listener, rxAppCompatActivity);
         this.email = email;
         setShowProgress(true);

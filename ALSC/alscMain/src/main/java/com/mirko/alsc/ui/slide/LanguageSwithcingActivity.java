@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+
 import com.alsc.net.bean.entity.NoticeResultEntity;
 import com.alsc.net.api.NoticeApi;
 import com.alsc.net.retrofit.http.HttpManager;

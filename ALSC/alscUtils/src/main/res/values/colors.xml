@@ -9,6 +9,8 @@
     <color name="item_pressed_bg">#F1F1F1</color>
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black_divdir">#2c3750</color>
+    <color name="snow">#FFFAFA</color>
     <color name="color_network_bar_bg_ee4b62">#ee4b62</color>
     <color name="color_grey_888888">#888888</color>
     <color name="white_deep">#80FFFFFF</color>
@@ -40,7 +42,11 @@
     <color name="yellow_deep">#e3b200</color>
     <color name="yellow_light">#44e3b200</color>
     <color name="yellow_bg">#FFF2C149</color>
-
+    <color name="item_divider_bg_color">#F0F0F0</color>
+    <color name="derive_private_key_bg_color">#f2f3f5</color>
+    <color name="mine_menu_divider_color">#eaeaea</color>
+    <color name="search_ico_upload_token">#33c2e2</color>
+    <color name="discovery_application_text_color">#292929</color>
     <!--qr code capture  -->
     <color name="gray_trans_light">#22000000</color>
     <color name="gray_trans_deep">#36000000</color>

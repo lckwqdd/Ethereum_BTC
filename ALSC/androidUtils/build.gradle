@@ -2,21 +2,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-//        ndk {
-//            // 设置支持的so库架构，设置一个可以减小包的大小
-//            abiFilters "armeabi-v7a","arm64-v8a"
-//        }
-
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 
     buildTypes {
@@ -60,11 +55,9 @@ dependencies {
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-//    api 'com.jakewharton:butterknife:10.0.0'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     api 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     //项目组件
-//    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+//  api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
     api 'me.weyye.hipermission:library:1.0.7'
     api 'com.github.bumptech.glide:glide:4.9.0'
     api 'com.squareup.picasso:picasso:2.5.2'
@@ -79,9 +72,22 @@ dependencies {
     //UI
     api 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     api 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
-//    api 'com.github.Shashank02051997:FancyToast-Android:0.1.3'
 
-//    api 'me.devilsen:CZXing:0.4.4'
+    //
+    api (rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"])
+    api (rootProject.ext.dependencies["flexbox"])
+    api (rootProject.ext.dependencies["ViewPagerIndicator"])
+    api (rootProject.ext.dependencies["utilcode"])
+    //web3与bitcoinj 冷钱包
+    api(rootProject.ext.dependencies["web3j"])
+    api(rootProject.ext.dependencies["bitcoinj"])
+    // 圆形图片
+    api 'de.hdodenhof:circleimageview:2.1.0'
 
-
+    // 圆点Indicator
+    api 'com.youth.banner:banner:1.4.10'
+    // or, for Android:
+    api 'com.google.guava:guava:27.0.1-android'
+    api 'cn.bingoogolapple:bga-qrcode-zxing:1.3.6'
+    api 'pub.devrel:easypermissions:1.0.1'
 }

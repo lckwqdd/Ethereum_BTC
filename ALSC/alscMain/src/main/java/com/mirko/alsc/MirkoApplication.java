@@ -4,12 +4,15 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alsc.net.NetApplication;
+import com.alsc.net.db.GreenDaoUtil;
+import com.alsc.wallet.utils.AppFilePath;
 import com.mirko.androidutil.BaseApplication;
 import com.mirko.androidutil.utils.MetaDataUtil;
 import com.mirko.androidutil.utils.android.Application;
 
-public class MirkoApplication extends BaseApplication {
+import io.realm.Realm;
 
+public class MirkoApplication extends BaseApplication {
 
     public  static String HOST;
     private final static String ALSC_API = "ALSC_API";
@@ -37,5 +40,8 @@ public class MirkoApplication extends BaseApplication {
             Application.exit(mContext);
         }
         NetApplication.getInstance().init(HOST);
+        Realm.init(this);
+        AppFilePath.init(this);
+        GreenDaoUtil.getInstance().initGreenDao(this);
     }
 }

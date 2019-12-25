@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tl="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--    导入钱包-->
+        <include layout="@layout/activity_hot_wallet_header" />
+
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/hot_wallet_import_tab"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/yellow"
+            tl:tl_iconVisible="false"
+            tl:tl_textBold="SELECT"
+            tl:tl_indicator_color="#000000"
+            tl:tl_textSelectColor="#000000"
+            tl:tl_textUnselectColor="#66000000"
+            tl:tl_underline_color="#000000"
+            tl:tl_underline_height="1dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/hot_wallet_import_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

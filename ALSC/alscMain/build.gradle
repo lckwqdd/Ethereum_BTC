@@ -4,15 +4,15 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     // 加载 local.properties 资源
     Properties properties = new Properties()
-    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
+    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream();
     properties.load(inputStream)
 
     signingConfigs {
         config {
             keyAlias 'pureprac.keystore'
-            keyPassword properties.getProperty( 'keyPassword' )
+            keyPassword properties.getProperty('keyPassword')
             storeFile file('../assets/pureprac.keystore')
-            storePassword properties.getProperty( 'keyPassword' )
+            storePassword properties.getProperty('keyPassword')
         }
     }
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -27,13 +27,13 @@ android {
         signingConfig signingConfigs.config
         ndk {
             // 设置支持的SO库架构
-            abiFilters 'armeabi', 'armeabi-v7a' ,  'x86_64','x86', 'arm64-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86_64', 'x86', 'arm64-v8a'
         }
         flavorDimensions "versionCode"
         multiDexEnabled true
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -60,7 +60,7 @@ android {
             multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
-                    ALSC_API  : "http://www.alsc.space/",
+                    ALSC_API    : "http://www.alsc.space/",
                     PACKAGE_NAME: "com.alsc.tst",
             ]
             debuggable true
@@ -72,7 +72,7 @@ android {
             shrinkResources false
             multiDexEnabled true
             manifestPlaceholders = [
-                    ALSC_API  : "http://www.alsc.space/",
+                    ALSC_API    : "http://www.alsc.space/",
                     PACKAGE_NAME: "com.alsc.pro",
             ]
             debuggable true
@@ -94,6 +94,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        exclude 'lib/x86_64/darwin/libscrypt.dylib'
+    }
+
     productFlavors {
         develop {
             applicationId = "com.wearme.android"
@@ -102,25 +106,25 @@ android {
         }
         tencent {
         }
-        mobilesite{
+        mobilesite {
         }
-        baidu{
+        baidu {
         }
-        alibaba{
+        alibaba {
         }
         samsung {
         }
-        xiaomi{
+        xiaomi {
         }
-        meizu{
+        meizu {
         }
-        qihu360{
+        qihu360 {
         }
-        huawei{
+        huawei {
         }
-        oppo{
+        oppo {
         }
-        vivo{
+        vivo {
         }
     }
     productFlavors.all {
@@ -166,7 +170,6 @@ dependencies {
     implementation project(path: ':alscNet')
     implementation project(path: ':alscUtils')
     implementation project(path: ':alscWallet')
-    implementation project(path: ':alscNet')
 
     //implementation(name:'blesdk-1.0.2', ext:'aar')
     //导航条
@@ -199,6 +202,8 @@ dependencies {
     annotationProcessor(rootProject.ext.dependencies["arouterCompiler"])
 
     implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
+    //今日头条适配方案
     implementation(rootProject.ext.dependencies["autosize"])
+
 }
 

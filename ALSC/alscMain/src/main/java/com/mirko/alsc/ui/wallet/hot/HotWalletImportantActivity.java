@@ -5,16 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
-
 import com.alsc.utils.base.AlscBaseActivity;
-import com.alsc.wallet.databinding.ActivityHotWalletImportBinding;
-import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.HomePagerAdapter;
-import com.mirko.alsc.databinding.ActivitySecurityPayPasswordBinding;
-import com.mirko.alsc.ui.capital.CapitalFragment;
+import com.mirko.alsc.databinding.ActivityHotWalletImportBinding;
 import com.mirko.alsc.ui.entity.TabEntity;
 import com.mirko.alsc.ui.fragment.HomeFragment;
 import com.mirko.alsc.views.ViewPagerScroller;
@@ -37,12 +33,12 @@ public class HotWalletImportantActivity extends AlscBaseActivity implements View
     private String mTitleSel[] = new String[4];
 
     private int[] mTitleIds = {
-            R.string.home_bar_chat,
-            R.string.home_bar_friends
+            R.string.wh_all_important_money,
+            R.string.wh_single_important_money
     };
     private int[] mTitleSlectIds = {
-            R.string.home_bar_chat,
-            R.string.home_bar_friends
+            R.string.wh_all_important_money,
+            R.string.wh_single_important_money
     };
     private int[] mIconUnselectIds = {
             R.mipmap.home_study,
@@ -111,10 +107,6 @@ public class HotWalletImportantActivity extends AlscBaseActivity implements View
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-//            case R.id.iv_title_left:
-//                LogUtils.d(TAG,"返回点击");
-//                onBackPressed();
-//                break;
         }
     }
 }

@@ -71,4 +71,150 @@
     <string name="btn_sure">确认</string>
     <string name="btn_next">下一步</string>
 
+
+    <!--    wallte type-->
+    <string name="wt_type_make">创建钱包类型</string>
+    <string name="wt_type_change">去中心化的DAPP,冷热钱包自由切换</string>
+    <string name="wt_type_chain">跨链钱包</string>
+    <string name="wt_type_online">在线钱包</string>
+    <string name="wt_type_chain_describe">构建各种公链价值流转通道,实现多种数字资产业务创新</string>
+    <string name="wt_type_online_describe">打造ALSC数字经济生态应用</string>
+    <string name="wt_type_next">下一步</string>
+    <string name="wt_type_has_alsc">已有ALSC账号?</string>
+    <string name="wt_type_login">登录</string>
+
+
+    <!--    wallte code-->
+    <string name="wc_code">创建跨链钱包</string>
+    <string name="wc_code_important">密码用于保护私钥与交易授权,强度非常重要.</string>
+    <string name="wc_code_warn">非中心化系统的密码一旦丢失,则无法找回,请妥善保管!</string>
+    <string name="wc_code_account">账户备注</string>
+    <string name="wc_code_input_account">请输入账户名称</string>
+    <string name="wc_code_wallet_pwd">钱包密码</string>
+    <string name="wc_code_input_wallet_pwd">请输入钱包密码</string>
+    <string name="wc_code_input_wallet_pwd_again">请再次输入钱包密码</string>
+    <string name="wc_code_pwd_pattern">钱包密码建议至少8-16位:大写字母、小写字母、数字3种组成</string>
+    <string name="create_wallet_name_repeat_tips">钱包名称重复</string>
+    <string name="create_wallet_name_input_tips">请输入钱包名称</string>
+    <string name="create_wallet_pwd_input_tips">密码不能为空</string>
+    <string name="create_wallet_pwd_confirm_input_tips">密码不一致，请重新输入</string>
+    <string name="deriving_wallet_tip">导出钱包中…</string>
+    <string name="loading_wallet_tip">导入钱包中…</string>
+    <string name="deleting_wallet_tip">删除钱包中…</string>
+    <string name="creating_wallet_tip">创建钱包中…</string>
+    <string name="saving_wallet_tip">保存钱包中…</string>
+    <string name="permission_denied_forever_message">We need some of the permissions you rejected or the system failed to apply failed, please manually set to the page authorize, otherwise the function can\'t be used normally!</string>
+
+    <!--    wallet backup-->
+    <string name="wc_backup">备份</string>
+    <string name="wc_backup_single">密语用于恢复钱包,请抄写12个单词</string>
+    <string name="wc_backup_double">抄好后的密语请妥善保管</string>
+    <string name="wc_backup_good">this is my good shen</string>
+
+    <!--    wallet validate-->
+    <string name="wv_validate">验证</string>
+    <string name="wv_done">完成</string>
+    <string name="wv_reset">重新生成密语</string>
+    <string name="wv_validate_sure">按照顺序点击密语,以确认正确备份</string>
+
+    <!--    wallet hot-->
+    <string name="wc_hote">创建在线钱包</string>
+    <string name="wc_hote_login">登录用户名</string>
+    <string name="wc_hote_login_hint">请输入登录用户名</string>
+    <string name="wc_hote_invate_code">输入邀请码</string>
+    <string name="wc_hote_invate_code_hint">请输入邀请码(必填)</string>
+    <string name="wc_hote_picture">输入图片验证码</string>
+    <string name="wc_hote_change">看不清,换一张</string>
+    <string name="verify_backup_failed">备份失败，请检查你的助记词</string>
+
+    <!--    wallet hot phone valite-->
+    <string name="wh_phone">手机验证</string>
+    <string name="wh_phone_change">使用邮箱号或者手机号验证,二选其一即可</string>
+    <string name="wh_phone_valite_hint">请输入你的手机</string>
+    <string name="wh_phone_valite_number">建议使用6-12位字母+数字</string>
+    <string name="wh_phone_valite_number_zoom">建议使用6-12位字母+数字排列组合</string>
+    <string name="wh_valite_number">输入验证码</string>
+    <string name="wh_valite_number_hint">请输入验证码</string>
+    <string name="wh_valite_email">邮箱验证</string>
+
+    <!--    wallet hot set pwd-->
+    <string name="wh_set_pwd">设置密码</string>
+    <string name="wh_set_pwd_save">登录密码用于登录ALSC钱包,支付密码用于保障您ALSC钱包的资产安全,请妥善保障.</string>
+    <string name="wh_sp_login_pwd">登录密码</string>
+    <string name="wh_sp_login_pwd_hint">请输入你的登录密码</string>
+    <string name="wh_sp_login_pwd_sure">确认登录密码</string>
+    <string name="wh_sp_login_pwd_sure_hint">请再次确认</string>
+    <string name="wh_sp_pay_pwd">支付密码</string>
+    <string name="wh_sp_pay_pwd_hint">请输入你的支付密码</string>
+    <string name="wh_sp_pwd_pattern">建议使用6-12位大小字母+数字排列组合</string>
+    <string name="wh_sp_pay_pwd_sure">确认支付密码</string>
+    <string name="wh_sp_pay_pwd_sure_hint">请再次输入</string>
+
+    <!--    wallet hot register success-->
+    <string name="wh_register">注册成功,开启手势密码</string>
+    <string name="wh_register_account">为保障您的账户安全</string>
+    <string name="wh_register_unlock">请设置手势密码用于解锁</string>
+    <string name="wh_register_no_set">暂不设置</string>
+    <string name="wh_register_set">立即设置</string>
+
+    <!--    wallet hot login alsc-->
+    <string name="wh_login_alsc">登录ALSC</string>
+    <string name="wh_login">登录</string>
+    <string name="wh_alsc_describe">欢迎来到ALSC全球首创三维一体造福生态</string>
+    <string name="wh_login_user">登录用户名</string>
+    <string name="wh_login_user_hint">请输入登录用户名</string>
+    <string name="wh_login_pwd">密码</string>
+    <string name="wh_login_pwd_hint">请输入密码</string>
+
+
+    <!--    导入钱包-->
+    <string name="wh_important_money">导入钱包</string>
+    <string name="wh_all_important_money">批量导入</string>
+    <string name="wh_single_important_money">单个导入</string>
+    <string name="wh_fill_in_word">请填写你的助记池</string>
+    <string name="wh_fill_splite">英文单词请按空格分隔单词</string>
+    <string name="wh_sure">确认</string>
+    <string name="wh_alsc">ALSC</string>
+    <string name="wh_btc">BTC</string>
+    <string name="wh_xrp">XRP</string>
+    <string name="wh_eos">EOS</string>
+    <string name="wh_ltc">LTC</string>
+
+    <!--    ALSC收款-->
+    <string name="wh_alsc_collect">ALSC收款</string>
+    <string name="wh_save_to_album">保存到相册</string>
+    <string name="wh_save_to_bz">注意: 该地址仅支持ALSC收款,请勿用与其他币种</string>
+    <string name="wh_key">1FKYFJDKLFJDKLFJD_FDJLFJDLFfGFJALKJFfF3</string>
+
+    <!--    ALSC转账-->
+    <string name="wh_alsc_transfer">ALSC转账</string>
+    <string name="wh_alsc_transfer_menoy">转账金额</string>
+    <string name="wh_alsc_balance">ALSC余额</string>
+    <string name="wh_save_address">接收地址</string>
+    <string name="wh_input_alsc_address">输入ALSC地址</string>
+    <string name="wh_send_address">发送地址</string>
+    <string name="wh_miners_fee">矿工费</string>
+    <string name="wh_conversion_alsc">0.0000192 ALSC ≈ ¥ 0.9708</string>
+    <string name="wh_conversion_cny">≈ 7.625 CNY</string>
+    <string name="wh_advice_conversion_alsc">建议0.0000192 ALSC ≈ ¥ 0.9708</string>
+    <string name="wh_slow">慢</string>
+    <string name="wh_fast">快</string>
+    <string name="wh_ok">确定</string>
+    <string name="wh_make_sure">确认</string>
+
+    <!--    安全密码登录-->
+    <string name="wh_safe_login">安全密码登录</string>
+    <string name="wh_save">保存</string>
+    <string name="wh_pwd_correct">密码正确</string>
+    <string name="wh_input_safe">请输入安全密码</string>
+
+    <!--    帮助中心-->
+    <string name="wh_help">帮助中心</string>
+    <string name="wh_about_alsc">关于ALSC傲斯卡</string>
+    <string name="wh_alsc_process">ALSC充提币到FChina交易的图文操作流程</string>
+    <string name="wh_basic_tutorial">基础教程</string>
+    <string name="wh_trafer_collect">转账/收款</string>
+    <string name="wh_remember_key">助记词/私钥</string>
+    <string name="wh_alsc_action_process">ALSC操作流程</string>
+
 </resources>

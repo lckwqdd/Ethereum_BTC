@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lly_tag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black_radius"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_mnemonic_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="mnemonic"
+            android:textColor="@color/snow"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+
+</LinearLayout>

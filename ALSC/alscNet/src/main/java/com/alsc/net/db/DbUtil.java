@@ -2,15 +2,12 @@ package com.alsc.net.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.alsc.net.NetApplication;
-import com.alsc.net.retrofit.download.DaoMaster;
-import com.alsc.net.retrofit.download.DaoSession;
+import com.alsc.net.db.bean.DaoMaster;
+import com.alsc.net.db.bean.DaoSession;
+import com.alsc.net.db.bean.DownInfoDao;
 import com.alsc.net.retrofit.download.DownInfo;
-import com.alsc.net.retrofit.download.DownInfoDao;
-
 import org.greenrobot.greendao.query.QueryBuilder;
-
 import java.util.List;
 
 

@@ -9,11 +9,17 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
 }
 
 greendao {
     schemaVersion 1 //数据库版本号
+    daoPackage 'com.alsc.net.db.bean'
+    targetGenDir 'src/main/java'
 }
 
 dependencies {
@@ -30,7 +36,7 @@ dependencies {
     implementation(rootProject.ext.dependencies["retrofit2Gson"])
     implementation(rootProject.ext.dependencies["retrofitAdapter2"])
     implementation(rootProject.ext.dependencies["eventbus"])
-//    implementation(rootProject.ext.dependencies["indexbar"])
+//  implementation(rootProject.ext.dependencies["indexbar"])
 
     api(rootProject.ext.dependencies["greendao"])
     api(rootProject.ext.dependencies["zetetic"])

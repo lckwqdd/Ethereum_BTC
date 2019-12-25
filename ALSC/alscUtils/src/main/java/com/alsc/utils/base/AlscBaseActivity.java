@@ -1,6 +1,7 @@
 package com.alsc.utils.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -114,5 +115,7 @@ public abstract class AlscBaseActivity extends RxAppCompatActivity {
         myDialog.show();
     }
 
-
+    protected void goTo(Class<?> mClass) {
+        startActivity(new Intent(this, mClass));
+    }
 }

@@ -2,10 +2,9 @@ package com.alsc.net.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.alsc.net.NetApplication;
-import com.alsc.net.retrofit.download.DaoMaster;
-import com.alsc.net.retrofit.download.DaoSession;
+import com.alsc.net.db.bean.DaoMaster;
+import com.alsc.net.db.bean.DaoSession;
 import com.alsc.net.retrofit.download.DownInfo;
 
 /**
@@ -23,7 +22,7 @@ public class DaoUtils {
     public static final int ACTION_DELETE = 2;
 
     private static volatile DaoUtils db = null;
-    private final static String dbName = "futont";  //数据库名称
+    private final static String dbName = "alsc";  //数据库名称
     private MyDevOpenHelper openHelper;
     private Context context;
 
@@ -34,7 +33,7 @@ public class DaoUtils {
         openHelper = new MyDevOpenHelper(context, dbName, null);
         DaoMaster daoMaster = new DaoMaster(openHelper.getWritableDatabase());
         daoSession = daoMaster.newSession();
-//        deviceInfoDao = daoSession.getDeviceInfoDao();
+//      deviceInfoDao = daoSession.getDeviceInfoDao();
     }
 
     /**

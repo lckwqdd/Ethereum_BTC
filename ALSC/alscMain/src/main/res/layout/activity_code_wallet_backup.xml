@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1a2135"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_code_wallet_header" />
+
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/bg_white_radius" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="280dp"
+            android:src="@mipmap/icon_white_qrcode" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletCodeBtnStyle"
+            android:layout_marginTop="220dp"
+            android:text="@string/wt_type_next" />
+    </LinearLayout>
+</layout>

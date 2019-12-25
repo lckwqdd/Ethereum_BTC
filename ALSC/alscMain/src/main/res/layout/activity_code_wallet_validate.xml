@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1a2135"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_code_wallet_header" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_selected"
+            android:layout_width="320dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_black_tranprent_radius"
+            android:overScrollMode="never"
+            android:padding="15dp" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_mnemonic"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:overScrollMode="never" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletCodeBtnStyle"
+            android:layout_marginTop="100dp"
+            android:text="@string/wv_done" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/wv_reset"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</layout>

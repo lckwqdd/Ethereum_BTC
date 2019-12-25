@@ -1,14 +1,18 @@
 <resources>
-    <!--    �ʲ����-->
-    <string name="capital_title_all">���ʲ�(U)</string>
-    <string name="capital_exchange_count">�Ѷһ��ܶ�(U)</string>
-    <string name="capital_exchange_fast">����</string>
-    <string name="capital_income_count">�������ܶ�(U)</string>
-    <string name="capital_search">��������</string>
-    <string name="capital_available">����</string>
-    <string name="capital_frozen">����</string>
-    <string name="capital_total">���ʲ��ۺ�</string>
+    <!--    资产板块-->
+    <string name="capital_title_all">总资产(U)</string>
+    <string name="capital_exchange_count">已兑换总额(U)</string>
+    <string name="capital_exchange_fast">闪兑</string>
+    <string name="capital_income_count">已收益总额(U)</string>
+    <string name="capital_search">搜索币种</string>
+    <string name="capital_available">可用</string>
+    <string name="capital_frozen">冻结</string>
+    <string name="capital_total">总资产折合</string>
 
+    <string name="capital_transfer">转账</string>
+    <string name="capital_receiveables">收款</string>
+    <string name="capital_all">全部</string>
+    <string name="capital_exchange">兑换</string>
 
 
 </resources>

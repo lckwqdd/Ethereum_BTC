@@ -592,4 +592,17 @@ public class StringUtils {
         return content;
     }
 
+    /**
+     * 校验手机号是否正确
+     * @param phone
+     * @return 正确返回true ,否则false
+     */
+    public static boolean checkPhoneNumber(String phone,String areaCode){
+        if("+86".equals(areaCode)){
+            if (isEmpty(phone) || !phone.matches("^1[3-9]+\\d{9}")) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

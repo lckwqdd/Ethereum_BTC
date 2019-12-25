@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class PicCodeResultEntity implements Serializable {
 
     private String code;
+    private String sid;
 
     public String getCode() {
         return code;
@@ -16,5 +17,13 @@ public class PicCodeResultEntity implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 }

@@ -66,6 +66,10 @@
     <string name="user_info_qrcode">二维码名片</string>
     <string name="user_info_area">地区</string>
 
+    <!--    注册，地区-->
+    <string name="register_phone_area">请选择地区或国家</string>
+    <string name="register_phone_area_des">国家或地区注册后不能修改</string>
+    <string name="register_phone_area_search">搜索国家或地区</string>
 
 
     <string name="btn_sure">确认</string>

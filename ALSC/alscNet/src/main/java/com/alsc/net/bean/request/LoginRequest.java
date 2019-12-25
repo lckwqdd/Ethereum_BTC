@@ -14,6 +14,7 @@ public class LoginRequest {
     private String name;
     private String password;
     private String code;
+    private String sid;
 
     public String getName() {
         return name;
@@ -37,5 +38,13 @@ public class LoginRequest {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 }

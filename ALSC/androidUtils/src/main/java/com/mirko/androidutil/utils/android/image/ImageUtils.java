@@ -38,9 +38,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 
 /**
@@ -1881,6 +1883,48 @@ public class ImageUtils {
             System.gc();
         }
         return sourceImg;
+    }
+
+    public static Bitmap base64ToBitmap(String string) {
+        Bitmap bitmap = null;
+        try {
+            byte[] bitmapArray = Base64.decode(string.split(",")[1], Base64.DEFAULT);
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+
+    /**
+     * 将Base64编码转换为图片
+     * @param base64Str
+     * @param path
+     * @return true
+     */
+    public static boolean base64ToFile(String base64Str,String path) {
+        byte[] data = Base64.decode(base64Str,Base64.NO_WRAP);
+        for (int i = 0; i < data.length; i++) {
+            if(data[i] < 0){
+                //调整异常数据
+                data[i] += 256;
+            }
+        }
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(path);
+            os.write(data);
+            os.flush();
+            os.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

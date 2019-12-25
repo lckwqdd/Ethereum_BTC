@@ -1,6 +1,7 @@
 package com.alsc.net.api;
 
 import com.alsc.net.bean.entity.NoticeResultEntity;
+import com.alsc.net.bean.entity.RegisterResultEntity;
 import com.alsc.net.bean.request.RegisterRequest;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
@@ -32,7 +33,7 @@ public class RegisterApi extends BaseApi {
 
     private RegisterRequest registerRequest;
 
-    public RegisterApi(HttpOnNextListener<NoticeResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, RegisterRequest registerRequest) {
+    public RegisterApi(HttpOnNextListener<RegisterResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, RegisterRequest registerRequest) {
         super(listener, rxAppCompatActivity);
         this.registerRequest = registerRequest;
         setShowProgress(true);
@@ -46,12 +47,18 @@ public class RegisterApi extends BaseApi {
     public Observable getObservable(HttpService methods) {
         JSONObject result = new JSONObject();
         try {
-            result.put("pay_pass", registerRequest.getPay_pass());
+            result.put("username", registerRequest.getUsername());
             result.put("email", registerRequest.getEmail());
+            result.put("phone", registerRequest.getPhone());
             result.put("pwd", registerRequest.getPwd());
-            result.put("code", registerRequest.getCode());
+            result.put("pwd2", registerRequest.getPwd2());
+            result.put("pic_code", registerRequest.getPic_code());
             result.put("invite_code", registerRequest.getInvite_code());
             result.put("captcha", registerRequest.getCaptcha());
+            result.put("pay_pwd", registerRequest.getPay_pwd());
+            result.put("pay_pwd2", registerRequest.getPay_pwd2());
+            result.put("sid", registerRequest.getSid());
+            result.put("phone_area", registerRequest.getPhone_area());
         } catch (JSONException e) {
             e.printStackTrace();
         }

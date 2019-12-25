@@ -1,7 +1,6 @@
 package com.alsc.net.api;
 
-import com.alsc.net.bean.entity.NoticeResultEntity;
-import com.alsc.net.bean.entity.PicCodeResultEntity;
+import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.net.util.HttpService;
@@ -15,14 +14,18 @@ import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
- * 获取图片验证码
+ * 获取手机验证码
  *
  */
 
-public class PicCodeApi extends BaseApi {
+public class MobileCodeApi extends BaseApi {
 
-    public PicCodeApi(HttpOnNextListener<PicCodeResultEntity> listener, RxAppCompatActivity rxAppCompatActivity) {
+    private String phone;
+    private String phoneCode;
+
+    public MobileCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String phone,String phoneCode) {
         super(listener, rxAppCompatActivity);
+        this.phone = phone;
         setShowProgress(true);
         setCancel(true);
         setCache(false);
@@ -33,8 +36,14 @@ public class PicCodeApi extends BaseApi {
     @Override
     public Observable getObservable(HttpService methods) {
         JSONObject result = new JSONObject();
+        try {
+            result.put("phone", phone);
+            result.put("phone_code", phoneCode);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), result.toString());
-        return methods.getPicCode();
+        return methods.getMobileCode(body);
 
     }
 }

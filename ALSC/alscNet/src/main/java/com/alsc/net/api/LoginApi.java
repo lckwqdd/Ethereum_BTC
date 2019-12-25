@@ -1,5 +1,6 @@
 package com.alsc.net.api;
 
+import com.alsc.net.bean.entity.LoginResultEntity;
 import com.alsc.net.bean.entity.NoticeResultEntity;
 import com.alsc.net.bean.request.LoginRequest;
 import com.alsc.net.bean.request.RegisterRequest;
@@ -30,7 +31,7 @@ public class LoginApi extends BaseApi {
 
     private LoginRequest loginRequest;
 
-    public LoginApi(HttpOnNextListener<NoticeResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, LoginRequest loginRequest) {
+    public LoginApi(HttpOnNextListener<LoginResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, LoginRequest loginRequest) {
         super(listener, rxAppCompatActivity);
         this.loginRequest = loginRequest;
         setShowProgress(true);
@@ -47,6 +48,7 @@ public class LoginApi extends BaseApi {
             result.put("name", loginRequest.getName());
             result.put("password", loginRequest.getPassword());
             result.put("code", loginRequest.getCode());
+            result.put("sid", loginRequest.getSid());
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -41,7 +41,7 @@ public class CacheManager<T> {
     /**
      * 登录的TOOKEN
      */
-//    public static CacheManager<LoginTookenMsg> LoginTookenMsg = new CacheManager<LoginTookenMsg>(CacheType.ObjectStream, "LoginTookenMsg");
+    public static CacheManager<String> LoginToken = new CacheManager<String>(CacheType.ObjectStream, "LoginToken");
 
 
 

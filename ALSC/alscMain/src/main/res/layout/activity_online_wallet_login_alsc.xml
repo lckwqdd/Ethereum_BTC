@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout>
 
     <data>
-
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -33,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp">
 
             <View
@@ -52,6 +55,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_login_name"
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wh_login_user_hint"
@@ -67,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp">
 
             <View
@@ -86,6 +90,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_login_psw"
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wh_login_pwd_hint"
@@ -95,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp">
 
             <View
@@ -114,6 +119,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_login_code"
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp" />
 
@@ -122,29 +128,31 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:layout_marginRight="20dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/iv_pic_captcha"
                 android:layout_width="180dp"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:text="VGSC"
-                android:textColor="@color/black" />
+                android:layout_height="50dp" />
+
 
             <TextView
+                android:id="@+id/tv_change_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:padding="10dp"
+                android:onClick="@{clickListener}"
                 android:text="@string/wc_hote_change"
-                android:textColor="@color/white_deep" />
+                android:textColor="@color/white_deep" />Z8
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/btn_login"
             style="@style/WalletHoteBtnStyle"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:onClick="@{clickListener}"
             android:text="@string/wh_login" />
     </LinearLayout>
 </layout>

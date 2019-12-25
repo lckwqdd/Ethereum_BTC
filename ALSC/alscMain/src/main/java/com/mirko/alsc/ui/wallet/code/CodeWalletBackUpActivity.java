@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.utils.LogUtils;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityCodeWalletBackupBinding;
@@ -32,6 +33,7 @@ public class CodeWalletBackUpActivity extends AlscBaseActivity implements View.O
     public void initAttrs() {
         Intent intent = getIntent();
         walletId = intent.getLongExtra(Constants.walletId, -1);
+        LogUtils.d("备份钱包:"+walletId);
         walletPwd = intent.getStringExtra(Constants.walletPwd);
         walletAddress = intent.getStringExtra(Constants.walletAddress);
         walletName = intent.getStringExtra(Constants.walletName);

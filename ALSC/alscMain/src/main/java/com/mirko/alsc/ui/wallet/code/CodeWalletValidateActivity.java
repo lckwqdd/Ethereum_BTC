@@ -55,6 +55,7 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
     public void initAttrs() {
         Intent intent = getIntent();
         walletId = intent.getLongExtra(Constants.walletId, -1);
+        LogUtils.d("备份验证:"+walletId);
         walletMnemonic = intent.getStringExtra(Constants.walletMnemonic);
 
         //准备数据
@@ -141,6 +142,8 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
             if (TextUtils.equals(trim, walletMnemonic)) {
                 WalletDaoUtils.setIsBackup(walletId);
                 ToastUtils.showToast("拼接成功");
+                goTo(MainActivity.class);
+                finish();
             } else {
                 ToastUtils.showToast(R.string.verify_backup_failed);
             }

@@ -53,6 +53,14 @@ public interface ConstantUrl {
     String PHONE_CODE_URL = "api/phone_codes";
     //手机验证码
     String MOBILE_CODE_URL = "api/get_mobile_code";
+    //修改登录密码
+    String MODIFY_LOGIN_PSW_URL = "api/up_password";
+    //修改支付密码
+    String MODIFY_PAY_PSW_URL = "api/up_pay";
+    //绑定手机
+    String BIND_PHONE_URL = "api/bang_phone";
+    //绑定邮箱
+    String BIND_EMAIL_URL = "api/bang_email";
 
 
 }

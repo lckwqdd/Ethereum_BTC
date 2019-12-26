@@ -1,4 +1,4 @@
-package com.mirko.alsc.ui.wallet;
+package com.mirko.alsc.ui.wallet.online;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -12,8 +12,8 @@ import com.alsc.net.bean.request.RegisterRequest;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
-import com.mirko.alsc.databinding.ActivityOnlineWalletPhoneValidateBinding;
 import com.mirko.alsc.databinding.ActivityOnlineWalletSetPwdBinding;
 import com.mirko.alsc.utils.Constant;
 import com.mirko.androidutil.utils.StringUtils;
@@ -73,12 +73,19 @@ public class OnlineWalletSettingPwdActivity extends AlscBaseActivity implements 
         loginPswSure = binding.etLoginPwdSure.getText().toString();
         payPsw = binding.etPayPwd.getText().toString();
         payPswSure = binding.etPayPwdLogin.getText().toString();
+        if (!StringUtils.checkNubmerAndLetter(loginPsw)) {
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg5));
+            return;
+        }else if (!StringUtils.checkNubmerAndLetter(payPsw)) {
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg3));
+            return;
+        }
         if (StringUtils.isEmpty(loginPsw)||StringUtils.isEmpty(loginPsw)||
                 StringUtils.isEmpty(payPsw)||StringUtils.isEmpty(payPswSure)) {
-            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不能为空");
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg1));
             return;
         } else if(!loginPsw.equals(loginPswSure)){
-            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不一致");
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg2));
             return;
         } else if(!payPsw.equals(payPswSure)){
             ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不一致");
@@ -105,6 +112,8 @@ public class OnlineWalletSettingPwdActivity extends AlscBaseActivity implements 
 
                 if (result != null) {
                     LogUtils.d(TAG, "注册成功:" + result.toString());
+                    goTo(OnlineWalletLoginActivity.class);
+                    finish();
                 }
             }
 

@@ -50,5 +50,17 @@ public interface HttpService {
     @POST(ConstantUrl.MOBILE_CODE_URL)
     Observable<BaseResultEntity<EmptyResultEntity>> getMobileCode(@Body RequestBody body);
 
+    @POST(ConstantUrl.MODIFY_LOGIN_PSW_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> modifyLoginPsw(@Body RequestBody body);
+
+    @POST(ConstantUrl.MODIFY_PAY_PSW_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> modifyPayPsw(@Body RequestBody body);
+
+    @POST(ConstantUrl.BIND_PHONE_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> bindPhone(@Body RequestBody body);
+
+    @POST(ConstantUrl.BIND_EMAIL_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> bindEmail(@Body RequestBody body);
+
 
 }

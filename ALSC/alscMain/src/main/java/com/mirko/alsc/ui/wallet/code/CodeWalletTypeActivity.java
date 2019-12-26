@@ -6,8 +6,8 @@ import android.view.View;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityCodeWalletTypeBinding;
-import com.mirko.alsc.ui.wallet.OnlineWalletLoginActivity;
-import com.mirko.alsc.ui.wallet.OnlineWalletMakeActivity;
+import com.mirko.alsc.ui.wallet.online.OnlineWalletLoginActivity;
+import com.mirko.alsc.ui.wallet.online.OnlineWalletMakeActivity;
 
 /**
  * 创建钱包类型
@@ -42,7 +42,7 @@ public class CodeWalletTypeActivity extends AlscBaseActivity implements View.OnC
             case R.id.ll_code_wallet:
                 switchBackground(0);
                 break;
-            case R.id.llOnlineWallet:
+            case R.id.ll_online_wallet:
                 switchBackground(1);
                 break;
             case R.id.btn_next:

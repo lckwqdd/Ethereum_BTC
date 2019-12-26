@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.alsc.utils.view.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px180"
+                android:background="@color/color_slide_bg"
+                app:showLeftDrawable="true"
+                app:showTextLeft="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/WalletCodeTitleTextStyle"
+                    android:text="@string/wh_reset_pwd_title"
+                    android:textColor="@color/yellow" />
+
+                <TextView
+                    style="@style/WalletCodeTextStyle"
+                    android:text="@string/wh_reset_pwd_title_des" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="24dp"
+                    android:background="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/wh_sp_login_pwd"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_login_pwd"
+                style="@style/WalletCodeEditStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/wh_sp_login_pwd_hint"
+                android:textColorHint="@color/black" />
+
+            <TextView
+                style="@style/WalletCodeTextStyle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/wh_phone_valite_number" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="24dp"
+                    android:background="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/wh_sp_login_pwd_sure"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_login_pwd_sure"
+                style="@style/WalletCodeEditStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/wh_sp_login_pwd_sure_hint"
+                android:textColorHint="@color/black" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletHoteBtnStyle"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{clickListener}"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/btn_reset" />
+    </RelativeLayout>
+</layout>

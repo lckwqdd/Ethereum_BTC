@@ -56,7 +56,7 @@ public class FileUtils {
     public static File getRootDir() {
 
         if (FileUtils.instance.context == null) return null;
-        File dir = new File(FileUtils.instance.context.getFilesDir().getParentFile(), "/futon");
+        File dir = new File(FileUtils.instance.context.getFilesDir().getParentFile(), "/alsc");
         if (!dir.exists())
             dir.mkdirs();
         return dir;

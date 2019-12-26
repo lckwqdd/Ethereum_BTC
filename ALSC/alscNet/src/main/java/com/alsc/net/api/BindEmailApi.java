@@ -1,7 +1,7 @@
 package com.alsc.net.api;
 
-import com.alsc.net.bean.entity.HomeMsgResultEntity;
-import com.alsc.net.bean.entity.NoticeResultEntity;
+import com.alsc.net.bean.entity.LoginResultEntity;
+import com.alsc.net.bean.request.BindEmailRequest;
 import com.alsc.net.bean.request.LoginRequest;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
@@ -16,17 +16,23 @@ import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
- * 首页信息
+ * 绑定邮箱
+ *
+ | 字段  | 类型   | 是否可选 | 描述  |
+ | ----- | ------ | -------- | ----- |
+ | token | String | 否       | token |
+ | email | String | 否       | 邮箱 |
+ | code | String | 否       | 验证码 |
  *
  */
 
-public class HomeMsgApi extends BaseApi {
+public class BindEmailApi extends BaseApi {
 
-    private String token;
+    private BindEmailRequest request;
 
-    public HomeMsgApi(HttpOnNextListener<HomeMsgResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String token) {
+    public BindEmailApi(HttpOnNextListener<LoginResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, BindEmailRequest request) {
         super(listener, rxAppCompatActivity);
-        this.token = token;
+        this.request = request;
         setShowProgress(true);
         setCancel(true);
         setCache(false);
@@ -38,12 +44,14 @@ public class HomeMsgApi extends BaseApi {
     public Observable getObservable(HttpService methods) {
         JSONObject result = new JSONObject();
         try {
-            result.put("token", token);
+            result.put("token", request.getToken());
+            result.put("email", request.getEmail());
+            result.put("code", request.getCode());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), result.toString());
-        return methods.getHomeMsg(body);
+        return methods.bindEmail(body);
 
     }
 }

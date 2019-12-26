@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import com.alsc.net.cache.CacheManager;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.interact.FetchWalletInteract;
@@ -91,9 +92,15 @@ public class SplashActivity extends AppCompatActivity {
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //            startActivity(intent);
 //        }
-        Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        if (getExpiresTime() > System.currentTimeMillis()) {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
 
@@ -102,4 +109,18 @@ public class SplashActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         SplashActivity.this.startActivity(intent);
     }
+
+
+    /**
+     * 获取登录过期时间
+     *
+     * @return
+     */
+    private long getExpiresTime() {
+        if (CacheManager.ExpiresTime.get() != null) {
+            return CacheManager.ExpiresTime.get();
+        }
+        return 0;
+    }
+
 }

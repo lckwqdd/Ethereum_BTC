@@ -7,6 +7,7 @@ import com.alsc.net.NetApplication;
 import com.alsc.net.db.GreenDaoUtil;
 import com.alsc.wallet.utils.AppFilePath;
 import com.mirko.androidutil.BaseApplication;
+import com.mirko.androidutil.utils.FileUtils;
 import com.mirko.androidutil.utils.MetaDataUtil;
 import com.mirko.androidutil.utils.android.Application;
 
@@ -43,5 +44,6 @@ public class MirkoApplication extends BaseApplication {
         Realm.init(this);
         AppFilePath.init(this);
         GreenDaoUtil.getInstance().initGreenDao(this);
+        FileUtils.getInstance().init(this);
     }
 }

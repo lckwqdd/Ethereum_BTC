@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
-import com.mirko.alsc.databinding.ActivitySecuritySettingBinding;
 import com.mirko.alsc.databinding.ActivityUserInfoSettingBinding;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
@@ -70,21 +69,21 @@ public class UserInfoSettingActivity extends AlscBaseActivity implements View.On
         binding.userInfoSex.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserInfoSettingActivity.this,SecurityPhoneActivity.class));
+                startActivity(new Intent(UserInfoSettingActivity.this,SecurityGoogleActivity.class));
             }
         });
         //二维码
         binding.userInfoQrcode.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserInfoSettingActivity.this,SecurityEmailActivity.class));
+                startActivity(new Intent(UserInfoSettingActivity.this, SecurityEmailNoBindActivity.class));
             }
         });
         //地区
         binding.userInfoArea.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserInfoSettingActivity.this,SecurityEmailActivity.class));
+                startActivity(new Intent(UserInfoSettingActivity.this, SecurityEmailNoBindActivity.class));
             }
         });
     }

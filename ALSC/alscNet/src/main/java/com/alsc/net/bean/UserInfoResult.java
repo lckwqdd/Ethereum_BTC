@@ -26,13 +26,18 @@ public class UserInfoResult implements Serializable {
 
     private String uname;
     private String avatar;
-    private int uid;
+    private int uid; //推荐id
     private String real_name;
     private String lev;
     private String email;
     private String referrer_id;
     private String is_super;
     private String total_price;
+    private int is_bang_phone;
+    private int is_bang_email;
+    private String alsc_url;
+    private String phone;
+    private String phone_code;
     private String usdt;
     private String alsc;
     private String Investment;
@@ -150,5 +155,45 @@ public class UserInfoResult implements Serializable {
 
     public void setTotal_profit(String total_profit) {
         this.total_profit = total_profit;
+    }
+
+    public int getIs_bang_phone() {
+        return is_bang_phone;
+    }
+
+    public void setIs_bang_phone(int is_bang_phone) {
+        this.is_bang_phone = is_bang_phone;
+    }
+
+    public int getIs_bang_email() {
+        return is_bang_email;
+    }
+
+    public void setIs_bang_email(int is_bang_email) {
+        this.is_bang_email = is_bang_email;
+    }
+
+    public String getAlsc_url() {
+        return alsc_url;
+    }
+
+    public void setAlsc_url(String alsc_url) {
+        this.alsc_url = alsc_url;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone_code() {
+        return phone_code;
+    }
+
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
     }
 }

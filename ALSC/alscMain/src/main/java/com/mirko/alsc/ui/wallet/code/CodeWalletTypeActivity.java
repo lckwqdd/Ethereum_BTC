@@ -3,12 +3,11 @@ package com.mirko.alsc.ui.wallet.code;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
-
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityCodeWalletTypeBinding;
-import com.mirko.alsc.ui.wallet.online.OnlineWalletLoginAlscActivity;
-import com.mirko.alsc.ui.wallet.online.OnlineWalletMakeActivity;
+import com.mirko.alsc.ui.wallet.OnlineWalletLoginActivity;
+import com.mirko.alsc.ui.wallet.OnlineWalletMakeActivity;
 
 /**
  * 创建钱包类型
@@ -43,14 +42,14 @@ public class CodeWalletTypeActivity extends AlscBaseActivity implements View.OnC
             case R.id.ll_code_wallet:
                 switchBackground(0);
                 break;
-            case R.id.ll_online_wallet:
+            case R.id.llOnlineWallet:
                 switchBackground(1);
                 break;
             case R.id.btn_next:
                 jump2NextActivity();
                 break;
             case R.id.btn_login:
-                goTo(OnlineWalletLoginAlscActivity.class);
+                goTo(OnlineWalletLoginActivity.class);
                 break;
         }
     }

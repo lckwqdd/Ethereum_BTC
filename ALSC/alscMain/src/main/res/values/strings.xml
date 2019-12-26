@@ -221,4 +221,23 @@
     <string name="wh_remember_key">助记词/私钥</string>
     <string name="wh_alsc_action_process">ALSC操作流程</string>
 
+    <!--    总资产-->
+    <string name="total_asset">总资产</string>
+    <string name="total_assets_add">添加钱包</string>
+    <string name="total_assets_has_alsc_address">已有的AlSC地址</string>
+    <string name="total_assets_make_alsc_address">创建的AlSC地址</string>
+    <string name="total_assets_alsc">ALSC</string>
+    <string name="total_assets_btc">BTC</string>
+    <string name="total_assets_usdt">USDT</string>
+
+    <!--    添加联系人-->
+    <string name="add_contacts">添加联系人</string>
+    <string name="add_contacts_name">姓名</string>
+    <string name="add_contacts_somebody">联系人某某</string>
+    <string name="add_contacts_note">备注</string>
+    <string name="add_contacts_note_some">写一些备注写什么好</string>
+    <string name="add_contacts_alsc_address">ALSC地址</string>
+    <string name="add_contacts_edit">eadfdfdggffdfdfdfgdffd/aefdfdgh</string>
+    <string name="add_contacts_save_local">注:所有地址/账户存放本地,删除App前记得备份</string>
+
 </resources>

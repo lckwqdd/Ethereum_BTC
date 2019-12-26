@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvWalletType"
                 style="@style/WalletCodeTitleTextStyle"
                 android:text="@string/wt_type_make" />
 
@@ -84,7 +85,7 @@
                 android:src="@mipmap/icon_demo" />
 
             <LinearLayout
-                android:id="@+id/ll_hote_wallet"
+                android:id="@+id/llOnlineWallet"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
@@ -112,7 +113,6 @@
             android:id="@+id/btn_next"
             style="@style/WalletCodeBtnStyle"
             android:layout_marginTop="120dp"
-            android:onClick="@{clickListener}"
             android:text="@string/wt_type_next" />
 
         <LinearLayout

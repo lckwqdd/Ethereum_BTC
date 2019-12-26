@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--    添加联系人-->
+        <include layout="@layout/activity_hot_wallet_header" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AlscTranferLeftTextStyle"
+                android:text="@string/add_contacts_name" />
+
+        </RelativeLayout>
+
+        <EditText
+            style="@style/AlscTranferEditTextStyle"
+            android:text="@string/add_contacts_somebody" />
+
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:layout_marginTop="40dp"
+            android:text="@string/add_contacts_note" />
+
+
+        <EditText
+            style="@style/AlscTranferEditTextStyle"
+            android:hint="@string/add_contacts_note_some" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_sub"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/icon_subtract" />
+
+            <TextView
+                android:id="@+id/hw_alsc_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_sub"
+                android:text="@string/add_contacts_alsc_address"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_18" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/icon_scan" />
+        </RelativeLayout>
+
+
+        <EditText
+            style="@style/AlscTranferEditTextStyle"
+            android:hint="211fdfdfd2f1d2f1df1f2d1fd21f2df1" />
+
+
+        <TextView
+            style="@style/AlscTranferLeftTextStyle"
+            android:layout_marginTop="10dp"
+            android:text="@string/add_contacts_save_local"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+</layout>

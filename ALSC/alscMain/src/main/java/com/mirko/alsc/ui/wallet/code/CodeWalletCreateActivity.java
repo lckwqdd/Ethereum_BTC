@@ -14,7 +14,6 @@ import com.alsc.wallet.utils.WalletDaoUtils;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityCodeWalletMakeBinding;
-import com.mirko.alsc.ui.wallet.online.OnlineWalletLoginAlscActivity;
 
 /**
  * 创建跨链钱包

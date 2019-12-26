@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.alsc.net.db.bean.ETHWallet;
+import com.alsc.net.db.helper.ETHWalletHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.bitcoinj.crypto.ChildNumber;
@@ -270,7 +271,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static ETHWallet modifyPassword(long walletId, String walletName, String oldPassword, String newPassword) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
         Credentials credentials = null;
         ECKeyPair keypair = null;
         try {
@@ -279,7 +280,7 @@ public class ETHWalletUtils {
             File destinationDirectory = new File(AppFilePath.Wallet_DIR, "keystore_" + walletName + ".json");
             WalletUtils.generateWalletFile(newPassword, keypair, destinationDirectory, true);
             ethWallet.setPassword(newPassword);
-            WalletDaoUtils.ethWalletDao.insert(ethWallet);
+            ETHWalletHelper.getInstance().insertObject(ethWallet);
         } catch (CipherException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -296,7 +297,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String derivePrivateKey(long walletId, String pwd) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
         Credentials credentials;
         ECKeyPair keypair;
         String privateKey = null;
@@ -320,7 +321,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String deriveKeystore(long walletId, String pwd) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
         String keystore = null;
         WalletFile walletFile;
         try {
@@ -339,9 +340,9 @@ public class ETHWalletUtils {
      * @return
      */
     public static boolean deleteWallet(long walletId) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
         if (deleteFile(ethWallet.getKeystorePath())) {
-            WalletDaoUtils.ethWalletDao.deleteByKey(walletId);
+            ETHWalletHelper.getInstance().deleteObject(ethWallet);
             return true;
         } else {
             return false;

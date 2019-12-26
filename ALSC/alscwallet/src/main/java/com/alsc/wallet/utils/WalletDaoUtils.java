@@ -2,19 +2,16 @@ package com.alsc.wallet.utils;
 
 import android.text.TextUtils;
 
-import com.alsc.net.db.GreenDaoUtil;
 import com.alsc.net.db.bean.ETHWallet;
-import com.alsc.net.db.bean.ETHWalletDao;
+import com.alsc.net.db.helper.ETHWalletHelper;
 
 import java.util.List;
-
 
 /**
  * Created by WuQuan
  */
 
 public class WalletDaoUtils {
-    public static ETHWalletDao ethWalletDao = GreenDaoUtil.getInstance().getmDaoSession().getETHWalletDao();
 
     /**
      * 插入新创建钱包
@@ -24,7 +21,7 @@ public class WalletDaoUtils {
     public static void insertNewWallet(ETHWallet ethWallet) {
         updateCurrent(-1);
         ethWallet.setIsCurrent(true);
-        ethWalletDao.insert(ethWallet);
+        ETHWalletHelper.getInstance().insertObject(ethWallet);
     }
 
     /**
@@ -33,7 +30,7 @@ public class WalletDaoUtils {
      * @param id 钱包ID
      */
     public static ETHWallet updateCurrent(long id) {
-        List<ETHWallet> ethWallets = ethWalletDao.loadAll();
+        List<ETHWallet> ethWallets = ETHWalletHelper.getInstance().QueryAll(ETHWallet.class);
         ETHWallet currentWallet = null;
         for (ETHWallet ethwallet : ethWallets) {
             if (id != -1 && ethwallet.getId() == id) {
@@ -42,7 +39,7 @@ public class WalletDaoUtils {
             } else {
                 ethwallet.setIsCurrent(false);
             }
-            ethWalletDao.update(ethwallet);
+            ETHWalletHelper.getInstance().updateObject(ethwallet);
         }
         return currentWallet;
     }
@@ -53,7 +50,7 @@ public class WalletDaoUtils {
      * @return 钱包对象
      */
     public static ETHWallet getCurrent() {
-        List<ETHWallet> ethWallets = ethWalletDao.loadAll();
+        List<ETHWallet> ethWallets = ETHWalletHelper.getInstance().QueryAll(ETHWallet.class);
         for (ETHWallet ethwallet : ethWallets) {
             if (ethwallet.getIsCurrent()) {
                 ethwallet.setIsCurrent(true);
@@ -67,7 +64,7 @@ public class WalletDaoUtils {
      * 查询所有钱包
      */
     public static List<ETHWallet> loadAll() {
-        return ethWalletDao.loadAll();
+        return ETHWalletHelper.getInstance().QueryAll(ETHWallet.class);
     }
 
     /**
@@ -87,20 +84,15 @@ public class WalletDaoUtils {
         return false;
     }
 
-    public static ETHWallet getWalletById(long walletId) {
-        return ethWalletDao.load(walletId);
-
-    }
-
     /**
      * 设置isBackup为已备份
      *
      * @param walletId 钱包Id
      */
     public static void setIsBackup(long walletId) {
-        ETHWallet ethWallet = ethWalletDao.load(walletId);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId, ETHWallet.class);
         ethWallet.setIsBackup(true);
-        ethWalletDao.update(ethWallet);
+        ETHWalletHelper.getInstance().updateObject(ethWallet);
     }
 
     /**
@@ -141,17 +133,17 @@ public class WalletDaoUtils {
      * @param name
      */
     public static void updateWalletName(long walletId, String name) {
-        ETHWallet wallet = ethWalletDao.load(walletId);
+        ETHWallet wallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
         wallet.setName(name);
-        ethWalletDao.update(wallet);
+        ETHWalletHelper.getInstance().updateObject(wallet);
     }
 
     public static void setCurrentAfterDelete() {
-        List<ETHWallet> ethWallets = ethWalletDao.loadAll();
+        List<ETHWallet> ethWallets = ETHWalletHelper.getInstance().QueryAll(ETHWallet.class);
         if (ethWallets != null && ethWallets.size() > 0) {
             ETHWallet ethWallet = ethWallets.get(0);
             ethWallet.setIsCurrent(true);
-            ethWalletDao.update(ethWallet);
+            ETHWalletHelper.getInstance().updateObject(ethWallet);
         }
     }
 }

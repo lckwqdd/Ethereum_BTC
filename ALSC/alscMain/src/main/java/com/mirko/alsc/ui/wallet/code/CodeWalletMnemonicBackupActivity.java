@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.utils.LogUtils;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityCodeWalletBackupWordBinding;
@@ -32,6 +33,7 @@ public class CodeWalletMnemonicBackupActivity extends AlscBaseActivity implement
     public void initAttrs() {
         Intent intent = getIntent();
         walletId = intent.getLongExtra(Constants.walletId, -1);
+        LogUtils.d("备份助记词:"+walletId);
         walletMnemonic = intent.getStringExtra(Constants.walletMnemonic);
         binding.tvMnemonic.setText(walletMnemonic);
     }
@@ -52,7 +54,7 @@ public class CodeWalletMnemonicBackupActivity extends AlscBaseActivity implement
 
     private void jump2NextActivity() {
         Intent intent = new Intent(this, CodeWalletValidateActivity.class);
-        intent.putExtra(Constants.walletMnemonic, walletId);
+        intent.putExtra(Constants.walletId, walletId);
         intent.putExtra(Constants.walletMnemonic, walletMnemonic);
         startActivityForResult(intent, VERIFY_MNEMONIC_BACKUP_REQUEST);
     }

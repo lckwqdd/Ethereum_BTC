@@ -26,6 +26,7 @@ public class DaoMaster extends AbstractDaoMaster {
         UserInfoBeanDao.createTable(db, ifNotExists);
         DownInfoDao.createTable(db, ifNotExists);
         CookieResulteDao.createTable(db, ifNotExists);
+        BtcWalletDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -35,6 +36,7 @@ public class DaoMaster extends AbstractDaoMaster {
         UserInfoBeanDao.dropTable(db, ifExists);
         DownInfoDao.dropTable(db, ifExists);
         CookieResulteDao.dropTable(db, ifExists);
+        BtcWalletDao.dropTable(db, ifExists);
     }
 
     /**
@@ -58,6 +60,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(UserInfoBeanDao.class);
         registerDaoClass(DownInfoDao.class);
         registerDaoClass(CookieResulteDao.class);
+        registerDaoClass(BtcWalletDao.class);
     }
 
     public DaoSession newSession() {

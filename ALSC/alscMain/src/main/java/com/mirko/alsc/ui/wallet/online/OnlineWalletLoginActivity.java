@@ -19,7 +19,10 @@ import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletLoginAlscBinding;
+<<<<<<< HEAD:ALSC/alscMain/src/main/java/com/mirko/alsc/ui/wallet/online/OnlineWalletLoginActivity.java
 import com.mirko.androidutil.utils.DateUtils;
+=======
+>>>>>>> 12006cdaa5badc0d6352467a9e7801d73ccb9681:ALSC/alscMain/src/main/java/com/mirko/alsc/ui/wallet/online/OnlineWalletLoginActivity.java
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.utils.android.image.ImageUtils;

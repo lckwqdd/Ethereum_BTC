@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 public class Token implements Parcelable {
     public final TokenInfo tokenInfo;
-    public final String balance;
-    public String value;
+    public final String balance;  //总资产
+    public String value;          //换算比列
 
     public Token(TokenInfo tokenInfo, String balance) {
         this.tokenInfo = tokenInfo;

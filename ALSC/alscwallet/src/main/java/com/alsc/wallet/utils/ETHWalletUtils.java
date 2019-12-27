@@ -25,8 +25,11 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 以太坊钱包创建工具类
@@ -175,7 +178,7 @@ public class ETHWalletUtils {
         String wallet_dir = AppFilePath.Wallet_DIR;
         LogUtils.i("ETHWalletUtils", "wallet_dir = " + wallet_dir);
 
-        File destination = new File(wallet_dir, "keystore_" + walletName + ".json");
+        File destination = new File(wallet_dir, "keystore_" + UUID.randomUUID().toString().replace("-", "")+"_"+ walletName + ".json");
 
         //目录不存在则创建目录，创建不了则报错
         if (!createParentDir(destination)) {

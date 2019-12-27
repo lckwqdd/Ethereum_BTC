@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class TokenInfo implements Parcelable {
-    public final String address;
-    public final String name;
-    public final String symbol;
-    public final int decimals;
+    public final String address;  //地址
+    public final String name;     //名称
+    public final String symbol;   //币种  如BTC
+    public final int decimals;    //扩展字段
 
     public TokenInfo(String address, String name, String symbol, int decimals) {
         this.address = address;

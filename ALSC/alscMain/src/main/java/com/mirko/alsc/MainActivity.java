@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alsc.net.api.HomeMsgApi;
 import com.alsc.net.bean.UserInfoResult;
@@ -33,10 +34,14 @@ import com.mirko.alsc.ui.slide.SecuritySettingActivity;
 import com.mirko.alsc.ui.slide.SwitchingAccountActivity;
 import com.mirko.alsc.ui.slide.SystemNoticeActivity;
 import com.mirko.alsc.ui.slide.UserInfoSettingActivity;
+import com.mirko.alsc.utils.ComUtils;
 import com.mirko.alsc.utils.Constant;
 import com.mirko.alsc.views.NoScrollViewPager;
 import com.mirko.alsc.views.ViewPagerScroller;
+import com.mirko.alsc.views.images.AsyncImageView;
 import com.mirko.androidutil.utils.android.LogUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +63,10 @@ public class MainActivity extends AlscBaseActivity {
     private ItemGroup itemSystemNotice;
     private ItemGroup itemSwitchingAccount;
     private ImageView ivUserInfoSetting;
+    private TextView tvName;
+    private TextView tvUid;
+    private TextView tvLevel;
+    private AsyncImageView imagLogo;
 
     /**相关对象*/
     private Context mContext;
@@ -117,6 +126,10 @@ public class MainActivity extends AlscBaseActivity {
         itemInviteFriends = (ItemGroup) findViewById(R.id.menu_item_invite_friends);
         itemSystemNotice = (ItemGroup) findViewById(R.id.menu_item_system);
         itemSwitchingAccount = (ItemGroup) findViewById(R.id.menu_item_switching_accounts);
+        tvName =  findViewById(R.id.tv_name);
+        tvUid =  findViewById(R.id.tv_uid);
+        tvLevel =  findViewById(R.id.tv_level);
+        imagLogo =  findViewById(R.id.async_image_head);
 
         drawerLayout.openDrawer(Gravity.LEFT);
     }
@@ -196,6 +209,12 @@ public class MainActivity extends AlscBaseActivity {
         loadHomeData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     /**
      * 加载fragment数据
      */
@@ -252,6 +271,7 @@ public class MainActivity extends AlscBaseActivity {
                     if (result.getUser_info() != null){
                         userInfo = result.getUser_info();
                         CacheManager.UserInfoResult.set(result.getUser_info());
+                        updateView(userInfo);
                     }
                 }
             }
@@ -275,6 +295,16 @@ public class MainActivity extends AlscBaseActivity {
         }), MainActivity.this, token));
     }
 
+    /**
+     * 更新View
+     * @param userInfo
+     */
+    private void updateView(UserInfoResult userInfo){
+        tvName.setText(userInfo.getUname());
+        tvUid.setText("ID " + userInfo.getUid());
+        tvLevel.setText("级别 " + userInfo.getLev());
+        imagLogo.loadUrlHeadRound(userInfo.getAvatar(),getResources().getDimension(R.dimen.DIMEN_36PX));
+    }
 
     /**
      * 获取token缓存

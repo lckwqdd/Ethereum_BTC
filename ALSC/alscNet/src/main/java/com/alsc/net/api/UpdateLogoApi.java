@@ -1,9 +1,6 @@
 package com.alsc.net.api;
 
 import com.alsc.net.bean.entity.EmptyResultEntity;
-import com.alsc.net.bean.entity.LoginResultEntity;
-import com.alsc.net.bean.request.BindEmailRequest;
-import com.alsc.net.bean.request.LoginRequest;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.net.util.HttpService;
@@ -17,23 +14,19 @@ import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
- * 绑定邮箱
- *
- | 字段  | 类型   | 是否可选 | 描述  |
- | ----- | ------ | -------- | ----- |
- | token | String | 否       | token |
- | email | String | 否       | 邮箱 |
- | code | String | 否       | 验证码 |
+ * 更新logo
  *
  */
 
-public class BindEmailApi extends BaseApi {
+public class UpdateLogoApi extends BaseApi {
 
-    private BindEmailRequest request;
+    private String token;
+    private String logo;
 
-    public BindEmailApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, BindEmailRequest request) {
+    public UpdateLogoApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity,String token, String logo) {
         super(listener, rxAppCompatActivity);
-        this.request = request;
+        this.token = token;
+        this.logo = logo;
         setShowProgress(true);
         setCancel(true);
         setCache(false);
@@ -45,15 +38,13 @@ public class BindEmailApi extends BaseApi {
     public Observable getObservable(HttpService methods) {
         JSONObject result = new JSONObject();
         try {
-            result.put("token", request.getToken());
-            result.put("email", request.getEmail());
-            result.put("code", request.getCode());
-            result.put("sid", request.getSid());
+            result.put("token", token);
+            result.put("logo", logo);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), result.toString());
-        return methods.bindEmail(body);
+        return methods.updateLogo(body);
 
     }
 }

@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,10 @@ import java.util.regex.Pattern;
  * 主要功能： 字符串判断工具类
  */
 public class StringUtils {
+
+    private static final char[] encodeTable = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6',
+            '7', '8', '9'};
     /**
      * 判断字符串是否为空
      *
@@ -609,7 +614,7 @@ public class StringUtils {
      * @return 正确返回true ,否则false
      */
     public static boolean checkPhoneNumber(String phone, String areaCode) {
-        if ("+86".equals(areaCode)) {
+        if ("86".equals(areaCode)) {
             if (isEmpty(phone) || !phone.matches("^1[3-9]+\\d{9}")) {
                 return false;
             }
@@ -635,5 +640,17 @@ public class StringUtils {
         }
         String regex = "^[a-zA-Z0-9]+$";
         return (isDigit && isLowerCase && str.matches(regex) && str.length()>=6);
+    }
+
+    public static String getRandomString(int len) {
+        String returnStr = "";
+        char[] ch = new char[len];
+        Random rd = new Random();
+        for (int i = 0; i < len; i++) {
+            ch[i] = (char) (rd.nextInt(9) + 65);
+            ch[i] = encodeTable[rd.nextInt(36)];
+        }
+        returnStr = new String(ch);
+        return returnStr;
     }
 }

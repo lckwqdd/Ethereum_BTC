@@ -13,7 +13,9 @@ public class BindPhoneRequest {
 
     private String token;
     private String phone;
+    private String phone_code;
     private String code;
+    private String sid;
 
     public String getToken() {
         return token;
@@ -39,5 +41,19 @@ public class BindPhoneRequest {
         this.code = code;
     }
 
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getPhone_code() {
+        return phone_code;
+    }
+
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
+    }
 }

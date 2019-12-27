@@ -94,6 +94,7 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wh_login_pwd_hint"
+            android:inputType="textPassword"
             android:textColorHint="@color/black" />
 
         <LinearLayout

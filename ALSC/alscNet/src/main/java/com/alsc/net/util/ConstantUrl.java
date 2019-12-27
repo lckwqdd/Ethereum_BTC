@@ -8,14 +8,11 @@ package com.alsc.net.util;
 
 public interface ConstantUrl {
 
-
-
     /**
      * 请求头名称和值
      */
     String HEAD_NAME = "TD-Agent";
     String HEAD_VALUE = "en_US@currency=USD,device=ios,ad421e72d15c0c3fa230c55cd728d7fd";
-
 
     //注册
     String REGISTER_URL = "api/register";
@@ -61,6 +58,15 @@ public interface ConstantUrl {
     String BIND_PHONE_URL = "api/bang_phone";
     //绑定邮箱
     String BIND_EMAIL_URL = "api/bang_email";
-
+    //上传头像
+    String UPDATE_LOGO_URL = "api/up_logo";
+    //修改昵称
+    String UPDATE_NAME_URL = "api/up_uname";
+    //找回密码
+    String FIND_PASSWORD_URL = "api/find_password";
+    //验证支付密码
+    String CHECK_PAY_URL = "api/check_pay";
+    //参与贡献
+    String CREATE_HEYUE_URL = "api/create_heyue";
 
 }

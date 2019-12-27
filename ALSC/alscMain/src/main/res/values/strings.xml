@@ -74,6 +74,10 @@
     <string name="security_email_code">邮箱验证码</string>
     <string name="security_email_code_des">输入邮箱验证码</string>
 
+    <string name="security_name_update">更改昵称</string>
+    <string name="security_name_update_hine">请输入名称</string>
+    <string name="security_name_update_des">好名字可以让您的朋友更容易记住你</string>
+
     <!--    语言-->
     <string name="language_chinese_simple">简体中文</string>
     <string name="language_chinese_traditional">繁体中文</string>
@@ -98,14 +102,12 @@
 
     <string name="btn_sure">确认</string>
     <string name="btn_next">下一步</string>
-<<<<<<< HEAD
     <string name="btn_reset">重置密码</string>
     <string name="btn_cancle">取消</string>
     <string name="btn_send">发送</string>
-=======
+    <string name="btn_save">保存</string>
     <string name="auto_scan">将条码放入框内，即可自动扫描</string>
     <string name="scan_qrcode">识别图片中的码</string>
->>>>>>> 12006cdaa5badc0d6352467a9e7801d73ccb9681
 
 
     <!--    wallte type-->
@@ -176,6 +178,10 @@
     <string name="wh_valite_number_get">获取验证码</string>
     <string name="wh_valite_email">邮箱验证</string>
     <string name="wh_email_valite_hint">请输入您的邮箱</string>
+
+    <!--    wallet hot Find password-->
+    <string name="wh_find_pwd_email">邮箱找回</string>
+    <string name="wh_find_pwd_phone">手机找回</string>
 
     <!--    wallet hot set pwd-->
     <string name="wh_set_pwd">设置密码</string>

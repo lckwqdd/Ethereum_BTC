@@ -14,6 +14,7 @@ public class BindEmailRequest {
     private String token;
     private String email;
     private String code;
+    private String sid;
 
     public String getToken() {
         return token;
@@ -37,5 +38,13 @@ public class BindEmailRequest {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 }

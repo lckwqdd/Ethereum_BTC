@@ -71,7 +71,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/text_size_18</item>
     </style>
-
     <style name="WalletHotePwdLoginBtnStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/bg_yahei_slow_radius</item>
@@ -80,7 +79,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/text_size_16</item>
     </style>
-
     <style name="WalletHotePwdSureStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/bg_yahei_fast_radius</item>

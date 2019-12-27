@@ -66,15 +66,13 @@
         <activity android:name=".ui.wallet.online.OnlineWalletSettingPwdActivity" />
         <activity android:name=".ui.wallet.online.OnlineWalletLoginActivity" />
         <activity android:name=".ui.wallet.online.OnlineWalletPhoneAreaActivity" />
-<<<<<<< HEAD
         <activity android:name=".ui.wallet.online.OnlineWalleteEmailValidateActivity" />
         <activity android:name=".ui.wallet.online.OnlineWalletForgotPwdActivity" />
         <activity android:name=".ui.wallet.online.OnlineWalletResetPwdActivity" />
         <activity android:name=".ui.slide.SecurityEmailBindedActivity" />
         <activity android:name=".ui.slide.SecurityPhoneNoBindActivity" />
         <activity android:name=".ui.slide.SecurityPhoneBindedActivity" />
-=======
->>>>>>> 12006cdaa5badc0d6352467a9e7801d73ccb9681
+        <activity android:name=".ui.slide.SecurityUpdateNameActivity" />
 
         <meta-data
             android:name="design_width_in_dp"

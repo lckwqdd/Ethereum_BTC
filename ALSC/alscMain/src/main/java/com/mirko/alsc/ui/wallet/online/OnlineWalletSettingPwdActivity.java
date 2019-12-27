@@ -16,6 +16,7 @@ import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletSetPwdBinding;
 import com.mirko.alsc.utils.Constant;
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.ToastHelper;
@@ -91,10 +92,10 @@ public class OnlineWalletSettingPwdActivity extends AlscBaseActivity implements 
             ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不一致");
             return;
         }
-        registerRequest.setPwd(loginPsw);
-        registerRequest.setPwd2(loginPswSure);
-        registerRequest.setPay_pwd(payPsw);
-        registerRequest.setPay_pwd2(payPswSure);
+        registerRequest.setPwd(MD5Utils.getMD5Code(loginPsw));
+        registerRequest.setPwd2(MD5Utils.getMD5Code(loginPswSure));
+        registerRequest.setPay_pwd(MD5Utils.getMD5Code(payPsw));
+        registerRequest.setPay_pwd2(MD5Utils.getMD5Code(payPswSure));
         LogUtils.d(TAG, "注册信息:" + registerRequest.toString());
         startRegister(registerRequest);
 

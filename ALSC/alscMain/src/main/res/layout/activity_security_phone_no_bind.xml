@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,8 +18,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <com.alsc.utils.view.TitleBar
@@ -40,16 +43,16 @@
             </TextView>
 
             <EditText
-                android:id="@+id/et_psw_old"
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px138"
+                android:layout_height="46dp"
                 android:layout_marginTop="@dimen/px10"
                 android:background="@drawable/et_bg_login_gray"
                 android:hint="@string/security_phone_des"
-                android:paddingLeft="@dimen/px64"
+                android:inputType="number"
+                android:paddingLeft="20dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"
-                android:inputType="textPassword"
                 android:textSize="@dimen/text_size_12" />
 
             <TextView
@@ -63,26 +66,47 @@
 
             </TextView>
 
-            <EditText
-                android:id="@+id/et_psw_new"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px138"
-                android:layout_marginTop="@dimen/px10"
-                android:background="@drawable/et_bg_login_gray"
-                android:hint="@string/security_phone_code_des"
-                android:paddingLeft="@dimen/px64"
-                android:textColor="@color/white"
-                android:textColorHint="@color/gray"
-                android:inputType="textPassword"
-                android:textSize="@dimen/text_size_12" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_phone_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@color/color_slide_bg"
+                    android:hint="@string/security_phone_code_des"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/text_size_12" />
+
+                <com.mirko.alsc.views.MyVerificationCode
+                    android:id="@+id/vf_get_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@color/transparent"
+                    android:onClick="@{clickListener}"
+                    android:textColor="@color/color_text_white"
+                    android:textSize="@dimen/text_size_12"
+                    app:buttonText="@string/sc_get_code"
+                    app:countDownSecond="60"
+                    app:countDownText="@string/sc_get_code_retry" />
+            </RelativeLayout>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_sure"
+            android:id="@+id/btn_next"
             style="@style/buttonStyleRound"
-            android:layout_margin="@dimen/px96"
             android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/px96"
+            android:onClick="@{clickListener}"
             android:text="@string/btn_next" />
 
     </RelativeLayout>

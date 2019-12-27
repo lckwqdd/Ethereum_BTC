@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.alsc.utils.view.TitleBar
+                    android:id="@+id/title_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px180"
+                    android:background="@color/color_slide_bg"
+                    app:showLeftDrawable="true"
+                    app:showTextLeft="true"
+                    app:tbTitleLeft="@string/security_name_update" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="56dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_yellow_bg_cicle"
+                    android:onClick="@{clickListener}"
+                    android:text="@string/btn_save" />
+            </RelativeLayout>
+
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px138"
+                android:layout_marginTop="24dp"
+                android:background="@color/transparent"
+                android:hint="@string/security_name_update_hine"
+                android:paddingLeft="@dimen/px64"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/text_size_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px64"
+                android:text="@string/security_name_update_des"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

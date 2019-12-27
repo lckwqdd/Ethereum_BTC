@@ -1,5 +1,6 @@
 package com.alsc.net.api;
 
+import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.entity.LoginResultEntity;
 import com.alsc.net.bean.request.LoginRequest;
 import com.alsc.net.bean.request.ModifyPswRequest;
@@ -32,7 +33,7 @@ public class ModifyPayPswApi extends BaseApi {
 
     private ModifyPswRequest request;
 
-    public ModifyPayPswApi(HttpOnNextListener<LoginResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, ModifyPswRequest request) {
+    public ModifyPayPswApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, ModifyPswRequest request) {
         super(listener, rxAppCompatActivity);
         this.request = request;
         setShowProgress(true);
@@ -51,6 +52,7 @@ public class ModifyPayPswApi extends BaseApi {
             result.put("new_pwd", request.getNew_pwd());
             result.put("code", request.getCode());
             result.put("type", request.getType());
+            result.put("sid", request.getSid());
         } catch (JSONException e) {
             e.printStackTrace();
         }

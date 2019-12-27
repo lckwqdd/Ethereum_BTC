@@ -1,11 +1,13 @@
 package com.mirko.alsc.ui.slide;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.alsc.net.bean.UserInfoResult;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivitySecurityEmailBindedBinding;
@@ -21,8 +23,10 @@ import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 public class SecurityEmailBindedActivity extends AlscBaseActivity implements View.OnClickListener {
 
 
-    private static final String TAG = "SecurityEmailActivity";
+    private static final String TAG = "SecurityEmailBindedActivity";
     ActivitySecurityEmailBindedBinding binding;
+    public static final int REQUEST_EMAIL = 11;
+    private UserInfoResult userInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,9 +36,11 @@ public class SecurityEmailBindedActivity extends AlscBaseActivity implements Vie
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+        userInfo = (UserInfoResult) getIntent().getSerializableExtra(Constant.EXTRA_KEY_USER_INFO);
         binding.titleBar.setOnLeftClickListener(this);
 
-
+        binding.itEmail.setTvRightText(userInfo.getEmail());
+        binding.itEmail.setTvRightColor(getResources().getColor(R.color.white));
     }
 
     @Override
@@ -45,15 +51,13 @@ public class SecurityEmailBindedActivity extends AlscBaseActivity implements Vie
     @Override
     public void initAttrs() {
 
-        binding.itEmail.setTvRightText("12356566");
-        binding.itEmail.setTvRightColor(getResources().getColor(R.color.white));
-        //登录密码修改
+        //更换邮箱
         binding.itChangeEmail.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(SecurityEmailBindedActivity.this,SecurityEmailNoBindActivity.class);
                 intent.putExtra(Constant.EXTRA_SECUTITY_EMAIL_TYPE,Constant.SECUTITY_EMAIL_TYPE_MODITY);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_EMAIL);
             }
         });
     }
@@ -61,6 +65,18 @@ public class SecurityEmailBindedActivity extends AlscBaseActivity implements Vie
     @Override
     public void loadData() {
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_EMAIL) {
+                String email = data.getStringExtra("email");
+                binding.itEmail.setTvRightText(email);
+            }
+        }
     }
 
     @Override

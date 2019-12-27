@@ -16,13 +16,12 @@ import com.alsc.net.cache.CacheManager;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.utils.Md5Utils;
 import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletLoginAlscBinding;
-<<<<<<< HEAD:ALSC/alscMain/src/main/java/com/mirko/alsc/ui/wallet/online/OnlineWalletLoginActivity.java
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.DateUtils;
-=======
->>>>>>> 12006cdaa5badc0d6352467a9e7801d73ccb9681:ALSC/alscMain/src/main/java/com/mirko/alsc/ui/wallet/online/OnlineWalletLoginActivity.java
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.utils.android.image.ImageUtils;
@@ -77,7 +76,7 @@ public class OnlineWalletLoginActivity extends AlscBaseActivity implements View.
     private void next(){
 
         name = binding.etLoginName.getText().toString();
-        loginPsw = binding.etLoginPsw.getText().toString();
+        loginPsw =  binding.etLoginPsw.getText().toString();
         code = binding.etLoginCode.getText().toString();
 
         if (StringUtils.isEmpty(name)||StringUtils.isEmpty(loginPsw)) {
@@ -88,7 +87,7 @@ public class OnlineWalletLoginActivity extends AlscBaseActivity implements View.
             return;
         }
         loginRequest.setName(name);
-        loginRequest.setPassword(loginPsw);
+        loginRequest.setPassword(MD5Utils.getMD5Code(loginPsw));
         loginRequest.setCode(code);
         loginRequest.setSid(sid);
         LogUtils.d(TAG, "登录信息:" + loginRequest.toString());

@@ -7,18 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.alsc.net.api.EmailCodeApi;
-import com.alsc.net.api.MobileCodeApi;
-import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.request.RegisterRequest;
-import com.alsc.net.retrofit.http.HttpManager;
-import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletPhoneValidateBinding;
 import com.mirko.alsc.utils.Constant;
+import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.androidutil.utils.StringUtils;
-import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 
@@ -36,7 +31,7 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
     private String phone; //手机号
     private String phoneCode; //手机验证码
     private RegisterRequest registerRequest;
-    private String areaCode; //区号
+    private String areaCode = "86"; //区号
     private String areaName; //地区名称
 
     @Override
@@ -105,33 +100,7 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
      */
     private void getMobileCode(String phone, String areaCode) {
 
-        HttpManager.getInstance().doHttpDeal(new MobileCodeApi((new HttpOnNextListener<EmptyResultEntity>() {
-            @Override
-            public void onNext(EmptyResultEntity result) {
-
-                if (result != null) {
-                    LogUtils.d(TAG, "获取手机验证码成功:");
-                }
-            }
-
-            @Override
-            public void onCacheNext(String string) {
-                super.onCacheNext(string);
-            }
-
-            @Override
-            public void onCancel() {
-                super.onCancel();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.d(TAG, "获取手机验证码失败：" + e.toString());
-                super.onError(e);
-            }
-
-
-        }), OnlineWalletPhoneValidateActivity.this, phone, areaCode));
+        UrlRequstUtils.getMobileCode(OnlineWalletPhoneValidateActivity.this, phone, areaCode);
     }
 
 

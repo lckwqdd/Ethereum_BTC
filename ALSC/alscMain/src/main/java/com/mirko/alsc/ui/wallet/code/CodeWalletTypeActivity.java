@@ -19,11 +19,7 @@ public class CodeWalletTypeActivity extends AlscBaseActivity implements View.OnC
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_code_wallet_type);
-        binding.tvWalletType.setOnClickListener(this);
-        binding.llCodeWallet.setOnClickListener(this);
-        binding.llOnlineWallet.setOnClickListener(this);
-        binding.btnNext.setOnClickListener(this);
-        binding.btnLogin.setOnClickListener(this);
+        binding.setClickListener(this);
     }
 
     @Override

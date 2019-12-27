@@ -8,6 +8,7 @@ public interface Constant {
     /**错误码*/
     String EXTRA_REGISTER_REQUST = "reigster_requst";
 
+    String  CACHE_PATH = "ALSC/ImageLoader/Cache";
 
 
     /**绑定手机状态*/
@@ -18,6 +19,8 @@ public interface Constant {
     String EXTRA_KEY_AREA_CODE = "area_code";
     /**个人信息*/
     String EXTRA_KEY_USER_INFO = "user_info";
+    /**修改密码信息*/
+    String EXTRA_KEY_RESERT_PWD = "resert_pwd";
 
     /**手机跳转类型*/
     String EXTRA_SECUTITY_PHONE_TYPE = "phone_type";

@@ -1,5 +1,6 @@
 package com.alsc.net.api;
 
+import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.entity.LoginResultEntity;
 import com.alsc.net.bean.request.BindPhoneRequest;
 import com.alsc.net.bean.request.LoginRequest;
@@ -30,7 +31,7 @@ public class BindPhoneApi extends BaseApi {
 
     private BindPhoneRequest request;
 
-    public BindPhoneApi(HttpOnNextListener<LoginResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, BindPhoneRequest request) {
+    public BindPhoneApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, BindPhoneRequest request) {
         super(listener, rxAppCompatActivity);
         this.request = request;
         setShowProgress(true);
@@ -46,7 +47,9 @@ public class BindPhoneApi extends BaseApi {
         try {
             result.put("token", request.getToken());
             result.put("phone", request.getPhone());
+            result.put("phone_code", request.getPhone_code());
             result.put("code", request.getCode());
+            result.put("sid", request.getSid());
         } catch (JSONException e) {
             e.printStackTrace();
         }

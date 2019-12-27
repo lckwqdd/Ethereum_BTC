@@ -6,10 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.alsc.net.api.HomeMsgApi;
 import com.alsc.net.bean.UserInfoResult;
+import com.alsc.net.bean.entity.HomeMsgResultEntity;
+import com.alsc.net.cache.CacheManager;
+import com.alsc.net.retrofit.http.HttpManager;
+import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivitySecuritySettingBinding;
+import com.mirko.alsc.utils.ComUtils;
 import com.mirko.alsc.utils.Constant;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
@@ -32,35 +39,21 @@ public class SecuritySettingActivity extends AlscBaseActivity implements View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_security_setting);
         userInfo = (UserInfoResult) getIntent().getSerializableExtra(Constant.EXTRA_KEY_USER_INFO);
-        bindPhone = userInfo.getIs_bang_phone();
-        bindEmail = userInfo.getIs_bang_email();
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding.titleBar.setOnLeftClickListener(this);
+        updateView();
 
-        if (bindPhone == 1) {//已经绑定
-            binding.securityPhone.setTvRightColor(getResources().getColor(R.color.gray));
-            binding.securityPhone.setTvRightText(getResources().getString(R.string.security_opened));
-            binding.securityPhone.setRightImageDesVisibility(View.GONE);
-        } else { //未绑定
-            binding.securityPhone.setTvRightColor(getResources().getColor(R.color.yellow));
-            binding.securityPhone.setTvRightText(getResources().getString(R.string.security_no_bind));
-            binding.securityPhone.setRightImageDesVisibility(View.VISIBLE);
-        }
-        if (bindEmail == 1) {//已经绑定
-            binding.securityEmail.setTvRightColor(getResources().getColor(R.color.gray));
-            binding.securityEmail.setTvRightText(getResources().getString(R.string.security_opened));
-            binding.securityEmail.setRightImageDesVisibility(View.GONE);
-        } else {//未绑定
-            binding.securityEmail.setTvRightColor(getResources().getColor(R.color.yellow));
-            binding.securityEmail.setTvRightText(getResources().getString(R.string.security_no_bind));
-            binding.securityEmail.setRightImageDesVisibility(View.VISIBLE);
+    }
 
-        }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadHomeData();
     }
 
     @Override
@@ -84,7 +77,9 @@ public class SecuritySettingActivity extends AlscBaseActivity implements View.On
         binding.securityChangePayPassword.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SecuritySettingActivity.this, SecurityPayPasswordActivity.class));
+                Intent intent = new Intent(SecuritySettingActivity.this, SecurityPayPasswordActivity.class);
+                intent.putExtra(Constant.EXTRA_KEY_USER_INFO, userInfo);
+                startActivity(intent);
             }
         });
         //谷歌身份验证
@@ -98,22 +93,28 @@ public class SecuritySettingActivity extends AlscBaseActivity implements View.On
         binding.securityPhone.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent;
                 if (bindPhone == 1) {//已经绑定
-                    goTo(SecurityPhoneBindedActivity.class);
+                    intent = new Intent(SecuritySettingActivity.this, SecurityPhoneBindedActivity.class);
                 } else {
-                    goTo(SecurityPhoneNoBindActivity.class);
+                    intent = new Intent(SecuritySettingActivity.this, SecurityPhoneNoBindActivity.class);
                 }
+                intent.putExtra(Constant.EXTRA_KEY_USER_INFO, userInfo);
+                startActivity(intent);
             }
         });
         //email
         binding.securityEmail.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent;
                 if (bindEmail == 1) {//已经绑定
-                    goTo(SecurityEmailBindedActivity.class);
+                    intent = new Intent(SecuritySettingActivity.this, SecurityEmailBindedActivity.class);
                 } else {
-                    goTo(SecurityEmailNoBindActivity.class);
+                    intent = new Intent(SecuritySettingActivity.this, SecurityEmailNoBindActivity.class);
                 }
+                intent.putExtra(Constant.EXTRA_KEY_USER_INFO, userInfo);
+                startActivity(intent);
             }
         });
     }
@@ -122,6 +123,69 @@ public class SecuritySettingActivity extends AlscBaseActivity implements View.On
     public void loadData() {
 
     }
+
+    /**
+     * 加载首页数据
+     */
+
+    private void loadHomeData() {
+
+        String token = ComUtils.getTokenCache();
+        HttpManager.getInstance().doHttpDeal(new HomeMsgApi((new HttpOnNextListener<HomeMsgResultEntity>() {
+            @Override
+            public void onNext(HomeMsgResultEntity result) {
+                if (result != null) {
+                    if (result.getUser_info() != null){
+                        userInfo = result.getUser_info();
+                        updateView();
+                        CacheManager.UserInfoResult.set(result.getUser_info());
+                    }
+                }
+            }
+
+            @Override
+            public void onCacheNext(String string) {
+                super.onCacheNext(string);
+            }
+
+            @Override
+            public void onCancel() {
+                super.onCancel();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+
+        }), SecuritySettingActivity.this, token));
+    }
+
+    private void updateView(){
+        bindPhone = userInfo.getIs_bang_phone();
+        bindEmail = userInfo.getIs_bang_email();
+        if (bindPhone == 1) {//已经绑定
+            binding.securityPhone.setTvRightColor(getResources().getColor(R.color.gray));
+            binding.securityPhone.setTvRightText(getResources().getString(R.string.security_opened));
+            binding.securityPhone.setRightImageDesVisibility(View.GONE);
+        } else { //未绑定
+            binding.securityPhone.setTvRightColor(getResources().getColor(R.color.yellow));
+            binding.securityPhone.setTvRightText(getResources().getString(R.string.security_no_bind));
+            binding.securityPhone.setRightImageDesVisibility(View.VISIBLE);
+        }
+        if (bindEmail == 1) {//已经绑定
+            binding.securityEmail.setTvRightColor(getResources().getColor(R.color.gray));
+            binding.securityEmail.setTvRightText(getResources().getString(R.string.security_opened));
+            binding.securityEmail.setRightImageDesVisibility(View.GONE);
+        } else {//未绑定
+            binding.securityEmail.setTvRightColor(getResources().getColor(R.color.yellow));
+            binding.securityEmail.setTvRightText(getResources().getString(R.string.security_no_bind));
+            binding.securityEmail.setRightImageDesVisibility(View.VISIBLE);
+
+        }
+    }
+
 
     @Override
     public void onClick(View view) {

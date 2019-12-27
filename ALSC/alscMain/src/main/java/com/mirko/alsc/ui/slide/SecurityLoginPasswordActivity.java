@@ -30,7 +30,9 @@ import com.mirko.alsc.ui.wallet.online.OnlineWalletPhoneValidateActivity;
 import com.mirko.alsc.ui.wallet.online.OnlineWalleteEmailValidateActivity;
 import com.mirko.alsc.utils.ComUtils;
 import com.mirko.alsc.utils.Constant;
+import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.alsc.views.MyVerificationCode;
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.CustomeDialog;
@@ -97,7 +99,7 @@ public class SecurityLoginPasswordActivity extends AlscBaseActivity implements V
 
     @Override
     public void loadData() {
-        sid = getSid();
+        sid = ComUtils.getSid();
     }
 
     /**
@@ -105,33 +107,7 @@ public class SecurityLoginPasswordActivity extends AlscBaseActivity implements V
      */
     private void getMobileCode(String phone, String areaCode) {
 
-        HttpManager.getInstance().doHttpDeal(new MobileCodeApi((new HttpOnNextListener<EmptyResultEntity>() {
-            @Override
-            public void onNext(EmptyResultEntity result) {
-
-                if (result != null) {
-                    LogUtils.d(TAG, "获取手机验证码成功:");
-                }
-            }
-
-            @Override
-            public void onCacheNext(String string) {
-                super.onCacheNext(string);
-            }
-
-            @Override
-            public void onCancel() {
-                super.onCancel();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.d(TAG, "获取手机验证码失败：" + e.toString());
-                super.onError(e);
-            }
-
-
-        }), SecurityLoginPasswordActivity.this, phone, areaCode));
+        UrlRequstUtils.getMobileCode(SecurityLoginPasswordActivity.this, phone, areaCode);
     }
 
 
@@ -216,10 +192,11 @@ public class SecurityLoginPasswordActivity extends AlscBaseActivity implements V
         String token = ComUtils.getTokenCache();
         captcha = etCode.getText().toString();
         request.setCode(captcha);
-        request.setNew_pwd(newPwd);
-        request.setOld_pwd(oldPwd);
+        request.setNew_pwd(MD5Utils.getMD5Code(newPwd));
+        request.setOld_pwd(MD5Utils.getMD5Code(oldPwd));
         request.setType(type);
         request.setToken(token);
+        request.setSid(sid);
         modifyLoginPsw(request);
     }
 
@@ -351,16 +328,5 @@ public class SecurityLoginPasswordActivity extends AlscBaseActivity implements V
         }
     }
 
-    /**
-     * 获取sid
-     *
-     * @return
-     */
-    private String getSid() {
-        if (CacheManager.PicSid.get() != null) {
-            return CacheManager.PicSid.get();
-        }
-        return null;
-    }
 
 }

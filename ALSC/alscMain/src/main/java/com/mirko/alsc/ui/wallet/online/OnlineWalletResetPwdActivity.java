@@ -1,27 +1,22 @@
 package com.mirko.alsc.ui.wallet.online;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.alsc.net.api.LoginApi;
-import com.alsc.net.api.PicCodeApi;
-import com.alsc.net.bean.entity.LoginResultEntity;
-import com.alsc.net.bean.entity.PicCodeResultEntity;
-import com.alsc.net.bean.request.LoginRequest;
-import com.alsc.net.cache.CacheManager;
+import com.alsc.net.api.FindPasswordApi;
+import com.alsc.net.bean.entity.EmptyResultEntity;
+import com.alsc.net.bean.request.FindPasswordRequest;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
-import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletResetPwdBinding;
+import com.mirko.alsc.utils.Constant;
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
-import com.mirko.androidutil.utils.android.image.ImageUtils;
 import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 
@@ -34,6 +29,9 @@ public class OnlineWalletResetPwdActivity extends AlscBaseActivity implements Vi
 
     private static final String TAG = "OnlineWalletForgotPswActivity";
     ActivityOnlineWalletResetPwdBinding binding;
+    private FindPasswordRequest request;
+    private String loginPsw;
+    private String loginPswSure;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +41,9 @@ public class OnlineWalletResetPwdActivity extends AlscBaseActivity implements Vi
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+        request = (FindPasswordRequest)getIntent().getSerializableExtra(Constant.EXTRA_KEY_RESERT_PWD);
         binding.titleBar.setOnLeftClickListener(this);
+        binding.setClickListener(this);
     }
 
     @Override
@@ -53,27 +53,24 @@ public class OnlineWalletResetPwdActivity extends AlscBaseActivity implements Vi
 
     @Override
     public void initAttrs() {
-        binding.setClickListener(this);
     }
 
     @Override
     public void loadData() {
+
     }
 
-
     /**
-     * 获取图片验证码
+     * 找回密码
      */
-    private void getPicCaptcha() {
+    private void findPassword(FindPasswordRequest request) {
 
-        HttpManager.getInstance().doHttpDeal(new PicCodeApi((new HttpOnNextListener<PicCodeResultEntity>() {
+        HttpManager.getInstance().doHttpDeal(new FindPasswordApi((new HttpOnNextListener<EmptyResultEntity>() {
             @Override
-            public void onNext(PicCodeResultEntity result) {
+            public void onNext(EmptyResultEntity result) {
 
-                if (result != null) {
-                    LogUtils.d(TAG, "获取图片验证码成功:" + result.getCode().toString());
-                    Bitmap bitmap = ImageUtils.base64ToBitmap(result.getCode());
-                }
+                goTo(OnlineWalletLoginActivity.class);
+                finish();
             }
 
             @Override
@@ -88,13 +85,36 @@ public class OnlineWalletResetPwdActivity extends AlscBaseActivity implements Vi
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.d(TAG, "获取图片验证码失败：" + e.toString());
+                LogUtils.d(TAG, "重置密码失败：" + e.toString());
                 super.onError(e);
             }
 
 
-        }), OnlineWalletResetPwdActivity.this));
+        }), OnlineWalletResetPwdActivity.this,request));
     }
+
+    /**
+     * 开始重置密码
+     */
+    private void startRestPwd(){
+
+        loginPsw = binding.etLoginPwd.getText().toString();
+        loginPswSure = binding.etLoginPwdSure.getText().toString();
+        if (!StringUtils.checkNubmerAndLetter(loginPsw)) {
+            ToastHelper.alert(OnlineWalletResetPwdActivity.this, getString(R.string.register_error_msg5));
+            return;
+        }
+        if (StringUtils.isEmpty(loginPsw)||StringUtils.isEmpty(loginPsw)) {
+            ToastHelper.alert(OnlineWalletResetPwdActivity.this, getString(R.string.register_error_msg1));
+            return;
+        }
+        request.setPwd(MD5Utils.getMD5Code(loginPsw));
+        request.setPwd2(MD5Utils.getMD5Code(loginPswSure));
+
+        findPassword(request);
+
+    }
+
 
 
     @Override
@@ -104,8 +124,8 @@ public class OnlineWalletResetPwdActivity extends AlscBaseActivity implements Vi
                 LogUtils.d(TAG,"返回点击");
                 onBackPressed();
                 break;
-            case R.id.tv_change_pic:
-                getPicCaptcha();
+            case R.id.btn_next:
+                startRestPwd();
                 break;
 
         }

@@ -62,5 +62,14 @@ public interface HttpService {
     @POST(ConstantUrl.BIND_EMAIL_URL)
     Observable<BaseResultEntity<EmptyResultEntity>> bindEmail(@Body RequestBody body);
 
+    @POST(ConstantUrl.UPDATE_NAME_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> updateName(@Body RequestBody body);
+
+    @POST(ConstantUrl.UPDATE_LOGO_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> updateLogo(@Body RequestBody body);
+
+    @POST(ConstantUrl.FIND_PASSWORD_URL)
+    Observable<BaseResultEntity<EmptyResultEntity>> findPassword(@Body RequestBody body);
+
 
 }

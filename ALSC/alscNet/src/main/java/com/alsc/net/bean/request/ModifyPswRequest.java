@@ -17,6 +17,7 @@ public class ModifyPswRequest {
     private String old_pwd;
     private String new_pwd;
     private String code;
+    private String sid;
     private int type;
 
 
@@ -58,5 +59,13 @@ public class ModifyPswRequest {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 }

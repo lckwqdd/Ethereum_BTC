@@ -116,7 +116,7 @@
                     android:id="@+id/tv_area_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="30dp"
                     android:text="@string/wh_phone_area_code_default"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_14" />

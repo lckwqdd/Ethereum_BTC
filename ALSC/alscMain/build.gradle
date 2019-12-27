@@ -205,5 +205,8 @@ dependencies {
     //今日头条适配方案
     implementation(rootProject.ext.dependencies["autosize"])
 
+    implementation(rootProject.ext.dependencies["universalimageloader"])
+
+    compile 'com.lzy.net:okgo:3.0.4'
 }
 

@@ -1,11 +1,13 @@
 package com.mirko.alsc.ui.slide;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.alsc.net.bean.UserInfoResult;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivitySecurityPhoneBindedBinding;
@@ -22,7 +24,9 @@ public class SecurityPhoneBindedActivity extends AlscBaseActivity implements Vie
 
 
     private static final String TAG = "SecurityPhoneBindedActivity";
+    public static final int REQUEST_PHONE = 12;
     ActivitySecurityPhoneBindedBinding binding;
+    private UserInfoResult userInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +37,9 @@ public class SecurityPhoneBindedActivity extends AlscBaseActivity implements Vie
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding.titleBar.setOnLeftClickListener(this);
-
+        userInfo = (UserInfoResult) getIntent().getSerializableExtra(Constant.EXTRA_KEY_USER_INFO);
+        binding.itPhone.setTvRightText(userInfo.getPhone());
+        binding.itPhone.setTvRightColor(getResources().getColor(R.color.white));
     }
 
     @Override
@@ -44,23 +50,32 @@ public class SecurityPhoneBindedActivity extends AlscBaseActivity implements Vie
     @Override
     public void initAttrs() {
 
-        binding.itPhone.setTvRightText("12356566");
-        binding.itPhone.setTvRightColor(getResources().getColor(R.color.white));
-        //登录密码修改
+        //更换手机
         binding.itChangePhone.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                Intent intent =  new Intent(SecurityPhoneBindedActivity.this,SecurityPhoneNoBindActivity.class);
                intent.putExtra(Constant.EXTRA_SECUTITY_PHONE_TYPE,Constant.SECUTITY_PHONE_TYPE_MODITY);
-               startActivity(intent);
+                startActivityForResult(intent, REQUEST_PHONE);
             }
         });
-
     }
 
     @Override
     public void loadData() {
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_PHONE) {
+                String email = data.getStringExtra("email");
+                binding.itPhone.setTvRightText(email);
+            }
+        }
     }
 
     @Override

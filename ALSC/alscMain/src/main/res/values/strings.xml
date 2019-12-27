@@ -15,7 +15,8 @@
     <string name="menu_item_invite_friends">邀请好友</string>
     <string name="menu_item_system">系统公告</string>
     <string name="menu_item_switching_accounts">切换账户</string>
-
+    <string name="property_drawer_qrcode_scanner">扫一扫</string>
+    <string name="addr_error_tips">地址填写不正确</string>
     <!--    security item-->
     <string name="security_change_login_password">修改登录密码</string>
     <string name="security_change_pay_password">修改支付密码</string>
@@ -26,6 +27,8 @@
     <string name="security_no_bind">未绑定</string>
     <string name="security_opened">已开启</string>
     <string name="security_no_open">未开启</string>
+    <string name="open_camera_light">扫描二维码需要打开相机和散光灯的权限</string>
+    <string name="too_an">环境过暗，请打开闪光灯</string>
 
     <string name="security_pass_word_old">旧密码:</string>
     <string name="security_pass_word_old_des">若包含字母，请注意区分大小写</string>
@@ -74,6 +77,8 @@
 
     <string name="btn_sure">确认</string>
     <string name="btn_next">下一步</string>
+    <string name="auto_scan">将条码放入框内，即可自动扫描</string>
+    <string name="scan_qrcode">识别图片中的码</string>
 
 
     <!--    wallte type-->

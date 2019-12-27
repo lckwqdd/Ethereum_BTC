@@ -1,4 +1,4 @@
-package com.mirko.alsc.ui.wallet;
+package com.mirko.alsc.ui.wallet.online;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,7 +13,6 @@ import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
-import com.mirko.alsc.databinding.ActivityOnlineWalletPhoneValidateBinding;
 import com.mirko.alsc.databinding.ActivityOnlineWalletSetPwdBinding;
 import com.mirko.alsc.utils.Constant;
 import com.mirko.androidutil.utils.StringUtils;

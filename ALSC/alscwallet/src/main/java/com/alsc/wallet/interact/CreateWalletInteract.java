@@ -1,8 +1,12 @@
 package com.alsc.wallet.interact;
 
+import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
+import com.alsc.wallet.utils.BTCWalletDaoUtils;
 import com.alsc.wallet.utils.ETHWalletUtils;
+import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
+import com.blankj.utilcode.util.GsonUtils;
 
 import java.util.Arrays;
 
@@ -16,11 +20,34 @@ public class CreateWalletInteract {
     public CreateWalletInteract() {
     }
 
+    //创建以太坊钱包
     public Single<ETHWallet> create(final String name, final String pwd, String confirmPwd) {
         return Single.fromCallable(() -> {
             ETHWallet ethWallet = ETHWalletUtils.generateMnemonic(name, pwd);
+            LogUtils.d("以太坊:"+ GsonUtils.toJson(ethWallet));
             WalletDaoUtils.insertNewWallet(ethWallet);
             return ethWallet;
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+    //创建比特币钱包
+    public Single<BtcWallet> createBtc(final String name, final String pwd, String confirmPwd) {
+        return Single.fromCallable(() -> {
+            ETHWallet ethWallet = ETHWalletUtils.generateMnemonic(name, pwd);
+            LogUtils.d("比特币:"+ GsonUtils.toJson(ethWallet));
+            BtcWallet btvWallet = new BtcWallet();
+            btvWallet.setId(ethWallet.getId());
+            btvWallet.setAddress(ethWallet.getAddress());
+            btvWallet.setName(ethWallet.getName());
+            btvWallet.setPassword(ethWallet.getPassword());
+            btvWallet.setKeystorePath(ethWallet.getKeystorePath());
+            btvWallet.setMnemonic(ethWallet.getMnemonic());
+            btvWallet.setIsCurrent(ethWallet.getIsCurrent());
+            btvWallet.setIsBackup(ethWallet.getIsBackup());
+            BTCWalletDaoUtils.insertNewWallet(btvWallet);
+            return btvWallet;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
@@ -62,8 +89,6 @@ public class CreateWalletInteract {
             return ethWallet;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-
-
     }
 
 }

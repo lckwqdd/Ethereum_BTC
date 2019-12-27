@@ -10,6 +10,7 @@ import android.widget.GridLayout;
 
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.domain.VerifyMnemonicWordTag;
+import com.alsc.wallet.utils.BTCWalletDaoUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
@@ -24,6 +25,7 @@ import com.mirko.alsc.adapter.VerifyBackupSelectedMnemonicWordsAdapter;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityCodeWalletBackupWordBinding;
 import com.mirko.alsc.databinding.ActivityCodeWalletValidateBinding;
+import com.mirko.alsc.ui.wallet.TotalAssetsActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +66,6 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
         unSelectAadapterDatas();
 
     }
-    // 已选中单词
     private void unSelectAadapterDatas() {
         FlexboxLayoutManager layoutManager2 = new FlexboxLayoutManager(this);
         layoutManager2.setFlexWrap(FlexWrap.WRAP);
@@ -74,7 +75,6 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
         binding.rvSelected.setAdapter(verifyBackupSelectedMnemonicWordsAdapter);
     }
 
-    // 未选中单词
     private void selectedAadpterDatas() {
         GridLayoutManager layoutManager = new GridLayoutManager(this,4);
         binding.rvMnemonic.setLayoutManager(layoutManager);
@@ -141,8 +141,8 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
             LogUtils.d("VerifyMnemonicBackUp", "trim:" + trim);
             if (TextUtils.equals(trim, walletMnemonic)) {
                 WalletDaoUtils.setIsBackup(walletId);
-                ToastUtils.showToast("拼接成功");
-                goTo(MainActivity.class);
+                BTCWalletDaoUtils.setIsBackup(walletId);
+                goTo(TotalAssetsActivity.class);
                 finish();
             } else {
                 ToastUtils.showToast(R.string.verify_backup_failed);

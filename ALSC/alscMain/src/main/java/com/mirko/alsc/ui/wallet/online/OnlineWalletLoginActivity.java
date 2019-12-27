@@ -1,4 +1,4 @@
-package com.mirko.alsc.ui.wallet;
+package com.mirko.alsc.ui.wallet.online;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -9,12 +9,9 @@ import android.view.View;
 
 import com.alsc.net.api.LoginApi;
 import com.alsc.net.api.PicCodeApi;
-import com.alsc.net.api.RegisterApi;
 import com.alsc.net.bean.entity.LoginResultEntity;
 import com.alsc.net.bean.entity.PicCodeResultEntity;
-import com.alsc.net.bean.entity.RegisterResultEntity;
 import com.alsc.net.bean.request.LoginRequest;
-import com.alsc.net.bean.request.RegisterRequest;
 import com.alsc.net.cache.CacheManager;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
@@ -22,8 +19,6 @@ import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletLoginAlscBinding;
-import com.mirko.alsc.databinding.ActivityOnlineWalletSetPwdBinding;
-import com.mirko.alsc.utils.Constant;
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.utils.android.image.ImageUtils;

@@ -45,7 +45,7 @@ public class OnlineWalletPhoneAreaActivity extends AlscBaseActivity implements V
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-
+        binding.titleBar.setOnLeftClickListener(this);
     }
 
     @Override
@@ -67,6 +67,7 @@ public class OnlineWalletPhoneAreaActivity extends AlscBaseActivity implements V
 
                 Intent intent = new Intent();
                 intent.putExtra("phone_code", datas.get(position).getCode());
+                intent.putExtra("area_name", datas.get(position).getCountry());
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -119,9 +120,10 @@ public class OnlineWalletPhoneAreaActivity extends AlscBaseActivity implements V
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_next:
+            case R.id.iv_title_left:
+                LogUtils.d(TAG,"返回点击");
+                onBackPressed();
                 break;
-
         }
     }
 }

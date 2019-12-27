@@ -22,10 +22,13 @@ public class MobileCodeApi extends BaseApi {
 
     private String phone;
     private String phoneCode;
+    private String sid;
 
-    public MobileCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String phone,String phoneCode) {
+    public MobileCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String phone,String phoneCode,String sid) {
         super(listener, rxAppCompatActivity);
         this.phone = phone;
+        this.phoneCode = phoneCode;
+        this.sid = sid;
         setShowProgress(true);
         setCancel(true);
         setCache(false);
@@ -39,6 +42,7 @@ public class MobileCodeApi extends BaseApi {
         try {
             result.put("phone", phone);
             result.put("phone_code", phoneCode);
+            result.put("sid", sid);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -208,6 +208,12 @@ public class ItemGroup extends FrameLayout {
     public void hideRightImage(){
         ivRight.setVisibility(INVISIBLE);
     }
+    /**
+     * 加上一个隐藏右边图片的方法
+     */
+    public void setRightImageDesVisibility(int visable){
+        ivRightDes.setVisibility(visable);
+    }
 
 
 }

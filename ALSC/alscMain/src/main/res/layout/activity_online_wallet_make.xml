@@ -104,6 +104,7 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wc_hote_invate_code_hint"
+            android:inputType="number"
             android:textColorHint="@color/black" />
 
         <LinearLayout

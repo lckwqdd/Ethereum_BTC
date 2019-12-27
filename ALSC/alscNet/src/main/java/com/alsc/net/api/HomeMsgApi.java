@@ -1,5 +1,6 @@
 package com.alsc.net.api;
 
+import com.alsc.net.bean.entity.HomeMsgResultEntity;
 import com.alsc.net.bean.entity.NoticeResultEntity;
 import com.alsc.net.bean.request.LoginRequest;
 import com.alsc.net.retrofit.api.BaseApi;
@@ -23,7 +24,7 @@ public class HomeMsgApi extends BaseApi {
 
     private String token;
 
-    public HomeMsgApi(HttpOnNextListener<NoticeResultEntity> listener, RxAppCompatActivity rxAppCompatActivity,String token) {
+    public HomeMsgApi(HttpOnNextListener<HomeMsgResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String token) {
         super(listener, rxAppCompatActivity);
         this.token = token;
         setShowProgress(true);

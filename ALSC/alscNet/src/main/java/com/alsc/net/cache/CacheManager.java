@@ -1,5 +1,8 @@
 package com.alsc.net.cache;
 
+import com.alsc.net.bean.UserInfoResult;
+import com.alsc.net.db.bean.UserInfoBean;
+import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.utils.android.SharedPreferencesUtils;
 
 import java.io.NotSerializableException;
@@ -14,7 +17,7 @@ public class CacheManager<T> {
     private String name;
 
     private CacheType cacheType;
-    private String cachePath = "/PurePrac/";
+    private String cachePath = "/ALSC/";
 
 
     public static HashMap<String, Object> applicationContextParams = new HashMap<String, Object>();
@@ -42,7 +45,9 @@ public class CacheManager<T> {
      * 登录的TOOKEN
      */
     public static CacheManager<String> LoginToken = new CacheManager<String>(CacheType.ObjectStream, "LoginToken");
-
+    public static CacheManager<Long> ExpiresTime = new CacheManager<Long>(CacheType.ObjectStream, "ExpiresTime");
+    public static CacheManager<String> PicSid = new CacheManager<String>(CacheType.ObjectStream, "PicSid");
+    public static CacheManager<UserInfoResult> UserInfoResult = new CacheManager<UserInfoResult>(CacheType.ObjectStream, "UserInfoResult");
 
 
 
@@ -143,9 +148,9 @@ public class CacheManager<T> {
                     ObjectStreamIO.output(cachePath, cacheObj, name);
                 }
             } catch (NotSerializableException e) {
-//				LogUtils.d("test","ObjectStream错误1:"+e.toString());
+				LogUtils.d("test","ObjectStream错误1:"+e.toString());
             } catch (Exception e) {
-//				LogUtils.d("test","ObjectStream错误2:"+e.toString());
+				LogUtils.d("test","ObjectStream错误2:"+e.toString());
             }
         }
         return true;

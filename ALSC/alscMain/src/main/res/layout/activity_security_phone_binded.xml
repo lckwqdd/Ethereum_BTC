@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.alsc.utils.view.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px180"
+                android:background="@color/color_slide_bg"
+                app:showLeftDrawable="true"
+                app:showTextLeft="true"
+                app:tbTitleLeft="@string/security_phone_binded_title" />
+
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/it_phone"
+                style="@style/ItemGroupStyle"
+                app:group_title="@string/security_phone"
+                app:show_right_text="true"
+                app:line_height="0" />
+
+            <com.alsc.utils.view.ItemGroup
+                android:id="@+id/it_change_phone"
+                style="@style/ItemGroupStyle"
+                app:drawable_right="@mipmap/icon_arrow"
+                app:group_title="@string/security_phone_modify"
+                app:line_height="0" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

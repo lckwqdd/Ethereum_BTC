@@ -94,6 +94,7 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wh_login_pwd_hint"
+            android:inputType="textPassword"
             android:textColorHint="@color/black" />
 
         <LinearLayout
@@ -154,5 +155,17 @@
             android:layout_marginTop="20dp"
             android:onClick="@{clickListener}"
             android:text="@string/wh_login" />
+
+        <TextView
+            android:id="@+id/tv_forget_psw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:onClick="@{clickListener}"
+            android:text="@string/wh_login_pwd_forget"
+            android:textColor="@color/yellow_deep"
+            android:textSize="@dimen/text_size_18" />
+
     </LinearLayout>
 </layout>

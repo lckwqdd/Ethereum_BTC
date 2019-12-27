@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_slide_bg"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sc_dialog_title_email"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_12" />
+
+
+    <RadioGroup
+        android:id="@+id/rg_email_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:checked="true"
+            android:text="@string/sc_dialog_email"
+            android:textColor="@drawable/text_color_rb_yellow_white"
+            android:textSize="@dimen/text_size_16" />
+
+        <RadioButton
+            android:id="@+id/rb_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:button="@null"
+            android:text="@string/sc_dialog_phone"
+            android:textColor="@drawable/text_color_rb_yellow_white"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/tv_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="@dimen/DIMEN_5PX"
+            android:text="@string/btn_cancle"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_slide_bg"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:paddingTop="5dp"
+        android:textSize="@dimen/text_size_12" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px138"
+            android:layout_marginTop="@dimen/px10"
+            android:background="@color/color_slide_bg"
+            android:hint="@string/sc_dialog_email_code_des"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/text_size_12" />
+
+        <com.mirko.alsc.views.MyVerificationCode
+            android:id="@+id/vf_get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/DIMEN_3PX"
+            android:background="@color/transparent"
+            android:onClick="@{clickListener}"
+            android:textColor="@color/color_text_white"
+            android:textSize="@dimen/text_size_12"
+            app:buttonText="@string/sc_get_code"
+            app:countDownSecond="60"
+            app:countDownText="@string/sc_get_code_retry" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_next"
+        style="@style/WalletHoteBtnStyle"
+        android:layout_marginTop="30dp"
+        android:onClick="@{clickListener}"
+        android:text="@string/btn_sure" />
+
+</LinearLayout>

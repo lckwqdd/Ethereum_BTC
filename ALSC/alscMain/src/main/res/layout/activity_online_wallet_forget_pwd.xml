@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_theme_bg">
+
+        <com.alsc.utils.view.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px180"
+            android:background="@color/color_slide_bg"
+            app:showLeftDrawable="true"
+            app:showTextLeft="false" />
+
+        <LinearLayout
+            android:id="@+id/ll_phone"
+            android:layout_below="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/WalletCodeTitleTextStyle"
+                    android:text="@string/wh_forgot_pwd_title"
+                    android:textColor="@color/yellow" />
+
+                <TextView
+                    style="@style/WalletCodeTextStyle"
+                    android:text="@string/wh_forgot_pwd_title_des" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="24dp"
+                    android:background="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/wh_forgot_pwd_methods"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18" />
+
+                <LinearLayout
+                    android:id="@+id/lv_phone_area_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:onClick="@{clickListener}">
+
+                    <TextView
+                        android:id="@+id/tv_phone_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="10dp"
+                        android:text="@string/wh_phone_area_default"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@mipmap/icon_arrow">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    style="@style/WalletCodeEditStyle"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/wh_phone_valite_hint"
+                    android:inputType="number"
+                    android:textColorHint="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/lv_phone_area_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:onClick="@{clickListener}"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_area_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="30dp"
+                        android:text="@string/wh_phone_area_code_default"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@mipmap/icon_arrow">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:text="@string/wh_find_pwd_email"
+                android:onClick="@{clickListener}"
+                android:textColor="@color/yellow" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_email"
+            android:layout_below="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/WalletCodeTitleTextStyle"
+                    android:text="@string/wh_forgot_pwd_title"
+                    android:textColor="@color/yellow" />
+
+                <TextView
+                    style="@style/WalletCodeTextStyle"
+                    android:text="@string/wh_forgot_pwd_title_des" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="24dp"
+                    android:background="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/wh_forgot_pwd_methods"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_email"
+                style="@style/WalletCodeEditStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/wh_email_valite_hint"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:text="@string/wh_find_pwd_phone"
+                android:onClick="@{clickListener}"
+                android:textColor="@color/yellow" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletHoteBtnStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{clickListener}"
+            android:text="@string/btn_next" />
+    </RelativeLayout>
+</layout>

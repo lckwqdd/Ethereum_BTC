@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -21,7 +22,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvWalletType"
+                android:id="@+id/tv_wallet_type"
                 style="@style/WalletCodeTitleTextStyle"
                 android:text="@string/wt_type_make" />
 
@@ -32,12 +33,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_code_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="80dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/bg_blue_middle_radius">
+            android:background="@drawable/bg_blue_middle_radius"
+            android:onClick="@{clickListener}">
 
             <ImageView
                 android:layout_width="40dp"
@@ -46,7 +49,7 @@
                 android:src="@mipmap/icon_demo" />
 
             <LinearLayout
-                android:id="@+id/ll_code_wallet"
+
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
@@ -71,12 +74,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_online_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/bg_yhei_radius">
+            android:background="@drawable/bg_yhei_radius"
+            android:onClick="@{clickListener}">
 
             <ImageView
                 android:layout_width="40dp"
@@ -85,7 +90,7 @@
                 android:src="@mipmap/icon_demo" />
 
             <LinearLayout
-                android:id="@+id/llOnlineWallet"
+
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
@@ -113,6 +118,7 @@
             android:id="@+id/btn_next"
             style="@style/WalletCodeBtnStyle"
             android:layout_marginTop="120dp"
+            android:onClick="@{clickListener}"
             android:text="@string/wt_type_next" />
 
         <LinearLayout
@@ -133,8 +139,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="@string/wt_type_login"
                 android:onClick="@{clickListener}"
+                android:text="@string/wt_type_login"
                 android:textColor="@color/blue"
                 android:textSize="18dp" />
         </LinearLayout>

@@ -68,7 +68,7 @@
         <LinearLayout
             android:id="@+id/menu_header"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px540"
+            android:layout_height="160dp"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp">
@@ -80,11 +80,10 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
-                    android:background="@drawable/ic_launcher" />
+                <com.mirko.alsc.views.images.AsyncImageView
+                    android:id="@+id/async_image_head"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,10 +93,10 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
-                    android:text="NickName"
                     android:textColor="@color/color_text_white"
                     android:textSize="@dimen/text_size_16"
                     android:textStyle="bold" />
@@ -116,18 +115,19 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_uid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID.3589699"
-                    android:textColor="@color/color_text_white"
+                    android:textColor="@color/orange"
                     android:textSize="@dimen/text_size_10" />
 
                 <TextView
+                    android:id="@+id/tv_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="级别：普通"
                     android:textColor="@color/color_text_white"
                     android:layout_marginLeft="@dimen/px32"
+                    android:background="@color/color_btn_yellow_deep"
                     android:textSize="@dimen/text_size_10" />
 
             </LinearLayout>
@@ -143,49 +143,49 @@
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_chat"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_chat"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_security"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_security"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_language_switching"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_language_switching"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_about"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_about"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_invite_friends"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_invite_friends"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_system"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_system"
                 tl:line_height="1" />
 
             <com.alsc.utils.view.ItemGroup
                 android:id="@+id/menu_item_switching_accounts"
-                style="@style/ItemGroupStyle"
+                style="@style/ItemGroupStyleSlide"
                 tl:drawable_right="@mipmap/icon_arrow"
                 tl:group_title="@string/menu_item_switching_accounts"
                 tl:line_height="1" />

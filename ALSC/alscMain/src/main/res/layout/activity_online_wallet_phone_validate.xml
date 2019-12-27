@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -37,7 +38,6 @@
                 android:text="@string/wh_phone_change" />
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -45,8 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical">
 
             <View
                 android:layout_width="8dp"
@@ -64,29 +64,75 @@
             <LinearLayout
                 android:id="@+id/lv_phone_area_name"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="right"
-                android:onClick="@{clickListener}"
-                android:layout_height="wrap_content">
+                android:onClick="@{clickListener}">
 
                 <TextView
+                    android:id="@+id/tv_phone_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="@string/wh_phone"
-                    android:textColor="@color/white"
                     android:padding="10dp"
+                    android:text="@string/wh_phone_area_default"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_14" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/icon_arrow">
+
+                </ImageView>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_phone"
-            style="@style/WalletCodeEditStyle"
-            android:layout_marginTop="10dp"
-            android:hint="@string/wh_phone_valite_hint"
-            android:textColorHint="@color/black" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/WalletCodeEditStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/wh_phone_valite_hint"
+                android:inputType="number"
+                android:textColorHint="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/lv_phone_area_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingTop="10dp"
+                android:onClick="@{clickListener}">
+
+                <TextView
+                    android:id="@+id/tv_area_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:text="@string/wh_phone_area_code_default"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_14" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/icon_arrow">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
 
         <TextView
             style="@style/WalletCodeTextStyle"
@@ -119,10 +165,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="@string/wh_valite_number"
-                android:textColor="@color/white"
                 android:gravity="right"
                 android:onClick="@{clickListener}"
+                android:text="@string/wh_valite_number_get"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
 
         </LinearLayout>
@@ -132,16 +178,20 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/wh_valite_number_hint"
+            android:inputType="number"
             android:textColorHint="@color/black" />
 
 
         <TextView
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:gravity="center"
             android:text="@string/wh_valite_email"
+            android:onClick="@{clickListener}"
             android:textColor="@color/yellow" />
 
 

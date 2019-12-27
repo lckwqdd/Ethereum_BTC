@@ -21,10 +21,12 @@ import rx.Observable;
 public class EmailCodeApi extends BaseApi {
 
     private String email;
+    private String sid;
 
-    public EmailCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String email) {
+    public EmailCodeApi(HttpOnNextListener<EmptyResultEntity> listener, RxAppCompatActivity rxAppCompatActivity, String email,String sid) {
         super(listener, rxAppCompatActivity);
         this.email = email;
+        this.sid = sid;
         setShowProgress(true);
         setCancel(true);
         setCache(false);
@@ -37,6 +39,7 @@ public class EmailCodeApi extends BaseApi {
         JSONObject result = new JSONObject();
         try {
             result.put("email", email);
+            result.put("sid", sid);
         } catch (JSONException e) {
             e.printStackTrace();
         }

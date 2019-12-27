@@ -7,18 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.alsc.net.api.EmailCodeApi;
-import com.alsc.net.api.MobileCodeApi;
-import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.request.RegisterRequest;
-import com.alsc.net.retrofit.http.HttpManager;
-import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletPhoneValidateBinding;
 import com.mirko.alsc.utils.Constant;
+import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.androidutil.utils.StringUtils;
-import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 
@@ -36,7 +31,8 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
     private String phone; //手机号
     private String phoneCode; //手机验证码
     private RegisterRequest registerRequest;
-    private String areaCode; //区号
+    private String areaCode = "86"; //区号
+    private String areaName; //地区名称
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,15 +66,15 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
      */
     private void next() {
         phone = binding.etPhone.getText().toString();
-        phoneCode = binding.etPhone.getText().toString();
+        phoneCode = binding.etPhoneCode.getText().toString();
         if (!StringUtils.checkPhoneNumber(phone, "+86")) {
-            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, "不能为空");
+            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, getString(R.string.register_error_msg4));
             return;
         } else if (StringUtils.isEmpty(phoneCode)) {
-            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, "不能为空");
+            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, getString(R.string.register_error_msg1));
             return;
         } else if (StringUtils.isEmpty(phone)) {
-            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, "不能为空");
+            ToastHelper.alert(OnlineWalletPhoneValidateActivity.this, getString(R.string.register_error_msg1));
             return;
         }
         registerRequest.setPhone(phone);
@@ -104,68 +100,7 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
      */
     private void getMobileCode(String phone, String areaCode) {
 
-        HttpManager.getInstance().doHttpDeal(new MobileCodeApi((new HttpOnNextListener<EmptyResultEntity>() {
-            @Override
-            public void onNext(EmptyResultEntity result) {
-
-                if (result != null) {
-                    LogUtils.d(TAG, "获取手机验证码成功:");
-                }
-            }
-
-            @Override
-            public void onCacheNext(String string) {
-                super.onCacheNext(string);
-            }
-
-            @Override
-            public void onCancel() {
-                super.onCancel();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.d(TAG, "注册失败：" + e.toString());
-                super.onError(e);
-            }
-
-
-        }), OnlineWalletPhoneValidateActivity.this, phone, areaCode));
-    }
-
-
-    /**
-     * 获取邮箱验证码
-     */
-    private void getEmailCode(String phone) {
-
-        HttpManager.getInstance().doHttpDeal(new EmailCodeApi((new HttpOnNextListener<EmptyResultEntity>() {
-            @Override
-            public void onNext(EmptyResultEntity result) {
-
-                if (result != null) {
-                    LogUtils.d(TAG, "获取邮箱验证码成功:");
-                }
-            }
-
-            @Override
-            public void onCacheNext(String string) {
-                super.onCacheNext(string);
-            }
-
-            @Override
-            public void onCancel() {
-                super.onCancel();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.d(TAG, "获取邮箱验证码失败：" + e.toString());
-                super.onError(e);
-            }
-
-
-        }), OnlineWalletPhoneValidateActivity.this, phone));
+        UrlRequstUtils.getMobileCode(OnlineWalletPhoneValidateActivity.this, phone, areaCode);
     }
 
 
@@ -175,6 +110,9 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_PHONE_CODE) {
                 areaCode = data.getStringExtra("phone_code");
+                areaName = data.getStringExtra("area_name");
+                binding.tvPhoneArea.setText(areaName);
+                binding.tvAreaCode.setText("+" + areaCode);
             }
         }
     }
@@ -186,15 +124,21 @@ public class OnlineWalletPhoneValidateActivity extends AlscBaseActivity implemen
                 next();
                 break;
             case R.id.lv_phone_area_name:
+            case R.id.lv_phone_area_code:
                 selectPhoneArea();
                 break;
             case R.id.tv_get_code:
-
                 phone = binding.etPhone.getText().toString();
-
                 getMobileCode(phone, areaCode);
-
                 break;
+
+            case R.id.tv_email:
+                Intent intent = new Intent(OnlineWalletPhoneValidateActivity.this, OnlineWalleteEmailValidateActivity.class);
+                intent.putExtra(Constant.EXTRA_REGISTER_REQUST, registerRequest);
+                startActivity(intent);
+                OnlineWalletPhoneValidateActivity.this.finish();
+                break;
+
 
         }
     }

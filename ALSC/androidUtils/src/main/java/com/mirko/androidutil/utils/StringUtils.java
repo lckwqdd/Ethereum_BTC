@@ -5,23 +5,28 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
-* 主要功能： 字符串判断工具类
- *
-*/
+ * 主要功能： 字符串判断工具类
+ */
 public class StringUtils {
-	/**
-	 * 判断字符串是否为空
-	 * @param str 字符串
-	 * @return
-	 */
-	public static boolean isEmpty(String str) {
-		return str == null || "".equals(str) || str.trim().length() == 0;
-	}
+
+    private static final char[] encodeTable = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6',
+            '7', '8', '9'};
+    /**
+     * 判断字符串是否为空
+     *
+     * @param str 字符串
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        return str == null || "".equals(str) || str.trim().length() == 0;
+    }
 
     /**
      * Judge whether a string is whitespace, empty ("") or null.
@@ -41,60 +46,63 @@ public class StringUtils {
         }
         return true;
     }
-    
-	/**
-	 * 判断str null,"","null" 均视为空.
-	 * @param str      字符
-	 * @return 结果 boolean
-	 */
-	public static boolean isNotEmpty(String str) {
-		boolean bool = true;
-		if (str == null || "null".equals(str) || "".equals(str)) {
-			bool = false;
-		} else {
-			bool = true;
-		}
-		return bool;
-	}
-	/**
-	 * 
-	 * 检测String是否全是中文
-	 * @param name
-	 * @return
-	 */
 
-	public static boolean checkNameChese(String name) {
-		boolean res = true;
-		char[] cTemp = name.toCharArray();
-		for (int i = 0; i < name.length(); i++) {
-			if (!isChinese(cTemp[i])) {
-				res = false;
-				break;
-			}
-		}
-		return res;
-	}
-	/**
-	 * 
-	 * 判定输入汉字
-	 * @param c
-	 * @return
-	 */
+    /**
+     * 判断str null,"","null" 均视为空.
+     *
+     * @param str 字符
+     * @return 结果 boolean
+     */
+    public static boolean isNotEmpty(String str) {
+        boolean bool = true;
+        if (str == null || "null".equals(str) || "".equals(str)) {
+            bool = false;
+        } else {
+            bool = true;
+        }
+        return bool;
+    }
 
-	public static boolean isChinese(char c) {
-		Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-		if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-				|| ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-				|| ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-				|| ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
-				|| ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-				|| ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
+    /**
+     * 检测String是否全是中文
+     *
+     * @param name
+     * @return
+     */
 
-			return true;
-		}
-		return false;
+    public static boolean checkNameChese(String name) {
+        boolean res = true;
+        char[] cTemp = name.toCharArray();
+        for (int i = 0; i < name.length(); i++) {
+            if (!isChinese(cTemp[i])) {
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
 
-	}
+    /**
+     * 判定输入汉字
+     *
+     * @param c
+     * @return
+     */
+
+    public static boolean isChinese(char c) {
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
+                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
+
+            return true;
+        }
+        return false;
+
+    }
 
     /**
      * 编译后的正则表达式缓存
@@ -118,6 +126,7 @@ public class StringUtils {
 
     /**
      * 把字符串转成小写
+     *
      * @param s
      * @return
      */
@@ -127,13 +136,14 @@ public class StringUtils {
 
     /**
      * 把字符串转成大写
+     *
      * @param s
      * @return
      */
     public static String toUpperCase(String s) {
         return s.toUpperCase(Locale.getDefault());
     }
-    
+
     /**
      * 将字符串的第一位转为小写
      *
@@ -238,6 +248,7 @@ public class StringUtils {
 
     /**
      * 字符串连接，将参数列表拼接为一个字符串
+     *
      * @param split
      * @param more
      * @return 回拼接后的字符串
@@ -268,6 +279,7 @@ public class StringUtils {
 
     /**
      * 将字符串转移为Unicode码
+     *
      * @param str 字符串
      * @return
      */
@@ -282,6 +294,7 @@ public class StringUtils {
 
     /**
      * 将字符串转移为Unicode码
+     *
      * @param chars 字符数组
      * @return
      */
@@ -294,7 +307,7 @@ public class StringUtils {
     }
 
     static final char CN_CHAR_START = '\u4e00';
-    static final char CN_CHAR_END   = '\u9fa5';
+    static final char CN_CHAR_END = '\u9fa5';
 
     /**
      * 是否包含中文字符
@@ -333,8 +346,9 @@ public class StringUtils {
 
     /**
      * 匹配到第一个字符串
+     *
      * @param patternStr 正则表达式
-     * @param text 字符串
+     * @param text       字符串
      * @return
      */
     public static String matcherFirst(String patternStr, String text) {
@@ -579,13 +593,14 @@ public class StringUtils {
 
     /**
      * byte数组返回值转成String类型
+     *
      * @param responseBody
      * @return
      */
-    public static String byteArrayToString(byte[] responseBody){
+    public static String byteArrayToString(byte[] responseBody) {
         String content = null;
         try {
-            content = new String(responseBody,"UTF-8");
+            content = new String(responseBody, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -594,15 +609,48 @@ public class StringUtils {
 
     /**
      * 校验手机号是否正确
+     *
      * @param phone
      * @return 正确返回true ,否则false
      */
-    public static boolean checkPhoneNumber(String phone,String areaCode){
-        if("+86".equals(areaCode)){
+    public static boolean checkPhoneNumber(String phone, String areaCode) {
+        if ("86".equals(areaCode)) {
             if (isEmpty(phone) || !phone.matches("^1[3-9]+\\d{9}")) {
                 return false;
             }
         }
         return true;
+    }
+
+    /**
+     * 校验是否为6为以上包含数字和字母
+     *
+     * @return 正确返回true ,否则false
+     */
+    public static boolean checkNubmerAndLetter(String str) {
+
+        boolean isDigit = false;
+        boolean isLowerCase = false;
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                isDigit = true;
+            } else if (Character.isLowerCase(str.charAt(i))) {
+                isLowerCase = true;
+            }
+        }
+        String regex = "^[a-zA-Z0-9]+$";
+        return (isDigit && isLowerCase && str.matches(regex) && str.length()>=6);
+    }
+
+    public static String getRandomString(int len) {
+        String returnStr = "";
+        char[] ch = new char[len];
+        Random rd = new Random();
+        for (int i = 0; i < len; i++) {
+            ch[i] = (char) (rd.nextInt(9) + 65);
+            ch[i] = encodeTable[rd.nextInt(36)];
+        }
+        returnStr = new String(ch);
+        return returnStr;
     }
 }

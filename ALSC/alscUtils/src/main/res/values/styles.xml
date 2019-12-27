@@ -12,8 +12,13 @@
 
     <style name="ItemGroupStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/px170</item>
+        <item name="android:layout_height">64dp</item>
         <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+    <style name="ItemGroupStyleSlide">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
     </style>
 
 </resources>

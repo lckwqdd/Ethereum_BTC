@@ -12,9 +12,11 @@ import com.alsc.net.bean.request.RegisterRequest;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.mirko.alsc.MainActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityOnlineWalletSetPwdBinding;
 import com.mirko.alsc.utils.Constant;
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.ToastHelper;
@@ -72,21 +74,28 @@ public class OnlineWalletSettingPwdActivity extends AlscBaseActivity implements 
         loginPswSure = binding.etLoginPwdSure.getText().toString();
         payPsw = binding.etPayPwd.getText().toString();
         payPswSure = binding.etPayPwdLogin.getText().toString();
+        if (!StringUtils.checkNubmerAndLetter(loginPsw)) {
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg5));
+            return;
+        }else if (!StringUtils.checkNubmerAndLetter(payPsw)) {
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg3));
+            return;
+        }
         if (StringUtils.isEmpty(loginPsw)||StringUtils.isEmpty(loginPsw)||
                 StringUtils.isEmpty(payPsw)||StringUtils.isEmpty(payPswSure)) {
-            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不能为空");
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg1));
             return;
         } else if(!loginPsw.equals(loginPswSure)){
-            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不一致");
+            ToastHelper.alert(OnlineWalletSettingPwdActivity.this, getString(R.string.register_error_msg2));
             return;
         } else if(!payPsw.equals(payPswSure)){
             ToastHelper.alert(OnlineWalletSettingPwdActivity.this, "不一致");
             return;
         }
-        registerRequest.setPwd(loginPsw);
-        registerRequest.setPwd2(loginPswSure);
-        registerRequest.setPay_pwd(payPsw);
-        registerRequest.setPay_pwd2(payPswSure);
+        registerRequest.setPwd(MD5Utils.getMD5Code(loginPsw));
+        registerRequest.setPwd2(MD5Utils.getMD5Code(loginPswSure));
+        registerRequest.setPay_pwd(MD5Utils.getMD5Code(payPsw));
+        registerRequest.setPay_pwd2(MD5Utils.getMD5Code(payPswSure));
         LogUtils.d(TAG, "注册信息:" + registerRequest.toString());
         startRegister(registerRequest);
 
@@ -104,6 +113,8 @@ public class OnlineWalletSettingPwdActivity extends AlscBaseActivity implements 
 
                 if (result != null) {
                     LogUtils.d(TAG, "注册成功:" + result.toString());
+                    goTo(OnlineWalletLoginActivity.class);
+                    finish();
                 }
             }
 

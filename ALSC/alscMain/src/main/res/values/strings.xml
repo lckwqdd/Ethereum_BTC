@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">ASCL</string>
 
+    <!--    错误提示-->
+    <string name="register_error_msg1">不能为空</string>
+    <string name="register_error_msg2">不一致</string>
+    <string name="register_error_msg3">用户名请输入6位以上包含数字字母</string>
+    <string name="register_error_msg4">手机号格式不正确</string>
+    <string name="register_error_msg5">登录密码请输入6位以上包含数字字母</string>
+    <string name="register_error_msg6">支付密码请输入6位以上包含数字字母</string>
+
     <!--    home bar-->
     <string name="home_bar_chat">聊天</string>
     <string name="home_bar_friends">好友</string>
@@ -35,6 +43,14 @@
     <string name="security_pass_word_new">新密码:</string>
     <string name="security_pass_word_new_des">6-12位，至少含数字/字母2种组合</string>
     <string name="security_pass_word_pay_new_des">建议使用6-12位大小写字母+数字排列组合</string>
+    <string name="sc_dialog_title_email">若未收到验证码，请检查邮件垃圾箱</string>
+    <string name="sc_dialog_title_phone">若未收到验证码，请检查骚扰拦截短信</string>
+    <string name="sc_dialog_email">邮箱验证</string>
+    <string name="sc_dialog_phone">手机验证</string>
+    <string name="sc_dialog_email_code_des">请输入邮箱验证码</string>
+    <string name="sc_dialog_phone_code_des">请输入手机验证码</string>
+    <string name="sc_get_code">获取验证码</string>
+    <string name="sc_get_code_retry">%d 秒后可重发</string>
 
     <string name="security_google_identity">绑定谷歌身份验证</string>
     <string name="security_google_identity_title">请妥善备份密钥以防丢失</string>
@@ -42,16 +58,25 @@
     <string name="security_google_code">谷歌验证码</string>
     <string name="security_google_code_des">请输入谷歌验证码</string>
 
+    <string name="security_phone_binded_title">手机验证</string>
     <string name="security_phone_bind">绑定手机</string>
+    <string name="security_phone_modify">更换手机</string>
     <string name="security_phone_des">输入手机号</string>
     <string name="security_phone_code">短信验证码</string>
     <string name="security_phone_code_des">若未收到短信，请检查骚扰拦截短信</string>
+    <string name="security_phone_error">未绑定手机，请选择其他验证</string>
+    <string name="security_email_error">未绑定邮箱，请选择其他验证</string>
 
     <string name="security_email_bind">绑定邮箱</string>
+    <string name="security_email_modify">更换邮箱</string>
     <string name="security_email_address">输入邮箱地址</string>
     <string name="security_email_des">输入邮箱地址</string>
     <string name="security_email_code">邮箱验证码</string>
     <string name="security_email_code_des">输入邮箱验证码</string>
+
+    <string name="security_name_update">更改昵称</string>
+    <string name="security_name_update_hine">请输入名称</string>
+    <string name="security_name_update_des">好名字可以让您的朋友更容易记住你</string>
 
     <!--    语言-->
     <string name="language_chinese_simple">简体中文</string>
@@ -77,6 +102,10 @@
 
     <string name="btn_sure">确认</string>
     <string name="btn_next">下一步</string>
+    <string name="btn_reset">重置密码</string>
+    <string name="btn_cancle">取消</string>
+    <string name="btn_send">发送</string>
+    <string name="btn_save">保存</string>
     <string name="auto_scan">将条码放入框内，即可自动扫描</string>
     <string name="scan_qrcode">识别图片中的码</string>
 
@@ -138,13 +167,21 @@
 
     <!--    wallet hot phone valite-->
     <string name="wh_phone">手机验证</string>
+    <string name="wh_phone_area_default">中国</string>
+    <string name="wh_phone_area_code_default">+86</string>
     <string name="wh_phone_change">使用邮箱号或者手机号验证,二选其一即可</string>
     <string name="wh_phone_valite_hint">请输入你的手机</string>
     <string name="wh_phone_valite_number">建议使用6-12位字母+数字</string>
     <string name="wh_phone_valite_number_zoom">建议使用6-12位字母+数字排列组合</string>
     <string name="wh_valite_number">输入验证码</string>
     <string name="wh_valite_number_hint">请输入验证码</string>
+    <string name="wh_valite_number_get">获取验证码</string>
     <string name="wh_valite_email">邮箱验证</string>
+    <string name="wh_email_valite_hint">请输入您的邮箱</string>
+
+    <!--    wallet hot Find password-->
+    <string name="wh_find_pwd_email">邮箱找回</string>
+    <string name="wh_find_pwd_phone">手机找回</string>
 
     <!--    wallet hot set pwd-->
     <string name="wh_set_pwd">设置密码</string>
@@ -174,6 +211,13 @@
     <string name="wh_login_user_hint">请输入登录用户名</string>
     <string name="wh_login_pwd">密码</string>
     <string name="wh_login_pwd_hint">请输入密码</string>
+    <string name="wh_login_pwd_forget">忘记密码</string>
+    <string name="wh_forgot_pwd_title">找回密码</string>
+    <string name="wh_forgot_pwd_title_des">为保障账户安全，您需要进行安全验证</string>
+    <string name="wh_forgot_pwd_methods">选择找回方式</string>
+    <string name="wh_forgot_pwd_methods_des">请输入邮箱或手机号码</string>
+    <string name="wh_reset_pwd_title">重新设置密码</string>
+    <string name="wh_reset_pwd_title_des">登录密码用于登录ALSC钱包</string>
 
 
     <!--    导入钱包-->

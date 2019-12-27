@@ -9,14 +9,23 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.alsc.net.api.HomeMsgApi;
+import com.alsc.net.bean.UserInfoResult;
+import com.alsc.net.bean.entity.HomeMsgResultEntity;
+import com.alsc.net.bean.entity.NoticeResultEntity;
+import com.alsc.net.cache.CacheManager;
+import com.alsc.net.retrofit.http.HttpManager;
+import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.utils.view.ItemGroup;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.adapter.HomePagerAdapter;
-import com.mirko.alsc.ui.entity.TabEntity;
 import com.mirko.alsc.ui.capital.CapitalFragment;
+import com.mirko.alsc.ui.entity.TabEntity;
 import com.mirko.alsc.ui.fragment.HomeFragment;
 import com.mirko.alsc.ui.slide.AboutActivity;
 import com.mirko.alsc.ui.slide.InviteFriendsActivity;
@@ -25,9 +34,14 @@ import com.mirko.alsc.ui.slide.SecuritySettingActivity;
 import com.mirko.alsc.ui.slide.SwitchingAccountActivity;
 import com.mirko.alsc.ui.slide.SystemNoticeActivity;
 import com.mirko.alsc.ui.slide.UserInfoSettingActivity;
+import com.mirko.alsc.utils.ComUtils;
+import com.mirko.alsc.utils.Constant;
 import com.mirko.alsc.views.NoScrollViewPager;
 import com.mirko.alsc.views.ViewPagerScroller;
-import com.alsc.utils.view.ItemGroup;
+import com.mirko.alsc.views.images.AsyncImageView;
+import com.mirko.androidutil.utils.android.LogUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +63,10 @@ public class MainActivity extends AlscBaseActivity {
     private ItemGroup itemSystemNotice;
     private ItemGroup itemSwitchingAccount;
     private ImageView ivUserInfoSetting;
+    private TextView tvName;
+    private TextView tvUid;
+    private TextView tvLevel;
+    private AsyncImageView imagLogo;
 
     /**相关对象*/
     private Context mContext;
@@ -56,6 +74,7 @@ public class MainActivity extends AlscBaseActivity {
 
     private List<Fragment> mFragments = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private UserInfoResult userInfo = new UserInfoResult();
 
     /**首页底部标题和图标*/
     private String mTitles[] = new String[4];
@@ -107,6 +126,10 @@ public class MainActivity extends AlscBaseActivity {
         itemInviteFriends = (ItemGroup) findViewById(R.id.menu_item_invite_friends);
         itemSystemNotice = (ItemGroup) findViewById(R.id.menu_item_system);
         itemSwitchingAccount = (ItemGroup) findViewById(R.id.menu_item_switching_accounts);
+        tvName =  findViewById(R.id.tv_name);
+        tvUid =  findViewById(R.id.tv_uid);
+        tvLevel =  findViewById(R.id.tv_level);
+        imagLogo =  findViewById(R.id.async_image_head);
 
         drawerLayout.openDrawer(Gravity.LEFT);
     }
@@ -132,7 +155,9 @@ public class MainActivity extends AlscBaseActivity {
         itemSecurity.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecuritySettingActivity.class));
+                Intent intent = new Intent(MainActivity.this, SecuritySettingActivity.class);
+                intent.putExtra(Constant.EXTRA_KEY_USER_INFO,userInfo);
+                startActivity(intent);
             }
         });
         //语言切换
@@ -180,6 +205,21 @@ public class MainActivity extends AlscBaseActivity {
     @Override
     public void loadData() {
 
+        loadFragmentData();
+        loadHomeData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    /**
+     * 加载fragment数据
+     */
+    private void loadFragmentData(){
+
         /**添加Fragment*/
         mFragments.add(HomeFragment.getInstance());
         mFragments.add(HomeFragment.getInstance());
@@ -213,5 +253,70 @@ public class MainActivity extends AlscBaseActivity {
         adapter = new HomePagerAdapter(getSupportFragmentManager(),mFragments,mTitles);
         viewPagerHome.setAdapter(adapter);
         viewPagerHome.setNoScroll(true); //设置是否滑动
+
     }
+
+
+    /**
+     * 加载首页数据
+     */
+
+    private void loadHomeData() {
+
+        String token = getTokenCache();
+        HttpManager.getInstance().doHttpDeal(new HomeMsgApi((new HttpOnNextListener<HomeMsgResultEntity>() {
+            @Override
+            public void onNext(HomeMsgResultEntity result) {
+                if (result != null) {
+                    if (result.getUser_info() != null){
+                        userInfo = result.getUser_info();
+                        CacheManager.UserInfoResult.set(result.getUser_info());
+                        updateView(userInfo);
+                    }
+                }
+            }
+
+            @Override
+            public void onCacheNext(String string) {
+                super.onCacheNext(string);
+            }
+
+            @Override
+            public void onCancel() {
+                super.onCancel();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+
+        }), MainActivity.this, token));
+    }
+
+    /**
+     * 更新View
+     * @param userInfo
+     */
+    private void updateView(UserInfoResult userInfo){
+        tvName.setText(userInfo.getUname());
+        tvUid.setText("ID " + userInfo.getUid());
+        tvLevel.setText("级别 " + userInfo.getLev());
+        imagLogo.loadUrlHeadRound(userInfo.getAvatar(),getResources().getDimension(R.dimen.DIMEN_36PX));
+    }
+
+    /**
+     * 获取token缓存
+     * @return
+     */
+    private String getTokenCache(){
+        if(CacheManager.LoginToken.get()!=null){
+            return CacheManager.LoginToken.get();
+        }
+        return null;
+    }
+
+
+
 }

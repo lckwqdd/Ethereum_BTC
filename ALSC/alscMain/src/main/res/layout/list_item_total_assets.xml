@@ -11,6 +11,7 @@
         android:src="@mipmap/icon_currency" />
 
     <TextView
+        android:id="@+id/symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -28,6 +29,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -36,6 +38,7 @@
             android:textSize="@dimen/text_size_18" />
 
         <TextView
+            android:id="@+id/tv_property_cny"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -1,4 +1,4 @@
-package com.mirko.alsc.ui.wallet;
+package com.mirko.alsc.ui.wallet.online;
 
 import android.app.Activity;
 import android.content.Intent;

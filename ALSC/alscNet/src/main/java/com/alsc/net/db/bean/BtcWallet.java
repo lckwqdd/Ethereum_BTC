@@ -5,11 +5,11 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
 /**
- * 以太坊钱包账号实体类
+ * 比特币钱包账号实体类
  */
 
 @Entity
-public class ETHWallet {
+public class BtcWallet {
 
     @Id(autoincrement = true)
     private Long id;
@@ -21,8 +21,8 @@ public class ETHWallet {
     private String mnemonic;
     private boolean isCurrent;
     private boolean isBackup;
-    @Generated(hash = 1331046581)
-    public ETHWallet(Long id, String address, String name, String password,
+    @Generated(hash = 793541490)
+    public BtcWallet(Long id, String address, String name, String password,
             String keystorePath, String mnemonic, boolean isCurrent,
             boolean isBackup) {
         this.id = id;
@@ -34,8 +34,8 @@ public class ETHWallet {
         this.isCurrent = isCurrent;
         this.isBackup = isBackup;
     }
-    @Generated(hash = 1963897189)
-    public ETHWallet() {
+    @Generated(hash = 1042605644)
+    public BtcWallet() {
     }
     public Long getId() {
         return this.id;
@@ -85,6 +85,7 @@ public class ETHWallet {
     public void setIsBackup(boolean isBackup) {
         this.isBackup = isBackup;
     }
+   
 
 
 }

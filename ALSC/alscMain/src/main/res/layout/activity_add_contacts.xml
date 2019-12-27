@@ -61,6 +61,7 @@
                 android:textSize="@dimen/text_size_18" />
 
             <ImageView
+                android:id="@+id/btn_scan"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
@@ -70,6 +71,7 @@
 
 
         <EditText
+            android:id="@+id/tv_address"
             style="@style/AlscTranferEditTextStyle"
             android:hint="211fdfdfd2f1d2f1df1f2d1fd21f2df1" />
 

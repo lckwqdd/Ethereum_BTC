@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.interact.CreateWalletInteract;
+import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
 import com.mirko.alsc.R;
@@ -82,6 +84,13 @@ public class CodeWalletCreateActivity extends AlscBaseActivity implements View.O
     }
 
     public void jumpToWalletBackUp(ETHWallet wallet) {
+        String walletName = binding.account.getText().toString().trim();
+        String walletPwd = binding.password.getText().toString().trim();
+        String confirmPwd = binding.confirmPassword.getText().toString().trim();
+        createWalletInteract.createBtc(walletName, walletPwd, confirmPwd).subscribe(this::jumpToWalletBackUp, this::showError);
+    }
+
+    public void jumpToWalletBackUp(BtcWallet wallet) {
 
         setResult(CREATE_WALLET_RESULT, new Intent());
         Intent intent = new Intent(this, CodeWalletBackUpActivity.class);
@@ -96,7 +105,9 @@ public class CodeWalletCreateActivity extends AlscBaseActivity implements View.O
         finish();
     }
 
+
     public void showError(Throwable errorInfo) {
+        LogUtils.d("创建异常:" + errorInfo.toString());
         ToastUtils.showToast(errorInfo.toString());
     }
 }

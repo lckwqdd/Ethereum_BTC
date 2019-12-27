@@ -6,8 +6,8 @@ import android.view.View;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityCodeWalletTypeBinding;
-import com.mirko.alsc.ui.wallet.OnlineWalletLoginActivity;
-import com.mirko.alsc.ui.wallet.OnlineWalletMakeActivity;
+import com.mirko.alsc.ui.wallet.online.OnlineWalletLoginActivity;
+import com.mirko.alsc.ui.wallet.online.OnlineWalletMakeActivity;
 
 /**
  * 创建钱包类型

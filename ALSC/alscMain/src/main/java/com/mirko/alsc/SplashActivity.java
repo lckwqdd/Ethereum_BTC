@@ -11,6 +11,7 @@ import com.alsc.wallet.interact.FetchWalletInteract;
 import com.alsc.wallet.utils.LogUtils;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.mirko.alsc.ui.wallet.TotalAssetsActivity;
 import com.mirko.alsc.ui.wallet.code.CodeWalletTypeActivity;
 import com.mirko.androidutil.utils.android.ActivityUtils;
 import com.mirko.androidutil.utils.android.ScreenUtils;
@@ -82,18 +83,18 @@ public class SplashActivity extends AppCompatActivity {
 
     public void onWalltes(List<ETHWallet> ethWallets) {
 
-//        if (ethWallets.size() == 0) {
-//            Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(intent);
-//        } else {
-//            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(intent);
-//        }
-        Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        if (ethWallets.size() == 0) {
+            Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(SplashActivity.this, TotalAssetsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+//        Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
     }
 
 

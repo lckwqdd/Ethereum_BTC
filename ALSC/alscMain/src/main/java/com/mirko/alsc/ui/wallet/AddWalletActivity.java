@@ -25,6 +25,7 @@ public class AddWalletActivity extends AlscBaseActivity implements View.OnClickL
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_wallet);
+        binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.total_assets_add));
     }
 
     @Override

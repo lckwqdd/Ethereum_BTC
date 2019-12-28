@@ -141,7 +141,6 @@ public class CodeWalletValidateActivity extends AlscBaseActivity implements View
             LogUtils.d("VerifyMnemonicBackUp", "trim:" + trim);
             if (TextUtils.equals(trim, walletMnemonic)) {
                 WalletDaoUtils.setIsBackup(walletId);
-                BTCWalletDaoUtils.setIsBackup(walletId);
                 goTo(TotalAssetsActivity.class);
                 finish();
             } else {

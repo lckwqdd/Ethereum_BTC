@@ -1,5 +1,7 @@
 package com.alsc.net.retrofit.http;
 
+import android.util.Log;
+
 import com.alsc.net.NetApplication;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.exception.RetryWhenNetworkException;
@@ -8,6 +10,8 @@ import com.alsc.net.retrofit.http.cookie.CookieInterceptor;
 import com.alsc.net.retrofit.subscribers.ProgressSubscriber;
 import com.alsc.net.util.HttpService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +24,7 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -60,8 +65,21 @@ public class HttpManager {
     public void doHttpDeal(BaseApi basePar) {
 
         //手动创建一个OkHttpClient并设置超时时间缓存等设置
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                try {
+                    String text = URLDecoder.decode(message, "utf-8");
+                    Log.e("httpLogging", text);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("httpLogging", message);
+                }
+            }
+        });
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new CookieInterceptor(basePar.isCache()));
+        builder.addInterceptor(interceptor);
         builder.connectTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
         builder.readTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
         builder.writeTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
@@ -103,7 +121,7 @@ public class HttpManager {
         }catch (Exception e){
 
         }
-
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         /*创建retrofit对象*/
         Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())

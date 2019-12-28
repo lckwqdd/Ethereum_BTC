@@ -1,5 +1,6 @@
 package com.alsc.net.util;
 
+import com.alsc.net.bean.entity.AddressRegisterResultEntity;
 import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.entity.HomeMsgResultEntity;
 import com.alsc.net.bean.entity.LoginResultEntity;
@@ -8,6 +9,7 @@ import com.alsc.net.bean.entity.NoticeResultEntity;
 import com.alsc.net.bean.entity.PhoneCodeResultEntity;
 import com.alsc.net.bean.entity.PicCodeResultEntity;
 import com.alsc.net.bean.entity.RegisterResultEntity;
+import com.alsc.net.bean.entity.TranstionResultEntity;
 import com.alsc.net.retrofit.entity.BaseResultEntity;
 
 import okhttp3.RequestBody;
@@ -70,6 +72,12 @@ public interface HttpService {
 
     @POST(ConstantUrl.FIND_PASSWORD_URL)
     Observable<BaseResultEntity<EmptyResultEntity>> findPassword(@Body RequestBody body);
+
+    @POST(ConstantUrl.REGISTER_ADDRESS_URL)
+    Observable<BaseResultEntity<AddressRegisterResultEntity>> registerAddress(@Body RequestBody body);
+
+    @POST(ConstantUrl.UPLOAD_TRANSTION_URL)
+    Observable<BaseResultEntity<TranstionResultEntity>> uploadTranstion(@Body RequestBody body);
 
 
 }

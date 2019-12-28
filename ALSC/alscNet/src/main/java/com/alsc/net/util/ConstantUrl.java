@@ -68,5 +68,9 @@ public interface ConstantUrl {
     String CHECK_PAY_URL = "api/check_pay";
     //参与贡献
     String CREATE_HEYUE_URL = "api/create_heyue";
+    //注册地址
+    String REGISTER_ADDRESS_URL = "api/cold_wallet";
+    //上传交易
+    String UPLOAD_TRANSTION_URL = "api/create_heyue";
 
 }

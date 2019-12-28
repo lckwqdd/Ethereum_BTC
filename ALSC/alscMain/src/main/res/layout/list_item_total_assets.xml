@@ -4,9 +4,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/item_currenty"
+        android:id="@+id/iv_currenty"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_centerVertical="true"
         android:src="@mipmap/icon_currency" />
 
@@ -25,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
@@ -46,4 +48,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivexpand"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/icon_arrow"
+        />
 </RelativeLayout>

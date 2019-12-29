@@ -113,9 +113,9 @@ public class SplashActivity extends AppCompatActivity {
 
 
     public void onError(Throwable throwable) {
-        Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        SplashActivity.this.startActivity(intent);
+//        Intent intent = new Intent(SplashActivity.this, CodeWalletTypeActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        SplashActivity.this.startActivity(intent);
     }
 
 

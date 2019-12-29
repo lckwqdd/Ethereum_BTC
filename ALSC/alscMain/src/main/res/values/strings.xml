@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ALSC</string>
 
+
     <!--    错误提示-->
     <string name="register_error_msg1">不能为空</string>
     <string name="register_error_msg2">不一致</string>
@@ -20,7 +21,7 @@
     <string name="menu_item_security">安全设置</string>
     <string name="menu_item_language_switching">语言切换</string>
     <string name="menu_item_about">关于ASCL</string>
-    <string name="menu_item_invite_friends">邀请好友</string>
+    <string name="menu_item_invite_friends">分享好友</string>
     <string name="menu_item_system">系统公告</string>
     <string name="menu_item_switching_accounts">切换账户</string>
     <string name="property_drawer_qrcode_scanner">扫一扫</string>
@@ -247,6 +248,8 @@
 
     <!--    ALSC转账-->
     <string name="wh_alsc_transfer">ALSC转账</string>
+    <string name="wh_btc_transfer">BTC转账</string>
+    <string name="wh_btc_collect">BTC收款</string>
     <string name="wh_alsc_transfer_menoy">转账金额</string>
     <string name="wh_alsc_balance">ALSC余额</string>
     <string name="wh_save_address">接收地址</string>

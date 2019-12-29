@@ -1,6 +1,5 @@
 package com.mirko.alsc.ui.wallet;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,11 +11,8 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.AlasTransferAndCollectAdapter;
-import com.mirko.alsc.adapter.CurrencyDetailAdapter;
-import com.mirko.alsc.adapter.listener.RecycleViewItemClickListener;
 import com.mirko.alsc.bean.CurrencyData;
 import com.mirko.alsc.databinding.ActivityAlscTransferAndCollectBinding;
-import com.mirko.alsc.databinding.ActivityCurrencyDetailBinding;
 import com.mirko.alsc.ui.entity.TabWalletEntity;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.utils.android.ToastUtils;
@@ -80,7 +76,7 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
             ToastUtils.showShort("position:" + position);
             switch (position) {
                 case 0:
-                    goTo(AlscSymbolDetailActivity.class);
+                    goTo(ETHSymbolDetailActivity.class);
                     break;
             }
         }));
@@ -137,10 +133,12 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 onBackPressed();
                 break;
             case R.id.ll_transfer:
-                goTo(AlscTransferActivity.class);
+//              goTo(ETHTransferActivity.class);
+                goTo(BtcTransferActivity.class);
                 break;
             case R.id.ll_receivables:
-                goTo(AlscCollectActivity.class);
+//              goTo(ETHCollectActivity.class);
+                goTo(BtcCollectActivity.class);
                 break;
             case R.id.iv_header_left:
                 onBackPressed();

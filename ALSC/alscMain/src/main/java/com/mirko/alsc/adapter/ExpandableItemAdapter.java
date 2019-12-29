@@ -23,6 +23,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
     public static final int TYPE_LEVEL_0 = 0;
     public static final int TYPE_LEVEL_1 = 1;
 
+
     public ExpandableItemAdapter(List<MultiItemEntity> data) {
         super(data);
         addItemType(TYPE_LEVEL_0, R.layout.list_item_total_assets);

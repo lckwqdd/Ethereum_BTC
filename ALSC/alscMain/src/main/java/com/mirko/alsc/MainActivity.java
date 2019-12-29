@@ -30,6 +30,7 @@ import com.mirko.alsc.ui.fragment.HomeFragment;
 import com.mirko.alsc.ui.slide.AboutActivity;
 import com.mirko.alsc.ui.slide.InviteFriendsActivity;
 import com.mirko.alsc.ui.slide.LanguageSwithcingActivity;
+import com.mirko.alsc.ui.slide.SecurityPayPasswordActivity;
 import com.mirko.alsc.ui.slide.SecuritySettingActivity;
 import com.mirko.alsc.ui.slide.SwitchingAccountActivity;
 import com.mirko.alsc.ui.slide.SystemNoticeActivity;
@@ -180,7 +181,9 @@ public class MainActivity extends AlscBaseActivity {
         itemInviteFriends.setItemOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, InviteFriendsActivity.class));
+                Intent intent = new Intent(MainActivity.this, InviteFriendsActivity.class);
+                intent.putExtra(Constant.EXTRA_KEY_USER_INFO, userInfo);
+                startActivity(intent);
 
             }
         });

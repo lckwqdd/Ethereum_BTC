@@ -6,20 +6,20 @@ import android.view.View;
 
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
-import com.mirko.alsc.databinding.ActivityAddWalletBinding;
+import com.mirko.alsc.databinding.ActivityBtcTransferBinding;
 import com.mirko.alsc.databinding.ActivityHotWalletAlscTransferBinding;
 
 /**
- * alsc转账等界面
+ * 比特币转账
  */
-public class AlscTransferActivity extends AlscBaseActivity implements View.OnClickListener {
-    private ActivityHotWalletAlscTransferBinding binding;
+public class BtcTransferActivity extends AlscBaseActivity implements View.OnClickListener {
+    private ActivityBtcTransferBinding binding;
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_hot_wallet_alsc_transfer);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_btc_transfer);
         binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
-        binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.wh_alsc_transfer));
+        binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.wh_btc_transfer));
         binding.commonHeader.ivHeaderRight.setVisibility(View.VISIBLE);
         binding.commonHeader.ivHeaderRight.setImageResource(R.mipmap.icon_scan);
     }

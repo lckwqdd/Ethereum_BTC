@@ -1,8 +1,6 @@
 package com.alsc.net.api;
 
-import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.entity.TransferRecordeEntity;
-import com.alsc.net.bean.request.DevoteTransferRequest;
 import com.alsc.net.bean.request.ListPageRequest;
 import com.alsc.net.retrofit.api.BaseApi;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;

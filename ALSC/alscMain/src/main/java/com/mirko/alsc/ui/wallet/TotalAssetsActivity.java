@@ -68,7 +68,6 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         binding.totalAssetsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
-            ToastUtils.showToast("父亲:" + position);
             switch (position) {
                 case 1:
                     goTo(AlscTranslateAndCollectActivity.class);
@@ -153,3 +152,4 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         LogUtils.d("取数据异常:" + throwable.toString());
     }
 }
+

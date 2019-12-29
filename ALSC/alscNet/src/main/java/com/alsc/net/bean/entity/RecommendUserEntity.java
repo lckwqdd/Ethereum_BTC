@@ -2,6 +2,7 @@ package com.alsc.net.bean.entity;
 
 import com.alsc.net.bean.JackPotResult;
 import com.alsc.net.bean.PageResult;
+import com.alsc.net.bean.RecommendUserResult;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,17 +27,14 @@ import java.util.List;
 
 public class RecommendUserEntity implements Serializable {
 
-    private List<JackPotResult> list;
+    private List<RecommendUserResult> list;
     private PageResult page;
-    private float total_income;
-    private float total_alsc;
-    private float total_ach;
 
-    public List<JackPotResult> getList() {
+    public List<RecommendUserResult> getList() {
         return list;
     }
 
-    public void setList(List<JackPotResult> list) {
+    public void setList(List<RecommendUserResult> list) {
         this.list = list;
     }
 
@@ -48,27 +46,6 @@ public class RecommendUserEntity implements Serializable {
         this.page = page;
     }
 
-    public float getTotal_income() {
-        return total_income;
-    }
 
-    public void setTotal_income(float total_income) {
-        this.total_income = total_income;
-    }
 
-    public float getTotal_alsc() {
-        return total_alsc;
-    }
-
-    public void setTotal_alsc(float total_alsc) {
-        this.total_alsc = total_alsc;
-    }
-
-    public float getTotal_ach() {
-        return total_ach;
-    }
-
-    public void setTotal_ach(float total_ach) {
-        this.total_ach = total_ach;
-    }
 }

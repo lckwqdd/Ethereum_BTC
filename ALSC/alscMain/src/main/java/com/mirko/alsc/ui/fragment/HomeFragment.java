@@ -1,5 +1,6 @@
 package com.mirko.alsc.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.alsc.utils.base.BaseFragment;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.FragmentHomeBinding;
+import com.mirko.alsc.ui.devote.DevoteHomeActivity;
 import com.mirko.androidutil.utils.android.LogUtils;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -25,21 +27,7 @@ public class HomeFragment extends BaseFragment {
 
     FragmentHomeBinding binding;
     private View mView;
-    private View headView;
-    private View footView;
-    private TextView tvFooterMsg;//底部显示的信息
 
-    private Handler handler = new Handler();
-
-    private int requestPagerNumber = 10; //每次请求 每页请求的条数
-    private int requestPager = 1; //每次请求的页数，下来加载的时候页数增加
-    private boolean loadItemVisibled = false;//确保上拉加载只执行一次
-
-    private PtrFrameLayout ptrFrame;
-
-    private int reLoad = 0;
-
-    private boolean mIsRefreshing = false;
 
     public static HomeFragment getInstance() {
         HomeFragment sf = new HomeFragment();
@@ -51,6 +39,7 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, null);
         binding = FragmentHomeBinding.bind(mView);
+
         return mView;
     }
 
@@ -72,7 +61,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mIsRefreshing = false;
     }
 
     @Override
@@ -86,7 +74,14 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+        binding.btnDevote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                startActivity(new Intent(getActivity(), DevoteHomeActivity.class));
+            }
+        });
 
     }
 
@@ -98,15 +93,6 @@ public class HomeFragment extends BaseFragment {
     public void loadData() {
 
     }
-
-
-    /**
-     * 跳转到文章发布页面
-     */
-    private void goToPublishArticle(){
-
-    }
-
 
 
 }

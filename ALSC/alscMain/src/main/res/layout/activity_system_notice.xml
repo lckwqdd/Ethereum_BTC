@@ -9,61 +9,69 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_theme_bg"
+        android:background="@color/color_slide_bg"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <com.alsc.utils.view.TitleBar
+            android:id="@+id/title_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_slide_bg"
-            android:orientation="vertical">
+            android:layout_height="@dimen/px180"
+            app:showLeftDrawable="true"
+            app:showTextLeft="true"
+            app:tbTitleLeft="@string/menu_item_system" />
 
-            <com.alsc.utils.view.TitleBar
-                android:id="@+id/title_bar"
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <in.srain.cube.views.loadmore.LoadMoreListViewContainer
+                android:id="@+id/load_more"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px180"
-                app:showLeftDrawable="true"
-                app:showTextLeft="true"
-                app:tbTitleLeft="@string/menu_item_system" />
+                android:layout_height="match_parent"
+                android:background="@color/color_theme_bg"
+                android:visibility="gone">
 
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/security_change_login_password"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/security_change_login_password"
-                app:line_height="0" />
+                <ListView
+                    android:id="@+id/lv_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:scrollbars="none">
 
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/security_change_pay_password"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/security_change_pay_password"
-                app:line_height="0" />
+                </ListView>
 
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/security_google"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/security_google"
-                app:line_height="0" />
-
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/security_phone"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/security_phone"
-                app:line_height="0" />
-
-            <com.alsc.utils.view.ItemGroup
-                android:id="@+id/security_email"
-                style="@style/ItemGroupStyle"
-                app:drawable_right="@mipmap/icon_arrow"
-                app:group_title="@string/security_email"
-                app:line_height="0" />
-
-        </LinearLayout>
+            </in.srain.cube.views.loadmore.LoadMoreListViewContainer>
 
 
+            <LinearLayout
+                android:id="@+id/ll_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/DIMEN_24PX"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_76PX"
+                    android:layout_height="@dimen/DIMEN_76PX"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_warning" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10PX"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="@string/notice_no_msg" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
 
 
     </LinearLayout>

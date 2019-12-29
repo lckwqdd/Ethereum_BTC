@@ -14,6 +14,11 @@ public interface ConstantUrl {
     String HEAD_NAME = "TD-Agent";
     String HEAD_VALUE = "en_US@currency=USD,device=ios,ad421e72d15c0c3fa230c55cd728d7fd";
 
+
+    //邀请地址
+    String INVITE_URL = "http://www.alsc1319.vip/h5/#/?tuijianma=10017&lan=zh";
+
+
     //注册
     String REGISTER_URL = "api/register";
     //登录
@@ -29,22 +34,6 @@ public interface ConstantUrl {
     //文章详情
     String NOTICE_DETAIL_URL = "api/article";
 
-    //资产相关信息
-    String CAPITAL_INFO_URL = "api/waller_info";
-    //参与合约
-    String CREAT_CONTRACT_URL = "api/create_heyue";
-    //信誉明细
-    String REPUTATION_INFO_URL = "api/xingyu_info";
-    //奖池明细
-    String JACKPOT_INFO_URL = "api/jackpot";
-    //共享明细
-    String SHARED_INFO_URL = "api/team_log";
-    //获取用户直推用户列表
-    String RECOMMEND_INFO_URL = "api/recommend";
-    //转账/兑换记录
-    String TRANSFER_RECORD_URL = "api/transfer_list";
-    //收益总额
-    String INCOME_TOTAL_URL = "api/log";
 
     //手机区号列表
     String PHONE_CODE_URL = "api/phone_codes";
@@ -67,8 +56,32 @@ public interface ConstantUrl {
     //验证支付密码
     String CHECK_PAY_URL = "api/check_pay";
     //参与贡献
-    String CREATE_HEYUE_URL = "api/create_heyue";
-    //注册地址
+    String DEVOTE_CREATE_URL = "api/create_heyue";
+    //转账
+    String DEVOTE_TRANSFER_URL = "api/transfer";
+    //兑换
+    String DEVOTE_EXCHANGE_URL = "api/turn";
+    //超级节点
+    String DEVOTE_SUPER_URL = "api/super";
+    //获取实时价格
+    String DEVOTE_ALSC_PRICE_URL = "api/alsc_price";
+    //信誉明细
+    String REPUTATION_INFO_URL = "api/xingyu_info";
+    //奖池明细
+    String JACKPOT_INFO_URL = "api/jackpot";
+    //共享明细
+    String SHARED_INFO_URL = "api/team_log";
+    //转账/兑换记录
+    String TRANSFER_RECORD_URL = "api/transfer_list";
+    //收益总额
+    String INCOME_TOTAL_URL = "api/log";
+    //资产
+    String CAPITAL_INFO_URL = "api/waller_info";
+
+    //获取用户直推用户列表
+    String RECOMMEND_INFO_URL = "api/recommend";
+	
+	    //注册地址
     String REGISTER_ADDRESS_URL = "api/cold_wallet";
     //上传交易
     String UPLOAD_TRANSTION_URL = "api/create_heyue";

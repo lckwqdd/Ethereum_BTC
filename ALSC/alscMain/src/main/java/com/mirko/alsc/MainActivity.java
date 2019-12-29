@@ -131,7 +131,7 @@ public class MainActivity extends AlscBaseActivity {
         tvLevel =  findViewById(R.id.tv_level);
         imagLogo =  findViewById(R.id.async_image_head);
 
-        drawerLayout.openDrawer(Gravity.LEFT);
+//        drawerLayout.openDrawer(Gravity.LEFT);
     }
 
     @Override

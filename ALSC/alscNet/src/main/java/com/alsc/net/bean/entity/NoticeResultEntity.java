@@ -1,6 +1,6 @@
 package com.alsc.net.bean.entity;
 
-import com.alsc.net.bean.NoticePageResult;
+import com.alsc.net.bean.PageResult;
 import com.alsc.net.bean.NoticeResult;
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.util.List;
 public class NoticeResultEntity implements Serializable {
 
     private List<NoticeResult> list;
-    private NoticePageResult page;
+    private PageResult page;
 
     public List<NoticeResult> getList() {
         return list;
@@ -23,11 +23,11 @@ public class NoticeResultEntity implements Serializable {
         this.list = list;
     }
 
-    public NoticePageResult getPage() {
+    public PageResult getPage() {
         return page;
     }
 
-    public void setPage(NoticePageResult page) {
+    public void setPage(PageResult page) {
         this.page = page;
     }
 }

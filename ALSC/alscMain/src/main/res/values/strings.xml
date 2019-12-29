@@ -298,4 +298,18 @@
     <string name="name_not_null">姓名不能为空</string>
     <string name="address_not_null">地址不能为空</string>
 
+    <!--    类型详情-->
+    <string name="detail_type">类型</string>
+    <string name="detail_status">状态</string>
+    <string name="detail_time">时间</string>
+    <string name="detail_address">地址</string>
+    <string name="detail_txld">Txld</string>
+    <string name="detail_charge_money">充币</string>
+    <string name="detail_charge_money_success">充币成功</string>
+    <string name="detail_at_time">21:50:08 2020/8/27</string>
+    <string name="detail_address_detail">eadfdfdggffdfdfdfgdffd</string>
+    <string name="detail_txld_detail">eadfdfdggffdfdfdfgdffd</string>
+
+
+
 </resources>

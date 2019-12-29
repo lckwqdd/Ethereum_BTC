@@ -7,17 +7,18 @@ import android.view.View;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
-import com.mirko.alsc.databinding.ActivityHotWalletAlscCollectBinding;
+import com.mirko.alsc.databinding.ActivitySymbolDetailBinding;
 
 /**
- * alsc收款等界面
+ * 充币成功界面
  */
-public class AlscCollectActivity extends AlscBaseActivity implements View.OnClickListener {
-    private ActivityHotWalletAlscCollectBinding binding;
+public class AlscSymbolDetailActivity extends AlscBaseActivity implements View.OnClickListener {
+    private ActivitySymbolDetailBinding binding;
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_hot_wallet_alsc_collect);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_symbol_detail);
+        binding.commonHeader.tvHeaderMiddle.setVisibility(View.GONE);
         binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
     }
 

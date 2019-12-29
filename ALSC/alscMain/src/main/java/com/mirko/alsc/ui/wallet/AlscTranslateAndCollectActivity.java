@@ -1,8 +1,7 @@
-package com.mirko.alsc.ui.capital;
+package com.mirko.alsc.ui.wallet;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,14 +11,15 @@ import com.alsc.utils.base.AlscBaseActivity;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
-import com.mirko.alsc.adapter.CurrencyAdapter;
+import com.mirko.alsc.adapter.AlasTransferAndCollectAdapter;
 import com.mirko.alsc.adapter.CurrencyDetailAdapter;
 import com.mirko.alsc.adapter.listener.RecycleViewItemClickListener;
 import com.mirko.alsc.bean.CurrencyData;
-import com.mirko.alsc.databinding.ActivityAboutBinding;
+import com.mirko.alsc.databinding.ActivityAlscTransferAndCollectBinding;
 import com.mirko.alsc.databinding.ActivityCurrencyDetailBinding;
 import com.mirko.alsc.ui.entity.TabWalletEntity;
 import com.mirko.androidutil.utils.android.LogUtils;
+import com.mirko.androidutil.utils.android.ToastUtils;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -27,16 +27,16 @@ import java.util.List;
 
 
 /**
- * Created by Mirko on 2019/12/23.
+ * Created by WuQuan on 2019/12/29.
  * 币种详细页面
  */
-public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnClickListener {
+public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements View.OnClickListener {
 
 
     private static final String TAG = "AlscTranslateAndCollectActivity";
-    ActivityCurrencyDetailBinding binding;
+    ActivityAlscTransferAndCollectBinding binding;
     private List<CurrencyData> currencyDatas;
-    private CurrencyDetailAdapter adapter;
+    private AlasTransferAndCollectAdapter adapter;
     private int mTitleIds[] = new int[]{
             R.string.capital_transfer,
             R.string.capital_receiveables,
@@ -46,13 +46,17 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_currency_detail);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_alsc_transfer_and_collect);
+        binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
+        binding.llTransfer.setOnClickListener(this);
+        binding.llReceivables.setOnClickListener(this);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        binding.titleBar.setOnLeftClickListener(this);
+        binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
+        binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.total_assets_alsc));
 
         ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
         //设置tab的标题、选中图标、未选中图标
@@ -67,22 +71,24 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
             currencyData.setName("BTC");
             currencyDatas.add(currencyData);
         }
-        adapter = new CurrencyDetailAdapter(CurrencyDetailActivity.this, currencyDatas);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(CurrencyDetailActivity.this);
+        adapter = new AlasTransferAndCollectAdapter(AlscTranslateAndCollectActivity.this, currencyDatas);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(AlscTranslateAndCollectActivity.this);
         binding.rvCurrencyDetail.setLayoutManager(layoutManager);
         binding.rvCurrencyDetail.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        adapter.setRecycleViewItemClickListener(new RecycleViewItemClickListener() {
-            @Override
-            public void OnItemOnclick(View view, int position) {
-                startActivity(new Intent(CurrencyDetailActivity.this,CurrencyDetailActivity.class));
+        adapter.setRecycleViewItemClickListener(((view, position) -> {
+            ToastUtils.showShort("position:" + position);
+            switch (position) {
+                case 0:
+                    goTo(AlscSymbolDetailActivity.class);
+                    break;
             }
-        });
+        }));
         binding.ctCapitalTitle.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                LogUtils.d(TAG,"当前选中："+position);
-                if(position == 0 ){
+                LogUtils.d(TAG, "当前选中：" + position);
+                if (position == 0) {
                     currencyDatas.clear();
                     for (int i = 0; i < 4; i++) {
                         CurrencyData currencyData = new CurrencyData();
@@ -90,7 +96,7 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
                         currencyDatas.add(currencyData);
                     }
                     adapter.notifyDataSetChanged();
-                }else{
+                } else {
                     currencyDatas.clear();
                     for (int i = 0; i < 4; i++) {
                         CurrencyData currencyData = new CurrencyData();
@@ -110,7 +116,7 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
 
     @Override
     protected void setStatusBar() {
-        StatusBarUtil.setColorNoTranslucent(CurrencyDetailActivity.this, getResources().getColor(R.color.color_slide_bg));
+        StatusBarUtil.setColorNoTranslucent(AlscTranslateAndCollectActivity.this, getResources().getColor(R.color.color_slide_bg));
     }
 
     @Override
@@ -127,7 +133,16 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_title_left:
-                LogUtils.d(TAG,"返回点击");
+                LogUtils.d(TAG, "返回点击");
+                onBackPressed();
+                break;
+            case R.id.ll_transfer:
+                goTo(AlscTransferActivity.class);
+                break;
+            case R.id.ll_receivables:
+                goTo(AlscCollectActivity.class);
+                break;
+            case R.id.iv_header_left:
                 onBackPressed();
                 break;
         }

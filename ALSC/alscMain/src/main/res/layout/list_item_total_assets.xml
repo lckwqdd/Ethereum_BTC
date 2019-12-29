@@ -5,9 +5,9 @@
 
     <ImageView
         android:id="@+id/iv_currenty"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="20dp"
         android:layout_centerVertical="true"
         android:src="@mipmap/icon_currency" />
 
@@ -17,16 +17,16 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/item_currenty"
+        android:layout_toRightOf="@+id/iv_currenty"
         android:text="BTC"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_24" />
+        android:textSize="@dimen/text_size_18" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ivexpand"
+        android:id="@+id/iv_expand"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_alignParentRight="true"

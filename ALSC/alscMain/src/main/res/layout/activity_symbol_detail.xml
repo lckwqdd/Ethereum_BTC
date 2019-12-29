@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--        币种详情-->
+
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_hot_wallet_header" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="+21248.00ALSC"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/DetailAlscLeftTextStyle"
+                android:text="@string/detail_type" />
+
+            <TextView
+                style="@style/DetailAlscRightTextStyle"
+                android:text="@string/detail_charge_money" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/DetailAlscLeftTextStyle"
+                android:text="@string/detail_status" />
+
+            <TextView
+                style="@style/DetailAlscRightTextStyle"
+                android:text="@string/detail_charge_money_success" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/DetailAlscLeftTextStyle"
+                android:text="@string/detail_time" />
+
+            <TextView
+                style="@style/DetailAlscRightTextStyle"
+                android:text="@string/detail_at_time" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/DetailAlscLeftTextStyle"
+                android:text="@string/detail_address" />
+
+            <TextView
+                style="@style/DetailAlscRightTextStyle"
+                android:text="@string/detail_address_detail" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/DetailAlscLeftTextStyle"
+                android:text="@string/detail_txld" />
+
+            <TextView
+                style="@style/DetailAlscRightTextStyle"
+                android:text="@string/detail_address_detail" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

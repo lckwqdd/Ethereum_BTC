@@ -39,11 +39,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.wallet.AlscTranslateAndCollectActivity">
+        </activity>
         <activity android:name=".ui.slide.SecuritySettingActivity" />
+        <activity android:name=".ui.wallet.AlscSymbolDetailActivity" />
         <activity android:name=".ui.wallet.TotalAssetsActivity" />
         <activity android:name=".ui.wallet.AddContactsActivity" />
         <activity android:name=".ui.wallet.AddWalletActivity" />
-        <activity android:name=".ui.wallet.AlscActivity" />
         <activity android:name=".ui.wallet.AlscTransferActivity" />
         <activity android:name=".ui.wallet.AlscCollectActivity" />
         <activity android:name=".ui.wallet.ScanQrCodeActivity" />

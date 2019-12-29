@@ -11,7 +11,9 @@
         android:orientation="vertical">
 
         <!--    ALSC转账-->
-        <include layout="@layout/activity_hot_wallet_header" />
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_hot_wallet_header" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,6 +38,7 @@
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/account"
             style="@style/AlscTranferEditTextStyle"
             android:text="1" />
 
@@ -60,21 +63,23 @@
 
         <TextView
             style="@style/AlscTranferLeftTextStyle"
-            android:layout_marginTop="40dp"
-            android:text="@string/wh_alsc_transfer_menoy" />
+            android:layout_marginTop="20dp"
+            android:text="@string/wh_save_address" />
 
 
         <EditText
+            android:id="@+id/receive_address"
             style="@style/AlscTranferEditTextStyle"
             android:hint="@string/wh_input_alsc_address" />
 
         <TextView
             style="@style/AlscTranferLeftTextStyle"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="@string/wh_send_address" />
 
 
         <EditText
+            android:id="@+id/send_address"
             style="@style/AlscTranferEditTextStyle"
             android:hint="211fdfdfd2f1d2f1df1f2d1fd21f2df1" />
 
@@ -82,7 +87,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="20dp">
 
             <TextView
                 style="@style/AlscTranferLeftTextStyle"
@@ -126,14 +131,14 @@
             style="@style/AlscTranferLeftTextStyle"
             android:layout_marginTop="10dp"
             android:text="@string/wh_advice_conversion_alsc"
-            android:textSize="@dimen/text_size_14" />
+            android:textSize="@dimen/text_size_12" />
 
         <Button
             android:id="@+id/btn_next"
             style="@style/WalletCodeBtnStyle"
             android:layout_width="360dp"
             android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_blue_radius"
             android:text="@string/wh_ok" />
 

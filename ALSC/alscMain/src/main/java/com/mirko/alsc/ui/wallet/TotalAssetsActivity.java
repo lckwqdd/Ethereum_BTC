@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+
 import com.alsc.net.api.AddressRegisterApi;
 import com.alsc.net.bean.entity.AddressRegisterResultEntity;
 import com.alsc.net.bean.request.AddressRegisterRequest;
@@ -22,6 +23,7 @@ import com.mirko.alsc.adapter.TokensAdapter;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
 import com.mirko.alsc.entity.Level0Item;
 import com.mirko.alsc.entity.Level1Item;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -60,10 +62,18 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
 
     private void initRecycleDatas() {
         ArrayList<MultiItemEntity> list = generateData();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.totalAssetsRv.setLayoutManager(layoutManager);
         adapter = new ExpandableItemAdapter(list);
-        binding.totalAssetsRv.setAdapter(recyclerAdapter);
-        adapter.setSubOnClickListener(((v, position) -> {
-            ToastUtils.showToast("点击的position:"+position);
+        binding.totalAssetsRv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        adapter.setOnItemClickListener(((adapter1, view, position) -> {
+            ToastUtils.showToast("父亲:" + position);
+            switch (position) {
+                case 1:
+                    goTo(AlscTranslateAndCollectActivity.class);
+                    break;
+            }
         }));
     }
 
@@ -94,30 +104,30 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         currentEthWallet = ethWallet;
     }
 
-    private   ArrayList<MultiItemEntity>  generateData(){
+    private ArrayList<MultiItemEntity> generateData() {
         int lv0Count = 4;
         int lv1Count = 2;
-        String[] nameLists={"ALSC","ETH","BTC","USDT"};
-        String[] balanceLists={"0","0","0","0"};
-        String[] valueLists={"=¥1772.00","=¥0.00","=¥0.00","=¥0.00"};
-        int[]    imgsLists={R.drawable.arrow,R.drawable.arrow,R.drawable.arrow,R.drawable.arrow};
+        String[] nameLists = {"ALSC", "ETH", "BTC", "USDT"};
+        String[] balanceLists = {"0", "0", "0", "0"};
+        String[] valueLists = {"=¥1772.00", "=¥0.00", "=¥0.00", "=¥0.00"};
+        int[] imgsLists = {R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency};
 
         //子类
-        String[] subNameLists={"已有的ALSC地址","创建的AlSC地址"};
-        String[] subAddressLists={"0x164f65d4fd","0x432423"};
-        String[] subBalanceLists={"0","0"};
-        String[] subValueLists={"=¥1772.00","=¥0.00"};
+        String[] subNameLists = {"已有的ALSC地址", "创建的AlSC地址"};
+        String[] subAddressLists = {"0x164f65d4fd", "0x432423"};
+        String[] subBalanceLists = {"0", "0"};
+        String[] subValueLists = {"=¥1772.00", "=¥0.00"};
 
         ArrayList<MultiItemEntity> res = new ArrayList<>();
         for (int i = 0; i < lv0Count; i++) {
-            Level0Item lv0 = new Level0Item(imgsLists[i],nameLists[i],balanceLists[i],valueLists[i]);
+            Level0Item lv0 = new Level0Item(imgsLists[i], nameLists[i], balanceLists[i], valueLists[i]);
             for (int j = 0; j < lv1Count; j++) {
-                Level1Item lv1 = new Level1Item(subNameLists[j],subAddressLists[j],subBalanceLists[j],subValueLists[j]);
+                Level1Item lv1 = new Level1Item(subNameLists[j], subAddressLists[j], subBalanceLists[j], subValueLists[j]);
                 lv0.addSubItem(lv1);
             }
             res.add(lv0);
         }
-        return  res;
+        return res;
     }
 
 

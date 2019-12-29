@@ -12,22 +12,10 @@
         android:background="@color/color_theme_bg"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_slide_bg"
-            android:orientation="vertical">
-
-            <com.alsc.utils.view.TitleBar
-                android:id="@+id/title_bar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px180"
-                app:showLeftDrawable="true"
-                app:showTextLeft="true"
-                app:tbTitleLeft="@string/menu_item_about" />
-
-        </LinearLayout>
-
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_hot_wallet_header"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

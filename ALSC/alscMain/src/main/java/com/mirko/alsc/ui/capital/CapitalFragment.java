@@ -9,13 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alsc.net.api.WCapitalInfoApi;
+import com.alsc.net.api.WTransferRecordApi;
+import com.alsc.net.bean.entity.CapitalResultEntity;
+import com.alsc.net.bean.entity.TransferRecordeEntity;
+import com.alsc.net.retrofit.http.HttpManager;
+import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.BaseFragment;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.CurrencyAdapter;
 import com.mirko.alsc.adapter.listener.RecycleViewItemClickListener;
 import com.mirko.alsc.bean.CurrencyData;
 import com.mirko.alsc.databinding.FragmentCapitalBinding;
+import com.mirko.alsc.ui.wallet.TotalAssetsActivity;
+import com.mirko.alsc.utils.ComUtils;
+import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +69,6 @@ public class CapitalFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        int height = StatusBarUtil.getStatusBarHeight(getActivity()) + UiUtils.dip2px(56);
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height);
-//        binding.flTitle.setPadding(0,StatusBarUtil.getStatusBarHeight(getActivity()),0,0);
-//        binding.flTitle.setLayoutParams(layoutParams);
     }
 
     @Override
@@ -98,6 +104,7 @@ public class CapitalFragment extends BaseFragment {
             @Override
             public void OnItemOnclick(View view, int position) {
                 startActivity(new Intent(mContext,CurrencyDetailActivity.class));
+//                startActivity(new Intent(mContext, TotalAssetsActivity.class));
             }
         });
 
@@ -109,7 +116,41 @@ public class CapitalFragment extends BaseFragment {
 
     @Override
     public void loadData() {
+        getCapitalInfo();
+        UrlRequstUtils.getAddress(getActivity(),"1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL");
+    }
 
+    /**
+     * 资产信息
+     */
+    private void getCapitalInfo() {
+
+        HttpManager.getInstance().doHttpDeal(new WCapitalInfoApi((new HttpOnNextListener<CapitalResultEntity>() {
+            @Override
+            public void onNext(CapitalResultEntity result) {
+                LogUtils.d(TAG, "获取成功");
+                binding.tvIncomeCount.setText(result.getTotal_income()+"");
+                binding.tvCapitalCount.setText(result.getTotal_alsc()+"");
+                binding.tvExchangeCount.setText(result.getTotal_ach()+"");
+            }
+
+            @Override
+            public void onCacheNext(String string) {
+                super.onCacheNext(string);
+            }
+
+            @Override
+            public void onCancel() {
+                super.onCancel();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+
+        }), (RxAppCompatActivity) getActivity(), ComUtils.getTokenCache()));
     }
 
 

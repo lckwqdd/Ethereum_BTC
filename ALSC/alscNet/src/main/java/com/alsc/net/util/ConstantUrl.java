@@ -16,7 +16,7 @@ public interface ConstantUrl {
 
 
     //邀请地址
-    String INVITE_URL = "http://www.alsc1319.vip/h5/#/?tuijianma=10017&lan=zh";
+    String INVITE_URL = "http://www.alsc1319.vip/h5/#/?tuijianma={1}&lan={2}";
 
 
     //注册

@@ -23,13 +23,16 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Address = new Property(1, String.class, "address", false, "ADDRESS");
-        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
-        public final static Property Password = new Property(3, String.class, "password", false, "PASSWORD");
+        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Password = new Property(2, String.class, "password", false, "PASSWORD");
+        public final static Property Address = new Property(3, String.class, "address", false, "ADDRESS");
         public final static Property KeystorePath = new Property(4, String.class, "keystorePath", false, "KEYSTORE_PATH");
         public final static Property Mnemonic = new Property(5, String.class, "mnemonic", false, "MNEMONIC");
-        public final static Property IsCurrent = new Property(6, boolean.class, "isCurrent", false, "IS_CURRENT");
-        public final static Property IsBackup = new Property(7, boolean.class, "isBackup", false, "IS_BACKUP");
+        public final static Property BtcPrivateKey = new Property(6, String.class, "btcPrivateKey", false, "BTC_PRIVATE_KEY");
+        public final static Property BtcAddress = new Property(7, String.class, "btcAddress", false, "BTC_ADDRESS");
+        public final static Property BtcFilePath = new Property(8, String.class, "btcFilePath", false, "BTC_FILE_PATH");
+        public final static Property IsCurrent = new Property(9, boolean.class, "isCurrent", false, "IS_CURRENT");
+        public final static Property IsBackup = new Property(10, boolean.class, "isBackup", false, "IS_BACKUP");
     }
 
 
@@ -46,13 +49,16 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"ETHWALLET\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"ADDRESS\" TEXT," + // 1: address
-                "\"NAME\" TEXT," + // 2: name
-                "\"PASSWORD\" TEXT," + // 3: password
+                "\"NAME\" TEXT," + // 1: name
+                "\"PASSWORD\" TEXT," + // 2: password
+                "\"ADDRESS\" TEXT," + // 3: address
                 "\"KEYSTORE_PATH\" TEXT," + // 4: keystorePath
                 "\"MNEMONIC\" TEXT," + // 5: mnemonic
-                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 6: isCurrent
-                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 7: isBackup
+                "\"BTC_PRIVATE_KEY\" TEXT," + // 6: btcPrivateKey
+                "\"BTC_ADDRESS\" TEXT," + // 7: btcAddress
+                "\"BTC_FILE_PATH\" TEXT," + // 8: btcFilePath
+                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 9: isCurrent
+                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 10: isBackup
     }
 
     /** Drops the underlying database table. */
@@ -70,19 +76,19 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
             stmt.bindLong(1, id);
         }
  
-        String address = entity.getAddress();
-        if (address != null) {
-            stmt.bindString(2, address);
-        }
- 
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(3, name);
+            stmt.bindString(2, name);
         }
  
         String password = entity.getPassword();
         if (password != null) {
-            stmt.bindString(4, password);
+            stmt.bindString(3, password);
+        }
+ 
+        String address = entity.getAddress();
+        if (address != null) {
+            stmt.bindString(4, address);
         }
  
         String keystorePath = entity.getKeystorePath();
@@ -94,8 +100,23 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         if (mnemonic != null) {
             stmt.bindString(6, mnemonic);
         }
-        stmt.bindLong(7, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(8, entity.getIsBackup() ? 1L: 0L);
+ 
+        String btcPrivateKey = entity.getBtcPrivateKey();
+        if (btcPrivateKey != null) {
+            stmt.bindString(7, btcPrivateKey);
+        }
+ 
+        String btcAddress = entity.getBtcAddress();
+        if (btcAddress != null) {
+            stmt.bindString(8, btcAddress);
+        }
+ 
+        String btcFilePath = entity.getBtcFilePath();
+        if (btcFilePath != null) {
+            stmt.bindString(9, btcFilePath);
+        }
+        stmt.bindLong(10, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(11, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -107,19 +128,19 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
             stmt.bindLong(1, id);
         }
  
-        String address = entity.getAddress();
-        if (address != null) {
-            stmt.bindString(2, address);
-        }
- 
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(3, name);
+            stmt.bindString(2, name);
         }
  
         String password = entity.getPassword();
         if (password != null) {
-            stmt.bindString(4, password);
+            stmt.bindString(3, password);
+        }
+ 
+        String address = entity.getAddress();
+        if (address != null) {
+            stmt.bindString(4, address);
         }
  
         String keystorePath = entity.getKeystorePath();
@@ -131,8 +152,23 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         if (mnemonic != null) {
             stmt.bindString(6, mnemonic);
         }
-        stmt.bindLong(7, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(8, entity.getIsBackup() ? 1L: 0L);
+ 
+        String btcPrivateKey = entity.getBtcPrivateKey();
+        if (btcPrivateKey != null) {
+            stmt.bindString(7, btcPrivateKey);
+        }
+ 
+        String btcAddress = entity.getBtcAddress();
+        if (btcAddress != null) {
+            stmt.bindString(8, btcAddress);
+        }
+ 
+        String btcFilePath = entity.getBtcFilePath();
+        if (btcFilePath != null) {
+            stmt.bindString(9, btcFilePath);
+        }
+        stmt.bindLong(10, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(11, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -144,13 +180,16 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
     public ETHWallet readEntity(Cursor cursor, int offset) {
         ETHWallet entity = new ETHWallet( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // address
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // password
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // password
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // address
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // keystorePath
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // mnemonic
-            cursor.getShort(offset + 6) != 0, // isCurrent
-            cursor.getShort(offset + 7) != 0 // isBackup
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // btcPrivateKey
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // btcAddress
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // btcFilePath
+            cursor.getShort(offset + 9) != 0, // isCurrent
+            cursor.getShort(offset + 10) != 0 // isBackup
         );
         return entity;
     }
@@ -158,13 +197,16 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
     @Override
     public void readEntity(Cursor cursor, ETHWallet entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setAddress(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setPassword(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setPassword(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setAddress(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setKeystorePath(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setMnemonic(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setIsCurrent(cursor.getShort(offset + 6) != 0);
-        entity.setIsBackup(cursor.getShort(offset + 7) != 0);
+        entity.setBtcPrivateKey(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setBtcAddress(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setBtcFilePath(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setIsCurrent(cursor.getShort(offset + 9) != 0);
+        entity.setIsBackup(cursor.getShort(offset + 10) != 0);
      }
     
     @Override

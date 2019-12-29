@@ -54,6 +54,7 @@ public class ScanQrCodeActivity extends AlscBaseActivity implements View.OnClick
 
     @Override
     public void loadData() {
+        mZXingView.setDelegate(this);
     }
 
 

@@ -1,5 +1,6 @@
 package com.alsc.net.cache;
 
+import com.alsc.net.bean.CapitalData;
 import com.alsc.net.bean.UserInfoResult;
 import com.alsc.net.db.bean.UserInfoBean;
 import com.mirko.androidutil.utils.android.LogUtils;
@@ -48,6 +49,7 @@ public class CacheManager<T> {
     public static CacheManager<Long> ExpiresTime = new CacheManager<Long>(CacheType.ObjectStream, "ExpiresTime");
     public static CacheManager<String> PicSid = new CacheManager<String>(CacheType.ObjectStream, "PicSid");
     public static CacheManager<UserInfoResult> UserInfoResult = new CacheManager<UserInfoResult>(CacheType.ObjectStream, "UserInfoResult");
+    public static CacheManager<CapitalData> CapitalData = new CacheManager<com.alsc.net.bean.CapitalData>(CacheType.ObjectStream, "CapitalData");
 
 
 

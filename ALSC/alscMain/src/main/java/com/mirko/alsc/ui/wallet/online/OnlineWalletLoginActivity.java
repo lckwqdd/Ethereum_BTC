@@ -112,7 +112,7 @@ public class OnlineWalletLoginActivity extends AlscBaseActivity implements View.
                     long expiresTime = DateUtils.dateToUnixTimestamp(result.getExpires_time(),"yyyy-MM-dd HH:mm:ss");
                     CacheManager.ExpiresTime.set(expiresTime);
                     startActivity(new Intent(OnlineWalletLoginActivity.this, MainActivity.class));
-                    OnlineWalletLoginActivity.this.finish();
+                    tack.popUntilActivity(MainActivity.class);
                 }
             }
 

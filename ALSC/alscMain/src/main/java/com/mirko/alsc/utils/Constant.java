@@ -33,6 +33,9 @@ public interface Constant {
     int TYPE_PHONE = 1;
     int TYPE_EMAIL = 2;
 
+    int NOTICE_TYPE_SYSTEM = 1;
+    int NOTICE_TYPE_ARTICLE = 2;
+
 
 
 }

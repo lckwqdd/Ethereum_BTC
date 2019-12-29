@@ -2,14 +2,18 @@ package com.alsc.wallet.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.net.db.helper.ETHWalletHelper;
+import com.blankj.utilcode.util.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.bitcoinj.core.Address;
 import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bitcoinj.crypto.HDKeyDerivation;
+import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.wallet.DeterministicSeed;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
@@ -144,6 +148,33 @@ public class ETHWalletUtils {
         if (ethWallet != null) {
             ethWallet.setMnemonic(convertMnemonicList(mnemonic));
         }
+
+        //生成比特币钱包相关
+        TestNet3Params parameters = TestNet3Params.get();
+        org.bitcoinj.wallet.Wallet wallet = new org.bitcoinj.wallet.Wallet(parameters);
+        DeterministicKey deterministicKey = wallet.currentReceiveKey();
+        String btcPrivateKey = deterministicKey.getPrivateKeyAsWiF(parameters);
+        LogUtils.d("BTC私钥：" + btcPrivateKey);
+
+        ethWallet.setBtcPrivateKey(btcPrivateKey);
+
+        //目录不存在则创建目录，创建不了则报错
+        File fireBtc = new File(AppFilePath.Wallet_DIR, "btcStore");
+        if (!createParentDir(fireBtc)) {
+            return null;
+        }
+        try {
+            wallet.saveToFile(fireBtc);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ethWallet.setBtcFilePath(fireBtc.getAbsolutePath());
+        Address currentReceiveAddress = wallet.currentReceiveAddress();
+        String addressString = currentReceiveAddress.toBase58();
+        ethWallet.setBtcAddress(addressString);
+        LogUtils.d( "BTC地址：" + addressString);
+
         return ethWallet;
     }
 

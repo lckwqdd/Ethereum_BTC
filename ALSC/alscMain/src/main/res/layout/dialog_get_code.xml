@@ -91,7 +91,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/DIMEN_3PX"
             android:background="@color/transparent"
-            android:onClick="@{clickListener}"
             android:textColor="@color/color_text_white"
             android:textSize="@dimen/text_size_12"
             app:buttonText="@string/sc_get_code"
@@ -104,7 +103,6 @@
         android:id="@+id/btn_next"
         style="@style/WalletHoteBtnStyle"
         android:layout_marginTop="30dp"
-        android:onClick="@{clickListener}"
         android:text="@string/btn_sure" />
 
 </LinearLayout>

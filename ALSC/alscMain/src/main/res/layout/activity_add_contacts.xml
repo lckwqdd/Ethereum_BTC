@@ -11,7 +11,9 @@
         android:orientation="vertical">
 
         <!--    添加联系人-->
-        <include layout="@layout/activity_hot_wallet_header" />
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_hot_wallet_header" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,6 +26,7 @@
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/name"
             style="@style/AlscTranferEditTextStyle"
             android:text="@string/add_contacts_somebody" />
 
@@ -35,6 +38,7 @@
 
 
         <EditText
+            android:id="@+id/note"
             style="@style/AlscTranferEditTextStyle"
             android:hint="@string/add_contacts_note_some" />
 

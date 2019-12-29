@@ -10,177 +10,55 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tl="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_slide_bg"
         android:orientation="vertical">
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <com.mirko.alsc.views.NoScrollViewPager
+                android:id="@+id/view_pager_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_above="@+id/tl_title">
 
+            </com.mirko.alsc.views.NoScrollViewPager>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="50dp"
-                    android:text="相关数据"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_above="@+id/tl_title"
+                android:background="@color/divider_light" />
 
-                <TextView
-                    android:id="@+id/tv_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
+            <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/tl_title"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:background="#ffffff"
+                android:visibility="visible"
+                tl:tl_iconHeight="29dp"
+                tl:tl_iconWidth="29dp"
+                tl:tl_indicator_color="@color/color_indicator_color"
+                tl:tl_indicator_gravity="TOP"
+                tl:tl_indicator_height="0dp"
+                tl:tl_textSelectColor="@color/color_text_black"
+                tl:tl_textUnselectColor="@color/color_text_black"
+                tl:tl_textsize="@dimen/text_size_11" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="参与贡献"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
+            <FrameLayout
+                android:id="@+id/fl_floating"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/viewfinder_mask"
+                android:visibility="gone">
 
-                <EditText
-                    android:id="@+id/et_count"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="请输入数量"
-                    android:inputType="number"
-                    android:textColorHint="@color/black" />
-
-
-                <TextView
-                    android:id="@+id/tv_alsc_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
-
-                <EditText
-                    android:id="@+id/et_pay_pwd"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/wh_sp_pay_pwd_hint"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black" />
-
-                <Button
-                    android:id="@+id/btn_devote_creat"
-                    style="@style/WalletHoteBtnStyle"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="@{clickListener}"
-                    android:text="验证密码后参与贡献" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="资产兑换"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
-
-                <TextView
-                    android:id="@+id/tv_real_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
-
-
-                <EditText
-                    android:id="@+id/et_capital_count"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="请输入要兑换的USTD数量"
-                    android:inputType="number"
-                    android:textColorHint="@color/black" />
-
-                <EditText
-                    android:id="@+id/et_alsc"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="ALSD数量"
-                    android:inputType="number"
-                    android:enabled="false"
-                    android:visibility="gone"
-                    android:textColorHint="@color/black" />
-
-                <EditText
-                    android:id="@+id/et_pay_pwd2"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/wh_sp_pay_pwd_hint"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black" />
-
-                <Button
-                    android:id="@+id/btn_exchange"
-                    style="@style/WalletHoteBtnStyle"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="@{clickListener}"
-                    android:text="验证密码后兑换资产" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="超级节点"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
-
-
-                <TextView
-                    android:id="@+id/tv_real_price2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14" />
-
-
-                <EditText
-                    android:id="@+id/et_pay_pwd3"
-                    style="@style/WalletCodeEditStyle"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/wh_sp_pay_pwd_hint"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black" />
-
-                <Button
-                    android:id="@+id/btn_super"
-                    style="@style/WalletHoteBtnStyle"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="@{clickListener}"
-                    android:text="验证密码后参与超级节点" />
-
-            </LinearLayout>
-        </ScrollView>
+            </FrameLayout>
+        </RelativeLayout>
     </LinearLayout>
 </layout>

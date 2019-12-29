@@ -39,13 +39,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.wallet.AlscTranslateAndCollectActivity">
+        </activity>
         <activity android:name=".ui.slide.SecuritySettingActivity" />
+        <activity android:name=".ui.wallet.ETHSymbolDetailActivity" />
+        <activity android:name=".ui.wallet.BtcCollectActivity" />
+        <activity android:name=".ui.wallet.BtcTransferActivity" />
         <activity android:name=".ui.wallet.TotalAssetsActivity" />
         <activity android:name=".ui.wallet.AddContactsActivity" />
         <activity android:name=".ui.wallet.AddWalletActivity" />
-        <activity android:name=".ui.wallet.AlscActivity" />
-        <activity android:name=".ui.wallet.AlscTransferActivity" />
-        <activity android:name=".ui.wallet.AlscCollectActivity" />
+        <activity android:name=".ui.wallet.ETHTransferActivity" />
+        <activity android:name=".ui.wallet.ETHCollectActivity" />
         <activity android:name=".ui.wallet.ScanQrCodeActivity" />
         <activity android:name=".ui.slide.AboutActivity" />
         <activity android:name=".ui.slide.InviteFriendsActivity" />

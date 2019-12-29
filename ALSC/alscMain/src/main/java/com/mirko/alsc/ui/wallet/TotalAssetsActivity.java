@@ -67,8 +67,12 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         adapter = new ExpandableItemAdapter(list);
         binding.totalAssetsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        adapter.setSubOnClickListener(((v, position) -> {
-            ToastUtils.showToast("点击的position:" + position);
+        adapter.setOnItemClickListener(((adapter1, view, position) -> {
+            switch (position) {
+                case 1:
+                    goTo(AlscTranslateAndCollectActivity.class);
+                    break;
+            }
         }));
     }
 
@@ -105,7 +109,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         String[] nameLists = {"ALSC", "ETH", "BTC", "USDT"};
         String[] balanceLists = {"0", "0", "0", "0"};
         String[] valueLists = {"=¥1772.00", "=¥0.00", "=¥0.00", "=¥0.00"};
-        int[] imgsLists = {R.drawable.arrow, R.drawable.arrow, R.drawable.arrow, R.drawable.arrow};
+        int[] imgsLists = {R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency};
 
         //子类
         String[] subNameLists = {"已有的ALSC地址", "创建的AlSC地址"};
@@ -148,3 +152,4 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         LogUtils.d("取数据异常:" + throwable.toString());
     }
 }
+

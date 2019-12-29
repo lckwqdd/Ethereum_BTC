@@ -136,14 +136,13 @@ public class UrlRequstUtils {
     }
 
 
-    public static void getUnspent(Activity activity, String params) {
+    public static void getUtxo2(Activity activity, String address) {
 
-        String url = "https://blockchain.info/unspent?active=" + params;
+        String url = "https://blockchain.info/unspent?active=" + address;
         OkGo.<String>get(url)                            // 请求方式和请求url
                 .tag(activity)                   // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
                 .cacheMode(CacheMode.NO_CACHE)    // 缓存模式，详细请看缓存介绍
-                //  .cacheTime(3000)//缓存时间
                 .execute(new StringCallback() {
 
                     @Override
@@ -159,14 +158,13 @@ public class UrlRequstUtils {
     }
 
 
-    public static void getAddress(Activity activity, String params) {
+    public static void getUtxo1(Activity activity, String address) {
 
-        String url = "https://chain.api.btc.com/v3/address/" + params +"/unspent";
+        String url = "https://chain.api.btc.com/v3/address/" + address +"/unspent";
         OkGo.<String>get(url)                            // 请求方式和请求url
                 .tag(activity)                   // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
                 .cacheMode(CacheMode.NO_CACHE)    // 缓存模式，详细请看缓存介绍
-                //  .cacheTime(3000)//缓存时间
                 .execute(new StringCallback() {
 
                     @Override
@@ -187,14 +185,14 @@ public class UrlRequstUtils {
     }
 
 
-    public static void getTxDecode(Activity activity, String params) {
+    public static void btcBrocast(Activity activity, String hexString) {
 
         String url = " https://chain.api.btc.com/tools/tx-decode";
         OkGo.<String>post(url)                            // 请求方式和请求url
                 .tag(activity)                   // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
                 .cacheMode(CacheMode.NO_CACHE)    // 缓存模式，详细请看缓存介绍
-                .params("rawhex", params)
+                .params("rawhex", hexString)
                 //  .cacheTime(3000)//缓存时间
                 .execute(new StringCallback() {
 

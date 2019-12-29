@@ -44,7 +44,7 @@ import java.util.List;
 public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnClickListener {
 
 
-    private static final String TAG = "CurrencyDetailActivity";
+    private static final String TAG = "AlscTranslateAndCollectActivity";
     ActivityCurrencyDetailBinding binding;
     private List<CurrencyData> currencyDatas;
     private CurrencyDetailAdapter adapter;

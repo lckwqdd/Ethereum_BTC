@@ -7,17 +7,18 @@ import android.view.View;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
-import com.mirko.alsc.databinding.ActivityCurrencyDetailBinding;
+import com.mirko.alsc.databinding.ActivityHotWalletAlscCollectBinding;
 
 /**
- * ALSC转账和收款汇总界面
+ * 以太坊收款
  */
-public class AlscActivity extends AlscBaseActivity implements View.OnClickListener {
-    private ActivityCurrencyDetailBinding binding;
+public class ETHCollectActivity extends AlscBaseActivity implements View.OnClickListener {
+    private ActivityHotWalletAlscCollectBinding binding;
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_currency_detail);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_hot_wallet_alsc_collect);
+        binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +33,9 @@ public class AlscActivity extends AlscBaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_header_left:
+                onBackPressed();
+                break;
         }
     }
 }

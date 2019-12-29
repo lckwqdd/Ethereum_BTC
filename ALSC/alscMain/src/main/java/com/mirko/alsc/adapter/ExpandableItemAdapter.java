@@ -22,7 +22,6 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
     private static final String TAG = ExpandableItemAdapter.class.getSimpleName();
     public static final int TYPE_LEVEL_0 = 0;
     public static final int TYPE_LEVEL_1 = 1;
-    private onSubClickListener listener;
 
 
     public ExpandableItemAdapter(List<MultiItemEntity> data) {
@@ -41,8 +40,9 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 holder.setImageResource(R.id.iv_currenty, lv0.getSymbolPicture())
                         .setText(R.id.symbol, lv0.getSymbolNmae())
                         .setText(R.id.balance, lv0.getSymbolBalcance())
-                        .setText(R.id.tv_property_cny, lv0.getSymbolValue())
-                        .setImageResource(R.id.ivexpand, lv0.isExpanded() ? R.mipmap.arrow_b : R.mipmap.arrow_r);
+                        .setText(R.id.tv_property_cny, lv0.getSymbolValue());
+//                      .setImageResource(R.id.iv_expand,lv0.isExpanded()?R.mipmap.arrow_b:R.mipmap.arrow_r);
+//                      .setImageResource(R.id.iv_expand,R.mipmap.arrow_r);
                 holder.itemView.setOnClickListener((v -> {
                     int pos = holder.getAdapterPosition();
                     Log.d(TAG, "Level 0 item pos: " + pos);
@@ -59,21 +59,9 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                         .setText(R.id.tv_make_alsc_address, lv1.getAlscAddress())
                         .setText(R.id.balance, lv1.getAlscBalance())
                         .setText(R.id.tv_property_cny, lv1.getAlscValue());
-                holder.itemView.setOnClickListener((v -> {
-                    int pos = holder.getAdapterPosition();
-                    listener.click(v, pos);
-                }));
                 break;
             default:
                 break;
         }
-    }
-
-    public void setSubOnClickListener(onSubClickListener listener) {
-        this.listener = listener;
-    }
-
-    public interface onSubClickListener {
-        void click(View v, int position);
     }
 }

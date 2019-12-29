@@ -117,7 +117,7 @@ public class CapitalFragment extends BaseFragment {
     @Override
     public void loadData() {
         getCapitalInfo();
-        UrlRequstUtils.getAddress(getActivity(),"1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL");
+        UrlRequstUtils.getUtxo1(getActivity(),"1MUz4VMYui5qY1mxUiG8BQ1Luv6tqkvaiL");
     }
 
     /**

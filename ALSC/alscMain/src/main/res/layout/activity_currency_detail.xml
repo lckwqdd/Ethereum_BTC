@@ -117,7 +117,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_receivables"
+                    android:id="@+id/ll_receivables"
                     android:layout_width="126dp"
                     android:background="@color/yellow_deep"
                     android:orientation="horizontal"

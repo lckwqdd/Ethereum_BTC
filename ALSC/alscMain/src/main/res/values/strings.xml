@@ -248,6 +248,8 @@
 
     <!--    ALSC转账-->
     <string name="wh_alsc_transfer">ALSC转账</string>
+    <string name="wh_btc_transfer">BTC转账</string>
+    <string name="wh_btc_collect">BTC收款</string>
     <string name="wh_alsc_transfer_menoy">转账金额</string>
     <string name="wh_alsc_balance">ALSC余额</string>
     <string name="wh_save_address">接收地址</string>
@@ -298,5 +300,19 @@
     <string name="add_contacts_save_local">注:所有地址/账户存放本地,删除App前记得备份</string>
     <string name="name_not_null">姓名不能为空</string>
     <string name="address_not_null">地址不能为空</string>
+
+    <!--    类型详情-->
+    <string name="detail_type">类型</string>
+    <string name="detail_status">状态</string>
+    <string name="detail_time">时间</string>
+    <string name="detail_address">地址</string>
+    <string name="detail_txld">Txld</string>
+    <string name="detail_charge_money">充币</string>
+    <string name="detail_charge_money_success">充币成功</string>
+    <string name="detail_at_time">21:50:08 2020/8/27</string>
+    <string name="detail_address_detail">eadfdfdggffdfdfdfgdffd</string>
+    <string name="detail_txld_detail">eadfdfdggffdfdfdfgdffd</string>
+
+
 
 </resources>

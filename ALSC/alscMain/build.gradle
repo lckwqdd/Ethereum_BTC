@@ -207,6 +207,7 @@ dependencies {
 
     implementation(rootProject.ext.dependencies["universalimageloader"])
 
-    compile 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.github.ihsg:PatternLocker:2.5.4'
 }
 

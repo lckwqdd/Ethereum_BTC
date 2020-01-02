@@ -24,7 +24,7 @@
                 android:text="@string/wh_alsc_transfer_menoy" />
 
             <TextView
-                android:id="@+id/hw_alsc_amount"
+                android:id="@+id/total_amount"
                 style="@style/AlscTranferRightTextStyle"
                 android:text="62908.00" />
 

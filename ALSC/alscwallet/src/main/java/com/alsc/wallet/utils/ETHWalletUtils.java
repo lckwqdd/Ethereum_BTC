@@ -10,9 +10,11 @@ import com.blankj.utilcode.util.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.bitcoinj.core.Address;
+import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bitcoinj.crypto.HDKeyDerivation;
+import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.wallet.DeterministicSeed;
 import org.web3j.crypto.CipherException;
@@ -150,7 +152,8 @@ public class ETHWalletUtils {
         }
 
         //生成比特币钱包相关
-        TestNet3Params parameters = TestNet3Params.get();
+//      TestNet3Params parameters = TestNet3Params.get();
+        MainNetParams parameters = MainNetParams.get();
         org.bitcoinj.wallet.Wallet wallet = new org.bitcoinj.wallet.Wallet(parameters);
         DeterministicKey deterministicKey = wallet.currentReceiveKey();
         String btcPrivateKey = deterministicKey.getPrivateKeyAsWiF(parameters);
@@ -173,7 +176,7 @@ public class ETHWalletUtils {
         Address currentReceiveAddress = wallet.currentReceiveAddress();
         String addressString = currentReceiveAddress.toBase58();
         ethWallet.setBtcAddress(addressString);
-        LogUtils.d( "BTC地址：" + addressString);
+        LogUtils.d("BTC地址：" + addressString);
 
         return ethWallet;
     }
@@ -190,6 +193,20 @@ public class ETHWalletUtils {
         }
 
         return sb.toString();
+    }
+
+    public static boolean isBTCValidAddress(String input) {
+        try {
+            NetworkParameters networkParameters = null;
+            networkParameters = MainNetParams.get();
+            Address address = Address.fromBase58(networkParameters, input);
+            if (address != null)
+                return true;
+            else
+                return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Nullable
@@ -209,7 +226,7 @@ public class ETHWalletUtils {
         String wallet_dir = AppFilePath.Wallet_DIR;
         LogUtils.i("ETHWalletUtils", "wallet_dir = " + wallet_dir);
 
-        File destination = new File(wallet_dir, "keystore_" + UUID.randomUUID().toString().replace("-", "")+"_"+ walletName + ".json");
+        File destination = new File(wallet_dir, "keystore_" + UUID.randomUUID().toString().replace("-", "") + "_" + walletName + ".json");
 
         //目录不存在则创建目录，创建不了则报错
         if (!createParentDir(destination)) {
@@ -305,7 +322,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static ETHWallet modifyPassword(long walletId, String walletName, String oldPassword, String newPassword) {
-        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId, ETHWallet.class);
         Credentials credentials = null;
         ECKeyPair keypair = null;
         try {
@@ -331,7 +348,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String derivePrivateKey(long walletId, String pwd) {
-        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId, ETHWallet.class);
         Credentials credentials;
         ECKeyPair keypair;
         String privateKey = null;
@@ -355,7 +372,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String deriveKeystore(long walletId, String pwd) {
-        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId, ETHWallet.class);
         String keystore = null;
         WalletFile walletFile;
         try {
@@ -374,7 +391,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static boolean deleteWallet(long walletId) {
-        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId,ETHWallet.class);
+        ETHWallet ethWallet = ETHWalletHelper.getInstance().QueryById(walletId, ETHWallet.class);
         if (deleteFile(ethWallet.getKeystorePath())) {
             ETHWalletHelper.getInstance().deleteObject(ethWallet);
             return true;

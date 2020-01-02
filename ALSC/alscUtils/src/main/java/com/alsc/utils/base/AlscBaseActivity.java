@@ -118,4 +118,5 @@ public abstract class AlscBaseActivity extends RxAppCompatActivity {
     protected void goTo(Class<?> mClass) {
         startActivity(new Intent(this, mClass));
     }
+
 }

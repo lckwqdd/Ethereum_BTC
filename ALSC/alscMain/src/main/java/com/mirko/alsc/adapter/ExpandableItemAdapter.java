@@ -36,7 +36,6 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
         switch (holder.getItemViewType()) {
             case TYPE_LEVEL_0:
                 final Level0Item lv0 = (Level0Item) item;
-                LogUtils.d("分屏扩展功能:"+ GsonUtils.toJson(lv0));
                 holder.setImageResource(R.id.iv_currenty, lv0.getSymbolPicture())
                         .setText(R.id.symbol, lv0.getSymbolNmae())
                         .setText(R.id.balance, lv0.getSymbolBalcance())

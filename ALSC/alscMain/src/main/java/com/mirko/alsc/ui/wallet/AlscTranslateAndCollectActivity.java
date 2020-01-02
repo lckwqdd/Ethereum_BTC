@@ -1,5 +1,6 @@
 package com.mirko.alsc.ui.wallet;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.AlasTransferAndCollectAdapter;
 import com.mirko.alsc.bean.CurrencyData;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAlscTransferAndCollectBinding;
 import com.mirko.alsc.ui.entity.TabWalletEntity;
 import com.mirko.androidutil.utils.android.LogUtils;
@@ -39,6 +41,9 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
             R.string.capital_all,
             R.string.capital_exchange
     };
+    private String btcAddress;
+    private String btcPrivateKey;
+    private String address;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +51,12 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
         binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
         binding.llTransfer.setOnClickListener(this);
         binding.llReceivables.setOnClickListener(this);
+
+        Intent intent = getIntent();
+        btcAddress=intent.getStringExtra(Constants.btcAddress);
+        btcPrivateKey=intent.getStringExtra(Constants.btcPrivateKey);
+        address=intent.getStringExtra(Constants.walletAddress);
+        binding.address.setText(btcAddress);
         super.onCreate(savedInstanceState);
     }
 
@@ -134,11 +145,19 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 break;
             case R.id.ll_transfer:
 //              goTo(ETHTransferActivity.class);
-                goTo(BtcTransferActivity.class);
+                Intent intent=new Intent(this,BtcTransferActivity.class);
+                intent.putExtra(Constants.btcAddress,btcAddress);
+                intent.putExtra(Constants.btcPrivateKey,btcPrivateKey);
+                intent.putExtra(Constants.walletAddress,address);
+                startActivity(intent);
                 break;
             case R.id.ll_receivables:
 //              goTo(ETHCollectActivity.class);
-                goTo(BtcCollectActivity.class);
+                Intent intent1=new Intent(this,BtcCollectActivity.class);
+                intent1.putExtra(Constants.btcAddress,btcAddress);
+                intent1.putExtra(Constants.btcPrivateKey,btcPrivateKey);
+                intent1.putExtra(Constants.walletAddress,address);
+                startActivity(intent1);
                 break;
             case R.id.iv_header_left:
                 onBackPressed();

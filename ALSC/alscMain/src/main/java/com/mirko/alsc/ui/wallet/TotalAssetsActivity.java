@@ -1,5 +1,6 @@
 package com.mirko.alsc.ui.wallet;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.ExpandableItemAdapter;
 import com.mirko.alsc.adapter.TokensAdapter;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
 import com.mirko.alsc.entity.Level0Item;
 import com.mirko.alsc.entity.Level1Item;
@@ -70,7 +72,11 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
             switch (position) {
                 case 1:
-                    goTo(AlscTranslateAndCollectActivity.class);
+                    Intent intent=new Intent(this,AlscTranslateAndCollectActivity.class);
+                    intent.putExtra(Constants.btcAddress,currentEthWallet.getBtcAddress());
+                    intent.putExtra(Constants.btcPrivateKey,currentEthWallet.getBtcPrivateKey());
+                    intent.putExtra(Constants.walletAddress,currentEthWallet.getAddress());
+                    startActivity(intent);
                     break;
             }
         }));
@@ -99,7 +105,6 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     }
 
     private void onSuccess(ETHWallet ethWallet) {
-        LogUtils.d("获取数据ETHWallet:" + GsonUtils.toJson(ethWallet));
         currentEthWallet = ethWallet;
     }
 

@@ -12,6 +12,7 @@ import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.entity.Address;
 import com.alsc.wallet.utils.ToastUtils;
 import com.mirko.alsc.R;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAddContactsBinding;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
 
@@ -84,7 +85,7 @@ public class AddContactsActivity extends AlscBaseActivity implements View.OnClic
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == QRCODE_SCANNER_REQUEST) {
             if (data != null) {
-                String scanResult = data.getStringExtra("scan_result");
+                String scanResult = data.getStringExtra(Constants.scanResult);
                 // 对扫描结果进行处理
                 parseScanResult(scanResult);
             }

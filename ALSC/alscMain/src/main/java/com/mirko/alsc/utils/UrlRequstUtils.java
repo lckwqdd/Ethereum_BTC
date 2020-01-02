@@ -20,6 +20,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.mirko.alsc.MainActivity;
 import com.mirko.androidutil.utils.android.LogUtils;
+import com.mirko.androidutil.utils.android.ToastUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 /**
@@ -185,24 +186,27 @@ public class UrlRequstUtils {
     }
 
 
+    /**广播交易
+     * @param activity
+     * @param hexString
+     */
     public static void btcBrocast(Activity activity, String hexString) {
 
-        String url = " https://chain.api.btc.com/tools/tx-decode";
-        OkGo.<String>post(url)                            // 请求方式和请求url
-                .tag(activity)                   // 请求的 tag, 主要用于取消对应的请求
-                .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
-                .cacheMode(CacheMode.NO_CACHE)    // 缓存模式，详细请看缓存介绍
+        String url = "https://chain.api.btc.com/tools/tx-decode";
+        OkGo.<String>post(url)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE)
                 .params("rawhex", hexString)
-                //  .cacheTime(3000)//缓存时间
                 .execute(new StringCallback() {
 
                     @Override
                     public void onSuccess(Response<String> response) {
-                        Log.i("get", response.body());
-
+                        com.alsc.wallet.utils.LogUtils.d("交易成功:" +response.body().toString() );
                     }
                     @Override
                     public void onError(Response<String> response) {
+                        com.alsc.wallet.utils.LogUtils.d("交易失败:" +response.body().toString() );
                         super.onError(response);
                     }
                 });

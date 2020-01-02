@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.utils.LogUtils;
 import com.mirko.alsc.R;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
 import com.mirko.alsc.databinding.ActivityQrcodeScannerBinding;
 
@@ -132,7 +133,7 @@ public class ScanQrCodeActivity extends AlscBaseActivity implements View.OnClick
         vibrate();
         LogUtils.d(result);
         Intent intent = new Intent();
-        intent.putExtra("scan_result", result);
+        intent.putExtra(Constants.scanResult, result);
 
         setResult(RESULT_OK, intent);
         finish();

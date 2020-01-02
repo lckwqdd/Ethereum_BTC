@@ -9,6 +9,8 @@ import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import rx.Scheduler;
 
 /**
  * Created by WuQuan
@@ -51,6 +53,15 @@ public class FetchWalletInteract {
         return Single.fromCallable(() -> {
             return BTCWalletDaoUtils.getCurrent();
         });
-
     }
+
+
+    public Single<String>  genrateSingtureHex() {
+        return Single.fromCallable(() -> {
+            return "";
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+
 }

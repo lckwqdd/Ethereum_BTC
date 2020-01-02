@@ -40,7 +40,9 @@
         <EditText
             android:id="@+id/account"
             style="@style/AlscTranferEditTextStyle"
-            android:text="1" />
+            android:inputType="number"
+            android:hint="@string/input_tranfer_money"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"

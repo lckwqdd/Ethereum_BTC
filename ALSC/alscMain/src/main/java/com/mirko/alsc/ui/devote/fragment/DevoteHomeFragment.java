@@ -7,12 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alsc.net.api.HomeMsgApi;
+import com.alsc.net.bean.CapitalData;
+import com.alsc.net.bean.entity.HomeMsgResultEntity;
+import com.alsc.net.cache.CacheManager;
+import com.alsc.net.retrofit.http.HttpManager;
+import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.BaseFragment;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.FragmentDevoteHomeBinding;
 import com.mirko.alsc.databinding.FragmentHomeBinding;
+import com.mirko.alsc.ui.devote.DevoteHome1Activity;
 import com.mirko.alsc.ui.devote.DevoteHomeActivity;
+import com.mirko.alsc.utils.ComUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 /**
  * Created by Mirko on 2019/12/21.
@@ -24,6 +33,7 @@ public class DevoteHomeFragment extends BaseFragment {
 
     FragmentDevoteHomeBinding binding;
     private View mView;
+    private CapitalData capitalData = new CapitalData();
 
 
     public static DevoteHomeFragment getInstance() {
@@ -55,6 +65,7 @@ public class DevoteHomeFragment extends BaseFragment {
 //        binding.flTitle.setLayoutParams(layoutParams);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -64,6 +75,7 @@ public class DevoteHomeFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -80,8 +92,58 @@ public class DevoteHomeFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
+        loadHomeData();
     }
 
 
+    /**
+     * 加载首页数据
+     */
+
+    private void loadHomeData() {
+
+        String token = ComUtils.getTokenCache();
+        HttpManager.getInstance().doHttpDeal(new HomeMsgApi((new HttpOnNextListener<HomeMsgResultEntity>() {
+            @Override
+            public void onNext(HomeMsgResultEntity result) {
+                if (result != null) {
+                    if (result.getUser_info() != null) {
+                        capitalData.setContri(result.getContri());
+                        capitalData.setFenx_total(result.getFenx_total());
+                        capitalData.setMax_sinvestment(result.getMax_sinvestment());
+                        capitalData.setShare_total(result.getShare_total());
+                        capitalData.setSinvestment(result.getSinvestment());
+                        capitalData.setSurplusRep(result.getSurplusRep());
+                        capitalData.setTotalJackpot(result.getTotalJackpot());
+                        CacheManager.CapitalData.set(capitalData);
+                        updateView(capitalData);
+                    }
+                }
+            }
+
+            @Override
+            public void onCacheNext(String string) {
+                super.onCacheNext(string);
+            }
+
+            @Override
+            public void onCancel() {
+                super.onCancel();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+
+        }), (RxAppCompatActivity) getActivity(), token));
+    }
+
+    private void updateView(CapitalData capitalData) {
+        binding.tvQqjc.setText(capitalData.getTotalJackpot() + "");
+        binding.tvCjjd.setText(capitalData.getMax_sinvestment() + "");
+        binding.tvGxz.setText(capitalData.getContri() + "");
+        binding.tvXye.setText(capitalData.getSurplusRep() + "");
+    }
 }

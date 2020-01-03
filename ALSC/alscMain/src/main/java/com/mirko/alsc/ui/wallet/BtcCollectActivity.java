@@ -2,6 +2,7 @@ package com.mirko.alsc.ui.wallet;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,6 +11,8 @@ import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityBtcCollectBinding;
 import com.mirko.alsc.databinding.ActivityHotWalletAlscCollectBinding;
+import com.mirko.alsc.utils.ComUtils;
+import com.mirko.androidutil.utils.ThreadUtils;
 
 /**
  * 比特币收款
@@ -27,6 +30,7 @@ public class BtcCollectActivity extends AlscBaseActivity implements View.OnClick
         btcAddress=intent.getStringExtra(Constants.btcAddress);
         btcPrivateKey=intent.getStringExtra(Constants.btcPrivateKey);
         address=intent.getStringExtra(Constants.walletAddress);
+        binding.address.setText(btcAddress);
     }
 
     @Override
@@ -35,6 +39,30 @@ public class BtcCollectActivity extends AlscBaseActivity implements View.OnClick
 
     @Override
     public void loadData() {
+        ThreadUtils.executeBySingle(new ThreadUtils.Task<Bitmap>() {
+            @Override
+            public Bitmap doInBackground() throws Throwable {
+                Bitmap bitmap = ComUtils.createQRImage(btcAddress);
+                return bitmap;
+            }
+
+            @Override
+            public void onSuccess(Bitmap result) {
+                if(result!=null){
+                    binding.ivQrcode.setImageBitmap(result);
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onFail(Throwable t) {
+
+            }
+        });
     }
 
 

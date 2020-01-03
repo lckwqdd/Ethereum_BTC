@@ -1,4 +1,4 @@
-package com.mirko.alsc.ui.wallet;
+package com.mirko.alsc.ui.wallet.address;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -15,6 +15,7 @@ import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAddContactsBinding;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
+import com.mirko.alsc.ui.wallet.ScanQrCodeActivity;
 
 /**
  * 添加联系人
@@ -27,10 +28,11 @@ public class AddContactsActivity extends AlscBaseActivity implements View.OnClic
     public void initViews(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_contacts);
         binding.btnScan.setOnClickListener(this);
+        binding.btnNext.setOnClickListener(this);
         binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.add_contacts));
-        binding.commonHeader.tvHeaderRight.setText(getString(R.string.save));
-        binding.commonHeader.tvHeaderRight.setVisibility(View.VISIBLE);
-        binding.commonHeader.tvHeaderRight.setOnClickListener(this);
+//        binding.commonHeader.tvHeaderRight.setText(getString(R.string.save));
+//        binding.commonHeader.tvHeaderRight.setVisibility(View.VISIBLE);
+//        binding.commonHeader.tvHeaderRight.setOnClickListener(this);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class AddContactsActivity extends AlscBaseActivity implements View.OnClic
                 Intent intent = new Intent(this, ScanQrCodeActivity.class);
                 startActivityForResult(intent, QRCODE_SCANNER_REQUEST);
                 break;
-            case R.id.tv_header_right:
+            case R.id.btn_next:
                 saveContacts();
                 break;
         }
@@ -64,6 +66,7 @@ public class AddContactsActivity extends AlscBaseActivity implements View.OnClic
         String address = binding.tvAddress.getText().toString().trim();
         if (detection(name, note, address)) {
             ContactBeanHelper.getInstance().insertObject(new ContactBean(null, name, note, address));
+            goTo(AddAddressActivity.class);
             finish();
         }
     }

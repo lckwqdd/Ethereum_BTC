@@ -23,6 +23,7 @@
             android:src="@mipmap/icon_circle" />
 
         <ImageView
+            android:id="@+id/iv_qrcode"
             android:layout_width="260dp"
             android:layout_height="260dp"
             android:layout_gravity="center"
@@ -35,6 +36,7 @@
             android:layout_gravity="center">
 
             <EditText
+                android:id="@+id/address"
                 android:layout_width="260dp"
                 android:layout_height="match_parent"
                 android:text="@string/wh_key" />

@@ -15,8 +15,6 @@ import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.interact.FetchWalletInteract;
 import com.alsc.wallet.utils.LogUtils;
-import com.alsc.wallet.utils.ToastUtils;
-import com.blankj.utilcode.util.GsonUtils;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.ExpandableItemAdapter;
@@ -25,6 +23,8 @@ import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
 import com.mirko.alsc.entity.Level0Item;
 import com.mirko.alsc.entity.Level1Item;
+import com.mirko.alsc.ui.wallet.address.AddAddressActivity;
+import com.mirko.alsc.ui.wallet.address.AddContactsActivity;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -139,7 +139,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_add_concact:
-                goTo(AddContactsActivity.class);
+                goTo(AddAddressActivity.class);
                 break;
             case R.id.iv_add_wallet:
                 goTo(AddWalletActivity.class);

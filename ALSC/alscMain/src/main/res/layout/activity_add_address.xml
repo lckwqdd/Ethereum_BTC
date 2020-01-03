@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1a2135"
+        android:orientation="vertical">
+
+        <!--        地址簿添加-->
+        <include
+            android:id="@+id/common_header"
+            layout="@layout/activity_hot_wallet_header" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_frist_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/text_size_18"
+                android:text="@string/addreess_frist_person" />
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/address_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletCodeBtnStyle"
+            android:layout_marginTop="220dp"
+            android:text="@string/addreess_add" />
+    </LinearLayout>
+</layout>

@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp">
 
-    <ImageView
-        android:id="@+id/item_currenty"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/icon_currency" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toRightOf="@+id/item_currenty"
+        android:layout_marginLeft="20dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/symbol"
+            android:id="@+id/symbolName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="BTC"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_18" />
+            android:text="@string/addreess_add_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16" />
 
         <TextView
-            android:id="@+id/symbol_describe"
+            android:id="@+id/symbolAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="= ¥ 0.00"
-            android:textColor="@color/divider"
-            android:textSize="@dimen/text_size_16" />
+            android:text="@string/addreess_add_addres"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/symbolNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/addreess_add_note"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
     </LinearLayout>
 
     <ImageView

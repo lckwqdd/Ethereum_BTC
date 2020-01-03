@@ -35,15 +35,13 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
     ActivityAlscTransferAndCollectBinding binding;
     private List<CurrencyData> currencyDatas;
     private AlasTransferAndCollectAdapter adapter;
+    private String btcAddress,btcPrivateKey,address;
     private int mTitleIds[] = new int[]{
             R.string.capital_transfer,
             R.string.capital_receiveables,
             R.string.capital_all,
             R.string.capital_exchange
     };
-    private String btcAddress;
-    private String btcPrivateKey;
-    private String address;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -145,7 +143,8 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 break;
             case R.id.ll_transfer:
 //              goTo(ETHTransferActivity.class);
-                Intent intent=new Intent(this,BtcTransferActivity.class);
+//                Intent intent=new Intent(this,BtcTransferActivity.class);
+                Intent intent=new Intent(this,ETHTransferActivity.class);
                 intent.putExtra(Constants.btcAddress,btcAddress);
                 intent.putExtra(Constants.btcPrivateKey,btcPrivateKey);
                 intent.putExtra(Constants.walletAddress,address);
@@ -153,7 +152,8 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 break;
             case R.id.ll_receivables:
 //              goTo(ETHCollectActivity.class);
-                Intent intent1=new Intent(this,BtcCollectActivity.class);
+//              Intent intent1=new Intent(this,BtcCollectActivity.class);
+                Intent intent1=new Intent(this,ETHCollectActivity.class);
                 intent1.putExtra(Constants.btcAddress,btcAddress);
                 intent1.putExtra(Constants.btcPrivateKey,btcPrivateKey);
                 intent1.putExtra(Constants.walletAddress,address);

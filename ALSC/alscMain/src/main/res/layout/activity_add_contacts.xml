@@ -86,5 +86,11 @@
             android:text="@string/add_contacts_save_local"
             android:textSize="@dimen/text_size_14" />
 
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/WalletCodeBtnStyle"
+            android:layout_marginTop="220dp"
+            android:text="@string/addreess_add_sure" />
+
     </LinearLayout>
 </layout>

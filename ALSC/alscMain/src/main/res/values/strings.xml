@@ -287,7 +287,12 @@
     <string name="total_assets_make_alsc_address">创建的AlSC地址</string>
     <string name="total_assets_alsc">ALSC</string>
     <string name="total_assets_btc">BTC</string>
+    <string name="total_assets_eth">ETH</string>
     <string name="total_assets_usdt">USDT</string>
+    <string name="total_assets_asc">Almlghty Safely Chain</string>
+    <string name="total_assets_bit">Bitcoin</string>
+    <string name="total_assets_ethm">Ethereum</string>
+    <string name="total_assets_tusd">Tether USD</string>
 
     <!--    添加联系人-->
     <string name="add_contacts">添加联系人</string>
@@ -331,5 +336,26 @@
     <string name="spend_btc_tx_description">Transaction below will transfer %1$s BTC from %2$s to %3$s. Transaction fee is %4$s BTC.</string>
     <string name="spend_bch_tx_with_change_description">Transaction below will transfer %1$s BCH from %2$s to %3$s. Transaction fee is %4$s BCH. Change of %5$s BCH will go to %2$s.</string>
     <string name="spend_btc_tx_with_change_description">Transaction below will transfer %1$s BTC from %2$s to %3$s. Transaction fee is %4$s BTC. Change of %5$s BTC will go to %2$s.</string>
+
+    <!--    钱包创建-->
+    <string name="wallet_create">创建</string>
+    <string name="wallet_import">导入</string>
+    <string name="wallet_cancle">取消</string>
+
+    <!--    导入钱包-->
+    <string name="wallet_import_wallet">导入钱包</string>
+    <string name="wallet_import_help_word">请填写你的助记词</string>
+    <string name="wallet_import_space">英文单词请按空格分隔单词</string>
+    <string name="wallet_import_start">开始导入</string>
+    <string name="mnemonic_not_null">助记词不能为空</string>
+
+    <!--    地址簿-->
+    <string name="addreess">地址簿</string>
+    <string name="addreess_add">添加</string>
+    <string name="addreess_frist_person">添加你的第一个联系人</string>
+    <string name="addreess_add_sure">确定添加</string>
+    <string name="addreess_add_name">刘某某</string>
+    <string name="addreess_add_note">备注:刘某某的ALSCS收款地址</string>
+    <string name="addreess_add_addres">ALSC/USDT:df4d5f4dg132dg123df1dfdfd</string>
 
 </resources>

@@ -26,6 +26,7 @@ import java.util.List;
 public class AddAddressActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityAddAddressBinding binding;
     private AddAddressAdapter adapter;
+    private List<AddAddressBean> addressLists=new ArrayList<>();
 
     @Override
     public void initViews(Bundle savedInstanceState) {
@@ -55,12 +56,12 @@ public class AddAddressActivity extends AlscBaseActivity implements View.OnClick
     public void loadData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.addressRv.setLayoutManager(layoutManager);
-        adapter = new AddAddressAdapter(R.layout.list_item_add_address, genrateData());
+        adapter = new AddAddressAdapter(R.layout.list_item_add_address,genrateData());
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
             ToastUtils.showToast("position:" + position);
             switch (position) {
                 case 0:
-                    goTo(ETHTransferActivity.class);
+                    goTo(ETHTransferActivity.class  );
                     break;
                 case 1:
                     break;
@@ -77,8 +78,10 @@ public class AddAddressActivity extends AlscBaseActivity implements View.OnClick
     private List<AddAddressBean> genrateData() {
         List<AddAddressBean> addAddressBeanList = new ArrayList<>();
 
-        addAddressBeanList.add(new AddAddressBean("刘某某", "fdfdfdf", "刘某某的alsc收款地址"));
-        addAddressBeanList.add(new AddAddressBean("刘某某", "fdfdfdf", "刘某某的alsc收款地址"));
+        List<ContactBean> allContacts = ContactBeanHelper.getInstance().QueryAll(ContactBean.class);
+        for(ContactBean contactBean:allContacts){
+            addAddressBeanList.add(new AddAddressBean(contactBean.getName(), contactBean.getAlscAddress(), contactBean.getNote()));
+        }
         return addAddressBeanList;
     }
 

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.View;
-
 import com.alsc.utils.R;
+import com.mirko.androidutil.utils.android.ToastUtils;
 import com.mirko.androidutil.view.CustomeDialog;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;

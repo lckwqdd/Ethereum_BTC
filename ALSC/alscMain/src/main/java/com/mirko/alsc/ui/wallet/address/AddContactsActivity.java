@@ -30,9 +30,6 @@ public class AddContactsActivity extends AlscBaseActivity implements View.OnClic
         binding.btnScan.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
         binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.add_contacts));
-//        binding.commonHeader.tvHeaderRight.setText(getString(R.string.save));
-//        binding.commonHeader.tvHeaderRight.setVisibility(View.VISIBLE);
-//        binding.commonHeader.tvHeaderRight.setOnClickListener(this);
     }
 
     @Override

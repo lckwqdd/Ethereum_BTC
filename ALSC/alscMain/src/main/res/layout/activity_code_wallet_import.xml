@@ -37,6 +37,19 @@
             android:textColorHint="@color/white"
             android:background="@drawable/bg_black_tranprent_radius" />
 
+        <EditText
+            android:id="@+id/pwd"
+            style="@style/WalletCodeEditStyle"
+            android:layout_marginTop="10dp"
+            android:hint="@string/pwd"
+            android:textColorHint="@color/black" />
+        <EditText
+            android:id="@+id/pwd_sure"
+            style="@style/WalletCodeEditStyle"
+            android:layout_marginTop="10dp"
+            android:hint="@string/again_pwd"
+            android:textColorHint="@color/black" />
+
         <Button
             android:id="@+id/btn_next"
             style="@style/WalletCodeBtnStyle"

@@ -5,15 +5,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+
 import com.alsc.utils.base.AlscBaseActivity;
 import com.github.ihsg.patternlocker.OnPatternChangeListener;
 import com.github.ihsg.patternlocker.PatternLockerView;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityPatternCheckingBinding;
+import com.mirko.alsc.databinding.ActivityPatternSettingBinding;
 import com.mirko.alsc.ui.devote.DevoteHomeActivity;
 import com.mirko.alsc.utils.pattern.PatternHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 import org.greenrobot.greendao.annotation.NotNull;
+
 import java.util.List;
 
 

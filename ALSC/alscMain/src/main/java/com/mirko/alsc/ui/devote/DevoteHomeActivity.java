@@ -31,6 +31,7 @@ import com.mirko.alsc.databinding.ActivityDevoteHomeBinding;
 import com.mirko.alsc.ui.capital.CapitalFragment;
 import com.mirko.alsc.ui.devote.fragment.DevoteHomeFragment;
 import com.mirko.alsc.ui.devote.fragment.DevoteShanDuiFragment;
+import com.mirko.alsc.ui.devote.fragment.DevoteShareFragment;
 import com.mirko.alsc.ui.entity.TabEntity;
 import com.mirko.alsc.ui.fragment.HomeFragment;
 import com.mirko.alsc.utils.ComUtils;
@@ -66,16 +67,16 @@ public class DevoteHomeActivity extends AlscBaseActivity implements View.OnClick
     private String mTitles[] = new String[3];
     private String mTitleSel[] = new String[3];
 
-    private int[] mTitleIds = {
-            R.string.home_bar_chat,
-            R.string.home_bar_find,
-            R.string.home_bar_money
-    };
-    private int[] mTitleSlectIds = {
-            R.string.home_bar_chat,
-            R.string.home_bar_find,
-            R.string.home_bar_money
-    };
+//    private int[] mTitleIds = {
+//            R.string.home_bar_chat,
+//            R.string.home_bar_find,
+//            R.string.home_bar_money
+//    };
+//    private int[] mTitleSlectIds = {
+//            R.string.home_bar_chat,
+//            R.string.home_bar_find,
+//            R.string.home_bar_money
+//    };
     private int[] mIconUnselectIds = {
             R.mipmap.home_study,
             R.mipmap.home_find,
@@ -126,14 +127,14 @@ public class DevoteHomeActivity extends AlscBaseActivity implements View.OnClick
 
         /**添加Fragment*/
         mFragments.add(DevoteHomeFragment.getInstance());
-        mFragments.add(HomeFragment.getInstance());
+        mFragments.add(DevoteShareFragment.getInstance());
         mFragments.add(DevoteShanDuiFragment.getInstance());
 
         /**设置底部状态栏的相关数据*/
         mTabEntities = new ArrayList<>();
-        for (int i = 0; i < mTitleIds.length; i++) {
-            mTitles[i] = mContext.getString(mTitleIds[i]);
-            mTitleSel[i] = mContext.getString(mTitleSlectIds[i]);
+        for (int i = 0; i < mIconSelectIds.length; i++) {
+//            mTitles[i] = mContext.getString(mTitleIds[i]);
+//            mTitleSel[i] = mContext.getString(mTitleSlectIds[i]);
             mTabEntities.add(new TabEntity(mTitleSel[i], mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
         binding.tlTitle.setTabData(mTabEntities);

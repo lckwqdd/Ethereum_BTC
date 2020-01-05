@@ -345,7 +345,8 @@
     <string name="spend_bch_tx_with_change_description">Transaction below will transfer %1$s BCH from %2$s to %3$s. Transaction fee is %4$s BCH. Change of %5$s BCH will go to %2$s.</string>
     <string name="spend_btc_tx_with_change_description">Transaction below will transfer %1$s BTC from %2$s to %3$s. Transaction fee is %4$s BTC. Change of %5$s BTC will go to %2$s.</string>
 
-    <!--    钱包创建-->
+
+ <!--    钱包创建-->
     <string name="wallet_create">创建</string>
     <string name="wallet_import">导入</string>
     <string name="wallet_cancle">取消</string>
@@ -365,5 +366,62 @@
     <string name="addreess_add_name">刘某某</string>
     <string name="addreess_add_note">备注:刘某某的ALSCS收款地址</string>
     <string name="addreess_add_addres">ALSC/USDT:df4d5f4dg132dg123df1dfdfd</string>
+    
+    <string name="cjjd_title">超级节点</string>
+    <string name="cjjd_price">实时价格</string>
+    <string name="cjjd_total_price">实际总资产余额价值</string>
+    <string name="cjjd_btn_text">立即参与</string>
+    <string name="cjjd_des">注:参与超级节点年固定返还收益分红,需确保参与时账上总资产实时价值等于228000.00枚USDT即可参与。</string>
+    <string name="cjjd_dialog_title">请输入</string>
+    <string name="cjjd_dialog_title_pwd">钱包密码</string>
+    <string name="cjjd_dialog_et_hint">输入钱包密码</string>
+
+    <string name="cygx_title">参与贡献</string>
+    <string name="cygx_yuee">余额(U)</string>
+    <string name="cygx_gxe">贡献额(U)</string>
+    <string name="cygx_gxe_count">请输入数量</string>
+    <string name="cygx_des">注:参与贡献的U数量最低为100U,可多次参与,上不封顶。</string>
+
+    <string name="gx_detail_title">共享明细</string>
+    <string name="gx_detail_speed">矿池加速总额(U)</string>
+    <string name="gx_detail_history">历史明细</string>
+    <string name="gx_detail_time">时间</string>
+    <string name="gx_detail_kc">矿池</string>
+    <string name="gx_detail_speeded">已加速</string>
+
+    <string name="share_title">分享</string>
+    <string name="share_title_friend">邀好友.享福利</string>
+    <string name="share_title_tz">投资创双赢</string>
+    <string name="share_step_one">发送邀请给好友</string>
+    <string name="share_step_two">成功注册后可参与贡献</string>
+    <string name="share_step_three">获得相应价值的U数量</string>
+    <string name="share_friends">分享好友</string>
+    <string name="share_user_name">用户名</string>
+    <string name="share_user_id">ID号</string>
+    <string name="share_user_level">级别</string>
+    <string name="share_user_gx">贡献额(U)</string>
+    <string name="share_copy_code">复制邀请码</string>
+    <string name="share_copy_url">复制邀请链接</string>
+
+    <string name="share_detail_title">分享明细</string>
+
+    <string name="jackpot_detail_title">奖池明细</string>
+    <string name="jackpot_detail_cjjd">超级节点</string>
+    <string name="jackpot_detail_zjd">主节点</string>
+    <string name="jackpot_detail_fhze">返还总额(ALSC)</string>
+    <string name="jackpot_detail_jcfh">奖池分红总额(U)</string>
+    <string name="jackpot_detail_history">历史明细</string>
+    <string name="jackpot_detail_time">时间</string>
+    <string name="jackpot_detail_count">数量(ALSC)</string>
+    <string name="jackpot_detail_fhsy">分红收益(U)</string>
+    <string name="jackpot_detail_syze">收益总额(U)</string>
+    <string name="jackpot_detail_new">新增业绩(U)</string>
+    <string name="jackpot_detail_jdsy">节点收益(U)</string>
+
+    <string name="xy_detail_title">信誉明细</string>
+    <string name="xy_detail_total">已加速总额(U)</string>
+    <string name="xy_detail_gx_count">贡献值</string>
+    <string name="xy_detail_xy_count">信誉值</string>
+    <string name="xy_detail_speeded">已加速</string>
 
 </resources>

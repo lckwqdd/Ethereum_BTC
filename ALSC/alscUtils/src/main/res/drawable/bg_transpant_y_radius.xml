@@ -3,7 +3,7 @@
     <!-- rectangle表示为矩形 -->
 
     <!-- 填充的颜色 -->
-    <solid android:color="@color/yellow_deep" />
+    <solid android:color="@color/transparent" />
 
     <!-- 边框的颜色和粗细 -->
     <stroke

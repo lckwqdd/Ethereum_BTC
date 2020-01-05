@@ -31,8 +31,9 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         public final static Property BtcPrivateKey = new Property(6, String.class, "btcPrivateKey", false, "BTC_PRIVATE_KEY");
         public final static Property BtcAddress = new Property(7, String.class, "btcAddress", false, "BTC_ADDRESS");
         public final static Property BtcFilePath = new Property(8, String.class, "btcFilePath", false, "BTC_FILE_PATH");
-        public final static Property IsCurrent = new Property(9, boolean.class, "isCurrent", false, "IS_CURRENT");
-        public final static Property IsBackup = new Property(10, boolean.class, "isBackup", false, "IS_BACKUP");
+        public final static Property BtcMnemonic = new Property(9, String.class, "btcMnemonic", false, "BTC_MNEMONIC");
+        public final static Property IsCurrent = new Property(10, boolean.class, "isCurrent", false, "IS_CURRENT");
+        public final static Property IsBackup = new Property(11, boolean.class, "isBackup", false, "IS_BACKUP");
     }
 
 
@@ -57,8 +58,9 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
                 "\"BTC_PRIVATE_KEY\" TEXT," + // 6: btcPrivateKey
                 "\"BTC_ADDRESS\" TEXT," + // 7: btcAddress
                 "\"BTC_FILE_PATH\" TEXT," + // 8: btcFilePath
-                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 9: isCurrent
-                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 10: isBackup
+                "\"BTC_MNEMONIC\" TEXT," + // 9: btcMnemonic
+                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 10: isCurrent
+                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 11: isBackup
     }
 
     /** Drops the underlying database table. */
@@ -115,8 +117,13 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         if (btcFilePath != null) {
             stmt.bindString(9, btcFilePath);
         }
-        stmt.bindLong(10, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(11, entity.getIsBackup() ? 1L: 0L);
+ 
+        String btcMnemonic = entity.getBtcMnemonic();
+        if (btcMnemonic != null) {
+            stmt.bindString(10, btcMnemonic);
+        }
+        stmt.bindLong(11, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -167,8 +174,13 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         if (btcFilePath != null) {
             stmt.bindString(9, btcFilePath);
         }
-        stmt.bindLong(10, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(11, entity.getIsBackup() ? 1L: 0L);
+ 
+        String btcMnemonic = entity.getBtcMnemonic();
+        if (btcMnemonic != null) {
+            stmt.bindString(10, btcMnemonic);
+        }
+        stmt.bindLong(11, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -188,8 +200,9 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // btcPrivateKey
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // btcAddress
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // btcFilePath
-            cursor.getShort(offset + 9) != 0, // isCurrent
-            cursor.getShort(offset + 10) != 0 // isBackup
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // btcMnemonic
+            cursor.getShort(offset + 10) != 0, // isCurrent
+            cursor.getShort(offset + 11) != 0 // isBackup
         );
         return entity;
     }
@@ -205,8 +218,9 @@ public class ETHWalletDao extends AbstractDao<ETHWallet, Long> {
         entity.setBtcPrivateKey(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setBtcAddress(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setBtcFilePath(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setIsCurrent(cursor.getShort(offset + 9) != 0);
-        entity.setIsBackup(cursor.getShort(offset + 10) != 0);
+        entity.setBtcMnemonic(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setIsCurrent(cursor.getShort(offset + 10) != 0);
+        entity.setIsBackup(cursor.getShort(offset + 11) != 0);
      }
     
     @Override

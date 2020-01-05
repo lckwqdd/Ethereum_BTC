@@ -37,7 +37,10 @@ android {
             }
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     sourceSets.main {
         jniLibs.srcDir 'libs'
     }
@@ -83,15 +86,15 @@ android {
         enabled = true
     }
     dexOptions {
-//        incremental false
+//      incremental false
         preDexLibraries = false
         jumboMode = false
         javaMaxHeapSize "4g"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 
     packagingOptions {
@@ -170,8 +173,6 @@ dependencies {
     implementation project(path: ':alscNet')
     implementation project(path: ':alscUtils')
     implementation project(path: ':alscWallet')
-
-    //implementation(name:'blesdk-1.0.2', ext:'aar')
     //导航条
     implementation(rootProject.ext.dependencies["flycoTabLayout"])
     //WeakHandler
@@ -186,7 +187,6 @@ dependencies {
     //腾讯bugly日志管理
     implementation(rootProject.ext.dependencies["buglyCrashreport"])
     implementation(rootProject.ext.dependencies["buglyNative"])
-
     implementation(rootProject.ext.dependencies["multidex"])
     implementation(rootProject.ext.dependencies["photoView"])
     //微信
@@ -200,13 +200,10 @@ dependencies {
     implementation(rootProject.ext.dependencies["rxjava2"])
     implementation(rootProject.ext.dependencies["arouter"])
     annotationProcessor(rootProject.ext.dependencies["arouterCompiler"])
-
     implementation(rootProject.ext.dependencies["rxlifecycleComponents"])
     //今日头条适配方案
     implementation(rootProject.ext.dependencies["autosize"])
-
     implementation(rootProject.ext.dependencies["universalimageloader"])
-
     implementation 'com.lzy.net:okgo:3.0.4'
     implementation 'com.github.ihsg:PatternLocker:2.5.4'
 }

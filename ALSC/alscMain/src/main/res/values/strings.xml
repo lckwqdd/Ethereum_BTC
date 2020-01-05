@@ -134,6 +134,7 @@
     <string name="load_wallet_by_mnemonic_help">什么是助记词？</string>
     <string name="load_wallet_already_exist">钱包已存在</string>
     <string name="import_wallet_fail">导入钱包失败</string>
+    <string name="send_success">发送成功:</string>
 
     <!--    wallte code-->
     <string name="wc_code">创建跨链钱包</string>
@@ -317,6 +318,8 @@
     <string name="nonce_not_null">Nonce 不能为空</string>
     <string name="btc_receive_not_right">接收地址不合法</string>
     <string name="btc_send_not_right">发送地址不合法</string>
+    <string name="transfer_ether_unit">&#160;ether</string>
+    <string name="amount_error_tips">金额填写不正确</string>
 
     <!--    类型详情-->
     <string name="detail_type">类型</string>

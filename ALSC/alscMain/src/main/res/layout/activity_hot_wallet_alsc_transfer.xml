@@ -28,19 +28,13 @@
                 style="@style/AlscTranferRightTextStyle"
                 android:text="62908.00" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_toLeftOf="@+id/hw_alsc_amount"
-                android:text="@string/wh_alsc_balance" />
         </RelativeLayout>
 
         <EditText
             android:id="@+id/account"
             style="@style/AlscTranferEditTextStyle"
-            android:text="1" />
+            android:hint="@string/input_tranfer_money"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -94,6 +88,7 @@
                 android:text="@string/wh_miners_fee" />
 
             <TextView
+                android:id="@+id/fee"
                 style="@style/AlscTranferRightTextStyle"
                 android:text="@string/wh_conversion_alsc"
                 android:textSize="@dimen/text_size_14" />
@@ -101,12 +96,13 @@
         </RelativeLayout>
 
         <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/seekbar"
+            android:layout_width="330dp"
+            android:layout_height="24dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@color/blue" />
+            android:progress="10" />
 
         <RelativeLayout
             android:layout_width="match_parent"

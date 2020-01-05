@@ -1,6 +1,8 @@
 package com.alsc.wallet.utils;
 
 import android.util.Log;
+
+import com.alsc.net.db.bean.ETHWallet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mirko.androidutil.utils.android.Utils;
 import org.web3j.crypto.CipherException;
@@ -85,7 +87,7 @@ public class KeyStoreUtils {
      * @return
      * @throws FileNotFoundException
      */
-    public static String signedTransactionData(String from, String to, String nonce, String gasPrice, String gasLimit, String value) throws FileNotFoundException {
+    public static String signedTransactionData(ETHWallet ethWallet,String from, String to, String nonce, String gasPrice, String gasLimit, String value) throws Exception {
         //发送正常交易
         RawTransaction rawTransaction = RawTransaction.createEtherTransaction(
                 new BigInteger(nonce),
@@ -95,10 +97,41 @@ public class KeyStoreUtils {
                 new BigInteger(value)
         );
         //获取资格证书
-        Credentials credentials = KeyStoreUtils.getCredentials(from);
+//      Credentials credentials = KeyStoreUtils.getCredentials(from);
+        Credentials credentials = WalletUtils.loadCredentials(ethWallet.getPassword(),  ethWallet.getKeystorePath());
         byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
         return Numeric.toHexString(signedMessage);
     }
+
+    /**以太坊合约交易
+     * @param ethWallet
+     * @param from
+     * @param contractAddress
+     * @param nonce
+     * @param gasPrice
+     * @param gasLimit
+     * @param value
+     * @param data
+     * @return
+     * @throws IOException
+     * @throws CipherException
+     */
+    public static String signedTransactionContractData(ETHWallet ethWallet,String from, String contractAddress, String nonce, String gasPrice, String gasLimit, String value, String data) throws IOException, CipherException {
+        //发送正常交易
+        RawTransaction rawTransaction = RawTransaction.createTransaction(
+                new BigInteger(nonce),
+                new BigInteger(gasPrice),
+                new BigInteger(gasLimit),
+                contractAddress,
+                new BigInteger(value),
+                data
+        );
+        //获取资格证书
+        Credentials credentials = WalletUtils.loadCredentials(ethWallet.getPassword(),  ethWallet.getKeystorePath());
+        byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
+        return Numeric.toHexString(signedMessage);
+    }
+
 
     public static File getKeyStorePathFile() {
         File file = new File(KEYSTORE_PATH);

@@ -5,14 +5,28 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+
+import com.alsc.net.api.EmailCodeApi;
+import com.alsc.net.bean.entity.EmptyResultEntity;
+import com.alsc.net.bean.request.RegisterRequest;
+import com.alsc.net.retrofit.http.HttpManager;
+import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.github.ihsg.patternlocker.OnPatternChangeListener;
 import com.github.ihsg.patternlocker.PatternLockerView;
 import com.mirko.alsc.R;
+import com.mirko.alsc.databinding.ActivityOnlineWalletEmailValidateBinding;
 import com.mirko.alsc.databinding.ActivityPatternSettingBinding;
+import com.mirko.alsc.ui.devote.DevoteHomeActivity;
+import com.mirko.alsc.utils.Constant;
 import com.mirko.alsc.utils.pattern.PatternHelper;
+import com.mirko.androidutil.utils.StringUtils;
+import com.mirko.androidutil.utils.android.LogUtils;
+import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
-import org.greenrobot.greendao.annotation.NotNull;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 

@@ -1,7 +1,7 @@
 package com.mirko.alsc.utils;
 
 import android.graphics.Bitmap;
-
+import com.alsc.net.bean.CapitalData;
 import com.alsc.net.bean.UserInfoResult;
 import com.alsc.net.cache.CacheManager;
 import com.google.zxing.BarcodeFormat;
@@ -24,11 +24,10 @@ public class ComUtils {
 
     /**
      * 获取token缓存
-     *
      * @return
      */
-    public static String getTokenCache() {
-        if (CacheManager.LoginToken.get() != null) {
+    public static String getTokenCache(){
+        if(CacheManager.LoginToken.get()!=null){
             return CacheManager.LoginToken.get();
         }
         return null;
@@ -94,6 +93,17 @@ public class ComUtils {
             e.printStackTrace();
         }
         return bitmap;
+    }
+	
+	
+    /**
+     * @return
+     */
+    public static CapitalData getCapitalData() {
+        if (CacheManager.CapitalData.get() != null) {
+            return CacheManager.CapitalData.get();
+        }
+        return null;
     }
 
 }

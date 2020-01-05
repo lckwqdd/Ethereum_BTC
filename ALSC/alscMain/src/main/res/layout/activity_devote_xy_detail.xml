@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_slide_bg"
+        android:orientation="vertical">
+
+        <com.alsc.utils.view.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:showLeftDrawable="true"
+            app:showTextLeft="true"
+            app:tbTitleLeft="@string/xy_detail_title" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_zjd"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="22dp"
+            android:background="#252E3F"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/xy_detail_total"
+                android:textColor="#7C8498"
+                android:textSize="@dimen/text_size_11" />
+
+            <TextView
+                android:id="@+id/tv_js_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFB727"
+                android:textSize="@dimen/text_size_15" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="22dp"
+            android:background="#252E3F"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="8dp"
+                android:background="@mipmap/icon_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gx_detail_history"
+                android:textColor="#7C8498"
+                android:textSize="@dimen/text_size_11" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_cjjd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:background="#253E5C"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/jackpot_detail_time"
+                    android:textColor="#A0B9D6"
+                    android:textSize="@dimen/text_size_11" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/xy_detail_gx_count"
+                    android:textColor="#A0B9D6"
+                    android:textSize="@dimen/text_size_11" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/xy_detail_xy_count"
+                    android:textColor="#A0B9D6"
+                    android:textSize="@dimen/text_size_11" />
+
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/xy_detail_speeded"
+                    android:textColor="#A0B9D6"
+                    android:textSize="@dimen/text_size_11" />
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <in.srain.cube.views.loadmore.LoadMoreListViewContainer
+                    android:id="@+id/load_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                    <ListView
+                        android:id="@+id/lv_devote_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:scrollbars="none">
+
+                    </ListView>
+
+                </in.srain.cube.views.loadmore.LoadMoreListViewContainer>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/DIMEN_24PX"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_76PX"
+                        android:layout_height="@dimen/DIMEN_76PX"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/icon_warning" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10PX"
+                        android:gravity="center"
+                        android:text="@string/notice_no_msg"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -77,7 +77,7 @@
     <!--背景色-->
     <color name="color_theme_bg">#182137</color>
     <color name="color_theme_bg1">#202a3d</color>
-    <color name="color_slide_bg">#293752</color>
+    <color name="color_slide_bg">#1D2637</color>
 
     <color name="color_indicator_color">#2C97DE</color>
 

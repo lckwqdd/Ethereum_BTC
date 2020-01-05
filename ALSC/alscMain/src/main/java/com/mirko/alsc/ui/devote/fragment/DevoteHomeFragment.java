@@ -16,9 +16,12 @@ import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.BaseFragment;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.FragmentDevoteHomeBinding;
-import com.mirko.alsc.databinding.FragmentHomeBinding;
-import com.mirko.alsc.ui.devote.DevoteHome1Activity;
-import com.mirko.alsc.ui.devote.DevoteHomeActivity;
+import com.mirko.alsc.ui.devote.DevoteCjjdActivity;
+import com.mirko.alsc.ui.devote.DevoteCygxActivity;
+import com.mirko.alsc.ui.devote.DevoteFsDetailActivity;
+import com.mirko.alsc.ui.devote.DevoteGxDetailActivity;
+import com.mirko.alsc.ui.devote.DevoteJcDetailActivity;
+import com.mirko.alsc.ui.devote.DevoteXyDetailActivity;
 import com.mirko.alsc.utils.ComUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -27,7 +30,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
  * Created by Mirko on 2019/12/21.
  */
 
-public class DevoteHomeFragment extends BaseFragment {
+public class DevoteHomeFragment extends BaseFragment implements View.OnClickListener {
 
     private final static String TAG = "HomeFragment";
 
@@ -83,7 +86,7 @@ public class DevoteHomeFragment extends BaseFragment {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-
+        binding.setClickListener(this);
     }
 
     @Override
@@ -145,5 +148,37 @@ public class DevoteHomeFragment extends BaseFragment {
         binding.tvCjjd.setText(capitalData.getMax_sinvestment() + "");
         binding.tvGxz.setText(capitalData.getContri() + "");
         binding.tvXye.setText(capitalData.getSurplusRep() + "");
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.ll_go_jackpot:
+                startActivity(new Intent(getActivity(), DevoteJcDetailActivity.class));
+                break;
+
+            case R.id.rl_go_cjjd:
+                startActivity(new Intent(getActivity(), DevoteCjjdActivity.class));
+                break;
+
+            case R.id.ll_cygx_right:
+                startActivity(new Intent(getActivity(), DevoteCygxActivity.class));
+                break;
+
+            case R.id.rl_gx_detail:
+            case R.id.rl_gx_detail1:
+                startActivity(new Intent(getActivity(), DevoteGxDetailActivity.class));
+                break;
+
+            case R.id.rl_fx_detail:
+                startActivity(new Intent(getActivity(), DevoteFsDetailActivity.class));
+                break;
+
+            case R.id.ll_go_xy:
+                startActivity(new Intent(getActivity(), DevoteXyDetailActivity.class));
+                break;
+
+        }
     }
 }

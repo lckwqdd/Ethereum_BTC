@@ -246,13 +246,13 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                             Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString());
                     LogUtils.d("hexValue:" + hexValue);
                     //RPC 处理发送交易
-                    EthSendTransaction send = web3j.ethSendRawTransaction(hexValue).send();
-                    if (send.getError() == null) {
-                        e.onNext(send);
-                        e.onComplete();
-                    } else {
-                        e.onError(new Throwable(send.getError().getMessage()));
-                    }
+//                    EthSendTransaction send = web3j.ethSendRawTransaction(hexValue).send();
+//                    if (send.getError() == null) {
+//                        e.onNext(send);
+//                        e.onComplete();
+//                    } else {
+//                        e.onError(new Throwable(send.getError().getMessage()));
+//                    }
                 }
             }).subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())

@@ -8,13 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.alsc.utils.base.BaseFragment;
+import com.github.ihsg.patternlocker.OnPatternChangeListener;
+import com.github.ihsg.patternlocker.PatternLockerView;
 import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.FragmentHomeBinding;
 import com.mirko.alsc.ui.devote.DevoteHomeActivity;
 import com.mirko.alsc.ui.wallet.online.PatternSettingActivity;
 import com.mirko.alsc.utils.pattern.PatternHelper;
 import com.mirko.androidutil.utils.android.LogUtils;
+
+import org.jetbrains.annotations.NotNull;
 import org.web3j.abi.datatypes.Int;
 
 import java.util.List;
@@ -83,8 +88,8 @@ public class HomeFragment extends BaseFragment {
             public void onClick(View view) {
 
 
-//                startActivity(new Intent(getActivity(), DevoteHomeActivity.class));
-                startActivity(new Intent(getActivity(), PatternSettingActivity.class));
+                startActivity(new Intent(getActivity(), DevoteHomeActivity.class));
+//                startActivity(new Intent(getActivity(), PatternSettingActivity.class));
             }
         });
 

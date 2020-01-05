@@ -83,8 +83,14 @@
         <activity android:name=".ui.devote.DevoteHomeActivity" />
         <activity android:name=".ui.wallet.online.PatternSettingActivity" />
         <activity android:name=".ui.wallet.online.PatternCheckingActivity" />
+        <activity android:name=".ui.devote.DevoteCjjdActivity" />
+        <activity android:name=".ui.devote.DevoteCygxActivity" />
+        <activity android:name=".ui.devote.DevoteGxDetailActivity" />
+        <activity android:name=".ui.devote.DevoteFsDetailActivity" />
+            <activity android:name=".ui.devote.DevoteXyDetailActivity" />
+            <activity android:name=".ui.devote.DevoteJcDetailActivity" />
 
-        <meta-data
+            <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
         <meta-data

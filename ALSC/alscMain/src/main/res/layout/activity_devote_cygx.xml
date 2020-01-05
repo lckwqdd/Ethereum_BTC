@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_slide_bg"
+        android:orientation="vertical">
+
+        <com.alsc.utils.view.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:showLeftDrawable="true"
+            app:showTextLeft="true"
+            app:tbTitleLeft="@string/cygx_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/title_bar"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#252E3F">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/cygx_yuee"
+                    android:textColor="#7C8498"
+                    android:textSize="@dimen/text_size_11" />
+
+
+                <TextView
+                    android:id="@+id/tv_yuee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_11" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#252E3F">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/cygx_gxe"
+                    android:textColor="#7C8498"
+                    android:textSize="@dimen/text_size_11" />
+
+                <EditText
+                    android:id="@+id/et_gxe_count"
+                    android:layout_width="166dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:background="#2E374C"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="5dp"
+                    android:gravity="center_vertical|right"
+                    android:textSize="@dimen/text_size_11"
+                    android:hint="@string/cygx_gxe_count"
+                    android:inputType="number"
+                    android:textColorHint="@color/white" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="22dp"
+                android:text="@string/cjjd_des"
+                android:textColor="#7C8498"
+                android:textSize="@dimen/text_size_11" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_cygx"
+            style="@style/WalletHoteBtnStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="48dp"
+            android:onClick="@{clickListener}"
+            android:text="@string/cjjd_btn_text" />
+
+    </RelativeLayout>
+</layout>

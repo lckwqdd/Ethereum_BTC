@@ -15,8 +15,7 @@ import com.mirko.alsc.databinding.ActivityPatternSettingBinding;
 import com.mirko.alsc.ui.devote.DevoteHomeActivity;
 import com.mirko.alsc.utils.pattern.PatternHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
-
-import org.jetbrains.annotations.NotNull;
+import org.greenrobot.greendao.annotation.NotNull;
 
 import java.util.List;
 

@@ -206,6 +206,6 @@ public class TokenRepository implements TokenRepositoryType {
 
         Function function = new Function("transfer", params, returnTypes);
         return FunctionEncoder.encode(function);
-//        return Numeric.hexStringToByteArray(Numeric.cleanHexPrefix(encodedFunction));
+//      return Numeric.hexStringToByteArray(Numeric.cleanHexPrefix(encodedFunction));
     }
 }

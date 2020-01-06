@@ -24,9 +24,7 @@ import com.mirko.androidutil.utils.StringUtils;
 import com.mirko.androidutil.utils.android.LogUtils;
 import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
-
-import org.jetbrains.annotations.NotNull;
-
+import org.greenrobot.greendao.annotation.NotNull;
 import java.util.List;
 
 

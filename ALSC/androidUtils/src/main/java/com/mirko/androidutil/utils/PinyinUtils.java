@@ -10,11 +10,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * 拼音帮助类
  */
 public class PinyinUtils {
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("main:"+getFirstSpell("我们的pinyinTest"));
-	}
-	
+
 	/**
 	 * 将字符串中的中文转化为拼音,其他字符不变
 	 * 花花大神->huahuadashen

@@ -8,13 +8,22 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.alsc.net.bean.okgo.AddressEntity;
+import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.btcCoin.btc.KeyPair;
 import com.alsc.wallet.btcCoin.btc.UnspentOutputInfo;
 import com.alsc.wallet.entity.Address;
+import com.alsc.wallet.interact.FetchWalletInteract;
 import com.alsc.wallet.utils.BTCWalletDaoUtils;
 import com.alsc.wallet.utils.ETHWalletUtils;
 import com.alsc.wallet.utils.LogUtils;
@@ -30,6 +39,7 @@ import com.alsc.wallet.bean.GenerateTransactionResult;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityBtcTransferBinding;
 import com.mirko.alsc.utils.UrlRequstUtils;
+import com.mirko.androidutil.view.CustomeDialog;
 
 import java.util.ArrayList;
 
@@ -54,6 +64,9 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
     private AsyncTask<Void, Void, GenerateTransactionResult> generateTransactionTask;
     private String singatureInfo;
     private String uxto;
+    private CustomeDialog getCodeDialog;
+    private ETHWallet currentWallet;
+    private FetchWalletInteract fetchWalletInteract;
 
     @Override
     public void initViews(Bundle savedInstanceState) {
@@ -64,6 +77,8 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
         binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.wh_btc_transfer));
         binding.commonHeader.ivHeaderRight.setVisibility(View.VISIBLE);
         binding.commonHeader.ivHeaderRight.setImageResource(R.mipmap.icon_scan);
+        fetchWalletInteract = new FetchWalletInteract();
+
         Intent intent = getIntent();
         btcAddress = intent.getStringExtra(Constants.btcAddress);
         btcPrivateKey = intent.getStringExtra(Constants.btcPrivateKey);
@@ -81,6 +96,14 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
     @Override
     public void loadData() {
         getAnotherUxto(btcAddress);
+        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
+    }
+
+    private void onSuccess(ETHWallet ethWallet) {
+        currentWallet = ethWallet;
+    }
+
+    private void onError(Throwable e) {
     }
 
     /**
@@ -149,7 +172,7 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
                 startActivityForResult(intent, QRCODE_SCANNER_REQUEST);
                 break;
             case R.id.btn_next:
-                sendTranstion();
+                showCreateDialog();
                 break;
         }
     }
@@ -225,5 +248,36 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
         } catch (Exception e) {
             ToastUtils.showToast(R.string.addr_error_tips);
         }
+    }
+
+    private void showCreateDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_input_wallet_pwd, null);
+        getCodeDialog = new CustomeDialog(this, view);
+        getCodeDialog.setCanceledOnTouchOutside(false);
+        getCodeDialog.setGravity(Gravity.BOTTOM);
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = getCodeDialog.getWindow().getAttributes();
+        lp.width = (int) (display.getWidth()); //设置宽度
+        getCodeDialog.getWindow().setAttributes(lp);
+
+        ImageView walletCancel = view.findViewById(R.id.iv_cancle);
+        EditText walletPwd = view.findViewById(R.id.wallet_password);
+        Button walletSure = view.findViewById(R.id.btn_sure);
+
+        walletCancel.setOnClickListener((v -> {
+            getCodeDialog.dismiss();
+        }));
+        walletSure.setOnClickListener((v -> {
+            if (currentWallet != null) {
+                if (TextUtils.equals(walletPwd.getText().toString().trim(), currentWallet.getPassword())) {
+                    sendTranstion();
+                } else {
+                    ToastUtils.showToast(getString(R.string.pwd_not_right));
+                }
+            }
+            getCodeDialog.dismiss();
+        }));
+        getCodeDialog.show();
     }
 }

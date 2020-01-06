@@ -195,7 +195,7 @@ public class BaseDao<T> {
             if (null == obj) {
                 return null;
             }
-            objects = daoSession.getDao(object).queryRaw(where+ " where " , params);
+            objects = daoSession.getDao(object).queryRaw(" where "+where, params);
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }

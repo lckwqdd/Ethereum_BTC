@@ -6,8 +6,10 @@ import android.util.Log;
 
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.net.db.helper.ETHWalletHelper;
+import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Joiner;
 
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.NetworkParameters;
@@ -152,13 +154,18 @@ public class ETHWalletUtils {
         }
 
         //生成比特币钱包相关
-//      TestNet3Params parameters = TestNet3Params.get();
         MainNetParams parameters = MainNetParams.get();
         org.bitcoinj.wallet.Wallet wallet = new org.bitcoinj.wallet.Wallet(parameters);
         DeterministicKey deterministicKey = wallet.currentReceiveKey();
         String btcPrivateKey = deterministicKey.getPrivateKeyAsWiF(parameters);
         LogUtils.d("BTC私钥：" + btcPrivateKey);
 
+        //获取比特币助记词
+        DeterministicSeed seed = wallet.getKeyChainSeed();
+        List<String> mnemonicCode = seed.getMnemonicCode();
+        String mnemonic_str = Joiner.on(" ").join(mnemonicCode);
+
+        ethWallet.setBtcMnemonic(mnemonic_str);
         ethWallet.setBtcPrivateKey(btcPrivateKey);
 
         //目录不存在则创建目录，创建不了则报错
@@ -209,6 +216,12 @@ public class ETHWalletUtils {
         }
     }
 
+    public static boolean isETHValidAddress(String input) {
+        if (StringUtils.isEmpty(input) || !input.startsWith("0x"))
+            return false;
+        return WalletUtils.isValidAddress(input);
+    }
+
     @Nullable
     private static ETHWallet generateWallet(String walletName, String pwd, ECKeyPair ecKeyPair) {
         WalletFile keyStoreFile;
@@ -226,7 +239,7 @@ public class ETHWalletUtils {
         String wallet_dir = AppFilePath.Wallet_DIR;
         LogUtils.i("ETHWalletUtils", "wallet_dir = " + wallet_dir);
 
-        File destination = new File(wallet_dir, "keystore_" + UUID.randomUUID().toString().replace("-", "") + "_" + walletName + ".json");
+        File destination = new File(wallet_dir, "keystore_" + walletName + ".json");
 
         //目录不存在则创建目录，创建不了则报错
         if (!createParentDir(destination)) {
@@ -242,7 +255,8 @@ public class ETHWalletUtils {
         ethWallet.setName(walletName);
         ethWallet.setAddress(Keys.toChecksumAddress(keyStoreFile.getAddress()));
         ethWallet.setKeystorePath(destination.getAbsolutePath());
-        ethWallet.setPassword(Md5Utils.md5(pwd));
+//        ethWallet.setPassword(Md5Utils.md5(pwd));
+        ethWallet.setPassword(pwd);
         return ethWallet;
     }
 

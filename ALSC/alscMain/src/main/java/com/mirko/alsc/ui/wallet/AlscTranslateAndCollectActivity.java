@@ -143,7 +143,7 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 break;
             case R.id.ll_transfer:
 //              goTo(ETHTransferActivity.class);
-//                Intent intent=new Intent(this,BtcTransferActivity.class);
+//              Intent intent=new Intent(this,BtcTransferActivity.class);
                 Intent intent=new Intent(this,ETHTransferActivity.class);
                 intent.putExtra(Constants.btcAddress,btcAddress);
                 intent.putExtra(Constants.btcPrivateKey,btcPrivateKey);

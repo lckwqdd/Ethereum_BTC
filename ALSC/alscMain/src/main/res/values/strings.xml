@@ -134,6 +134,7 @@
     <string name="load_wallet_by_mnemonic_help">什么是助记词？</string>
     <string name="load_wallet_already_exist">钱包已存在</string>
     <string name="import_wallet_fail">导入钱包失败</string>
+    <string name="send_success">发送成功:</string>
 
     <!--    wallte code-->
     <string name="wc_code">创建跨链钱包</string>
@@ -224,6 +225,7 @@
     <string name="wh_login_user_hint">请输入登录用户名</string>
     <string name="wh_login_pwd">密码</string>
     <string name="wh_login_pwd_hint">请输入密码</string>
+    <string name="pwd_not_right">密码不正确</string>
     <string name="wh_login_pwd_forget">忘记密码</string>
     <string name="wh_forgot_pwd_title">找回密码</string>
     <string name="wh_forgot_pwd_title_des">为保障账户安全，您需要进行安全验证</string>
@@ -317,6 +319,8 @@
     <string name="nonce_not_null">Nonce 不能为空</string>
     <string name="btc_receive_not_right">接收地址不合法</string>
     <string name="btc_send_not_right">发送地址不合法</string>
+    <string name="transfer_ether_unit">&#160;ether</string>
+    <string name="amount_error_tips">金额填写不正确</string>
 
     <!--    类型详情-->
     <string name="detail_type">类型</string>
@@ -347,6 +351,9 @@
     <string name="wallet_create">创建</string>
     <string name="wallet_import">导入</string>
     <string name="wallet_cancle">取消</string>
+    <string name="wallet_password">钱包密码</string>
+    <string name="wallet_input">请输入</string>
+    <string name="wallet_input_pwd">输入钱包密码</string>
 
     <!--    导入钱包-->
     <string name="wallet_import_wallet">导入钱包</string>

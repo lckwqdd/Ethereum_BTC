@@ -30,14 +30,15 @@ public class ETHWallet {
     private String btcPrivateKey;
     private String btcAddress;
     private String btcFilePath;
+    private String btcMnemonic;
 
     private boolean isCurrent;
     private boolean isBackup;
-    @Generated(hash = 95806350)
+    @Generated(hash = 1651329613)
     public ETHWallet(Long id, String name, String password, String address,
             String keystorePath, String mnemonic, String btcPrivateKey,
-            String btcAddress, String btcFilePath, boolean isCurrent,
-            boolean isBackup) {
+            String btcAddress, String btcFilePath, String btcMnemonic,
+            boolean isCurrent, boolean isBackup) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -47,6 +48,7 @@ public class ETHWallet {
         this.btcPrivateKey = btcPrivateKey;
         this.btcAddress = btcAddress;
         this.btcFilePath = btcFilePath;
+        this.btcMnemonic = btcMnemonic;
         this.isCurrent = isCurrent;
         this.isBackup = isBackup;
     }
@@ -107,6 +109,12 @@ public class ETHWallet {
     public void setBtcFilePath(String btcFilePath) {
         this.btcFilePath = btcFilePath;
     }
+    public String getBtcMnemonic() {
+        return this.btcMnemonic;
+    }
+    public void setBtcMnemonic(String btcMnemonic) {
+        this.btcMnemonic = btcMnemonic;
+    }
     public boolean getIsCurrent() {
         return this.isCurrent;
     }
@@ -119,6 +127,7 @@ public class ETHWallet {
     public void setIsBackup(boolean isBackup) {
         this.isBackup = isBackup;
     }
+
 
 
 }

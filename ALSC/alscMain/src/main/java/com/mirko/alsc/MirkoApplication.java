@@ -2,7 +2,6 @@ package com.mirko.alsc;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;
-
 import com.alsc.net.NetApplication;
 import com.alsc.net.db.GreenDaoUtil;
 import com.alsc.wallet.utils.AppFilePath;

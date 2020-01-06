@@ -1,17 +1,18 @@
 apply from : "config.gradle"
 buildscript {
     repositories {
-//      jcenter()
-//      google()
-//      maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven {
+            url 'http://storage.googleapis.com/r8-releases/raw'
+        }
     }
     dependencies {
+        classpath 'com.android.tools:r8:1.5.45'
         classpath 'com.android.tools.build:gradle:3.5.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
@@ -22,8 +23,6 @@ buildscript {
 
 allprojects {
     repositories {
-//      jcenter()
-//      maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
         maven {
@@ -36,6 +35,7 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven { url 'https://maven.fabric.io/public' }
     }
 }
 

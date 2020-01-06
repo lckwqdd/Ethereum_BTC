@@ -21,24 +21,24 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
+        BtcWalletDao.createTable(db, ifNotExists);
+        ContactBeanDao.createTable(db, ifNotExists);
         ETHWalletDao.createTable(db, ifNotExists);
         IdCradBeanDao.createTable(db, ifNotExists);
         UserInfoBeanDao.createTable(db, ifNotExists);
         DownInfoDao.createTable(db, ifNotExists);
         CookieResulteDao.createTable(db, ifNotExists);
-        BtcWalletDao.createTable(db, ifNotExists);
-        ContactBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
+        BtcWalletDao.dropTable(db, ifExists);
+        ContactBeanDao.dropTable(db, ifExists);
         ETHWalletDao.dropTable(db, ifExists);
         IdCradBeanDao.dropTable(db, ifExists);
         UserInfoBeanDao.dropTable(db, ifExists);
         DownInfoDao.dropTable(db, ifExists);
         CookieResulteDao.dropTable(db, ifExists);
-        BtcWalletDao.dropTable(db, ifExists);
-        ContactBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -57,13 +57,13 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(BtcWalletDao.class);
+        registerDaoClass(ContactBeanDao.class);
         registerDaoClass(ETHWalletDao.class);
         registerDaoClass(IdCradBeanDao.class);
         registerDaoClass(UserInfoBeanDao.class);
         registerDaoClass(DownInfoDao.class);
         registerDaoClass(CookieResulteDao.class);
-        registerDaoClass(BtcWalletDao.class);
-        registerDaoClass(ContactBeanDao.class);
     }
 
     public DaoSession newSession() {

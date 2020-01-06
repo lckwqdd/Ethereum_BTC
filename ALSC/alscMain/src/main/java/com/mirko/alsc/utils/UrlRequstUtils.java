@@ -13,10 +13,14 @@ import com.alsc.net.bean.okgo.AddressEntity;
 import com.alsc.net.cache.CacheManager;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
+import com.alsc.wallet.entity.ethTranstionBean;
+import com.alsc.wallet.entity.nonceBean;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.adapter.Call;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okgo.model.Response;
 import com.mirko.alsc.MainActivity;
 import com.mirko.androidutil.utils.android.LogUtils;
@@ -29,6 +33,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 public class UrlRequstUtils {
 
     private static final String TAG = "ComUtils";
+    private static final String basicUrl = "http://45.77.37.117:8001/";
 
 
     /**
@@ -151,6 +156,7 @@ public class UrlRequstUtils {
                         Log.i("get", response.body());
 
                     }
+
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
@@ -161,7 +167,7 @@ public class UrlRequstUtils {
 
     public static void getUtxo1(Activity activity, String address) {
 
-        String url = "https://chain.api.btc.com/v3/address/" + address +"/unspent";
+        String url = "https://chain.api.btc.com/v3/address/" + address + "/unspent";
         OkGo.<String>get(url)                            // 请求方式和请求url
                 .tag(activity)                   // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
@@ -178,6 +184,7 @@ public class UrlRequstUtils {
                         Log.i("解析后", jsonBean.toString());
 
                     }
+
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
@@ -186,7 +193,9 @@ public class UrlRequstUtils {
     }
 
 
-    /**广播交易
+    /**
+     * 广播交易
+     *
      * @param activity
      * @param hexString
      */
@@ -202,14 +211,64 @@ public class UrlRequstUtils {
 
                     @Override
                     public void onSuccess(Response<String> response) {
-                        com.alsc.wallet.utils.LogUtils.d("交易成功:" +response.body().toString() );
+                        com.alsc.wallet.utils.LogUtils.d("交易成功:" + response.body().toString());
                     }
+
                     @Override
                     public void onError(Response<String> response) {
-                        com.alsc.wallet.utils.LogUtils.d("交易失败:" +response.body().toString() );
+                        com.alsc.wallet.utils.LogUtils.d("交易失败:" + response.body().toString());
                         super.onError(response);
                     }
                 });
+    }
+
+    /**
+     * 获取Nonce
+     *
+     * @param address
+     */
+    public static String getNonceFromSendAddress(Activity activity, String address) {
+        String url = basicUrl+"getNonce/" + address;
+        Call<String> call = OkGo.<String>get(url)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE).converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            nonceBean jsonBean = new Gson().fromJson(s, nonceBean.class);
+            return jsonBean.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("nonceStr异常:" + e.toString());
+        }
+        return null;
+    }
+
+
+    /**以太坊广播交易
+     * @param activity
+     * @param hexStr
+     * @return
+     */
+    public static ethTranstionBean sendEthBrocastTranstion(Activity activity, String hexStr) {
+        String url = basicUrl+"sendTransaction/" + hexStr;
+        Call<String> call = OkGo.<String>get(url)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE).converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            ethTranstionBean jsonBean = new Gson().fromJson(s, ethTranstionBean.class);
+            return jsonBean;
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("nonceStr异常:" + e.toString());
+        }
+        return null;
     }
 
 }

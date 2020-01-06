@@ -225,6 +225,7 @@
     <string name="wh_login_user_hint">请输入登录用户名</string>
     <string name="wh_login_pwd">密码</string>
     <string name="wh_login_pwd_hint">请输入密码</string>
+    <string name="pwd_not_right">密码不正确</string>
     <string name="wh_login_pwd_forget">忘记密码</string>
     <string name="wh_forgot_pwd_title">找回密码</string>
     <string name="wh_forgot_pwd_title_des">为保障账户安全，您需要进行安全验证</string>
@@ -350,6 +351,9 @@
     <string name="wallet_create">创建</string>
     <string name="wallet_import">导入</string>
     <string name="wallet_cancle">取消</string>
+    <string name="wallet_password">钱包密码</string>
+    <string name="wallet_input">请输入</string>
+    <string name="wallet_input_pwd">输入钱包密码</string>
 
     <!--    导入钱包-->
     <string name="wallet_import_wallet">导入钱包</string>

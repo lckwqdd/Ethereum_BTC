@@ -11,7 +11,7 @@
         android:background="#1a2135"
         android:orientation="vertical">
 
-<!--        导入钱包-->
+        <!--        导入钱包-->
         <include
             android:id="@+id/common_header"
             layout="@layout/activity_hot_wallet_header" />
@@ -19,23 +19,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/wallet_import_help_word"
             android:layout_marginLeft="50dp"
-            />
+            android:text="@string/wallet_import_help_word"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/tvMnemonic"
             android:layout_width="320dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/white"
             android:layout_gravity="center"
-            android:padding="20dp"
-            android:textSize="@dimen/text_size_17"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_black_tranprent_radius"
             android:hint="@string/wallet_import_space"
+            android:padding="20dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:background="@drawable/bg_black_tranprent_radius" />
+            android:textSize="@dimen/text_size_17" />
 
         <EditText
             android:id="@+id/pwd"
@@ -43,6 +42,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/pwd"
             android:textColorHint="@color/black" />
+
         <EditText
             android:id="@+id/pwd_sure"
             style="@style/WalletCodeEditStyle"
@@ -53,7 +53,7 @@
         <Button
             android:id="@+id/btn_next"
             style="@style/WalletCodeBtnStyle"
-            android:text="@string/wallet_import_start"
-            android:layout_marginTop="220dp" />
+            android:layout_marginTop="220dp"
+            android:text="@string/wallet_import_start" />
     </LinearLayout>
 </layout>

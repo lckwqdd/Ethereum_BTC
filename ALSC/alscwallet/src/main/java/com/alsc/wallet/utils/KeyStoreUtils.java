@@ -105,7 +105,6 @@ public class KeyStoreUtils {
 
     /**以太坊合约交易
      * @param ethWallet
-     * @param from
      * @param contractAddress
      * @param nonce
      * @param gasPrice
@@ -116,7 +115,7 @@ public class KeyStoreUtils {
      * @throws IOException
      * @throws CipherException
      */
-    public static String signedTransactionContractData(ETHWallet ethWallet,String from, String contractAddress, String nonce, String gasPrice, String gasLimit, String value, String data) throws IOException, CipherException {
+    public static String signedTransactionContractData(ETHWallet ethWallet, String contractAddress, String nonce, String gasPrice, String gasLimit, String value, String data) throws IOException, CipherException {
         //发送正常交易
         RawTransaction rawTransaction = RawTransaction.createTransaction(
                 new BigInteger(nonce),

@@ -18,18 +18,20 @@ public class BtcWallet {
     private String name;
     private String password;
     private String keystorePath;
+    private String privateKey;
     private String mnemonic;
     private boolean isCurrent;
     private boolean isBackup;
-    @Generated(hash = 793541490)
+    @Generated(hash = 1022689888)
     public BtcWallet(Long id, String address, String name, String password,
-            String keystorePath, String mnemonic, boolean isCurrent,
-            boolean isBackup) {
+            String keystorePath, String privateKey, String mnemonic,
+            boolean isCurrent, boolean isBackup) {
         this.id = id;
         this.address = address;
         this.name = name;
         this.password = password;
         this.keystorePath = keystorePath;
+        this.privateKey = privateKey;
         this.mnemonic = mnemonic;
         this.isCurrent = isCurrent;
         this.isBackup = isBackup;
@@ -67,6 +69,12 @@ public class BtcWallet {
     public void setKeystorePath(String keystorePath) {
         this.keystorePath = keystorePath;
     }
+    public String getPrivateKey() {
+        return this.privateKey;
+    }
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
     public String getMnemonic() {
         return this.mnemonic;
     }
@@ -85,6 +93,7 @@ public class BtcWallet {
     public void setIsBackup(boolean isBackup) {
         this.isBackup = isBackup;
     }
+
    
 
 

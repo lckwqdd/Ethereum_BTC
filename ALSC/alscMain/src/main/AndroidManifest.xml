@@ -42,6 +42,8 @@
         <activity android:name=".ui.wallet.AlscTranslateAndCollectActivity">
         </activity>
         <activity android:name=".ui.slide.SecuritySettingActivity" />
+        <activity android:name=".ui.wallet.ETHTranslateAndCollectActivity" />
+        <activity android:name=".ui.wallet.BtcTranslateAndCollectActivity" />
         <activity android:name=".ui.wallet.address.AddAddressActivity" />
         <activity android:name=".ui.wallet.code.CodeWalletImportActivity" />
         <activity android:name=".ui.wallet.ETHSymbolDetailActivity" />

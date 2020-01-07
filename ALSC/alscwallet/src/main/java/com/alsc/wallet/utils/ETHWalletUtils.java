@@ -153,38 +153,6 @@ public class ETHWalletUtils {
             ethWallet.setMnemonic(convertMnemonicList(mnemonic));
         }
 
-        //生成比特币钱包相关
-        MainNetParams parameters = MainNetParams.get();
-        org.bitcoinj.wallet.Wallet wallet = new org.bitcoinj.wallet.Wallet(parameters);
-        DeterministicKey deterministicKey = wallet.currentReceiveKey();
-        String btcPrivateKey = deterministicKey.getPrivateKeyAsWiF(parameters);
-        LogUtils.d("BTC私钥：" + btcPrivateKey);
-
-        //获取比特币助记词
-        DeterministicSeed seed = wallet.getKeyChainSeed();
-        List<String> mnemonicCode = seed.getMnemonicCode();
-        String mnemonic_str = Joiner.on(" ").join(mnemonicCode);
-
-        ethWallet.setBtcMnemonic(mnemonic_str);
-        ethWallet.setBtcPrivateKey(btcPrivateKey);
-
-        //目录不存在则创建目录，创建不了则报错
-        File fireBtc = new File(AppFilePath.Wallet_DIR, "btcStore");
-        if (!createParentDir(fireBtc)) {
-            return null;
-        }
-        try {
-            wallet.saveToFile(fireBtc);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ethWallet.setBtcFilePath(fireBtc.getAbsolutePath());
-        Address currentReceiveAddress = wallet.currentReceiveAddress();
-        String addressString = currentReceiveAddress.toBase58();
-        ethWallet.setBtcAddress(addressString);
-        LogUtils.d("BTC地址：" + addressString);
-
         return ethWallet;
     }
 
@@ -255,7 +223,7 @@ public class ETHWalletUtils {
         ethWallet.setName(walletName);
         ethWallet.setAddress(Keys.toChecksumAddress(keyStoreFile.getAddress()));
         ethWallet.setKeystorePath(destination.getAbsolutePath());
-//        ethWallet.setPassword(Md5Utils.md5(pwd));
+//      ethWallet.setPassword(Md5Utils.md5(pwd));
         ethWallet.setPassword(pwd);
         return ethWallet;
     }
@@ -425,14 +393,11 @@ public class ETHWalletUtils {
         // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
-//                System.out.println("删除单个文件" + fileName + "成功！");
                 return true;
             } else {
-//                System.out.println("删除单个文件" + fileName + "失败！");
                 return false;
             }
         } else {
-//            System.out.println("删除单个文件失败：" + fileName + "不存在！");
             return false;
         }
     }

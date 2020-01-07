@@ -1,14 +1,20 @@
 package com.mirko.alsc.ui.wallet;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.RequiresApi;
+import android.support.v4.util.TimeUtils;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alsc.net.api.AddressRegisterApi;
 import com.alsc.net.bean.entity.AddressRegisterResultEntity;
 import com.alsc.net.bean.request.AddressRegisterRequest;
+import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
@@ -19,14 +25,15 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.ExpandableItemAdapter;
 import com.mirko.alsc.adapter.TokensAdapter;
-import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
 import com.mirko.alsc.entity.Level0Item;
 import com.mirko.alsc.entity.Level1Item;
+import com.mirko.alsc.ui.entity.ExpandData;
 import com.mirko.alsc.ui.wallet.address.AddAddressActivity;
-import com.mirko.alsc.ui.wallet.address.AddContactsActivity;
+import com.mirko.androidutil.utils.ThreadUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -41,6 +48,9 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     private boolean isCanSee;
     private AddressRegisterResultEntity tempAddressRegisterResult;
     private ExpandableItemAdapter adapter;
+    private List<ETHWallet> allEthWallets = new ArrayList<>();
+    private List<BtcWallet> allBtcWallets = new ArrayList<>();
+
 
     @Override
     public void initViews(Bundle savedInstanceState) {
@@ -53,31 +63,52 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
 
     @Override
     public void initAttrs() {
+        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);
+        fetchWalletInteract.fetch().subscribe(this::allEthDatas, this::onError);
+        fetchWalletInteract.fetchBTC().subscribe(this::allBtcDatas, this::onError);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void loadData() {
-        initRecycleDatas();
-        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(() -> {
+                    initRecycleDatas();
+                });
+            }
+        }, 2000);
         getCurrentUserInfo(new AddressRegisterRequest(UUID.randomUUID().toString().replace("-", ""), "alsc"));
     }
 
+    private void onSuccess(ETHWallet ethWallet) {
+        currentEthWallet = ethWallet;
+    }
+
+    private void allBtcDatas(List<BtcWallet> btcWallets) {
+        LogUtils.d("allBtcDatas:" + btcWallets.size());
+        allBtcWallets = btcWallets;
+    }
+
+    private void allEthDatas(List<ETHWallet> ethWallets) {
+        LogUtils.d("allEthDatas:" + ethWallets.size());
+        allEthWallets = ethWallets;
+    }
+
     private void initRecycleDatas() {
-        ArrayList<MultiItemEntity> list = generateData();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.totalAssetsRv.setLayoutManager(layoutManager);
-        adapter = new ExpandableItemAdapter(list);
+        adapter = new ExpandableItemAdapter(generateData());
         binding.totalAssetsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
             switch (position) {
                 case 1:
-                    Intent intent=new Intent(this,AlscTranslateAndCollectActivity.class);
-                    intent.putExtra(Constants.btcAddress,currentEthWallet.getBtcAddress());
-                    intent.putExtra(Constants.btcPrivateKey,currentEthWallet.getBtcPrivateKey());
-                    intent.putExtra(Constants.walletAddress,currentEthWallet.getAddress());
-                    startActivity(intent);
+                    goTo(ETHTranslateAndCollectActivity.class);
                     break;
+
             }
         }));
     }
@@ -104,34 +135,58 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         }), TotalAssetsActivity.this, addressRegisterRequest));
     }
 
-    private void onSuccess(ETHWallet ethWallet) {
-        currentEthWallet = ethWallet;
-    }
-
     private ArrayList<MultiItemEntity> generateData() {
-        int lv0Count = 4;
-        int lv1Count = 2;
-        String[] nameLists = {"ALSC", "ETH", "BTC", "USDT"};
-        String[] balanceLists = {"0", "0", "0", "0"};
-        String[] valueLists = {"=¥1772.00", "=¥0.00", "=¥0.00", "=¥0.00"};
-        int[] imgsLists = {R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency};
+        LogUtils.d("获取数据generateData");
+        if (allEthWallets != null && allBtcWallets != null) {
+            int lv0Count = 4;
+            String[] nameLists = {"ALSC", "ETH", "BTC", "USDT"};
+            String[] balanceLists = {"0", "0", "0", "0"};
+            String[] valueLists = {"¥0.00", "=¥0.00", "=¥0.00", "=¥0.00"};
+            int[] imgsLists = {R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency, R.mipmap.icon_currency};
 
-        //子类
-        String[] subNameLists = {"已有的ALSC地址", "创建的AlSC地址"};
-        String[] subAddressLists = {"0x164f65d4fd", "0x432423"};
-        String[] subBalanceLists = {"0", "0"};
-        String[] subValueLists = {"=¥1772.00", "=¥0.00"};
 
-        ArrayList<MultiItemEntity> res = new ArrayList<>();
-        for (int i = 0; i < lv0Count; i++) {
-            Level0Item lv0 = new Level0Item(imgsLists[i], nameLists[i], balanceLists[i], valueLists[i]);
-            for (int j = 0; j < lv1Count; j++) {
-                Level1Item lv1 = new Level1Item(subNameLists[j], subAddressLists[j], subBalanceLists[j], subValueLists[j]);
-                lv0.addSubItem(lv1);
+            ArrayList<MultiItemEntity> res = new ArrayList<>();
+            Level1Item lv1;
+            for (int i = 0; i < lv0Count; i++) {
+                Level0Item item = new Level0Item(imgsLists[i], nameLists[i], balanceLists[i], valueLists[i]);
+                if (i == 0) {
+                    //ALSC
+                    if(allEthWallets.size()>0){
+                        for (int j = 0; j < allEthWallets.size(); j++) {
+                            lv1 = new Level1Item("已有的ALSC地址", allEthWallets.get(j).getAddress(), "0", "0");
+                            item.addSubItem(lv1);
+                        }
+                    }
+                } else if (i == 1) {
+                    //ETH
+                    if(allEthWallets.size()>0){
+                        for (int j = 0; j < allEthWallets.size(); j++) {
+                            lv1 = new Level1Item("已有的ETH地址", allEthWallets.get(j).getAddress(), "0", "0");
+                            item.addSubItem(lv1);
+                        }
+                    }
+                } else if (i == 2) {
+                    //BTC
+                    if(allBtcWallets.size()>0){
+                        for (int j = 0; j < allBtcWallets.size(); j++) {
+                            lv1 = new Level1Item("已有的BTC地址", allBtcWallets.get(j).getAddress(), "0", "0");
+                            item.addSubItem(lv1);
+                        }
+                    }
+                } else if (i == 3) {
+                    //USDT
+                    if(allBtcWallets.size()>0){
+                        for (int j = 0; j < allBtcWallets.size(); j++) {
+                            lv1 = new Level1Item("已有的BTC地址", allBtcWallets.get(j).getAddress(), "0", "0");
+                            item.addSubItem(lv1);
+                        }
+                    }
+                }
+                res.add(item);
             }
-            res.add(lv0);
+            return res;
         }
-        return res;
+        return null;
     }
 
 

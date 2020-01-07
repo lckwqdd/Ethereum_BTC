@@ -63,7 +63,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class ETHTransferActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityHotWalletAlscTransferBinding binding;
-    private String ethAddress;
     private static final int QRCODE_SCANNER_REQUEST = 1100;
     public String contractAddress = "0xe38AB2AD0e3e85983f76Fe235b6A9869Cda0502d";
     private String nonce;
@@ -87,11 +86,8 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
         binding.commonHeader.ivHeaderRight.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
         fetchWalletInteract = new FetchWalletInteract();
+        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
 
-        Intent intent = getIntent();
-        ethAddress = intent.getStringExtra(Constants.walletAddress);
-        LogUtils.d("以太坊地址:" + ethAddress);
-        binding.sendAddress.setText(ethAddress);
     }
 
     @Override
@@ -132,13 +128,12 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
 
     @Override
     public void loadData() {
-        getNonceFromSendAddress(ethAddress);
-        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
-//      getBalance();
     }
 
     private void onSuccess(ETHWallet ethWallet) {
         currentWallet = ethWallet;
+        binding.sendAddress.setText(ethWallet.getAddress());
+        getNonceFromSendAddress(ethWallet.getAddress());
     }
 
     private void onError(Throwable e) {
@@ -208,7 +203,7 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                 @Override
                 public void subscribe(ObservableEmitter<ethTranstionBean> e) throws Exception {
                     //签名交易信息
-                    List<ETHWallet> ethWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{ethAddress});
+                    List<ETHWallet> ethWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{binding.sendAddress.getText().toString().trim()});
 //                  LogUtils.d("当前钱包:"+ GsonUtils.toJson(ethWalletList.get(0)));
                     BigInteger gas = gasPrice.multiply(gasLimit);
                     BigInteger total = gas.add(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger());
@@ -218,7 +213,7 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                     LogUtils.d("total.toString():" + total.toString());
                     LogUtils.d("account:" + Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString());
                     String hexValue = KeyStoreUtils.signedTransactionData(ethWalletList.get(0),
-                            ethAddress,
+                            binding.sendAddress.getText().toString().trim(),
                             binding.receiveAddress.getText().toString().trim(),//发送地址
                             nonce, gasPrice.toString(), gasLimit.toString(),
                             Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString());
@@ -318,7 +313,7 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
 
         String callFuncData = TokenRepository.createTokenTransferData(toAddress, amount);
 
-        List<ETHWallet> ethWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{ethAddress});
+        List<ETHWallet> ethWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{binding.sendAddress.getText().toString().trim()});
 
         ETHWallet tempWallet = ethWalletList.get(0);
         Credentials credentials = WalletUtils.loadCredentials(tempWallet.getPassword(), tempWallet.getKeystorePath());

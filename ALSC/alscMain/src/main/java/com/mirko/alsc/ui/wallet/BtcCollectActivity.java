@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.interact.FetchWalletInteract;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityBtcCollectBinding;
@@ -19,36 +21,29 @@ import com.mirko.androidutil.utils.ThreadUtils;
  */
 public class BtcCollectActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityBtcCollectBinding binding;
-    private String btcAddress,btcPrivateKey,address;
+    private FetchWalletInteract fetchWalletInteract;
 
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_btc_collect);
         binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
         binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.wh_btc_collect));
-        Intent intent = getIntent();
-        btcAddress=intent.getStringExtra(Constants.btcAddress);
-        btcPrivateKey=intent.getStringExtra(Constants.btcPrivateKey);
-        address=intent.getStringExtra(Constants.walletAddress);
-        binding.address.setText(btcAddress);
+        fetchWalletInteract = new FetchWalletInteract();
+        fetchWalletInteract.findDefaultBTCByAddress("").subscribe(this::onSuccess, this::onError);
     }
 
-    @Override
-    public void initAttrs() {
-    }
-
-    @Override
-    public void loadData() {
+    private void onSuccess(BtcWallet btcWallet) {
+        binding.address.setText(btcWallet.getAddress());
         ThreadUtils.executeBySingle(new ThreadUtils.Task<Bitmap>() {
             @Override
             public Bitmap doInBackground() throws Throwable {
-                Bitmap bitmap = ComUtils.createQRImage(btcAddress);
+                Bitmap bitmap = ComUtils.createQRImage(btcWallet.getAddress());
                 return bitmap;
             }
 
             @Override
             public void onSuccess(Bitmap result) {
-                if(result!=null){
+                if (result != null) {
                     binding.ivQrcode.setImageBitmap(result);
                 }
             }
@@ -63,6 +58,17 @@ public class BtcCollectActivity extends AlscBaseActivity implements View.OnClick
 
             }
         });
+    }
+
+    private void onError(Throwable e) {
+    }
+
+    @Override
+    public void initAttrs() {
+    }
+
+    @Override
+    public void loadData() {
     }
 
 

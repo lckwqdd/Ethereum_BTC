@@ -1,7 +1,11 @@
 package com.alsc.wallet.interact;
 
 import com.alsc.net.db.bean.BtcWallet;
+import com.alsc.net.db.bean.BtcWalletDao;
 import com.alsc.net.db.bean.ETHWallet;
+import com.alsc.net.db.bean.ETHWalletDao;
+import com.alsc.net.db.helper.BTCWalletHelper;
+import com.alsc.net.db.helper.ETHWalletHelper;
 import com.alsc.wallet.utils.BTCWalletDaoUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
 
@@ -22,6 +26,7 @@ public class FetchWalletInteract {
     public FetchWalletInteract() {
     }
 
+
     public Single<List<ETHWallet>> fetch() {
 
 
@@ -39,7 +44,7 @@ public class FetchWalletInteract {
 
     }
 
-    public Single<List<BtcWallet>> fetchBtc() {
+    public Single<List<BtcWallet>> fetchBTC() {
 
 
         return Single.fromCallable(() -> {
@@ -48,20 +53,36 @@ public class FetchWalletInteract {
 
     }
 
-    public Single<BtcWallet> findDefaultBtc() {
+    public Single<ETHWallet> findDefaultByAddress(String address) {
+
+        return Single.fromCallable(() -> {
+            List<ETHWallet> btcWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{address});
+            ETHWallet btcWallet = btcWalletList.get(0);
+            return btcWallet;
+        });
+    }
+
+    public Single<BtcWallet> findDefaultBTC() {
 
         return Single.fromCallable(() -> {
             return BTCWalletDaoUtils.getCurrent();
         });
     }
 
+    public Single<BtcWallet> findDefaultBTCByAddress(String address) {
 
-    public Single<String>  genrateSingtureHex() {
+        return Single.fromCallable(() -> {
+            List<BtcWallet> btcWalletList = BTCWalletHelper.getInstance().QueryObject(ETHWallet.class, BtcWalletDao.Properties.Address.columnName + "=?", new String[]{address});
+            BtcWallet btcWallet = btcWalletList.get(0);
+            return btcWallet;
+        });
+    }
+
+
+    public Single<String> genrateSingtureHex() {
         return Single.fromCallable(() -> {
             return "";
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
-
-
 
 }

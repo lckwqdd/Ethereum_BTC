@@ -41,7 +41,6 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                         .setText(R.id.balance, lv0.getSymbolBalcance())
                         .setText(R.id.tv_property_cny, lv0.getSymbolValue());
 //                      .setImageResource(R.id.iv_expand,lv0.isExpanded()?R.mipmap.arrow_b:R.mipmap.arrow_r);
-//                      .setImageResource(R.id.iv_expand,R.mipmap.arrow_r);
                 holder.itemView.setOnClickListener((v -> {
                     int pos = holder.getAdapterPosition();
                     Log.d(TAG, "Level 0 item pos: " + pos);

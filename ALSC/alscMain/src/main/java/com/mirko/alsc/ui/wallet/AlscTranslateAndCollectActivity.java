@@ -54,7 +54,7 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
         btcAddress=intent.getStringExtra(Constants.btcAddress);
         btcPrivateKey=intent.getStringExtra(Constants.btcPrivateKey);
         address=intent.getStringExtra(Constants.walletAddress);
-        binding.address.setText(btcAddress);
+        binding.address.setText(address);
         super.onCreate(savedInstanceState);
     }
 
@@ -142,22 +142,10 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
                 onBackPressed();
                 break;
             case R.id.ll_transfer:
-//              goTo(ETHTransferActivity.class);
-//              Intent intent=new Intent(this,BtcTransferActivity.class);
-                Intent intent=new Intent(this,ETHTransferActivity.class);
-                intent.putExtra(Constants.btcAddress,btcAddress);
-                intent.putExtra(Constants.btcPrivateKey,btcPrivateKey);
-                intent.putExtra(Constants.walletAddress,address);
-                startActivity(intent);
+                goTo(ETHTransferActivity.class);
                 break;
             case R.id.ll_receivables:
-//              goTo(ETHCollectActivity.class);
-//              Intent intent1=new Intent(this,BtcCollectActivity.class);
-                Intent intent1=new Intent(this,ETHCollectActivity.class);
-                intent1.putExtra(Constants.btcAddress,btcAddress);
-                intent1.putExtra(Constants.btcPrivateKey,btcPrivateKey);
-                intent1.putExtra(Constants.walletAddress,address);
-                startActivity(intent1);
+                goTo(ETHCollectActivity.class);
                 break;
             case R.id.iv_header_left:
                 onBackPressed();

@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.domain.VerifyMnemonicWordTag;
 import com.alsc.wallet.utils.BTCWalletDaoUtils;
+import com.alsc.wallet.utils.BtcWalletUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;

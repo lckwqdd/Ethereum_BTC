@@ -3,6 +3,7 @@ package com.alsc.wallet.interact;
 import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.wallet.utils.BTCWalletDaoUtils;
+import com.alsc.wallet.utils.BtcWalletUtils;
 import com.alsc.wallet.utils.ETHWalletUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
@@ -24,7 +25,7 @@ public class CreateWalletInteract {
     public Single<ETHWallet> create(final String name, final String pwd, String confirmPwd) {
         return Single.fromCallable(() -> {
             ETHWallet ethWallet = ETHWalletUtils.generateMnemonic(name, pwd);
-            LogUtils.d("以太坊:"+ GsonUtils.toJson(ethWallet));
+            LogUtils.d("以太坊:" + GsonUtils.toJson(ethWallet));
             WalletDaoUtils.insertNewWallet(ethWallet);
             return ethWallet;
         }).subscribeOn(Schedulers.io())
@@ -33,21 +34,12 @@ public class CreateWalletInteract {
     }
 
     //创建比特币钱包
-    public Single<BtcWallet> createBtc(final String name, final String pwd, String confirmPwd) {
+    public Single<BtcWallet> createBTC(final String name, final String pwd, String confirmPwd) {
         return Single.fromCallable(() -> {
-            ETHWallet ethWallet = ETHWalletUtils.generateMnemonic(name, pwd);
-            LogUtils.d("比特币:"+ GsonUtils.toJson(ethWallet));
-            BtcWallet btvWallet = new BtcWallet();
-            btvWallet.setId(ethWallet.getId());
-            btvWallet.setAddress(ethWallet.getAddress());
-            btvWallet.setName(ethWallet.getName());
-            btvWallet.setPassword(ethWallet.getPassword());
-            btvWallet.setKeystorePath(ethWallet.getKeystorePath());
-            btvWallet.setMnemonic(ethWallet.getMnemonic());
-            btvWallet.setIsCurrent(ethWallet.getIsCurrent());
-            btvWallet.setIsBackup(ethWallet.getIsBackup());
-            BTCWalletDaoUtils.insertNewWallet(btvWallet);
-            return btvWallet;
+            BtcWallet btcWallet = BtcWalletUtils.generateMnemonic(name, pwd);
+            LogUtils.d("比特币:" + GsonUtils.toJson(btcWallet));
+            BTCWalletDaoUtils.insertNewWallet(btcWallet);
+            return btcWallet;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
@@ -59,7 +51,6 @@ public class CreateWalletInteract {
             if (ethWallet != null) {
                 WalletDaoUtils.insertNewWallet(ethWallet);
             }
-
             return ethWallet;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

@@ -27,9 +27,10 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
         public final static Property Password = new Property(3, String.class, "password", false, "PASSWORD");
         public final static Property KeystorePath = new Property(4, String.class, "keystorePath", false, "KEYSTORE_PATH");
-        public final static Property Mnemonic = new Property(5, String.class, "mnemonic", false, "MNEMONIC");
-        public final static Property IsCurrent = new Property(6, boolean.class, "isCurrent", false, "IS_CURRENT");
-        public final static Property IsBackup = new Property(7, boolean.class, "isBackup", false, "IS_BACKUP");
+        public final static Property PrivateKey = new Property(5, String.class, "privateKey", false, "PRIVATE_KEY");
+        public final static Property Mnemonic = new Property(6, String.class, "mnemonic", false, "MNEMONIC");
+        public final static Property IsCurrent = new Property(7, boolean.class, "isCurrent", false, "IS_CURRENT");
+        public final static Property IsBackup = new Property(8, boolean.class, "isBackup", false, "IS_BACKUP");
     }
 
 
@@ -50,9 +51,10 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
                 "\"NAME\" TEXT," + // 2: name
                 "\"PASSWORD\" TEXT," + // 3: password
                 "\"KEYSTORE_PATH\" TEXT," + // 4: keystorePath
-                "\"MNEMONIC\" TEXT," + // 5: mnemonic
-                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 6: isCurrent
-                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 7: isBackup
+                "\"PRIVATE_KEY\" TEXT," + // 5: privateKey
+                "\"MNEMONIC\" TEXT," + // 6: mnemonic
+                "\"IS_CURRENT\" INTEGER NOT NULL ," + // 7: isCurrent
+                "\"IS_BACKUP\" INTEGER NOT NULL );"); // 8: isBackup
     }
 
     /** Drops the underlying database table. */
@@ -90,12 +92,17 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
             stmt.bindString(5, keystorePath);
         }
  
+        String privateKey = entity.getPrivateKey();
+        if (privateKey != null) {
+            stmt.bindString(6, privateKey);
+        }
+ 
         String mnemonic = entity.getMnemonic();
         if (mnemonic != null) {
-            stmt.bindString(6, mnemonic);
+            stmt.bindString(7, mnemonic);
         }
-        stmt.bindLong(7, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(8, entity.getIsBackup() ? 1L: 0L);
+        stmt.bindLong(8, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(9, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -127,12 +134,17 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
             stmt.bindString(5, keystorePath);
         }
  
+        String privateKey = entity.getPrivateKey();
+        if (privateKey != null) {
+            stmt.bindString(6, privateKey);
+        }
+ 
         String mnemonic = entity.getMnemonic();
         if (mnemonic != null) {
-            stmt.bindString(6, mnemonic);
+            stmt.bindString(7, mnemonic);
         }
-        stmt.bindLong(7, entity.getIsCurrent() ? 1L: 0L);
-        stmt.bindLong(8, entity.getIsBackup() ? 1L: 0L);
+        stmt.bindLong(8, entity.getIsCurrent() ? 1L: 0L);
+        stmt.bindLong(9, entity.getIsBackup() ? 1L: 0L);
     }
 
     @Override
@@ -148,9 +160,10 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // password
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // keystorePath
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // mnemonic
-            cursor.getShort(offset + 6) != 0, // isCurrent
-            cursor.getShort(offset + 7) != 0 // isBackup
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // privateKey
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // mnemonic
+            cursor.getShort(offset + 7) != 0, // isCurrent
+            cursor.getShort(offset + 8) != 0 // isBackup
         );
         return entity;
     }
@@ -162,9 +175,10 @@ public class BtcWalletDao extends AbstractDao<BtcWallet, Long> {
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setPassword(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setKeystorePath(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setMnemonic(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setIsCurrent(cursor.getShort(offset + 6) != 0);
-        entity.setIsBackup(cursor.getShort(offset + 7) != 0);
+        entity.setPrivateKey(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setMnemonic(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setIsCurrent(cursor.getShort(offset + 7) != 0);
+        entity.setIsBackup(cursor.getShort(offset + 8) != 0);
      }
     
     @Override

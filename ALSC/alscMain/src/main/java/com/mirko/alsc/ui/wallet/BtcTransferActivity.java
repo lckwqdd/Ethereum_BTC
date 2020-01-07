@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.alsc.net.bean.okgo.AddressEntity;
+import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
 import com.alsc.wallet.btcCoin.btc.KeyPair;
@@ -52,20 +53,10 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class BtcTransferActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityBtcTransferBinding binding;
-    private String btcAddress, btcPrivateKey, address;
     private static final int QRCODE_SCANNER_REQUEST = 1100;
-    private AsyncTask<Void, Void, KeyPair> decodePrivateKeyTask;
-    private KeyPair verifiedKeyPairForTx;
-    private AsyncTask<Void, Void, ArrayList<UnspentOutputInfo>> decodeUnspentOutputsInfoTask;
-    private ArrayList<UnspentOutputInfo> verifiedUnspentOutputsForTx;
-    private static final long SEND_MAX = -1;
-    private static final long AMOUNT_ERR = -2;
-    private long verifiedAmountToSendForTx = -1;
-    private AsyncTask<Void, Void, GenerateTransactionResult> generateTransactionTask;
-    private String singatureInfo;
     private String uxto;
     private CustomeDialog getCodeDialog;
-    private ETHWallet currentWallet;
+    private BtcWallet currentWallet;
     private FetchWalletInteract fetchWalletInteract;
 
     @Override
@@ -78,15 +69,13 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
         binding.commonHeader.ivHeaderRight.setVisibility(View.VISIBLE);
         binding.commonHeader.ivHeaderRight.setImageResource(R.mipmap.icon_scan);
         fetchWalletInteract = new FetchWalletInteract();
+        fetchWalletInteract.findDefaultBTCByAddress("").subscribe(this::onSuccess,this::onError);
+    }
 
-        Intent intent = getIntent();
-        btcAddress = intent.getStringExtra(Constants.btcAddress);
-        btcPrivateKey = intent.getStringExtra(Constants.btcPrivateKey);
-        address = intent.getStringExtra(Constants.walletAddress);
-        LogUtils.d("以太坊地址:" + address);
-        LogUtils.d("比特币地址:" + btcAddress);
-        binding.sendAddress.setText(btcAddress);
-        LogUtils.d("是否是比特币地址:" + ETHWalletUtils.isBTCValidAddress(btcAddress));
+    private void onSuccess(BtcWallet btcWallet) {
+        currentWallet=btcWallet;
+        binding.sendAddress.setText(btcWallet.getAddress());
+        getAnotherUxto(btcWallet.getAddress());
     }
 
     @Override
@@ -95,12 +84,6 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
 
     @Override
     public void loadData() {
-        getAnotherUxto(btcAddress);
-        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
-    }
-
-    private void onSuccess(ETHWallet ethWallet) {
-        currentWallet = ethWallet;
     }
 
     private void onError(Throwable e) {
@@ -179,14 +162,14 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
 
 
     private void sendTranstion() {
-        checkInput();
-        Single.fromCallable(() -> {
-            LogUtils.d("私钥:" + btcPrivateKey);
-            String strs = BTCWalletDaoUtils.signatureBtcTranstion(uxto, btcPrivateKey, binding.sendAddress.getText().toString().trim(),
-                    binding.receiveAddress.getText().toString().trim(), Long.parseLong(binding.account.getText().toString().trim()));
-            return strs;
-        }).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(this::onSuccess, this::onErrow);
+        if(checkInput()){
+            Single.fromCallable(() -> {
+                String strs = BTCWalletDaoUtils.signatureBtcTranstion(uxto, currentWallet.getPrivateKey(), binding.sendAddress.getText().toString().trim(),
+                        binding.receiveAddress.getText().toString().trim(), Long.parseLong(binding.account.getText().toString().trim()));
+                return strs;
+            }).subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(this::onSuccess, this::onErrow);
+        }
     }
 
     private boolean checkInput() {

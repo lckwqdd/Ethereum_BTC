@@ -4,6 +4,9 @@ import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.mirko.alsc.adapter.ExpandableItemAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by luoxw on 2016/8/10.
  */
@@ -14,12 +17,21 @@ public class Level0Item extends AbstractExpandableItem<Level1Item> implements Mu
     private String symbolNmae;
     private String symbolBalcance;
     private String symbolValue;
+    private List<Level1Item> level1Items = new ArrayList<>();
 
     public Level0Item(int symbolPicture, String symbolNmae, String symbolBalcance, String symbolValue) {
         this.symbolPicture = symbolPicture;
         this.symbolNmae = symbolNmae;
         this.symbolBalcance = symbolBalcance;
         this.symbolValue = symbolValue;
+    }
+
+    public List<Level1Item> getLevel1Items() {
+        return level1Items;
+    }
+
+    public void setLevel1Items(List<Level1Item> level1Items) {
+        this.level1Items = level1Items;
     }
 
     public int getSymbolPicture() {

@@ -89,7 +89,12 @@ public class CodeWalletCreateActivity extends AlscBaseActivity implements View.O
         boolean verifyWalletInfo = verifyInfo(walletName, walletPwd, confirmPwd);
         if (verifyWalletInfo) {
            createWalletInteract.create(walletName, walletPwd, confirmPwd).subscribe(this::jumpToWalletBackUp, this::showError);
+           createWalletInteract.createBTC(walletName, walletPwd, confirmPwd).subscribe(this::onSuccess, this::showError);
         }
+    }
+
+    private void onSuccess(BtcWallet btcWallet) {
+
     }
 
     private boolean verifyInfo(String walletName, String walletPwd, String confirmPwd) {

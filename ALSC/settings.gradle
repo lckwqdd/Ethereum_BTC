@@ -1,1 +1,1 @@
-include ':alscMain', ':androidUtils', ':alscWallet','alscMy','alscFind','alscNet','alscUtils'
+include ':alscMain', ':androidUtils', ':alscWallet','alscMy','alscFind','alscNet','alscUtils', ':core'

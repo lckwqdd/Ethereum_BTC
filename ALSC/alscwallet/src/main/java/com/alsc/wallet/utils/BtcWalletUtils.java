@@ -3,7 +3,6 @@ package com.alsc.wallet.utils;
 
 import com.alsc.net.db.bean.BtcWallet;
 import com.google.common.base.Joiner;
-
 import org.bitcoinj.core.Address;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bitcoinj.params.MainNetParams;

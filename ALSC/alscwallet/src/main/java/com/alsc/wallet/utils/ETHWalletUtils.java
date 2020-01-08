@@ -171,17 +171,18 @@ public class ETHWalletUtils {
     }
 
     public static boolean isBTCValidAddress(String input) {
-        try {
-            NetworkParameters networkParameters = null;
-            networkParameters = MainNetParams.get();
-            Address address = Address.fromBase58(networkParameters, input);
-            if (address != null)
-                return true;
-            else
-                return false;
-        } catch (Exception e) {
-            return false;
-        }
+//        try {
+//            NetworkParameters networkParameters = null;
+//            networkParameters = MainNetParams.get();
+//            Address address = Address.fromBase58(networkParameters, input);
+//            if (address != null)
+//                return true;
+//            else
+//                return false;
+//        } catch (Exception e) {
+//            return false;
+//        }
+        return true;
     }
 
     public static boolean isETHValidAddress(String input) {

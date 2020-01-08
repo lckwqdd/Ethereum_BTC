@@ -41,6 +41,7 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/pwd"
+            android:inputType="textPassword"
             android:textColorHint="@color/black" />
 
         <EditText
@@ -48,6 +49,7 @@
             style="@style/WalletCodeEditStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/again_pwd"
+            android:inputType="textPassword"
             android:textColorHint="@color/black" />
 
         <Button

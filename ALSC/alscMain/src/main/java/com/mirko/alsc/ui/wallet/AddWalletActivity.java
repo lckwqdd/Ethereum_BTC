@@ -1,5 +1,6 @@
 package com.mirko.alsc.ui.wallet;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +20,10 @@ import com.alsc.wallet.utils.ToastUtils;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.AddWalletAdapter;
 import com.mirko.alsc.adapter.TokensAdapter;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAddWalletBinding;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
+import com.mirko.alsc.ui.wallet.address.AddAddressActivity;
 import com.mirko.alsc.ui.wallet.code.CodeWalletCreateActivity;
 import com.mirko.alsc.ui.wallet.code.CodeWalletImportActivity;
 import com.mirko.androidutil.view.CustomeDialog;
@@ -48,24 +51,13 @@ public class AddWalletActivity extends AlscBaseActivity implements View.OnClickL
         binding.addWalletRv.setLayoutManager(layoutManager);
         adapter = new AddWalletAdapter(R.layout.list_item_add_wallet, genrateData());
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
-            ToastUtils.showToast("position:"+position);
-            switch (position){
-                case 0:
-                    showCreateDialog();
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-
-            }
+            ToastUtils.showToast("position:" + position);
+            showCreateDialog(position);
         }));
         binding.addWalletRv.setAdapter(adapter);
     }
 
-    private void showCreateDialog() {
+    private void showCreateDialog(int position) {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_create_wallet, null);
         getCodeDialog = new CustomeDialog(this, view);
         getCodeDialog.setCanceledOnTouchOutside(false);
@@ -86,7 +78,10 @@ public class AddWalletActivity extends AlscBaseActivity implements View.OnClickL
         }));
         walletImport.setOnClickListener((v -> {
             //跳去冷钱包界面
-            goTo(CodeWalletImportActivity.class);
+            Intent intent = new Intent(AddWalletActivity.this, CodeWalletImportActivity.class);
+            intent.putExtra(Constants.pointPosition, position);
+            startActivity(intent);
+            finish();
             getCodeDialog.dismiss();
         }));
         walletCancle.setOnClickListener((v -> {

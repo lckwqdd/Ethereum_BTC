@@ -42,8 +42,6 @@ public class BTCWalletDaoUtils {
      * @param btcWallet 新创建钱包
      */
     public static void insertNewWallet(BtcWallet btcWallet) {
-        updateCurrent(-1);
-        btcWallet.setIsCurrent(true);
         BTCWalletHelper.getInstance().insertObject(btcWallet);
     }
 

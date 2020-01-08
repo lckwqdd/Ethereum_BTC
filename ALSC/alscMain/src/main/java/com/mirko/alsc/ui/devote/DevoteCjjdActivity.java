@@ -112,6 +112,7 @@ public class DevoteCjjdActivity extends AlscBaseActivity implements View.OnClick
             @Override
             public void onNext(EmptyResultEntity result) {
                 ToastHelper.alert(DevoteCjjdActivity.this, "参与节点成功");
+                DevoteCjjdActivity.this.finish();
             }
 
             @Override
@@ -215,10 +216,10 @@ public class DevoteCjjdActivity extends AlscBaseActivity implements View.OnClick
 //        walletPwdDialog.getWindow().setAttributes(lp);
 
         etPwd = view.findViewById(R.id.et_pwd); //验证码
-        String pwd = etPwd.getText().toString();
         view.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String pwd = etPwd.getText().toString();
                 devoteCheckPayPwd(MD5Utils.getMD5Code(pwd));
                 if (walletPwdDialog != null) {
                     walletPwdDialog.dismiss();

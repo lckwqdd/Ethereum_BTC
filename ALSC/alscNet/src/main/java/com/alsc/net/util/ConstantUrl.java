@@ -58,7 +58,7 @@ public interface ConstantUrl {
     //参与贡献
     String DEVOTE_CREATE_URL = "api/create_heyue";
     //转账
-    String DEVOTE_TRANSFER_URL = "  ";
+    String DEVOTE_TRANSFER_URL = "api/transfer";
     //兑换
     String DEVOTE_EXCHANGE_URL = "api/turn";
     //超级节点
@@ -80,8 +80,8 @@ public interface ConstantUrl {
 
     //获取用户直推用户列表
     String RECOMMEND_INFO_URL = "api/recommend";
-
-    //注册地址
+	
+	    //注册地址
     String REGISTER_ADDRESS_URL = "api/cold_wallet";
     //上传交易
     String UPLOAD_TRANSTION_URL = "api/create_heyue";

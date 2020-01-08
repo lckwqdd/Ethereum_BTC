@@ -53,6 +53,7 @@ public class WTransferApi extends BaseApi {
             result.put("receive_url", request.getReceive_url());
             result.put("send_url", request.getSend_url());
             result.put("price", request.getPrice());
+            result.put("symbol", request.getSymbol());
         } catch (JSONException e) {
             e.printStackTrace();
         }

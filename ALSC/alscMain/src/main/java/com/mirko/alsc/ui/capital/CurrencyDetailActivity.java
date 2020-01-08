@@ -66,6 +66,7 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
     @Override
     public void initViews(Bundle savedInstanceState) {
         binding.titleBar.setOnLeftClickListener(this);
+        binding.setClickListener(this);
 
         ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
         //设置tab的标题、选中图标、未选中图标
@@ -119,6 +120,7 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
 
             }
         });
+
     }
 
     @Override
@@ -185,6 +187,9 @@ public class CurrencyDetailActivity extends AlscBaseActivity implements View.OnC
             case R.id.iv_title_left:
                 LogUtils.d(TAG, "返回点击");
                 onBackPressed();
+                break;
+            case R.id.ll_transfer:
+                goTo(HotETHTransferActivity.class);
                 break;
         }
     }

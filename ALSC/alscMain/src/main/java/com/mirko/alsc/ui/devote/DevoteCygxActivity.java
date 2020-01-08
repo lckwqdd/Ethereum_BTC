@@ -3,10 +3,14 @@ package com.mirko.alsc.ui.devote;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import com.alsc.net.api.DevoteCheckPayPwdApi;
 import com.alsc.net.api.DevoteCreatApi;
+import com.alsc.net.bean.CapitalData;
 import com.alsc.net.bean.UserInfoResult;
 import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.retrofit.http.HttpManager;
@@ -16,7 +20,9 @@ import com.mirko.alsc.R;
 import com.mirko.alsc.databinding.ActivityDevoteCygxBinding;
 import com.mirko.alsc.databinding.ActivityDevoteHomeBinding;
 import com.mirko.alsc.utils.ComUtils;
+import com.mirko.androidutil.encryption.MD5Utils;
 import com.mirko.androidutil.utils.android.LogUtils;
+import com.mirko.androidutil.view.CustomeDialog;
 import com.mirko.androidutil.view.ToastHelper;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
 
@@ -31,7 +37,9 @@ public class DevoteCygxActivity extends AlscBaseActivity implements View.OnClick
     private static final String TAG = "DevoteHomeActivity";
     ActivityDevoteCygxBinding binding;
 
-    private UserInfoResult userInfo = new UserInfoResult();
+    private CustomeDialog walletPwdDialog;
+    private EditText etPwd;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +51,10 @@ public class DevoteCygxActivity extends AlscBaseActivity implements View.OnClick
     public void initViews(Bundle savedInstanceState) {
         binding.setClickListener(this);
         binding.titleBar.setOnLeftClickListener(this);
+        UserInfoResult userInfo = ComUtils.getUserInfo();
+        if (userInfo !=null){
+            binding.tvYuee.setText(userInfo.getUsdt()+"");
+        }
     }
 
     @Override
@@ -81,6 +93,7 @@ public class DevoteCygxActivity extends AlscBaseActivity implements View.OnClick
             @Override
             public void onNext(EmptyResultEntity result) {
                 ToastHelper.alert(DevoteCygxActivity.this, "参与贡献成功");
+                DevoteCygxActivity.this.finish();
             }
 
             @Override
@@ -138,6 +151,38 @@ public class DevoteCygxActivity extends AlscBaseActivity implements View.OnClick
 
 
     private void showDialog() {
+
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_wallet_pwd, null);
+        walletPwdDialog = new CustomeDialog(this, view);
+        walletPwdDialog.setCanceledOnTouchOutside(false);
+        walletPwdDialog.setGravity(Gravity.BOTTOM);
+//        WindowManager windowManager = getWindowManager();
+//        Display display = windowManager.getDefaultDisplay();
+//        WindowManager.LayoutParams lp = walletPwdDialog.getWindow().getAttributes();
+//        lp.width = (int) (display.getWidth()); //设置宽度
+//        walletPwdDialog.getWindow().setAttributes(lp);
+
+        etPwd = view.findViewById(R.id.et_pwd); //验证码
+        view.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pwd = etPwd.getText().toString();
+                devoteCheckPayPwd(MD5Utils.getMD5Code(pwd));
+                if (walletPwdDialog != null) {
+                    walletPwdDialog.dismiss();
+                }
+            }
+        });
+        view.findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (walletPwdDialog != null) {
+                    walletPwdDialog.dismiss();
+                }
+            }
+        });
+
+        walletPwdDialog.show();
     }
 
 

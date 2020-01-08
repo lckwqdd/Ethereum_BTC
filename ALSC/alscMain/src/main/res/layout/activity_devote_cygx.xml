@@ -83,6 +83,7 @@
                     android:textSize="@dimen/text_size_11"
                     android:hint="@string/cygx_gxe_count"
                     android:inputType="number"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/white" />
 
             </RelativeLayout>

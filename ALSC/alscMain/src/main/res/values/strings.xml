@@ -134,6 +134,7 @@
     <string name="load_wallet_by_mnemonic_help">什么是助记词？</string>
     <string name="load_wallet_already_exist">钱包已存在</string>
     <string name="import_wallet_fail">导入钱包失败</string>
+    <string name="import_wallet_success">导入钱包成功</string>
     <string name="send_success">发送成功:</string>
 
     <!--    wallte code-->

@@ -41,6 +41,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     sourceSets.main {
         jniLibs.srcDir 'libs'
     }
@@ -99,6 +100,8 @@ android {
 
     packagingOptions {
         exclude 'lib/x86_64/darwin/libscrypt.dylib'
+        exclude 'META-INF/*******'
+        exclude 'org/bitcoin/*******t'
     }
 
     productFlavors {
@@ -173,6 +176,7 @@ dependencies {
     implementation project(path: ':alscNet')
     implementation project(path: ':alscUtils')
     implementation project(path: ':alscWallet')
+    implementation project(path: ':core')
     //导航条
     implementation(rootProject.ext.dependencies["flycoTabLayout"])
     //WeakHandler

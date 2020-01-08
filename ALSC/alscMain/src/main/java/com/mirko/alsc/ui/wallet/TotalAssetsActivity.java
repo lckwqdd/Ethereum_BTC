@@ -63,14 +63,20 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
 
     @Override
     public void initAttrs() {
-        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);
-        fetchWalletInteract.fetch().subscribe(this::allEthDatas, this::onError);
-        fetchWalletInteract.fetchBTC().subscribe(this::allBtcDatas, this::onError);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void loadData() {
+        getCurrentUserInfo(new AddressRegisterRequest(UUID.randomUUID().toString().replace("-", ""), "alsc"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);
+        fetchWalletInteract.fetch().subscribe(this::allEthDatas, this::onError);
+        fetchWalletInteract.fetchBTC().subscribe(this::allBtcDatas, this::onError);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -79,7 +85,6 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                 });
             }
         }, 2000);
-        getCurrentUserInfo(new AddressRegisterRequest(UUID.randomUUID().toString().replace("-", ""), "alsc"));
     }
 
     private void onSuccess(ETHWallet ethWallet) {

@@ -10,5 +10,6 @@ public class Constants {
     public final static String btcPrivateKey="btcPrivateKey";
     public final static String firstAccount="walletAddress";
     public final static String scanResult="scan_result";
-	
+    public final static String pointPosition="scan_result";
+
 }

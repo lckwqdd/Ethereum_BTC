@@ -345,6 +345,7 @@ public class HotETHTransferActivity extends AlscBaseActivity implements View.OnC
      * 转账接口
      */
     private void hotTransfer(float price, float amount, String fromAddress, String toAddress) {
+
         String token = ComUtils.getTokenCache();
         DevoteTransferRequest request = new DevoteTransferRequest();
         request.setToken(token);
@@ -352,6 +353,7 @@ public class HotETHTransferActivity extends AlscBaseActivity implements View.OnC
         request.setReceive_url(toAddress);
         request.setAmount(amount);
         request.setPrice(price);
+        request.setSymbol(1);
         HttpManager.getInstance().doHttpDeal(new WTransferApi((new HttpOnNextListener<EmptyResultEntity>() {
             @Override
             public void onNext(EmptyResultEntity result) {

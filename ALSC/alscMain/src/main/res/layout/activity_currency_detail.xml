@@ -3,6 +3,10 @@
 
     <data>
 
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -98,6 +102,7 @@
                     android:orientation="horizontal"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
+                    android:onClick="@{clickListener}"
                     android:layout_height="46dp">
 
                     <TextView
@@ -123,6 +128,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
+                    android:onClick="@{clickListener}"
                     android:layout_height="46dp">
 
                     <TextView

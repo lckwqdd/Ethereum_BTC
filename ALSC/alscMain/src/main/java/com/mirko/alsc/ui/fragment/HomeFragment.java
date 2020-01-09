@@ -18,6 +18,7 @@ import com.mirko.alsc.ui.devote.DevoteHomeActivity;
 import com.mirko.alsc.ui.wallet.online.PatternSettingActivity;
 import com.mirko.alsc.utils.pattern.PatternHelper;
 import com.mirko.androidutil.utils.android.LogUtils;
+
 import org.web3j.abi.datatypes.Int;
 
 import java.util.List;

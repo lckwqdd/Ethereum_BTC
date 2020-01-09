@@ -3,7 +3,7 @@
 3    package="com.alsc.net" >
 4
 5    <uses-sdk
-6        android:minSdkVersion="18"
+6        android:minSdkVersion="19"
 6-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="28" />
 7-->D:\soft\Project\projectForGit\alsc2\ALSC\alscNet\src\main\AndroidManifest.xml

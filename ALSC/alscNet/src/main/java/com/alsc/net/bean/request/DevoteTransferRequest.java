@@ -9,6 +9,7 @@ package com.alsc.net.bean.request;
  | receive_url | String | 否       | 接收地址 |
  | send_url | String | 否       | 发送地址 |
  | price | float | 否       | 实时价格 |
+ | symbol | int | 否       | 币种 1.alsc 2.eth 3.eth的usdt 4.btc的usdt 5.btc |
  */
 public class DevoteTransferRequest {
 
@@ -17,6 +18,7 @@ public class DevoteTransferRequest {
     private String receive_url;
     private String send_url;
     private float price;
+    private int symbol;
 
     public String getToken() {
         return token;
@@ -56,5 +58,13 @@ public class DevoteTransferRequest {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(int symbol) {
+        this.symbol = symbol;
     }
 }

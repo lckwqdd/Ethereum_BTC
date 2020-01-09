@@ -1,15 +1,54 @@
 package com.alsc.wallet.bean.response;
 
-import com.alsc.wallet.bean.BasicData;
+public class BalanceBeanResponse {
 
-public class BalanceBeanResponse extends BasicData<BalanceBeanResponse> {
-    private float assets;
+    /**
+     * code : 1
+     * msg : 成功
+     * data : {"assets":0}
+     */
 
-    public float getAssets() {
-        return assets;
+    private int code;
+    private String msg;
+    private DataBean data;
+
+    public int getCode() {
+        return code;
     }
 
-    public void setAssets(float assets) {
-        this.assets = assets;
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        /**
+         * assets : 0
+         */
+
+        private float assets;
+
+        public float getAssets() {
+            return assets;
+        }
+
+        public void setAssets(float assets) {
+            this.assets = assets;
+        }
     }
 }

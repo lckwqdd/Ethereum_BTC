@@ -21,6 +21,8 @@ import com.alsc.net.bean.okgo.AddressEntity;
 import com.alsc.net.db.bean.BtcWallet;
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.bean.request.TranslationRequest;
+import com.alsc.wallet.bean.response.TranlationResponse;
 import com.alsc.wallet.btcCoin.btc.KeyPair;
 import com.alsc.wallet.btcCoin.btc.UnspentOutputInfo;
 import com.alsc.wallet.entity.Address;
@@ -30,6 +32,8 @@ import com.alsc.wallet.utils.ETHWalletUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.google.common.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -41,6 +45,8 @@ import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityBtcTransferBinding;
 import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.androidutil.view.CustomeDialog;
+
+import org.web3j.utils.Convert;
 
 import java.util.ArrayList;
 
@@ -69,12 +75,13 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
         binding.commonHeader.ivHeaderRight.setVisibility(View.VISIBLE);
         binding.commonHeader.ivHeaderRight.setImageResource(R.mipmap.icon_scan);
         fetchWalletInteract = new FetchWalletInteract();
-        fetchWalletInteract.findDefaultBTCByAddress("").subscribe(this::onSuccess,this::onError);
+        fetchWalletInteract.findFirstBTC().subscribe(this::onSuccess, this::onError);
     }
 
     private void onSuccess(BtcWallet btcWallet) {
-        currentWallet=btcWallet;
+        currentWallet = btcWallet;
         binding.sendAddress.setText(btcWallet.getAddress());
+//      LogUtils.d("比特币地址:"+GsonUtils.toJson(btcWallet));
         getAnotherUxto(btcWallet.getAddress());
     }
 
@@ -162,7 +169,7 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
 
 
     private void sendTranstion() {
-        if(checkInput()){
+        if (checkInput()) {
             Single.fromCallable(() -> {
                 String strs = BTCWalletDaoUtils.signatureBtcTranstion(uxto, currentWallet.getPrivateKey(), binding.sendAddress.getText().toString().trim(),
                         binding.receiveAddress.getText().toString().trim(), Long.parseLong(binding.account.getText().toString().trim()));
@@ -192,9 +199,41 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
         return true;
     }
 
-    private void onSuccess(String s) {
-        LogUtils.d("生成的hex:" + s);
-//      UrlRequstUtils.btcBrocast(this, s);
+    private void onSuccess(String txHash) {
+        LogUtils.d("生成的hex:" + txHash);
+        ThreadUtils.executeBySingle(new ThreadUtils.Task<TranlationResponse>() {
+            @Override
+            public TranlationResponse doInBackground() throws Throwable {
+                TranlationResponse tranlationResponse = UrlRequstUtils.sendCodeTranslation(BtcTransferActivity.this,
+                        new TranslationRequest(txHash,
+                                binding.sendAddress.getText().toString().trim(),
+                                binding.receiveAddress.getText().toString().trim(),
+                                Float.parseFloat(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString()),
+                                Float.parseFloat("1.04"),
+                                Constants.SYMBOL_ETH));
+                return tranlationResponse;
+            }
+
+            @Override
+            public void onSuccess(TranlationResponse result) {
+                if (result != null) {
+                    LogUtils.d("发送比特币广播:" + GsonUtils.toJson(result));
+                    if (result.getCode() == 1) {
+                        ToastUtils.showToast(getString(R.string.send_success));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onFail(Throwable t) {
+                LogUtils.d("发送比特币广播异常:" + t.toString());
+            }
+        });
     }
 
     public void onErrow(Throwable throwable) {
@@ -252,13 +291,14 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
             getCodeDialog.dismiss();
         }));
         walletSure.setOnClickListener((v -> {
-            if (currentWallet != null) {
-                if (TextUtils.equals(walletPwd.getText().toString().trim(), currentWallet.getPassword())) {
-                    sendTranstion();
-                } else {
-                    ToastUtils.showToast(getString(R.string.pwd_not_right));
-                }
-            }
+//            if (currentWallet != null) {
+//                if (TextUtils.equals(walletPwd.getText().toString().trim(), SPUtils.getInstance().getString(Constants.PASSWORD))) {
+//                    sendTranstion();
+//                } else {
+//                    ToastUtils.showToast(getString(R.string.pwd_not_right));
+//                }
+//            }
+            sendTranstion();
             getCodeDialog.dismiss();
         }));
         getCodeDialog.show();

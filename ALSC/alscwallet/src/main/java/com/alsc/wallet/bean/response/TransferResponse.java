@@ -1,7 +1,5 @@
 package com.alsc.wallet.bean.response;
 
-import com.alsc.wallet.bean.BasicData;
-
 import java.util.List;
 
 
@@ -22,152 +20,188 @@ import java.util.List;
  * | page.pages  | int  | 总页面数 |
  * | page.currPage     | int  | 当前页面     |
  * | page.pageSize     | int  |  每页显示条数     |*/
-public class TransferResponse extends BasicData<TransferResponse> {
+public class TransferResponse {
 
 
     /**
-     * list : [{"id":7407,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-07 16:27:11","symbol":"alsc"},{"id":7408,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-08 14:14:04","symbol":"alsc"}]
-     * page : {"counts":2,"pages":1,"currPage":1,"pageSize":10}
+     * code : 1
+     * msg : 成功
+     * data : {"list":[{"id":7407,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-07 16:27:11","symbol":"alsc"},{"id":7408,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-08 14:14:04","symbol":"alsc"}],"page":{"counts":2,"pages":1,"currPage":1,"pageSize":10}}
      */
 
-    private PageBean page;
-    private List<ListBean> list;
+    private int code;
+    private String msg;
+    private DataBean data;
 
-    public PageBean getPage() {
-        return page;
+    public int getCode() {
+        return code;
     }
 
-    public void setPage(PageBean page) {
-        this.page = page;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public List<ListBean> getList() {
-        return list;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setList(List<ListBean> list) {
-        this.list = list;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public static class PageBean {
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
         /**
-         * counts : 2
-         * pages : 1
-         * currPage : 1
-         * pageSize : 10
+         * list : [{"id":7407,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-07 16:27:11","symbol":"alsc"},{"id":7408,"amount":"20.00000000","hash":"","status":1,"type":2,"add_time":"2020-01-08 14:14:04","symbol":"alsc"}]
+         * page : {"counts":2,"pages":1,"currPage":1,"pageSize":10}
          */
 
-        private int counts;
-        private int pages;
-        private int currPage;
-        private int pageSize;
+        private PageBean page;
+        private List<ListBean> list;
 
-        public int getCounts() {
-            return counts;
+        public PageBean getPage() {
+            return page;
         }
 
-        public void setCounts(int counts) {
-            this.counts = counts;
+        public void setPage(PageBean page) {
+            this.page = page;
         }
 
-        public int getPages() {
-            return pages;
+        public List<ListBean> getList() {
+            return list;
         }
 
-        public void setPages(int pages) {
-            this.pages = pages;
+        public void setList(List<ListBean> list) {
+            this.list = list;
         }
 
-        public int getCurrPage() {
-            return currPage;
+        public static class PageBean {
+            /**
+             * counts : 2
+             * pages : 1
+             * currPage : 1
+             * pageSize : 10
+             */
+
+            private int counts;
+            private int pages;
+            private int currPage;
+            private int pageSize;
+
+            public int getCounts() {
+                return counts;
+            }
+
+            public void setCounts(int counts) {
+                this.counts = counts;
+            }
+
+            public int getPages() {
+                return pages;
+            }
+
+            public void setPages(int pages) {
+                this.pages = pages;
+            }
+
+            public int getCurrPage() {
+                return currPage;
+            }
+
+            public void setCurrPage(int currPage) {
+                this.currPage = currPage;
+            }
+
+            public int getPageSize() {
+                return pageSize;
+            }
+
+            public void setPageSize(int pageSize) {
+                this.pageSize = pageSize;
+            }
         }
 
-        public void setCurrPage(int currPage) {
-            this.currPage = currPage;
-        }
+        public static class ListBean {
+            /**
+             * id : 7407
+             * amount : 20.00000000
+             * hash :
+             * status : 1
+             * type : 2
+             * add_time : 2020-01-07 16:27:11
+             * symbol : alsc
+             */
 
-        public int getPageSize() {
-            return pageSize;
-        }
+            private int id;
+            private String amount;
+            private String hash;
+            private int status;
+            private int type;
+            private String add_time;
+            private String symbol;
 
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
-        }
-    }
+            public int getId() {
+                return id;
+            }
 
-    public static class ListBean {
-        /**
-         * id : 7407
-         * amount : 20.00000000
-         * hash :
-         * status : 1
-         * type : 2
-         * add_time : 2020-01-07 16:27:11
-         * symbol : alsc
-         */
+            public void setId(int id) {
+                this.id = id;
+            }
 
-        private int id;
-        private String amount;
-        private String hash;
-        private int status;
-        private int type;
-        private String add_time;
-        private String symbol;
+            public String getAmount() {
+                return amount;
+            }
 
-        public int getId() {
-            return id;
-        }
+            public void setAmount(String amount) {
+                this.amount = amount;
+            }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+            public String getHash() {
+                return hash;
+            }
 
-        public String getAmount() {
-            return amount;
-        }
+            public void setHash(String hash) {
+                this.hash = hash;
+            }
 
-        public void setAmount(String amount) {
-            this.amount = amount;
-        }
+            public int getStatus() {
+                return status;
+            }
 
-        public String getHash() {
-            return hash;
-        }
+            public void setStatus(int status) {
+                this.status = status;
+            }
 
-        public void setHash(String hash) {
-            this.hash = hash;
-        }
+            public int getType() {
+                return type;
+            }
 
-        public int getStatus() {
-            return status;
-        }
+            public void setType(int type) {
+                this.type = type;
+            }
 
-        public void setStatus(int status) {
-            this.status = status;
-        }
+            public String getAdd_time() {
+                return add_time;
+            }
 
-        public int getType() {
-            return type;
-        }
+            public void setAdd_time(String add_time) {
+                this.add_time = add_time;
+            }
 
-        public void setType(int type) {
-            this.type = type;
-        }
+            public String getSymbol() {
+                return symbol;
+            }
 
-        public String getAdd_time() {
-            return add_time;
-        }
-
-        public void setAdd_time(String add_time) {
-            this.add_time = add_time;
-        }
-
-        public String getSymbol() {
-            return symbol;
-        }
-
-        public void setSymbol(String symbol) {
-            this.symbol = symbol;
+            public void setSymbol(String symbol) {
+                this.symbol = symbol;
+            }
         }
     }
 }

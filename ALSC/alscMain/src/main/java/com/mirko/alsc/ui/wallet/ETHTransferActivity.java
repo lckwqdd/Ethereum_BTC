@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.net.db.bean.ETHWalletDao;
 import com.alsc.net.db.helper.ETHWalletHelper;
@@ -31,12 +32,14 @@ import com.alsc.wallet.utils.KeyStoreUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityHotWalletAlscTransferBinding;
 import com.mirko.alsc.utils.UrlRequstUtils;
 import com.mirko.androidutil.view.CustomeDialog;
+
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.RawTransaction;
 import org.web3j.crypto.TransactionEncoder;
@@ -46,12 +49,14 @@ import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -66,7 +71,6 @@ import io.reactivex.schedulers.Schedulers;
 public class ETHTransferActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityHotWalletAlscTransferBinding binding;
     private static final int QRCODE_SCANNER_REQUEST = 1100;
-    public String contractAddress = "0xe38AB2AD0e3e85983f76Fe235b6A9869Cda0502d";
     private String nonce;
     private BigInteger gasPrice = BigInteger.valueOf(1000000000);
     private BigInteger gasLimit = BigInteger.valueOf(144000);
@@ -88,7 +92,8 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
         binding.commonHeader.ivHeaderRight.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
         fetchWalletInteract = new FetchWalletInteract();
-        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
+        fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包(作为例子)
+        binding.receiveAddress.setText(Constants.TEST_ACCOUNT_RECEIVER);
 
     }
 
@@ -135,6 +140,7 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
     private void onSuccess(ETHWallet ethWallet) {
         currentWallet = ethWallet;
         binding.sendAddress.setText(ethWallet.getAddress());
+        LogUtils.d("发送地址:" + GsonUtils.toJson(ethWallet));
         getNonceFromSendAddress(ethWallet.getAddress());
     }
 
@@ -158,41 +164,6 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
         }, 5, TimeUnit.SECONDS);
     }
 
-    private void getBalance() {
-        Observable.create(new ObservableOnSubscribe<EthGetBalance>() {
-            @Override
-            public void subscribe(ObservableEmitter<EthGetBalance> e) throws Exception {
-                Web3j web3j = Web3JService.getInstance();
-                EthGetBalance ethGetBalance = web3j.ethGetBalance(binding.sendAddress.getText().toString().trim(), DefaultBlockParameterName.LATEST).send();
-                e.onNext(ethGetBalance);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<EthGetBalance>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(EthGetBalance ethGetBalance) {
-                        if (ethGetBalance != null) {
-                            if (ethGetBalance.getError() == null) {
-                                BigDecimal balanceDecimal = Convert.fromWei(ethGetBalance.getBalance().toString(), Convert.Unit.ETHER);
-                                binding.totalAmount.setText(balanceDecimal.toPlainString());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                });
-    }
 
     /**
      * (接通)
@@ -206,7 +177,6 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                 public void subscribe(ObservableEmitter<TranlationResponse> e) throws Exception {
                     //签名交易信息
                     List<ETHWallet> ethWalletList = ETHWalletHelper.getInstance().QueryObject(ETHWallet.class, ETHWalletDao.Properties.Address.columnName + "=?", new String[]{binding.sendAddress.getText().toString().trim()});
-//                  LogUtils.d("当前钱包:"+ GsonUtils.toJson(ethWalletList.get(0)));
                     BigInteger gas = gasPrice.multiply(gasLimit);
                     BigInteger total = gas.add(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger());
                     LogUtils.d("gasPrice.toString():" + gasPrice.toString());
@@ -223,11 +193,13 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
 
                     //发送交易广播
                     if (!TextUtils.isEmpty(hexValue)) {
-//                      ethTranstionBean ethTtrantion = UrlRequstUtils.sendEthBrocastTranstion(ETHTransferActivity.this, hexValue);
-                        TranlationResponse tranlationResponse=UrlRequstUtils.sendCodeTranslation(ETHTransferActivity.this,
-                                new TranslationRequest(hexValue,binding.sendAddress.getText().toString().trim(),binding.receiveAddress.getText().toString().trim(),
+                        TranlationResponse tranlationResponse = UrlRequstUtils.sendCodeTranslation(ETHTransferActivity.this,
+                                new TranslationRequest(hexValue,
+                                        binding.sendAddress.getText().toString().trim(),
+                                        binding.receiveAddress.getText().toString().trim(),
                                         Float.parseFloat(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString()),
-                                        Float.parseFloat(gasPrice.multiply(gasLimit).toString()),Constants.SYMBOL_ETH));
+                                        Float.parseFloat(gasPrice.multiply(gasLimit).toString()),
+                                        Constants.SYMBOL_ETH));
                         e.onNext(tranlationResponse);
                     }
                 }
@@ -240,16 +212,13 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
 
                         @Override
                         public void onNext(TranlationResponse tranlationResponse) {
-                            LogUtils.d("发送数据:" + GsonUtils.toJson(tranlationResponse));
-//                            if (ethSendTransaction.getRspCode().equals("success")) {
-//                                ToastUtils.showToast(ethSendTransaction.getRspMsg());
-//                            }
+                            LogUtils.d("以太坊非合约交易:" + GsonUtils.toJson(tranlationResponse));
                         }
 
                         @Override
                         public void onError(Throwable e) {
                             e.printStackTrace();
-                            LogUtils.d("合约交易发送失败:" + e.getMessage());
+                            LogUtils.d("以太坊非合约交易失败:" + e.getMessage());
                             ToastUtils.showToast(e.getMessage());
                         }
 
@@ -266,9 +235,9 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
      */
     private void sendContractTransaction() {
         if (checkInput()) {
-            Observable.create(new ObservableOnSubscribe<ethTranstionBean>() {
+            Observable.create(new ObservableOnSubscribe<TranlationResponse>() {
                 @Override
-                public void subscribe(ObservableEmitter<ethTranstionBean> e) throws Exception {
+                public void subscribe(ObservableEmitter<TranlationResponse> e) throws Exception {
                     BigInteger gas = gasPrice.multiply(gasLimit);
                     BigInteger total = gas.add(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger());
                     LogUtils.d("gasPrice.toString():" + gasPrice.toString());
@@ -278,25 +247,30 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                     LogUtils.d("account:" + BalanceUtils.tokenToWei(new BigDecimal(binding.account.getText().toString().trim()), 18));
                     String txHash = sendTokenTransaction(binding.sendAddress.getText().toString().trim(),
                             binding.receiveAddress.getText().toString().trim(),
-                            contractAddress,
+                            Constants.USDT_CONTRACT_ADDRESS,
                             BalanceUtils.tokenToWei(new BigDecimal(binding.account.getText().toString().trim()), 18).toBigInteger());
+
                     if (!TextUtils.isEmpty(txHash)) {
-                        //发送交易广播
-                        ethTranstionBean ethTtrantion = UrlRequstUtils.sendEthBrocastTranstion(ETHTransferActivity.this, txHash);
-                        e.onNext(ethTtrantion);
+                        TranlationResponse tranlationResponse = UrlRequstUtils.sendCodeTranslation(ETHTransferActivity.this,
+                                new TranslationRequest(txHash,
+                                        binding.sendAddress.getText().toString().trim(),
+                                        binding.receiveAddress.getText().toString().trim(),
+                                        Float.parseFloat(Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString()),
+                                        Float.parseFloat(gasPrice.multiply(tokenGasLimit).toString()),
+                                        Constants.SYMBOL_ETH));
+                        e.onNext(tranlationResponse);
                     }
                 }
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<ethTranstionBean>() {
+                    .subscribe(new Observer<TranlationResponse>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                         }
 
                         @Override
-                        public void onNext(ethTranstionBean ethTranstionBean) {
+                        public void onNext(TranlationResponse ethTranstionBean) {
                             LogUtils.d("以太坊合约交易hex:" + GsonUtils.toJson(ethTranstionBean));
-                            ToastUtils.showToast(ethTranstionBean.getRspMsg());
                         }
 
                         @Override
@@ -397,7 +371,7 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
         }));
         walletSure.setOnClickListener((v -> {
             if (currentWallet != null) {
-                if (TextUtils.equals(walletPwd.getText().toString().trim(), currentWallet.getPassword())) {
+                if (TextUtils.equals(walletPwd.getText().toString().trim(), SPUtils.getInstance().getString(Constants.PASSWORD))) {
                     sendTranstion();
                 } else {
                     ToastUtils.showToast(getString(R.string.pwd_not_right));

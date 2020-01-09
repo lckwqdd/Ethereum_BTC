@@ -1,17 +1,11 @@
 package com.mirko.alsc.adapter;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
+import android.support.annotation.Nullable;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.mirko.alsc.R;
-import com.mirko.alsc.adapter.listener.RecycleViewItemClickListener;
-import com.mirko.alsc.bean.CurrencyData;
+import com.mirko.alsc.bean.AlscCurrentData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,76 +13,21 @@ import java.util.List;
  * 币种详细交易
  */
 
-public class AlasTransferAndCollectAdapter extends RecyclerView.Adapter<AlasTransferAndCollectAdapter.ViewHolder> implements View.OnClickListener{
+public class AlasTransferAndCollectAdapter extends BaseQuickAdapter<AlscCurrentData, BaseViewHolder> {
 
-    private static final String TAG  = "CountingCourseAdapter";
+    private static final String TAG = "CountingCourseAdapter";
 
-    private Context mContext;
-    private RecycleViewItemClickListener recycleViewItemClickListener;
-    private float imageWidth;
-    private List<CurrencyData> datas = new ArrayList<>();
-
-    public AlasTransferAndCollectAdapter(Context context, List<CurrencyData> datas){
-        this.mContext = context;
-        this.datas = datas;
-        imageWidth = mContext.getResources().getDimension(R.dimen.DIMEN_38PX);
+    public AlasTransferAndCollectAdapter(int layoutResId, @Nullable List<AlscCurrentData> data) {
+        super(layoutResId, data);
     }
+
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    protected void convert(BaseViewHolder helper, AlscCurrentData item) {
+        helper.setText(R.id.tv_name, item.getName())
+                .setText(R.id.tv_time, item.getTime())
+                .setText(R.id.tv_total_money, item.getMount())
+                .setText(R.id.tv_income_count, item.getState());
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_currency_detail,parent,false);
-
-        ViewHolder viewHolder = new ViewHolder(v);
-
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-
-        holder.view.setTag(position);
-        holder.view.setOnClickListener(this);
-        CurrencyData item = datas.get(position);
-        holder.tvName.setText(item.getName());
-        holder.tvName.setClickable(false);
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return super.getItemId(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return datas.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public View view;
-        public TextView tvName;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            view = itemView;
-            tvName = (TextView)view.findViewById(R.id.tv_name);
-        }
-    }
-
-    public void setRecycleViewItemClickListener(RecycleViewItemClickListener recycleViewItemClickListener){
-        this.recycleViewItemClickListener = recycleViewItemClickListener;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(recycleViewItemClickListener!=null ){
-            recycleViewItemClickListener.OnItemOnclick(view,(int)view.getTag());
-        }
     }
 }

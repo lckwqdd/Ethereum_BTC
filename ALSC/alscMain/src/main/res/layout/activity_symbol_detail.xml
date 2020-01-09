@@ -18,8 +18,10 @@
             layout="@layout/activity_hot_wallet_header" />
 
         <TextView
+            android:id="@+id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:gravity="center"
             android:text="+21248.00ALSC"
@@ -36,6 +38,7 @@
                 android:text="@string/detail_type" />
 
             <TextView
+                android:id="@+id/style"
                 style="@style/DetailAlscRightTextStyle"
                 android:text="@string/detail_charge_money" />
 
@@ -51,6 +54,7 @@
                 android:text="@string/detail_status" />
 
             <TextView
+                android:id="@+id/state"
                 style="@style/DetailAlscRightTextStyle"
                 android:text="@string/detail_charge_money_success" />
 
@@ -66,6 +70,7 @@
                 android:text="@string/detail_time" />
 
             <TextView
+                android:id="@+id/time"
                 style="@style/DetailAlscRightTextStyle"
                 android:text="@string/detail_at_time" />
 
@@ -86,6 +91,7 @@
                 android:text="@string/detail_address" />
 
             <TextView
+                android:id="@+id/address"
                 style="@style/DetailAlscRightTextStyle"
                 android:text="@string/detail_address_detail" />
 
@@ -101,6 +107,7 @@
                 android:text="@string/detail_txld" />
 
             <TextView
+                android:id="@+id/txid"
                 style="@style/DetailAlscRightTextStyle"
                 android:text="@string/detail_address_detail" />
 

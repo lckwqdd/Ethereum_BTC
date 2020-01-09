@@ -16,6 +16,7 @@ import com.alsc.wallet.utils.KeyStoreUtils;
 import com.alsc.wallet.utils.LogUtils;
 import com.alsc.wallet.utils.ToastUtils;
 import com.alsc.wallet.utils.WalletDaoUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.google.common.base.Joiner;
 import com.mirko.alsc.R;
 import com.mirko.alsc.constant.Constants;
@@ -116,6 +117,8 @@ public class CodeWalletCreateActivity extends AlscBaseActivity implements View.O
 
     public void jumpToWalletBackUp(ETHWallet wallet) {
         setResult(CREATE_WALLET_RESULT, new Intent());
+        SPUtils.getInstance().put(Constants.PASSWORD,binding.confirmPassword.getText().toString().trim());
+        String confirmPwd = binding.confirmPassword.getText().toString().trim();
         Intent intent = new Intent(this, CodeWalletBackUpActivity.class);
         intent.putExtra(Constants.walletId, wallet.getId());
         intent.putExtra(Constants.walletPwd, wallet.getPassword());

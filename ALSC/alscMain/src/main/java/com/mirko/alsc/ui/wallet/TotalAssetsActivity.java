@@ -4,11 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.RequiresApi;
-import android.support.v4.util.TimeUtils;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.alsc.net.api.AddressRegisterApi;
@@ -19,8 +16,10 @@ import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.bean.response.BalanceBeanResponse;
 import com.alsc.wallet.interact.FetchWalletInteract;
 import com.alsc.wallet.utils.LogUtils;
+import com.alsc.wallet.utils.ToastUtils;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.ExpandableItemAdapter;
@@ -28,25 +27,30 @@ import com.mirko.alsc.adapter.TokensAdapter;
 import com.mirko.alsc.databinding.ActivityTotalAssetsBinding;
 import com.mirko.alsc.entity.Level0Item;
 import com.mirko.alsc.entity.Level1Item;
-import com.mirko.alsc.ui.entity.ExpandData;
 import com.mirko.alsc.ui.wallet.address.AddAddressActivity;
-import com.mirko.androidutil.utils.ThreadUtils;
+import com.mirko.alsc.utils.UrlRequstUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function5;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 总资产
  */
 public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClickListener {
     private ActivityTotalAssetsBinding binding;
-    private LinearLayoutManager linearLayoutManager;
-    private TokensAdapter recyclerAdapter;
     private FetchWalletInteract fetchWalletInteract;
     private ETHWallet currentEthWallet;
     private boolean isCanSee;
-    private AddressRegisterResultEntity tempAddressRegisterResult;
     private ExpandableItemAdapter adapter;
     private List<ETHWallet> allEthWallets = new ArrayList<>();
     private List<BtcWallet> allBtcWallets = new ArrayList<>();
@@ -68,7 +72,6 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void loadData() {
-        getCurrentUserInfo(new AddressRegisterRequest(UUID.randomUUID().toString().replace("-", ""), "alsc"));
     }
 
     @Override
@@ -85,6 +88,50 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                 });
             }
         }, 2000);
+    }
+
+    private void mergeMoney() {
+        Observable<Float> btcObservable = createWalletSymbol("", "btc");
+        Observable<Float> ethObservable = createWalletSymbol("", "eth");
+        Observable<Float> busdtObservable = createWalletSymbol("", "busdt");
+        Observable<Float> eusdtObservable = createWalletSymbol("", "eusdt");
+        Observable<Float> alscObservable = createWalletSymbol("", "alsc");
+
+        //总金额
+        Observable.zip(btcObservable, ethObservable, busdtObservable, eusdtObservable, alscObservable, new Function5<Float, Float, Float, Float, Float, Float>() {
+
+            @Override
+            public Float apply(Float aFloat, Float aFloat2, Float aFloat3, Float aFloat4, Float aFloat5) throws Exception {
+                return aFloat + aFloat2 + aFloat3 + aFloat4 + aFloat5;
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe((aFloat -> {
+                    binding.tvAccount.setText("" + aFloat);
+                }));
+        //单金额显示
+        btcObservable.subscribe((aFloat -> {
+
+        }));
+        ethObservable.subscribe((aFloat -> {
+
+        }));
+        busdtObservable.subscribe((aFloat -> {
+
+        }));
+        eusdtObservable.subscribe((aFloat -> {
+
+        }));
+        alscObservable.subscribe((aFloat -> {
+
+        }));
+
+    }
+
+    private Observable<Float> createWalletSymbol(String address, String symbol) {
+        return Observable.create((ObservableOnSubscribe<Float>) emitter -> {
+            BalanceBeanResponse temp = UrlRequstUtils.getBalanceByAddress(this, new AddressRegisterRequest(address, symbol));
+            emitter.onNext(temp.getAssets());
+        }).subscribeOn(Schedulers.io());
     }
 
     private void onSuccess(ETHWallet ethWallet) {
@@ -109,6 +156,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         binding.totalAssetsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
+            ToastUtils.showToast("position:"+position);
             switch (position) {
                 case 1:
                     goTo(ETHTranslateAndCollectActivity.class);
@@ -118,27 +166,27 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         }));
     }
 
-    /**
-     * 通过注册地址和对应币种获取对应金额
-     *
-     * @param addressRegisterRequest
-     */
-    private void getCurrentUserInfo(AddressRegisterRequest addressRegisterRequest) {
-        HttpManager.getInstance().doHttpDeal(new AddressRegisterApi((new HttpOnNextListener<AddressRegisterResultEntity>() {
-            @Override
-            public void onNext(AddressRegisterResultEntity result) {
-                tempAddressRegisterResult = result;
-                binding.tvAccount.setText(result.getAssets());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.d("通过注册地址异常:" + e.toString());
-                super.onError(e);
-            }
-
-        }), TotalAssetsActivity.this, addressRegisterRequest));
-    }
+//    /**
+//     * 通过注册地址和对应币种获取对应金额
+//     *
+//     * @param addressRegisterRequest
+//     */
+//    private void getCurrentUserInfo(AddressRegisterRequest addressRegisterRequest) {
+//        HttpManager.getInstance().doHttpDeal(new AddressRegisterApi((new HttpOnNextListener<AddressRegisterResultEntity>() {
+//            @Override
+//            public void onNext(AddressRegisterResultEntity result) {
+//                tempAddressRegisterResult = result;
+//                binding.tvAccount.setText(result.getAssets());
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                LogUtils.d("通过注册地址异常:" + e.toString());
+//                super.onError(e);
+//            }
+//
+//        }), TotalAssetsActivity.this, addressRegisterRequest));
+//    }
 
     private ArrayList<MultiItemEntity> generateData() {
         LogUtils.d("获取数据generateData");
@@ -156,7 +204,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                 Level0Item item = new Level0Item(imgsLists[i], nameLists[i], balanceLists[i], valueLists[i]);
                 if (i == 0) {
                     //ALSC
-                    if(allEthWallets.size()>0){
+                    if (allEthWallets.size() > 0) {
                         for (int j = 0; j < allEthWallets.size(); j++) {
                             lv1 = new Level1Item("已有的ALSC地址", allEthWallets.get(j).getAddress(), "0", "0");
                             item.addSubItem(lv1);
@@ -164,7 +212,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                     }
                 } else if (i == 1) {
                     //ETH
-                    if(allEthWallets.size()>0){
+                    if (allEthWallets.size() > 0) {
                         for (int j = 0; j < allEthWallets.size(); j++) {
                             lv1 = new Level1Item("已有的ETH地址", allEthWallets.get(j).getAddress(), "0", "0");
                             item.addSubItem(lv1);
@@ -172,7 +220,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                     }
                 } else if (i == 2) {
                     //BTC
-                    if(allBtcWallets.size()>0){
+                    if (allBtcWallets.size() > 0) {
                         for (int j = 0; j < allBtcWallets.size(); j++) {
                             lv1 = new Level1Item("已有的BTC地址", allBtcWallets.get(j).getAddress(), "0", "0");
                             item.addSubItem(lv1);
@@ -180,7 +228,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
                     }
                 } else if (i == 3) {
                     //USDT
-                    if(allBtcWallets.size()>0){
+                    if (allBtcWallets.size() > 0) {
                         for (int j = 0; j < allBtcWallets.size(); j++) {
                             lv1 = new Level1Item("已有的BTC地址", allBtcWallets.get(j).getAddress(), "0", "0");
                             item.addSubItem(lv1);

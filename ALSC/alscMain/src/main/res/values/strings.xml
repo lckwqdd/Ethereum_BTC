@@ -257,6 +257,8 @@
 
     <!--    ALSC转账-->
     <string name="wh_alsc_transfer">ALSC转账</string>
+    <string name="eth_tranfer">ETH转账</string>
+    <string name="eth_collect">ETH收款</string>
     <string name="wh_btc_transfer">BTC转账</string>
     <string name="wh_btc_collect">BTC收款</string>
     <string name="wh_alsc_transfer_menoy">转账金额</string>

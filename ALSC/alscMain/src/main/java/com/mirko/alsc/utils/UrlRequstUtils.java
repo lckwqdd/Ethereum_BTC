@@ -10,11 +10,21 @@ import com.alsc.net.bean.UserInfoResult;
 import com.alsc.net.bean.entity.EmptyResultEntity;
 import com.alsc.net.bean.entity.HomeMsgResultEntity;
 import com.alsc.net.bean.okgo.AddressEntity;
+import com.alsc.net.bean.request.AddressRegisterRequest;
 import com.alsc.net.cache.CacheManager;
 import com.alsc.net.retrofit.http.HttpManager;
 import com.alsc.net.retrofit.listener.HttpOnNextListener;
+import com.alsc.net.util.ConstantUrl;
+import com.alsc.wallet.bean.request.CodeTransfersInofRequest;
+import com.alsc.wallet.bean.request.TransfersRequest;
+import com.alsc.wallet.bean.request.TranslationRequest;
+import com.alsc.wallet.bean.response.BalanceBeanResponse;
+import com.alsc.wallet.bean.response.CodeTransferInfoResponse;
+import com.alsc.wallet.bean.response.TranlationResponse;
+import com.alsc.wallet.bean.response.TransferResponse;
 import com.alsc.wallet.entity.ethTranstionBean;
 import com.alsc.wallet.entity.nonceBean;
+import com.blankj.utilcode.util.GsonUtils;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.adapter.Call;
@@ -22,9 +32,8 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okgo.model.Response;
-import com.mirko.alsc.MainActivity;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.androidutil.utils.android.LogUtils;
-import com.mirko.androidutil.utils.android.ToastUtils;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 /**
@@ -228,7 +237,7 @@ public class UrlRequstUtils {
      * @param address
      */
     public static String getNonceFromSendAddress(Activity activity, String address) {
-        String url = basicUrl+"getNonce/" + address;
+        String url = basicUrl + "getNonce/" + address;
         Call<String> call = OkGo.<String>get(url)
                 .tag(activity)
                 .cacheKey("cacheKey")
@@ -246,14 +255,134 @@ public class UrlRequstUtils {
         return null;
     }
 
+    /**
+     * 获取钱包余额
+     *
+     * @param activity
+     * @param addressRegisterRequest
+     * @return
+     */
+    public static BalanceBeanResponse getBalanceByAddress(Activity activity, AddressRegisterRequest addressRegisterRequest) {
+        Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.REGISTER_ADDRESS_URL)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE)
+                .params("address", addressRegisterRequest.getAddress())
+                .params("symbol", addressRegisterRequest.getSymbol())
+                .converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            BalanceBeanResponse jsonBean = GsonUtils.fromJson(s, BalanceBeanResponse.class);
+            return jsonBean;
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("获取钱包余额异常:" + e.toString());
+        }
+        return null;
+    }
 
-    /**以太坊广播交易
+
+    /**
+     * 冷钱包交易广播(以太坊合约/非合约/比特币)
+     *
+     * @param activity
+     * @param translationRequest
+     * @return
+     */
+    public static TranlationResponse sendCodeTranslation(Activity activity, TranslationRequest translationRequest) {
+        Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.UPLOAD_TRANSTION_URL)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE)
+                .params("hex", translationRequest.getHex())
+                .params("from_addr", translationRequest.getFrom_addr())
+                .params("to_addr", translationRequest.getTo_addr())
+                .params("number", translationRequest.getNumber())
+                .params("fee", translationRequest.getFee())
+                .params("symbol", translationRequest.getSymbol())
+                .converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            TranlationResponse jsonBean = GsonUtils.fromJson(s, TranlationResponse.class);
+            return jsonBean;
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("冷钱包交易广播异常:" + e.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 冷钱包转账详情
+     *
+     * @param activity
+     * @param transfersRequest
+     * @return
+     */
+    public static TransferResponse sendCodeTransfer(Activity activity, TransfersRequest transfersRequest) {
+        Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.CODE_WALLET_TRANFER_RECORD)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE)
+                .params("addr", transfersRequest.getAddr())
+                .params("symbol", transfersRequest.getSymbol())
+                .params("type", transfersRequest.getType())
+                .params("page_index", transfersRequest.getPage_index())
+                .params("page_size", transfersRequest.getPage_size())
+                .converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            TransferResponse jsonBean = GsonUtils.fromJson(s, TransferResponse.class);
+            return jsonBean;
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("冷钱包转账记录列表异常:" + e.toString());
+        }
+        return null;
+    }
+
+
+    /**
+     * @param activity
+     * @param codeTransfersInofRequest
+     * @return
+     */
+    public static CodeTransferInfoResponse sendCodeTransferInfo(Activity activity, CodeTransfersInofRequest codeTransfersInofRequest) {
+        Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.CODE_WALLET_TRANFER_DETAIL)
+                .tag(activity)
+                .cacheKey("cacheKey")
+                .cacheMode(CacheMode.NO_CACHE)
+                .params("id", codeTransfersInofRequest.getId())
+                .converter(new StringConvert()).adapt();
+        Response<String> response = null;
+        try {
+            response = call.execute();
+            String s = response.body().toString();
+            CodeTransferInfoResponse jsonBean = GsonUtils.fromJson(s, CodeTransferInfoResponse.class);
+            return jsonBean;
+        } catch (Exception e) {
+            e.printStackTrace();
+            com.alsc.wallet.utils.LogUtils.d("冷钱包转账记录列表异常:" + e.toString());
+        }
+        return null;
+    }
+
+
+    /**
+     * 以太坊广播交易
+     *
      * @param activity
      * @param hexStr
      * @return
      */
     public static ethTranstionBean sendEthBrocastTranstion(Activity activity, String hexStr) {
-        String url = basicUrl+"sendTransaction/" + hexStr;
+        String url = basicUrl + "sendTransaction/" + hexStr;
         Call<String> call = OkGo.<String>get(url)
                 .tag(activity)
                 .cacheKey("cacheKey")
@@ -266,7 +395,7 @@ public class UrlRequstUtils {
             return jsonBean;
         } catch (Exception e) {
             e.printStackTrace();
-            com.alsc.wallet.utils.LogUtils.d("nonceStr异常:" + e.toString());
+            com.alsc.wallet.utils.LogUtils.d("以太坊广播交易异常:" + e.toString());
         }
         return null;
     }

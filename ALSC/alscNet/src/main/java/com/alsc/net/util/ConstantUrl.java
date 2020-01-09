@@ -81,9 +81,16 @@ public interface ConstantUrl {
     //获取用户直推用户列表
     String RECOMMEND_INFO_URL = "api/recommend";
 
-    //注册地址
+    //余额查询
     String REGISTER_ADDRESS_URL = "api/cold_wallet";
-    //上传交易
-    String UPLOAD_TRANSTION_URL = "api/create_heyue";
 
+    //冷钱包交易广播
+    String UPLOAD_TRANSTION_URL = "api/transaction";
+
+
+    //冷钱包转账记录列表
+    String CODE_WALLET_TRANFER_RECORD = "api/tranfers";
+
+    //冷钱包转账详情
+    String CODE_WALLET_TRANFER_DETAIL = "api/tranfers_info";
 }

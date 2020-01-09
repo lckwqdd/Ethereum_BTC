@@ -30,6 +30,7 @@ public class ETHCollectActivity extends AlscBaseActivity implements View.OnClick
     public void initViews(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_hot_wallet_alsc_collect);
         binding.commonHeader.ivHeaderLeft.setOnClickListener(this);
+        binding.commonHeader.tvHeaderMiddle.setText(getString(R.string.eth_collect));
         fetchWalletInteract = new FetchWalletInteract();
         fetchWalletInteract.findDefault().subscribe(this::onSuccess, this::onError);//找到当前以太坊钱包
     }

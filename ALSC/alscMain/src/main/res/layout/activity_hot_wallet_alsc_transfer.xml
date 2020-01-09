@@ -138,5 +138,11 @@
             android:background="@drawable/bg_blue_radius"
             android:text="@string/wh_ok" />
 
+        <EditText
+            android:id="@+id/hax"
+            android:hint="@string/make_hax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </layout>

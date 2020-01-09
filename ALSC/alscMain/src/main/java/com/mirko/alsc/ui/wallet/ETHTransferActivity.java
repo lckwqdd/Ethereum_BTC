@@ -190,7 +190,9 @@ public class ETHTransferActivity extends AlscBaseActivity implements View.OnClic
                             nonce, gasPrice.toString(), gasLimit.toString(),
                             Convert.toWei(binding.account.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger().toString());
                     LogUtils.d("hexValue:" + hexValue);
-
+                    runOnUiThread(()->{
+                        binding.hax.setText(hexValue);
+                    });
                     //发送交易广播
                     if (!TextUtils.isEmpty(hexValue)) {
                         TranlationResponse tranlationResponse = UrlRequstUtils.sendCodeTranslation(ETHTransferActivity.this,

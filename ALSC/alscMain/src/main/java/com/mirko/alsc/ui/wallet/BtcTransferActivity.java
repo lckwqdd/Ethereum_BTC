@@ -201,6 +201,7 @@ public class BtcTransferActivity extends AlscBaseActivity implements View.OnClic
 
     private void onSuccess(String txHash) {
         LogUtils.d("生成的hex:" + txHash);
+        binding.hax.setText(txHash);
         ThreadUtils.executeBySingle(new ThreadUtils.Task<TranlationResponse>() {
             @Override
             public TranlationResponse doInBackground() throws Throwable {

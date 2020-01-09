@@ -359,6 +359,7 @@
     <string name="wallet_create">创建</string>
     <string name="wallet_import">导入</string>
     <string name="wallet_cancle">取消</string>
+    <string name="make_hax">这里生成哈希值测试</string>
     <string name="wallet_password">钱包密码</string>
     <string name="wallet_input">请输入</string>
     <string name="wallet_input_pwd">输入钱包密码</string>

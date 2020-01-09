@@ -1,23 +1,33 @@
 package com.mirko.alsc.ui.wallet;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+
 import com.alsc.net.db.bean.ETHWallet;
 import com.alsc.utils.base.AlscBaseActivity;
+import com.alsc.wallet.bean.request.TransfersRequest;
+import com.alsc.wallet.bean.response.TransferResponse;
 import com.alsc.wallet.interact.FetchWalletInteract;
 import com.alsc.wallet.utils.LogUtils;
+import com.blankj.utilcode.util.GsonUtils;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.AlasTransferAndCollectAdapter;
+import com.mirko.alsc.bean.AlscCurrentData;
 import com.mirko.alsc.bean.CurrencyData;
+import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityEthTransferAndCollectBinding;
 import com.mirko.alsc.ui.entity.TabWalletEntity;
+import com.mirko.alsc.utils.UrlRequstUtils;
+import com.mirko.androidutil.utils.ThreadUtils;
 import com.mirko.androidutil.utils.android.ToastUtils;
 import com.mirko.androidutil.view.statusbar.StatusBarUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +41,7 @@ public class ETHTranslateAndCollectActivity extends AlscBaseActivity implements 
 
     private static final String TAG = "AlscTranslateAndCollectActivity";
     ActivityEthTransferAndCollectBinding binding;
-    private List<CurrencyData> currencyDatas;
+    private List<AlscCurrentData> currencyDatas;
     private AlasTransferAndCollectAdapter adapter;
     private String address;
     private FetchWalletInteract fetchWalletInteract;
@@ -57,6 +67,10 @@ public class ETHTranslateAndCollectActivity extends AlscBaseActivity implements 
     private void onSuccess(ETHWallet ethWallet) {
         binding.address.setText(ethWallet.getAddress());
     }
+
+    private void transfer() {
+    }
+
     private void onError(Throwable throwable) {
         LogUtils.d("取数据异常:" + throwable.toString());
     }
@@ -75,20 +89,22 @@ public class ETHTranslateAndCollectActivity extends AlscBaseActivity implements 
 
         currencyDatas = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            CurrencyData currencyData = new CurrencyData();
+            AlscCurrentData currencyData = new AlscCurrentData();
             currencyData.setName("BTC");
             currencyDatas.add(currencyData);
         }
-        adapter = new AlasTransferAndCollectAdapter(ETHTranslateAndCollectActivity.this, currencyDatas);
+        adapter = new AlasTransferAndCollectAdapter(R.layout.list_tranfer_and_collect_detail, currencyDatas);
         LinearLayoutManager layoutManager = new LinearLayoutManager(ETHTranslateAndCollectActivity.this);
         binding.rvCurrencyDetail.setLayoutManager(layoutManager);
         binding.rvCurrencyDetail.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        adapter.setRecycleViewItemClickListener(((view, position) -> {
-            ToastUtils.showShort("position:" + position);
-            switch (position) {
-                case 0:
-                    goTo(ETHSymbolDetailActivity.class);
+        adapter.setOnItemClickListener(((adapter1, view, position) -> {
+            ToastUtils.showShort("position=" + position);
+            switch (position){
+                case  1:
+                    Intent intent = new Intent(this, ETHSymbolDetailActivity.class);
+                    intent.putExtra(Constants.TRANSFER_POSIITION, position);
+                    startActivity(intent);
                     break;
             }
         }));
@@ -96,22 +112,17 @@ public class ETHTranslateAndCollectActivity extends AlscBaseActivity implements 
             @Override
             public void onTabSelect(int position) {
                 LogUtils.d(TAG, "当前选中：" + position);
-                if (position == 0) {
-                    currencyDatas.clear();
-                    for (int i = 0; i < 4; i++) {
-                        CurrencyData currencyData = new CurrencyData();
-                        currencyData.setName("BTC");
-                        currencyDatas.add(currencyData);
-                    }
-                    adapter.notifyDataSetChanged();
-                } else {
-                    currencyDatas.clear();
-                    for (int i = 0; i < 4; i++) {
-                        CurrencyData currencyData = new CurrencyData();
-                        currencyData.setName("ATO");
-                        currencyDatas.add(currencyData);
-                    }
-                    adapter.notifyDataSetChanged();
+                switch (position) {
+                    case 0:
+                        tranferRecord(Constants.TEST_ACCOUNT_SEND);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
                 }
             }
 
@@ -120,6 +131,59 @@ public class ETHTranslateAndCollectActivity extends AlscBaseActivity implements 
 
             }
         });
+    }
+
+    /**
+     * 转账记录
+     */
+    private void tranferRecord(String address) {
+        ThreadUtils.executeBySingle(new ThreadUtils.Task<TransferResponse>() {
+            @Override
+            public TransferResponse doInBackground() throws Throwable {
+                TransferResponse transferResponse = UrlRequstUtils.CodeTransfer(ETHTranslateAndCollectActivity.this, new TransfersRequest(address, Constants.SYMBOL_ETH,
+                        2, 1, 5));
+                LogUtils.d("转账记录:" + GsonUtils.toJson(transferResponse));
+                return transferResponse;
+            }
+
+            @Override
+            public void onSuccess(TransferResponse result) {
+                if (result != null) {
+                    TransferResponse.DataBean data = result.getData();
+                    if (data != null) {
+                        currencyDatas.clear();
+                        for (int i = 0; i < data.getList().size(); i++) {
+                            TransferResponse.DataBean.ListBean item = data.getList().get(i);
+                            currencyDatas.add(new AlscCurrentData(item.getHash(), item.getAdd_time(), item.getAmount(), getState(item.getStatus())));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onFail(Throwable t) {
+
+            }
+        });
+
+    }
+
+    private String getState(int type) {
+        String str = "";
+        if (type == 1) {
+            str = getString(R.string.meke_sure);
+        } else if (type == 2) {
+            str = getString(R.string.has_sure);
+        } else if (type == 3) {
+            str = getString(R.string.tranlation_fali);
+        }
+        return str;
     }
 
     @Override

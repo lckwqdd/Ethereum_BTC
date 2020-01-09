@@ -12,6 +12,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.mirko.alsc.R;
 import com.mirko.alsc.adapter.AlasTransferAndCollectAdapter;
+import com.mirko.alsc.bean.AlscCurrentData;
 import com.mirko.alsc.bean.CurrencyData;
 import com.mirko.alsc.constant.Constants;
 import com.mirko.alsc.databinding.ActivityAlscTransferAndCollectBinding;
@@ -33,7 +34,7 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
 
     private static final String TAG = "AlscTranslateAndCollectActivity";
     ActivityAlscTransferAndCollectBinding binding;
-    private List<CurrencyData> currencyDatas;
+    private List<AlscCurrentData> currencyDatas;
     private AlasTransferAndCollectAdapter adapter;
     private String btcAddress,btcPrivateKey,address;
     private int mTitleIds[] = new int[]{
@@ -72,17 +73,16 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
 
         currencyDatas = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            CurrencyData currencyData = new CurrencyData();
+            AlscCurrentData currencyData = new AlscCurrentData();
             currencyData.setName("BTC");
             currencyDatas.add(currencyData);
         }
-        adapter = new AlasTransferAndCollectAdapter(AlscTranslateAndCollectActivity.this, currencyDatas);
+        adapter = new AlasTransferAndCollectAdapter(R.layout.list_tranfer_and_collect_detail, currencyDatas);
         LinearLayoutManager layoutManager = new LinearLayoutManager(AlscTranslateAndCollectActivity.this);
         binding.rvCurrencyDetail.setLayoutManager(layoutManager);
         binding.rvCurrencyDetail.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        adapter.setRecycleViewItemClickListener(((view, position) -> {
-            ToastUtils.showShort("position:" + position);
+        adapter.setOnItemClickListener(((adapter1, view, position) -> {
             switch (position) {
                 case 0:
                     goTo(ETHSymbolDetailActivity.class);
@@ -92,24 +92,7 @@ public class AlscTranslateAndCollectActivity extends AlscBaseActivity implements
         binding.ctCapitalTitle.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                LogUtils.d(TAG, "当前选中：" + position);
-                if (position == 0) {
-                    currencyDatas.clear();
-                    for (int i = 0; i < 4; i++) {
-                        CurrencyData currencyData = new CurrencyData();
-                        currencyData.setName("BTC");
-                        currencyDatas.add(currencyData);
-                    }
-                    adapter.notifyDataSetChanged();
-                } else {
-                    currencyDatas.clear();
-                    for (int i = 0; i < 4; i++) {
-                        CurrencyData currencyData = new CurrencyData();
-                        currencyData.setName("ATO");
-                        currencyDatas.add(currencyData);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
+
             }
 
             @Override

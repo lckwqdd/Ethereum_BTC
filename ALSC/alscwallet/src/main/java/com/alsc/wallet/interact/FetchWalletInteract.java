@@ -77,6 +77,14 @@ public class FetchWalletInteract {
             return btcWallet;
         });
     }
+    public Single<BtcWallet> findFirstBTC() {
+
+        return Single.fromCallable(() -> {
+            List<BtcWallet> btcWalletList = BTCWalletHelper.getInstance().QueryAll(BtcWallet.class);
+            BtcWallet btcWallet = btcWalletList.get(0);
+            return btcWallet;
+        });
+    }
 
 
     public Single<String> genrateSingtureHex() {

@@ -258,6 +258,8 @@
     <!--    ALSC转账-->
     <string name="wh_alsc_transfer">ALSC转账</string>
     <string name="eth_tranfer">ETH转账</string>
+    <string name="my_tranfer">转账</string>
+    <string name="my_collect">收款</string>
     <string name="eth_collect">ETH收款</string>
     <string name="wh_btc_transfer">BTC转账</string>
     <string name="wh_btc_collect">BTC收款</string>
@@ -280,6 +282,9 @@
     <string name="wh_save">保存</string>
     <string name="wh_pwd_correct">密码正确</string>
     <string name="wh_input_safe">请输入安全密码</string>
+    <string name="meke_sure">确认中</string>
+    <string name="has_sure">已确认</string>
+    <string name="tranlation_fali">交易失败</string>
 
     <!--    帮助中心-->
     <string name="wh_help">帮助中心</string>

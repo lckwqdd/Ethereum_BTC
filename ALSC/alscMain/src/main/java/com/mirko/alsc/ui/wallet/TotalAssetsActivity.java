@@ -130,7 +130,7 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     private Observable<Float> createWalletSymbol(String address, String symbol) {
         return Observable.create((ObservableOnSubscribe<Float>) emitter -> {
             BalanceBeanResponse temp = UrlRequstUtils.getBalanceByAddress(this, new AddressRegisterRequest(address, symbol));
-            emitter.onNext(temp.getAssets());
+            emitter.onNext(temp.getData().getAssets());
         }).subscribeOn(Schedulers.io());
     }
 
@@ -139,12 +139,10 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
     }
 
     private void allBtcDatas(List<BtcWallet> btcWallets) {
-        LogUtils.d("allBtcDatas:" + btcWallets.size());
         allBtcWallets = btcWallets;
     }
 
     private void allEthDatas(List<ETHWallet> ethWallets) {
-        LogUtils.d("allEthDatas:" + ethWallets.size());
         allEthWallets = ethWallets;
     }
 
@@ -156,10 +154,13 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
         binding.totalAssetsRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setOnItemClickListener(((adapter1, view, position) -> {
-            ToastUtils.showToast("position:"+position);
+            ToastUtils.showToast("position:" + position);
             switch (position) {
                 case 1:
                     goTo(ETHTranslateAndCollectActivity.class);
+                    break;
+                case 2:
+                    goTo(BtcTranslateAndCollectActivity.class);
                     break;
 
             }
@@ -189,7 +190,6 @@ public class TotalAssetsActivity extends AlscBaseActivity implements View.OnClic
 //    }
 
     private ArrayList<MultiItemEntity> generateData() {
-        LogUtils.d("获取数据generateData");
         if (allEthWallets != null && allBtcWallets != null) {
             int lv0Count = 4;
             String[] nameLists = {"ALSC", "ETH", "BTC", "USDT"};

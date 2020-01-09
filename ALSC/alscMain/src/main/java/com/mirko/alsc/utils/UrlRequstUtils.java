@@ -304,6 +304,7 @@ public class UrlRequstUtils {
                 .params("symbol", translationRequest.getSymbol())
                 .converter(new StringConvert()).adapt();
         Response<String> response = null;
+        com.alsc.wallet.utils.LogUtils.d("sendCodeTranslation");
         try {
             response = call.execute();
             String s = response.body().toString();
@@ -317,13 +318,13 @@ public class UrlRequstUtils {
     }
 
     /**
-     * 冷钱包转账详情
+     * 冷钱包转账记录列表
      *
      * @param activity
      * @param transfersRequest
      * @return
      */
-    public static TransferResponse sendCodeTransfer(Activity activity, TransfersRequest transfersRequest) {
+    public static TransferResponse CodeTransfer(Activity activity, TransfersRequest transfersRequest) {
         Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.CODE_WALLET_TRANFER_RECORD)
                 .tag(activity)
                 .cacheKey("cacheKey")
@@ -348,12 +349,12 @@ public class UrlRequstUtils {
     }
 
 
-    /**
+    /**冷钱包交易转账详情
      * @param activity
      * @param codeTransfersInofRequest
      * @return
      */
-    public static CodeTransferInfoResponse sendCodeTransferInfo(Activity activity, CodeTransfersInofRequest codeTransfersInofRequest) {
+    public static CodeTransferInfoResponse CodeTransferInfo(Activity activity, CodeTransfersInofRequest codeTransfersInofRequest) {
         Call<String> call = OkGo.<String>post(Constants.baseUrl + ConstantUrl.CODE_WALLET_TRANFER_DETAIL)
                 .tag(activity)
                 .cacheKey("cacheKey")
